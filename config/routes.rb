@@ -9,11 +9,20 @@
 #            PATCH  /home/:id(.:format)      home#update
 #            PUT    /home/:id(.:format)      home#update
 #            DELETE /home/:id(.:format)      home#destroy
+# user_index GET    /user(.:format)          user#index
+#            POST   /user(.:format)          user#create
+#   new_user GET    /user/new(.:format)      user#new
+#  edit_user GET    /user/:id/edit(.:format) user#edit
+#       user GET    /user/:id(.:format)      user#show
+#            PATCH  /user/:id(.:format)      user#update
+#            PUT    /user/:id(.:format)      user#update
+#            DELETE /user/:id(.:format)      user#destroy
 #       root GET    /                        home#index
 #
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :home
+  resources :user
   root "home#index"
 end
