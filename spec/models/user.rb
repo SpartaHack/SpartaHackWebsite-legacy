@@ -7,4 +7,8 @@ RSpec.describe User, :type => :model do
 
     expect(User.ordered_by_last_name).to eq([chelimsky, lindeman])
   end
+
+  it "creates a user" do
+    bogderp = User.create!(email: "bogderp@spartahack.com")
+  end
 end
