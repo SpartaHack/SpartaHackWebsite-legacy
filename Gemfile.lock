@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-core.git
-  revision: d7ff6b3dafca321ce613ea8225ccb1b0d16c5f40
+  revision: 6a4376e276e52b89d35aa5e16b74758e9f64b991
   branch: master
   specs:
     rspec-core (3.6.0.pre)
@@ -203,7 +203,7 @@ GEM
     sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.1.1)
+    sprockets-rails (3.2.0)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
