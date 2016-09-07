@@ -17,6 +17,8 @@
 #            PATCH  /user/:id(.:format)      user#update
 #            PUT    /user/:id(.:format)      user#update
 #            DELETE /user/:id(.:format)      user#destroy
+#      login GET    /login(.:format)         sessions#new
+#            POST   /login(.:format)         sessions#create
 #       root GET    /                        home#index
 #
 
@@ -24,5 +26,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :home
   resources :user
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
   root "home#index"
 end

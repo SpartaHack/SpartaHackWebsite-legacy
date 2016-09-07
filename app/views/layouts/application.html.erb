@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>SpartaHack 2017</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +10,56 @@
   </head>
 
   <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div id="header" class="header">
+      <div class="navbar-nav left">
+        <a href="#hero" class="anchorLink">
+          <div id="home-nav" class="svg-wrapper active">
+
+          </div>
+          <div class="text">2016</div>
+        </a>
+      </div>
+
+      <div class="navbar-nav right">
+        <div id="sponsor-wrapper">
+          <a href="http://bit.ly/1XFkieU" target="_blank">
+            <div id="sponsor-nav" class="svg-wrapper">
+            </div>
+            <div class="text">SPONSOR</div>
+          </a>
+        </div>
+        <%- if current_user.present? %>
+          <div id="login-wrapper">
+            <a href="/logout">
+              <div id="login-nav" class="svg-wrapper">
+              </div>
+              <div class="text">LOGOUT</div>
+            </a>
+          </div>
+        <%- else %>
+          <div id="login-wrapper">
+            <a href="/login">
+              <div id="login-nav" class="svg-wrapper">
+              </div>
+              <div class="text">LOGIN</div>
+            </a>
+          </div>
+        <%- end %>
+      </div>
+
+      <nav>
+        <ul class="mobile">
+          <li><a href="#hero" class="anchorLink">Home</a></li>
+          <li><a href="#faq" class="anchorLink">FAQ</a></li>
+          <li><a href="#contact" class="anchorLink">Contact</a></li>
+          <li><a href="http://bit.ly/1XFkieU" target="_blank">Sponsor</a></li>
+        </ul>
+        <!-- <div id="pull"><%= image_tag "2016.svg", alt: "2016", :id => "year" %><%= image_tag "menu.svg", alt: "menu", :id => "mobile-menu-img" %></div> -->
+      </nav>
+    </div>
     <%= yield %>
   </body>
 </html>
