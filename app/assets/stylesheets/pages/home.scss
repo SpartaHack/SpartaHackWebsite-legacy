@@ -14,3 +14,63 @@
     }
   }
 }
+
+.border {
+  position: absolute;
+  &.top {
+    background: $light-gold;
+    margin-left: 5%;
+    height: 1px;
+    &.inner {
+      top: 100px;
+      width: 75%;
+    }
+    &.outer {
+      top: 70px;
+      right: 5%;
+      width: 90%;
+    }
+  }
+  &.right {
+    background: -webkit-linear-gradient($light-gold, $dark-gold); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($light-gold, $dark-gold); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($light-gold, $dark-gold); /* For Firefox 3.6 to 15 */
+    background: linear-gradient($light-gold, $dark-gold); /* Standard syntax */
+    top: 70px;
+    width: 1px;
+    &.inner {
+      right: 5%;
+      height: 90vh;
+    }
+    &.outer {
+      right: 4%;
+      height: 50%;
+    }
+  }
+}
+.corner {
+  position: absolute;
+  &.top.right {
+    background: -webkit-linear-gradient($light-gold, $dark-gold); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($light-gold, $dark-gold); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($light-gold, $dark-gold); /* For Firefox 3.6 to 15 */
+    background: linear-gradient($light-gold, $dark-gold); /* Standard syntax */
+    width: 1px;
+    -ms-transform: rotate(-45deg); /* IE 9 */
+    -webkit-transform: rotate(-45deg); /* Safari */
+    transform: rotate(-45deg);
+    -ms-transform-origin: top left;
+    -webkit-transform-origin: top left;
+    transform-origin: top left;
+    &.inner {
+      top: 100px;
+      right: 20%;
+      height: calc(21vw + .2vw);
+    }
+    &.outer {
+      top: 70px;
+      right: 18%;
+      height: 13vw;
+    }
+  }
+}

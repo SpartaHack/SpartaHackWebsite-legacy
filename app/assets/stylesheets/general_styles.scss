@@ -2,10 +2,11 @@
 // Main Background
 ///////////////////////////////////////
 body {
+  box-sizing: border-box;
   margin: 0;
   min-height: 100vh;
-  background: -webkit-linear-gradient($bg-grad-start, $bg-grad-end); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient($bg-grad-start, $bg-grad-end); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient($bg-grad-start, $bg-grad-end); /* For Firefox 3.6 to 15 */
-  background: linear-gradient($bg-grad-start, $bg-grad-end); /* Standard syntax */
+  background: -webkit-linear-gradient($white, $light-gold); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient($white, $light-gold); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient($white, $light-gold); /* For Firefox 3.6 to 15 */
+  background: linear-gradient($white, $light-gold); /* Standard syntax */
 }
