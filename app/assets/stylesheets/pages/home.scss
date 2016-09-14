@@ -15,18 +15,21 @@
   }
 }
 
+///////////////////////////////////////
+// Preview Site
+///////////////////////////////////////
 .border {
   position: absolute;
   &.top {
     background: $light-gold;
-    margin-left: 5%;
+    left: 5%;
     height: 1px;
     &.inner {
-      top: 100px;
+      top: 56px;
       width: 75%;
     }
     &.outer {
-      top: 70px;
+      top: 40px;
       right: 5%;
       width: 90%;
     }
@@ -36,41 +39,132 @@
     background: -o-linear-gradient($light-gold, $dark-gold); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient($light-gold, $dark-gold); /* For Firefox 3.6 to 15 */
     background: linear-gradient($light-gold, $dark-gold); /* Standard syntax */
-    top: 70px;
+    top: 40px;
     width: 1px;
     &.inner {
       right: 5%;
-      height: 90vh;
+      height: calc(100% - 140px);
     }
     &.outer {
       right: 4%;
       height: 50%;
+      &.lower {
+        background: -webkit-linear-gradient($dark-gold, $light-gold); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient($dark-gold, $light-gold); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient($dark-gold, $light-gold); /* For Firefox 3.6 to 15 */
+        background: linear-gradient($dark-gold, $light-gold); /* Standard syntax */
+        top: initial;
+        bottom: 56px;
+        height: 30%
+      }
+    }
+  }
+  &.bottom {
+    background: $medium-gold;
+    height: 1px;
+    right: 4%;
+    &.inner {
+      bottom: 56px;
+      width: 75%;
+    }
+    &.outer {
+      bottom: 40px;
+      width: 90%;
+    }
+  }
+  &.left {
+    background: -webkit-linear-gradient($dark-gold, $medium-gold); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($dark-gold, $medium-gold); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($dark-gold, $medium-gold); /* For Firefox 3.6 to 15 */
+    background: linear-gradient($dark-gold, $medium-gold); /* Standard syntax */
+    width: 1px;
+    &.inner {
+      left: 6%;
+      bottom: 40px;
+      height: calc(100% - 140px);
+    }
+    &.outer {
+      background: -webkit-linear-gradient($light-gold, $dark-gold); /* For Safari 5.1 to 6.0 */
+      background: -o-linear-gradient($light-gold, $dark-gold); /* For Opera 11.1 to 12.0 */
+      background: -moz-linear-gradient($light-gold, $dark-gold); /* For Firefox 3.6 to 15 */
+      background: linear-gradient($light-gold, $dark-gold); /* Standard syntax */
+      left: 5%;
+      top: 150px;
+      height: 40%;
     }
   }
 }
+
 .corner {
   position: absolute;
+  width: 1px;
   &.top.right {
+    -ms-transform-origin: top left;
+    -webkit-transform-origin: top left;
+    transform-origin: top left;
     background: -webkit-linear-gradient($light-gold, $dark-gold); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient($light-gold, $dark-gold); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient($light-gold, $dark-gold); /* For Firefox 3.6 to 15 */
     background: linear-gradient($light-gold, $dark-gold); /* Standard syntax */
-    width: 1px;
     -ms-transform: rotate(-45deg); /* IE 9 */
     -webkit-transform: rotate(-45deg); /* Safari */
     transform: rotate(-45deg);
-    -ms-transform-origin: top left;
-    -webkit-transform-origin: top left;
-    transform-origin: top left;
     &.inner {
-      top: 100px;
+      top: 56px;
       right: 20%;
-      height: calc(21vw + .2vw);
+      height: 21.2vw;
     }
     &.outer {
-      top: 70px;
-      right: 18%;
+      top: 40px;
+      right: 19%;
       height: 13vw;
     }
+  }
+  &.bottom.left {
+    -ms-transform-origin: bottom right;
+    -webkit-transform-origin: bottom right;
+    transform-origin: bottom right;
+    background: -webkit-linear-gradient($dark-gold, $medium-gold); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($dark-gold, $medium-gold); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($dark-gold, $medium-gold); /* For Firefox 3.6 to 15 */
+    background: linear-gradient($dark-gold, $medium-gold); /* Standard syntax */
+    -ms-transform: rotate(-45deg); /* IE 9 */
+    -webkit-transform: rotate(-45deg); /* Safari */
+    transform: rotate(-45deg);
+    &.outer {
+      bottom: 41px;
+      left: 20%;
+      height: 15vw;
+    }
+    &.inner {
+      bottom: 57px;
+      left: 21%;
+      height: 21.2vw;
+    }
+  }
+}
+
+.logo {
+  &.diamond {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 10%;
+    height: 6vw;
+    &.top.right {
+      right: 5%;
+      top: 40px;
+    }
+    &.bottom.left {
+      left: 5%;
+      bottom: 40px;
+    }
+    img {
+      width: 40%;
+    }
+  }
+  &.main {
+    width: 30%;
+    margin: 300px auto 0;
   }
 }
