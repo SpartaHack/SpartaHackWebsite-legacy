@@ -1,19 +1,10 @@
 ///////////////////////////////////////
 // Header
 ///////////////////////////////////////
-.header {
-  display: flex;
-  .navbar-nav {
-    &.right {
-      margin-left: auto;
-    }
-  }
-  @media only screen and (min-width: 961px) {
-    nav {
-      display: none;
-    }
-  }
+.front.page.navbar {
+
 }
+
 
 ///////////////////////////////////////
 // Preview Site
@@ -22,15 +13,15 @@
   position: absolute;
   &.top {
     background: $light-gold;
-    left: 5%;
+    left: 5vw;
     height: 1px;
     &.inner {
-      top: 56px;
+      top: 5vw;
       width: 75%;
     }
     &.outer {
-      top: 40px;
-      right: 5%;
+      top: 4vw;
+      right: 5vw;
       width: 90%;
     }
   }
@@ -39,14 +30,14 @@
     background: -o-linear-gradient($light-gold, $dark-gold); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient($light-gold, $dark-gold); /* For Firefox 3.6 to 15 */
     background: linear-gradient($light-gold, $dark-gold); /* Standard syntax */
-    top: 40px;
+    top: 4vw;
     width: 1px;
     &.inner {
-      right: 5%;
-      height: calc(100% - 140px);
+      right: 5vw;
+      height: calc(100% - 13vw);
     }
     &.outer {
-      right: 4%;
+      right: 4vw;
       height: 50%;
       &.lower {
         background: -webkit-linear-gradient($dark-gold, $light-gold); /* For Safari 5.1 to 6.0 */
@@ -54,7 +45,7 @@
         background: -moz-linear-gradient($dark-gold, $light-gold); /* For Firefox 3.6 to 15 */
         background: linear-gradient($dark-gold, $light-gold); /* Standard syntax */
         top: initial;
-        bottom: 56px;
+        bottom: 5vw;
         height: 30%
       }
     }
@@ -62,13 +53,13 @@
   &.bottom {
     background: $medium-gold;
     height: 1px;
-    right: 4%;
+    right: 4vw;
     &.inner {
-      bottom: 56px;
+      bottom: 5vw;
       width: 75%;
     }
     &.outer {
-      bottom: 40px;
+      bottom: 4vw;
       width: 90%;
     }
   }
@@ -79,16 +70,16 @@
     background: linear-gradient($dark-gold, $medium-gold); /* Standard syntax */
     width: 1px;
     &.inner {
-      left: 6%;
-      bottom: 40px;
-      height: calc(100% - 140px);
+      left: 6vw;
+      bottom: 4vw;
+      height: calc(100% - 13vw);
     }
     &.outer {
       background: -webkit-linear-gradient($light-gold, $dark-gold); /* For Safari 5.1 to 6.0 */
       background: -o-linear-gradient($light-gold, $dark-gold); /* For Opera 11.1 to 12.0 */
       background: -moz-linear-gradient($light-gold, $dark-gold); /* For Firefox 3.6 to 15 */
       background: linear-gradient($light-gold, $dark-gold); /* Standard syntax */
-      left: 5%;
+      left: 5vw;
       top: 150px;
       height: 40%;
     }
@@ -110,12 +101,12 @@
     -webkit-transform: rotate(-45deg); /* Safari */
     transform: rotate(-45deg);
     &.inner {
-      top: 56px;
+      top: 5vw;
       right: 20%;
       height: 21.2vw;
     }
     &.outer {
-      top: 40px;
+      top: 4vw;
       right: 19%;
       height: 13vw;
     }
@@ -132,12 +123,12 @@
     -webkit-transform: rotate(-45deg); /* Safari */
     transform: rotate(-45deg);
     &.outer {
-      bottom: 41px;
+      bottom: 4vw;
       left: 20%;
       height: 15vw;
     }
     &.inner {
-      bottom: 57px;
+      bottom: 5vw;
       left: 21%;
       height: 21.2vw;
     }
@@ -153,18 +144,28 @@
     height: 6vw;
     &.top.right {
       right: 5%;
-      top: 40px;
+      top: 4vw;
     }
     &.bottom.left {
       left: 5%;
-      bottom: 40px;
+      bottom: 4vw;
     }
     img {
       width: 40%;
     }
   }
   &.main {
-    width: 30%;
-    margin: 300px auto 0;
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+    top: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 55%;
+      max-height: 75vh;
+    }
   }
 }

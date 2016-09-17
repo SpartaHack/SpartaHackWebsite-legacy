@@ -6,9 +6,10 @@ body {
   box-sizing: border-box;
   position: relative;
   margin: 0;
+  padding: 100vh 20% 115px;
   min-height: 100vh;
-  background: -webkit-linear-gradient($white, $light-gold); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient($white, $light-gold); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient($white, $light-gold); /* For Firefox 3.6 to 15 */
-  background: linear-gradient($white, $light-gold); /* Standard syntax */
+  background: -webkit-linear-gradient($white 69%, #FFF2D7 100%); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient($white 69%, #FFF2D7 100%); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient($white 69%, #FFF2D7 100%); /* For Firefox 3.6 to 15 */
+  background: linear-gradient($white 69%, #FFF2D7 100%); /* Standard syntax */
 }
