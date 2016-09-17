@@ -1,0 +1,36 @@
+@font-face {
+  font-family: 'Nemoy-Light';
+  font-style: normal;
+  src: font-url('Nemoy/nemoy_light-webfont.eot'); /* IE9 Compat Modes */
+  src: font-url('Nemoy/nemoy_light-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       font-url('Nemoy/nemoy_light-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       font-url('Nemoy/nemoy_light-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+       font-url('Nemoy/nemoy_light-webfont.svg#Nemoy') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'Lato-Italic';
+  font-weight: 100;
+  font-style: normal;
+  src: font-url('Lato/lato-italic-webfont.woff2') format('woff2'), /* Super Modern Browsers */
+       font-url('Lato/lato-italic-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       font-url('Lato/Lato-Italic.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Lato-Light';
+  font-weight: 100;
+  font-style: normal;
+  src: font-url('Lato/lato-light-webfont.woff') format('woff2'), /* Super Modern Browsers */
+       font-url('Lato/lato-light-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       font-url('Lato/Lato-Light.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Lato-Regular';
+  font-weight: 100;
+  font-style: normal;
+  src: font-url('Lato/lato-regular-webfont.woff2') format('woff2'), /* Super Modern Browsers */
+       font-url('Lato/lato-regular-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       font-url('Lato/Lato-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
