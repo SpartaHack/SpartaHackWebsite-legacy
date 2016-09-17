@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.2.1'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -32,11 +32,20 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'activeresource', git: 'https://github.com/rails/activeresource.git'
 
+gem 'simple_form'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   # Call annotate in root directory to show tables in models
   gem 'annotate'
+  # Use rspec for testing
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+      gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master'
+  end
+  gem "factory_girl_rails"
+  gem 'ffaker'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do

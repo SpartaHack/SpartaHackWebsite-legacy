@@ -19,3 +19,9 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Design directory
+design/
+
+# Local environment variables
+/config/local_env.yml

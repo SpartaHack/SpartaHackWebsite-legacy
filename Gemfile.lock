@@ -7,6 +7,53 @@ GIT
       activemodel-serializers-xml (~> 1.0)
       activesupport (> 4.2, < 6)
 
+GIT
+  remote: https://github.com/rspec/rspec-core.git
+  revision: 6a4376e276e52b89d35aa5e16b74758e9f64b991
+  branch: master
+  specs:
+    rspec-core (3.6.0.pre)
+      rspec-support (= 3.6.0.pre)
+
+GIT
+  remote: https://github.com/rspec/rspec-expectations.git
+  revision: a271631e9b8e1749be876dbcc65dbd7a6a40d2db
+  branch: master
+  specs:
+    rspec-expectations (3.6.0.pre)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (= 3.6.0.pre)
+
+GIT
+  remote: https://github.com/rspec/rspec-mocks.git
+  revision: 00326f6b8bd48ef8220f7927da5868381ec65770
+  branch: master
+  specs:
+    rspec-mocks (3.6.0.pre)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (= 3.6.0.pre)
+
+GIT
+  remote: https://github.com/rspec/rspec-rails.git
+  revision: e8054a1cd03044f725030fe8315952cf3799a395
+  branch: master
+  specs:
+    rspec-rails (3.6.0.pre)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (= 3.6.0.pre)
+      rspec-expectations (= 3.6.0.pre)
+      rspec-mocks (= 3.6.0.pre)
+      rspec-support (= 3.6.0.pre)
+
+GIT
+  remote: https://github.com/rspec/rspec-support.git
+  revision: e71681f1756d29029ea2bb740010cdc5ca3b258e
+  branch: master
+  specs:
+    rspec-support (3.6.0.pre)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -67,8 +114,15 @@ GEM
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
     debug_inspector (0.0.2)
+    diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.7.0)
+    factory_girl (4.7.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.7.0)
+      factory_girl (~> 4.7.0)
+      railties (>= 3.0.0)
+    ffaker (2.2.0)
     ffi (1.9.14)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -76,7 +130,7 @@ GEM
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
-    jquery-rails (4.1.1)
+    jquery-rails (4.2.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
@@ -137,6 +191,11 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    shoulda-matchers (3.1.1)
+      activesupport (>= 4.0.0)
+    simple_form (3.3.1)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
     spring (1.7.2)
     spring-watcher-listen (2.0.0)
       listen (>= 2.7, < 4.0)
@@ -144,7 +203,7 @@ GEM
     sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.1.1)
+    sprockets-rails (3.2.0)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
@@ -157,7 +216,7 @@ GEM
     turbolinks-source (5.0.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (3.0.1)
+    uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
     web-console (3.3.1)
       actionview (>= 5.0)
@@ -176,12 +235,21 @@ DEPENDENCIES
   annotate
   byebug
   coffee-rails (~> 4.2)
+  factory_girl_rails
+  ffaker
   jbuilder (~> 2.5)
-  jquery-rails
+  jquery-rails (~> 4.2.1)
   listen (~> 3.0.5)
   puma (~> 3.0)
   rails (~> 5.0.0)
+  rspec-core!
+  rspec-expectations!
+  rspec-mocks!
+  rspec-rails!
+  rspec-support!
   sass-rails (~> 5.0)
+  shoulda-matchers (~> 3.1)
+  simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
