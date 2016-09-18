@@ -2,12 +2,19 @@
   font-family: "Nemoy-Light";
   font-weight: 100;
   color: $medium-gold;
-  font-size: 9em;
+  font-size: 5vw;
 }
 
 #event-date, #event-location {
   text-transform: uppercase;
   font-family: "Lato-Light";
-  font-size: 2.5em;
+  font-size: 3vw;
   color: $medium-gold;
+}
+
+#event-description {
+  font-family: "Lato-Light";
+  font-size: 1.25vw;
+  line-height: 2;
+  color: $dark-gold;
 }
