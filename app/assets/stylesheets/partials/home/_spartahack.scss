@@ -3,18 +3,24 @@
   font-weight: 100;
   color: $medium-gold;
   font-size: 5vw;
+  @media screen and (max-width: 774px) {
+    font-size: 6vw;
+  }
 }
 
 #event-date, #event-location {
   text-transform: uppercase;
   font-family: "Lato-Light";
-  font-size: 3vw;
   color: $medium-gold;
+  font-size: 2vw;
+  @media screen and (max-width: 774px) {
+    font-size: 3.5vw;
+  }
 }
 
 #event-description {
   font-family: "Lato-Light";
-  font-size: 1.25vw;
+  font-size: 1em;
   line-height: 2;
   color: $dark-gold;
 }
