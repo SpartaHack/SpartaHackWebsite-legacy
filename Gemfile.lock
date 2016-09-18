@@ -103,6 +103,8 @@ GEM
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 12.0)
     arel (7.1.1)
+    autoprefixer-rails (6.4.1.1)
+      execjs
     builder (3.2.2)
     byebug (9.0.5)
     coffee-rails (4.2.1)
@@ -233,6 +235,7 @@ PLATFORMS
 DEPENDENCIES
   activeresource!
   annotate
+  autoprefixer-rails
   byebug
   coffee-rails (~> 4.2)
   factory_girl_rails
