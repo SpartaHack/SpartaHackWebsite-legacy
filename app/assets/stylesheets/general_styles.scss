@@ -71,3 +71,12 @@ body {
 .remove-outline {
     outline:0;
 }
+
+input {
+  border: 1px $light-gold solid;
+}
+
+::placeholder {
+  color: $dark-gold;
+  font-family: "Lato-Light"
+}

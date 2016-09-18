@@ -18,6 +18,43 @@
   }
 }
 
+#notify-email {
+  input {
+    box-sizing: border-box;
+    width: 25vw;
+    font-size: .7vw;
+    line-height: 17px;
+    text-align: center;
+    padding: 20px;
+    margin: 40px 0;
+    &:focus {
+      text-align: left;
+    }
+    @media screen and (max-width: 774px) {
+      width: 50vw;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.submit-button {
+  padding: 21px 2vw;
+  line-height: 17px;
+  margin-left: -5vw;
+  border: none;
+  background: linear-gradient(90deg, $light-gold, $dark-gold);
+  color: white;
+  font-family: "Lato-Light";
+  font-size: .7vw;
+  &.hide {
+    display: none;
+  }
+  @media screen and (max-width: 774px) {
+    width: 50vw;
+    margin-left: 0;
+  }
+}
+
 #event-description {
   font-family: "Lato-Light";
   font-size: 1.1vw;
