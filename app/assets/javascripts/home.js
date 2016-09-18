@@ -29,4 +29,18 @@ window.onload = function(){
       });
     }
   }
+
+  ////////////////////////////////////////////////////
+  // email
+  ///////////////////////////////////////////////////
+  var emailForm = document.getElementById("notify-email-input");
+  emailForm.addEventListener("focus", function() {
+    this.setAttribute("placeholder", "Enter your email here and hit submit to get notified!");
+    this.nextElementSibling.classList.remove("hide");
+  });
+
+  emailForm.addEventListener("blur", function() {
+    this.setAttribute("placeholder", "NOTIFY ME WHEN APPLICATIONS OPEN");
+    this.nextElementSibling.classList.add("hide");
+  });
 };
