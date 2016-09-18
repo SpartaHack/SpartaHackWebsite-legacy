@@ -20,7 +20,10 @@
 
 #event-description {
   font-family: "Lato-Light";
-  font-size: 1em;
+  font-size: 1.1vw;
   line-height: 2;
   color: $dark-gold;
+  @media screen and (max-width: 774px) {
+    font-size: 3vw;
+  }
 }
