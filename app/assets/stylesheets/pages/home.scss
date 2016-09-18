@@ -26,10 +26,7 @@
     }
   }
   &.right {
-    background: -webkit-linear-gradient($light-gold, $dark-gold); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient($light-gold, $dark-gold); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient($light-gold, $dark-gold); /* For Firefox 3.6 to 15 */
-    background: linear-gradient($light-gold, $dark-gold); /* Standard syntax */
+    background: linear-gradient($light-gold, $dark-gold);
     top: 4vw;
     width: 1px;
     &.inner {
@@ -40,10 +37,7 @@
       right: 4vw;
       height: 50%;
       &.lower {
-        background: -webkit-linear-gradient($dark-gold, $light-gold); /* For Safari 5.1 to 6.0 */
-        background: -o-linear-gradient($dark-gold, $light-gold); /* For Opera 11.1 to 12.0 */
-        background: -moz-linear-gradient($dark-gold, $light-gold); /* For Firefox 3.6 to 15 */
-        background: linear-gradient($dark-gold, $light-gold); /* Standard syntax */
+        background: linear-gradient($dark-gold, $light-gold);
         top: initial;
         bottom: 5vw;
         height: 30%
@@ -64,10 +58,7 @@
     }
   }
   &.left {
-    background: -webkit-linear-gradient($dark-gold, $medium-gold); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient($dark-gold, $medium-gold); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient($dark-gold, $medium-gold); /* For Firefox 3.6 to 15 */
-    background: linear-gradient($dark-gold, $medium-gold); /* Standard syntax */
+    background: linear-gradient($dark-gold, $medium-gold);
     width: 1px;
     &.inner {
       left: 6vw;
@@ -75,10 +66,7 @@
       height: calc(100% - 13vw);
     }
     &.outer {
-      background: -webkit-linear-gradient($light-gold, $dark-gold); /* For Safari 5.1 to 6.0 */
-      background: -o-linear-gradient($light-gold, $dark-gold); /* For Opera 11.1 to 12.0 */
-      background: -moz-linear-gradient($light-gold, $dark-gold); /* For Firefox 3.6 to 15 */
-      background: linear-gradient($light-gold, $dark-gold); /* Standard syntax */
+      background: linear-gradient($light-gold, $dark-gold);
       left: 5vw;
       top: 150px;
       height: 40%;
@@ -90,15 +78,8 @@
   position: absolute;
   width: 1px;
   &.top.right {
-    -ms-transform-origin: top left;
-    -webkit-transform-origin: top left;
     transform-origin: top left;
-    background: -webkit-linear-gradient($light-gold, $dark-gold); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient($light-gold, $dark-gold); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient($light-gold, $dark-gold); /* For Firefox 3.6 to 15 */
-    background: linear-gradient($light-gold, $dark-gold); /* Standard syntax */
-    -ms-transform: rotate(-45deg); /* IE 9 */
-    -webkit-transform: rotate(-45deg); /* Safari */
+    background: linear-gradient($light-gold, $dark-gold);
     transform: rotate(-45deg);
     &.inner {
       top: 5vw;
@@ -112,15 +93,8 @@
     }
   }
   &.bottom.left {
-    -ms-transform-origin: bottom right;
-    -webkit-transform-origin: bottom right;
     transform-origin: bottom right;
-    background: -webkit-linear-gradient($dark-gold, $medium-gold); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient($dark-gold, $medium-gold); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient($dark-gold, $medium-gold); /* For Firefox 3.6 to 15 */
-    background: linear-gradient($dark-gold, $medium-gold); /* Standard syntax */
-    -ms-transform: rotate(-45deg); /* IE 9 */
-    -webkit-transform: rotate(-45deg); /* Safari */
+    background: linear-gradient($dark-gold, $medium-gold);
     transform: rotate(-45deg);
     &.outer {
       bottom: 4vw;
@@ -171,3 +145,4 @@
 }
 
 @import "../partials/home/spartahack";
+@import "../partials/home/faq";
