@@ -1,5 +1,7 @@
 <%- if current_user.present? && current_user.role == 1 %>
   <%= render "admin_portal" %>
 <%- else %>
-  <%= render "preview" %>
+  <%= render "head" %>
+  <%= render "spartahack" %>
+  <%= render "faq" %>
 <%- end %>
