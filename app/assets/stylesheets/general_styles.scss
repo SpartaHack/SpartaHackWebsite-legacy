@@ -13,3 +13,53 @@ body {
   background: -moz-linear-gradient($white 69%, #FFF2D7 100%); /* For Firefox 3.6 to 15 */
   background: linear-gradient($white 69%, #FFF2D7 100%); /* Standard syntax */
 }
+
+
+.wrap {
+  margin-bottom: 100px;
+}
+.flex {
+  display: flex;
+}
+
+.wrap-row {
+  flex-flow: row wrap;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+
+}
+
+.wrap-column {
+  flex-direction: column;
+  -webkit-flex-direction: column;
+}
+
+.space-between {
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+
+.space-around {
+  justify-content: space-around;
+  -webkit-justify-content: space-around;
+}
+
+.start {
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+}
+
+.center {
+  justify-content: center;
+  -webkit-justify-content: center;
+}
+
+.align-center {
+    align-content: center;
+    align-items: center;
+}
+
+/* Removes glowing outline on button focus */
+.remove-outline {
+    outline:0;
+}
