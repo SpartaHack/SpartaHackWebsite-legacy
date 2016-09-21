@@ -78,5 +78,48 @@ input {
 
 ::placeholder {
   color: $dark-gold;
-  font-family: "Lato-Light"
+  font-family: "Lato-Light";
+}
+
+.section-head {
+  font-family: "Nemoy-Light";
+  font-weight: 100;
+  color: $medium-gold;
+  font-size: 2.5vw;
+  @media screen and (max-width: 774px) {
+    font-size: 3vw;
+  }
+}
+
+p {
+  font-family: "Lato-Light";
+  font-size: 1.1vw;
+  line-height: 2;
+  color: $dark-gold;
+  @media screen and (max-width: 774px) {
+    font-size: 3vw;
+  }
+}
+
+a {
+  color: $dark-gold;
+}
+
+///////////////////////////////////////
+// Footer
+///////////////////////////////////////
+#social-media-icons {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+  margin: 200px auto auto;
+  @media screen and (max-width: 774px) {
+    width: 100%;
+  }
+  .footer-social-icon {
+    width: 2.5vw;
+    @media screen and (max-width: 774px) {
+      width: 10vw;
+    }
+  }
 }
