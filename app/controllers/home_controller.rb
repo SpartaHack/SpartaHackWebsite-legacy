@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   include ApplicationHelper
+  require 'json'
 
   def subscribe
     if subscribe_params[:emailinput] == "" && subscribe_params[:fname] == "" && subscribe_params[:lname] == ""
@@ -20,13 +21,14 @@ class HomeController < ApplicationController
       	@type = "success"
       	@desc = "Now you just need to confirm your email address!"
       	@title = "Sweet!"
+        @button = "#D4B166"
       rescue Exception => e
       	p e
       	puts
       	@type = "error"
       	@desc = "You've already signed up with this email."
       	@title = "Uh Oh!"
-        redirect_to "/#notify-email" and return
+        @button = "#D4B166"
       end
     end
 	end
