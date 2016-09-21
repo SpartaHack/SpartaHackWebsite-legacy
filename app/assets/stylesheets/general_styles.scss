@@ -22,7 +22,6 @@ body {
   }
 }
 
-
 .wrap {
   margin-bottom: 100px;
 }
@@ -76,6 +75,9 @@ input {
   border: 1px $light-gold solid;
 }
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
 ::placeholder {
   color: $dark-gold;
   font-family: "Lato-Light";
@@ -121,5 +123,15 @@ a {
     @media screen and (max-width: 774px) {
       width: 10vw;
     }
+  }
+}
+
+.section-head {
+  margin-bottom: 0px;
+  font-family: "Nemoy-Light";
+  color: $dark-gold;
+  font-size: 2.1vw;
+  @media (max-width: 550px) {
+    margin-bottom: 25px;
   }
 }
