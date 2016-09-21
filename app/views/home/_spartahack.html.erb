@@ -6,7 +6,7 @@
     <p id="event-location">East Lansing - Michigan</p>
   </div>
   <%= form_tag "/subscribe", id: "notify-email" %>
-    <%= email_field_tag "emailinput", nil, id: "notify-email-input", class: "remove-outline", placeholder: "NOTIFY ME WHEN APPLICATIONS OPEN" %>
+    <%= email_field_tag "emailinput", nil, id: "notify-email-input", class: "remove-outline", placeholder: "NOTIFY ME WHEN APPLICATIONS OPEN", autocomplete: "off"%>
     <button class="submit-button hide">SUBMIT</button>
   </form>
   <p id="event-description">
