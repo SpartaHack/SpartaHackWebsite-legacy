@@ -4,7 +4,7 @@ window.onload = function(){
   ///////////////////////////////////////////////////
   var questions = document.getElementById("questions").getElementsByTagName("article");
 
-  for (var questionIndex in questions) {
+  for (var questionIndex = 0; questionIndex < questions.length; questionIndex++) {
     if (questions.hasOwnProperty(questionIndex)) {
       questions[questionIndex].addEventListener("click", function(){
         // Remove active-q class from previously selected element
