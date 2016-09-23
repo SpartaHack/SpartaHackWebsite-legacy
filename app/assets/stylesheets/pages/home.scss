@@ -19,11 +19,20 @@
     a {
       text-decoration: none;
       transition: all ease 0.5s;
-      &:hover {
-        border-bottom: 1px solid $dark-gold;
+      border-bottom: none;
+      &::after {
+        transition: width ease .5s;
+        bottom: 0px;
+        height: 0px;
+        width: 0%;
       }
-      &.active {
-        border-bottom: 1px solid $dark-gold;
+      &:hover::after {
+        height: 1px;
+        width: 100%;
+      }
+      &.active::after {
+        height: 1px;
+        width: 100%;
       }
     }
   }
@@ -31,7 +40,6 @@
     left: -20vh;
     background-color: white;
     border: 1px solid $light-gold;
-    z-index: 1;
     h4 {
       font-size: 11px;
     }
