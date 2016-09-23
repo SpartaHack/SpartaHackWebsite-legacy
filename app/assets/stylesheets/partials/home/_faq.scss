@@ -148,41 +148,6 @@
     }
   }
 
-  a {
-    text-decoration: underline;
-    font-family: "Lato-Light";
-    color: $dark-gold;
-    -webkit-font-smoothing: antialiased;
-
-    &:visited {
-      color: $dark-gold;
-    }
-
-    &:hover {
-      -webkit-transition: all .3s ease-in-out;
-      -moz-transition: all .3s ease-in-out;
-      -o-transition: all .3s ease-in-out;
-      transition: all .3s ease-in-out;
-      opacity: .7;
-    }
-  }
-
-  .hline {
-    border-top: solid 1px $light-gold;
-    background: none;
-    width: 40%;
-  }
-
-
-
-  .hline-full {
-    border-top: solid 1px $light-gold;
-    background: none;
-    position: absolute;
-    left:0;
-    width: 100%;
-  }
-
   .faq-top {
     margin-bottom: 0px;
     font-family: "Nemoy-Light";
