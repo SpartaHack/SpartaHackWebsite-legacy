@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-core.git
-  revision: 6a4376e276e52b89d35aa5e16b74758e9f64b991
+  revision: c3c90c278fda997e0eaf3bdac08d162175dc060b
   branch: master
   specs:
     rspec-core (3.6.0.pre)
@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-expectations.git
-  revision: 2ebd28a6a936595739fa2330732ca31907f21816
+  revision: add9b271ecb1d65f7da5bc8a9dd8c64d81d92303
   branch: master
   specs:
     rspec-expectations (3.6.0.pre)
@@ -26,7 +26,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-mocks.git
-  revision: 00326f6b8bd48ef8220f7927da5868381ec65770
+  revision: 4d842fefb82eaca7d33554746c1fb8c03738b068
   branch: master
   specs:
     rspec-mocks (3.6.0.pre)
@@ -49,7 +49,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-support.git
-  revision: e71681f1756d29029ea2bb740010cdc5ca3b258e
+  revision: e96cc73d0a7d46d9b1948d165c52f0aff78e9457
   branch: master
   specs:
     rspec-support (3.6.0.pre)
@@ -102,7 +102,7 @@ GEM
     annotate (2.7.1)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 12.0)
-    arel (7.1.1)
+    arel (7.1.2)
     autoprefixer-rails (6.4.1.1)
       execjs
     builder (3.2.2)
@@ -187,7 +187,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (11.2.2)
+    rake (11.3.0)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
