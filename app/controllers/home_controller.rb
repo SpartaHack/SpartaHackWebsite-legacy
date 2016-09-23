@@ -34,7 +34,8 @@ class HomeController < ApplicationController
 	end
 
   def index
-
+    @past_sponsors = Dir.glob("app/assets/images/pastSponsors/*")
+    p @past_sponsors
   end
 
   private

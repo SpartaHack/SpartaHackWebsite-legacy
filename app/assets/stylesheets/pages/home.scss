@@ -9,8 +9,13 @@
 ///////////////////////////////////////
 // Preview Site
 ///////////////////////////////////////
+
 .border {
   position: absolute;
+  opacity: 0;
+  animation: fade-in 1s linear alternate;
+  animation-delay: 1s;
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
   &.top {
     background: $light-gold;
     left: 5vw;
@@ -76,6 +81,10 @@
 
 .corner {
   position: absolute;
+  opacity: 0;
+  animation: fade-in 1s linear alternate;
+  animation-delay: 1.5s;
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
   width: 1px;
   &.top.right {
     transform-origin: top left;
@@ -112,6 +121,10 @@
 .logo {
   &.diamond {
     position: absolute;
+    opacity: 0;
+    animation: fade-in 1s linear alternate;
+    animation-delay: 1s;
+    -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
     display: flex;
     justify-content: center;
     width: 10%;
@@ -127,6 +140,36 @@
     img {
       width: 40%;
     }
+  }
+  &#logo-center {
+    width: 19vw;
+    height: auto;
+    max-height: 19vh;
+  }
+  &#inner-ring {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    overflow: auto;
+    width: 44vw;
+    height: 44vh;
+  }
+  &#outer-ring {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    overflow: auto;
+    width: 70vw;
+    height: 70vh;
+  }
+  &#hanging-lines {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    overflow: visible;
+    width: 70vw;
+    height: 70vw;
+    max-height: 70vh;
   }
   &.main {
     height: 100vh;
@@ -144,6 +187,7 @@
   }
 }
 
+@import "../partials/home/head";
 @import "../partials/home/spartahack";
 @import "../partials/home/faq";
 @import "../partials/home/sponsors";

@@ -1,0 +1,85 @@
+#outer-ring {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: bounce .4s .5s alternate;
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+  // -webkit-transform-style: preserve-3d;
+  // animation: spinY 7.5s linear infinite;
+}
+
+#inner-ring {
+  opacity: 0;
+  will-change: transform, opacity;
+  // -webkit-transform-style: preserve-3d;
+  // animation: spinX 6.5s linear infinite;
+  animation: bounce .5s .7s alternate;
+  animation-delay: .4s;
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+}
+
+#logo-center {
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: bounce .4s 7s alternate;
+  animation-delay: .4s;
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+}
+
+#hanging-lines {
+  will-change: opacity;
+
+  #logo-top-left  {
+    opacity: 0;
+    animation: fade-in 1.45s linear alternate;
+    animation-delay: .94s;
+    -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+  }
+  #logo-top-right {
+    opacity: 0;
+    animation: fade-in .25s linear alternate;
+    animation-delay: .75s;
+    -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+  }
+  #logo-bottom-left {
+    opacity: 0;
+    animation: fade-in 1.2s linear alternate;
+    animation-delay: 1.3s;
+    -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+  }
+  #logo-bottom-center {
+    opacity: 0;
+    animation: fade-in 1s linear alternate;
+    animation-delay: 1.3s;
+    -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+  }
+  #logo-top-center {
+    opacity: 0;
+    animation: fade-in .3s linear alternate;
+    animation-delay: 1.3s;
+    -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+  }
+}
+
+#page-corner {
+  position: absolute;
+  top: 4vw;
+  left: 5vw;
+  width: 14vw;
+  height: auto;
+
+  .cls-1 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 5s linear alternate;
+    animation-delay: .6s;
+    -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+  }
+  .cls-2 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 5s linear alternate;
+    animation-delay: .64s;
+    -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+  }
+
+}

@@ -78,11 +78,8 @@
         }
 
         h3 {
-          font-size: .9vw;
+          font-size: 1em;
           font-family: "Lato-Light";
-          @media screen and (max-width: 774px) {
-            font-size: 3vw;
-          }
         }
 
       }
@@ -123,7 +120,7 @@
       }
 
       p {
-        font-size: 1vw;
+        font-size: 1em;
         font-family: "Lato-Light";
         margin: 0px;
         z-index: 10;
@@ -138,79 +135,9 @@
           padding: 0;
         }
 
-        @media screen and (max-width: 774px) {
-          font-size: 3vw;
-        }
         &.hidden-answer {
           display: none;
         }
-      }
-    }
-  }
-
-  a {
-    text-decoration: underline;
-    font-family: "Lato-Light";
-    color: $dark-gold;
-    -webkit-font-smoothing: antialiased;
-
-    &:visited {
-      color: $dark-gold;
-    }
-
-    &:hover {
-      -webkit-transition: all .3s ease-in-out;
-      -moz-transition: all .3s ease-in-out;
-      -o-transition: all .3s ease-in-out;
-      transition: all .3s ease-in-out;
-      opacity: .7;
-    }
-  }
-
-  .hline {
-    border-top: solid 1px $light-gold;
-    background: none;
-    width: 40%;
-  }
-
-
-
-  .hline-full {
-    border-top: solid 1px $light-gold;
-    background: none;
-    position: absolute;
-    left:0;
-    width: 100%;
-  }
-
-  .faq-top {
-    margin-bottom: 0px;
-    font-family: "Nemoy-Light";
-    font-size: 2.1vw;
-    @media (max-width: 550px) {
-      margin-bottom: 25px;
-    }
-  }
-
-  #last-year {
-    width: 500px;
-    margin-top: 3vh;
-    display: flex;
-    display: -webkit-flex;
-    justify-content: space-between;
-    -webkit-justify-content: space-between;
-
-    a {
-      font-size: 120%;
-    }
-
-    @media (max-width: 550px) {
-      width: 200px;
-      flex-direction: column;
-      -webkit-flex-direction: column;
-
-      a {
-        padding: 5px 0px;
       }
     }
   }

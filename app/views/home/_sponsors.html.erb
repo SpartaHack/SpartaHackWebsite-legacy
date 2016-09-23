@@ -10,4 +10,33 @@
     branding in the tight-knit hacker community, and contribute to the
     innovation of tech education.
   </p>
+
+  <section id="past-sponsors">
+    <h1 id="title">2016 Sponsors</hi>
+    <div class="media-grid">
+      <% @past_sponsors.each do |sponsor|  %>
+        <article class="sub flex align-center center">
+            <%= image_tag "pastSponsors/#{sponsor.split('/').last}", :class => "logo-sponsor" %>
+        </article>
+      <% end %>
+    </div>
+  </section>
+
+  <div id="interested">
+    Interested in sponsoring for 2017? Email us at <a href="mailto:sponsor@spartahack.com">sponsor@spartahack.com</a>
+  </div>
+
+  <div id="sponsorship-info" class="flex space-around">
+    <div id="prospectus">View our Prospectus</div>
+    <div id="tiers">View our Tiers</div>
+  </div>
+
+  <div id="past-events">
+    You can also view SpartaHack's past sites and sponsors at
+    <br>
+    <div id="past-events-links">
+      <a href="https://2015.spartahack.com" target="_blank">SpartaHack 15</a> and <a target="_blank" href="https://2016.spartahack.com">SpartaHack 16</a>
+    </div>
+  </div>
+
 </section>
