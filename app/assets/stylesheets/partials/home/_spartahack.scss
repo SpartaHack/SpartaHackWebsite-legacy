@@ -38,6 +38,27 @@
   }
 }
 
+.sweet-alert .sa-icon.sa-error,
+.sweet-alert .sa-icon.sa-success .sa-placeholder {
+  border-color: $medium-gold !important;
+}
+
+.sweet-alert .sa-icon.sa-error .sa-line,
+.sweet-alert .sa-icon.sa-success .sa-line {
+  background-color: $medium-gold !important;
+}
+
+.sweet-alert p {
+  font-family: "Lato-Light" !important;
+  color: $medium-gold !important;
+  font-weight: 100 !important;
+}
+
+.sweet-alert h2 {
+  font-family: "Nemoy-Light" !important;
+  color: $dark-gold !important;
+}
+
 .submit-button {
   padding: 21px 2vw;
   line-height: 17px;
