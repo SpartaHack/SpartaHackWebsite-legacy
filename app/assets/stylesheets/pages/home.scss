@@ -1,8 +1,44 @@
 ///////////////////////////////////////
 // Header
 ///////////////////////////////////////
-.front.page.navbar {
-
+.main-header {
+  font-family: "Lato-Light";
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 44vh;
+  top: 50%;
+  left: -17vh;
+  z-index: 2;
+  transform: rotate(90deg);
+  will-change: transform;
+  h4 {
+    font-size: .8vw;
+    text-transform: uppercase;
+    a {
+      text-decoration: none;
+      transition: all ease 0.5s;
+      &:hover {
+        border-bottom: 1px solid $dark-gold;
+      }
+      &.active {
+        border-bottom: 1px solid $dark-gold;
+      }
+    }
+  }
+  @media screen and (max-width: 1450px) {
+    left: -20vh;
+    background-color: white;
+    border: 1px solid $light-gold;
+    z-index: 1;
+    h4 {
+      font-size: 11px;
+    }
+  }
+  @media screen and (max-height: 854px ) {
+    display: none;
+  }
 }
 
 
