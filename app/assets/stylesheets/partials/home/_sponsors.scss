@@ -32,6 +32,7 @@
     color: $dark-gold;
     @media (max-width: 550px) {
       font-size: .9em;
+      margin-top: 75px;
     }
   }
 
@@ -39,12 +40,24 @@
     width: 60vw;
     margin-top: 200px;
     color: $dark-gold;
+    @media (max-width: 550px) {
+      font-size: .9em;
+      margin-top: 75px;
+    }
   }
 
   #past-events {
     margin-top: 200px;
     color: $dark-gold;
     line-height: 3;
+    @media (max-width: 550px) {
+      margin-top: 75px;
+      line-height: 2;
+
+      #past-events-links {
+        font-size: .81em;
+      }
+    }
   }
 
 
