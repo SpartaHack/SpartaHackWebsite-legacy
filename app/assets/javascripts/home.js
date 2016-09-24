@@ -91,8 +91,18 @@ window.onload = function(){
       }
   }
 
+  // Also Navigation
+  var navElements = document.getElementsByClassName("nav-element");
+
+  for (var i = 0; i < navElements.length; i++) {
+    navElements[i].addEventListener('click', function(event) {
+      event.preventDefault();
+      var element = document.getElementById(this.getAttribute('href')).scrollIntoView({behavior: "smooth"});
+    });
+  }
+
   // Capture scroll events
-  $(window).scroll(function(){
+  window.addEventListener("scroll", function(){
     checkAnimation(document.getElementsByClassName('spartahack-title-animation')[0]);
     checkAnimation(document.getElementById('event-date-animation'));
     checkAnimation(document.getElementById('event-location-animation'));
