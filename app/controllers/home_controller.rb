@@ -34,7 +34,7 @@ class HomeController < ApplicationController
 	end
 
   def index
-    @past_sponsors = Dir.glob("app/assets/images/pastSponsors/*")
+    @past_sponsors = Dir.glob("app/assets/images/pastSponsors/*").sort_by(&:downcase)
     p @past_sponsors
   end
 

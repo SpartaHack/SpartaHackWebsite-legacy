@@ -38,38 +38,31 @@ body {
 .wrap-row {
   flex-flow: row wrap;
   flex-direction: row;
-  -webkit-flex-direction: row;
-
 }
 
 .wrap-column {
   flex-direction: column;
-  -webkit-flex-direction: column;
 }
 
 .space-between {
   justify-content: space-between;
-  -webkit-justify-content: space-between;
 }
 
 .space-around {
   justify-content: space-around;
-  -webkit-justify-content: space-around;
 }
 
 .start {
   justify-content: flex-start;
-  -webkit-justify-content: flex-start;
 }
 
 .center {
   justify-content: center;
-  -webkit-justify-content: center;
 }
 
 .align-center {
-    align-content: center;
-    align-items: center;
+  align-content: center;
+  align-items: center;
 }
 
 /* Removes glowing outline on button focus */
