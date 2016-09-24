@@ -1,21 +1,30 @@
 #spartahack {
 
   .spartahack-title-animation.start {
-    .cls-1 {
+    .title-paths-lines {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      stroke-width:0.5px;
+    }
+
+    #title-top-line {
       animation: dash 1.7s linear alternate;
       animation-delay: 1.25s;
       -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
     }
-    .cls-2 {
+
+    #title-bottom-hanging {
       animation: dash 1.65s linear alternate;
       animation-delay: 1.25s;
       -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
     }
-    .cls-3 {
+
+    #title-short-line {
       animation: dash-back 1.25s linear alternate;
       -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
     }
-    .cls-4 {
+
+    #title-center-hanging {
       animation: dash-back 1.25s linear alternate;
       -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
     }
@@ -25,30 +34,27 @@
   #event-wrap {
     margin: 50px 0px;
 
+    .loc-date-paths-lines {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+    }
+
     #event-date-animation.start {
-      .cls-1 {
-        stroke-dasharray: 1000;
-        stroke-dashoffset: 1000;
+      #date-center-hanging {
         animation: dash 2.7s linear alternate;
         animation-delay: 1.25s;
         -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
       }
-      .cls-2 {
-        stroke-dasharray: 1000;
-        stroke-dashoffset: 1000;
+      #date-bottom-hanging {
         animation: dash 2.65s linear alternate;
         animation-delay: 1.25s;
         -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
       }
-      .cls-3 {
-        stroke-dasharray: 1000;
-        stroke-dashoffset: 1000;
+      #date-bottom-line {
         animation: dash-back 1.25s linear alternate;
         -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
       }
-      .cls-4 {
-        stroke-dasharray: 1000;
-        stroke-dashoffset: 1000;
+      #date-top-line {
         animation: dash-back 1.25s linear alternate;
         -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
       }
@@ -56,29 +62,21 @@
     }
 
     #event-location-animation.start {
-      .cls-1 {
-        stroke-dasharray: 1000;
-        stroke-dashoffset: 1000;
+      #loc-bottom-line {
         animation: dash 1.7s linear alternate;
         animation-delay: 1.25s;
         -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
       }
-      .cls-2 {
-        stroke-dasharray: 1000;
-        stroke-dashoffset: 1000;
+      #loc-top-line {
         animation: dash 1.65s linear alternate;
         animation-delay: 1.25s;
         -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
       }
-      .cls-3 {
-        stroke-dasharray: 1000;
-        stroke-dashoffset: 1000;
+      #loc-center-hanging {
         animation: dash-back 1.25s linear alternate;
         -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
       }
-      .cls-4 {
-        stroke-dasharray: 1000;
-        stroke-dashoffset: 1000;
+      #loc-left-hanging {
         animation: dash-back 1.25s linear alternate;
         -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
       }
