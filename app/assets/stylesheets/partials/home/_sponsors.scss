@@ -14,7 +14,7 @@
   }
 
   #past-sponsors {
-    margin-top: 150px;
+    margin-top: 75px;
     max-width: 60vw;
 
     #title {
@@ -28,7 +28,6 @@
 
   #interested {
     margin-top: 25px;
-    font-size: 1.2em;
     color: $dark-gold;
     @media (max-width: 550px) {
       font-size: .9em;
@@ -37,21 +36,51 @@
   }
 
   #sponsorship-info {
+    text-transform: uppercase;
     width: 60vw;
-    margin-top: 200px;
+    margin-top: 100px;
     color: $dark-gold;
     @media (max-width: 550px) {
       font-size: .9em;
-      margin-top: 75px;
+    }
+    @media (max-width: 950px) {
+      flex-direction: column;
+      margin-top: 40px;
+    }
+
+
+    #prospectus, #tiers {
+      padding: 25px 0px;
+      width: 250px;
+      border-top: 1px solid;
+      border-bottom: 1px solid;
+      margin-bottom: 75px;
+      @media (max-width: 550px) {
+        margin-bottom: 40px;
+      }
+
+      a {
+        border-bottom: none;
+        position: static;
+        padding: 0px;
+      }
     }
   }
 
   #past-events {
-    margin-top: 200px;
     color: $dark-gold;
     line-height: 3;
-    @media (max-width: 550px) {
-      margin-top: 75px;
+    @media (min-width: 341px) and (max-width: 550px) {
+      margin-top: 40px;
+      line-height: 2;
+
+      #past-events-links {
+        font-size: .9em;
+      }
+    }
+
+    @media (max-width: 340px) {
+      margin-top: 40px;
       line-height: 2;
 
       #past-events-links {
