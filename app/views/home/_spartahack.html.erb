@@ -83,17 +83,17 @@
         </div>
     </div>
 
-    <%= form_tag "/subscribe", id: "notify-email", :remote => true, :authenticity_token => true %>
-      <%= email_field_tag "emailinput", nil, id: "notify-email-input", class: "remove-outline", placeholder: "NOTIFY ME WHEN APPLICATIONS OPEN", autocomplete: "off" %>
-      <button class="submit-button hide">SUBMIT</button>
-    </form>
-
     <p id="event-description">
       SpartaHack 2017 is Michigan State University's third annual student-run hackathon.
       On the weekend of February 3rd, we're bringing together 500 students of all skill levels
       and disciplines to get creative with tech, connect with peers and professionals, and
       forget the words "I can't." We're excited to see what you will create!
     </p>
+
+    <%= form_tag "/subscribe", id: "notify-email", :remote => true, :authenticity_token => true %>
+      <%= email_field_tag "emailinput", nil, id: "notify-email-input", class: "remove-outline", placeholder: "NOTIFY ME WHEN APPLICATIONS OPEN", autocomplete: "off" %>
+      <button class="submit-button hide">SUBMIT</button>
+    </form>
 
   </div>
 </section>
