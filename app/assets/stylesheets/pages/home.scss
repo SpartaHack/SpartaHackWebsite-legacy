@@ -8,7 +8,7 @@
   flex-direction: row;
   justify-content: space-around;
   width: 44vh;
-  top: 50%;
+  top: calc(50% - 25px);
   left: -17vh;
   z-index: 2;
   transform: rotate(90deg);
@@ -45,7 +45,7 @@
     }
   }
   @media screen and (max-height: 854px ) {
-    display: none;
+    left: -19vh;
   }
 }
 
@@ -59,7 +59,7 @@
   opacity: 0;
   animation: fade-in 1s linear alternate;
   animation-delay: 1s;
-  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+   animation-fill-mode: forwards;
   &.top {
     background: $light-gold;
     left: 5vw;
@@ -128,7 +128,7 @@
   opacity: 0;
   animation: fade-in 1s linear alternate;
   animation-delay: 1.5s;
-  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+   animation-fill-mode: forwards;
   width: 1px;
   &.top.right {
     transform-origin: top left;
@@ -168,7 +168,7 @@
     opacity: 0;
     animation: fade-in 1s linear alternate;
     animation-delay: 1s;
-    -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+     animation-fill-mode: forwards;
     display: flex;
     justify-content: center;
     width: 10%;

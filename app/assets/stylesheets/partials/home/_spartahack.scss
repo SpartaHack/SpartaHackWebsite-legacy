@@ -10,23 +10,23 @@
     #title-top-line {
       animation: dash 1.7s linear alternate;
       animation-delay: 1.25s;
-      -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+       animation-fill-mode: forwards;
     }
 
     #title-bottom-hanging {
       animation: dash 1.65s linear alternate;
       animation-delay: 1.25s;
-      -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+       animation-fill-mode: forwards;
     }
 
     #title-short-line {
       animation: dash-back 1.25s linear alternate;
-      -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+       animation-fill-mode: forwards;
     }
 
     #title-center-hanging {
       animation: dash-back 1.25s linear alternate;
-      -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+       animation-fill-mode: forwards;
     }
 
   }
@@ -43,20 +43,20 @@
       #date-center-hanging {
         animation: dash 2.7s linear alternate;
         animation-delay: 1.25s;
-        -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+         animation-fill-mode: forwards;
       }
       #date-bottom-hanging {
         animation: dash 2.65s linear alternate;
         animation-delay: 1.25s;
-        -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+         animation-fill-mode: forwards;
       }
       #date-bottom-line {
         animation: dash-back 1.25s linear alternate;
-        -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+         animation-fill-mode: forwards;
       }
       #date-top-line {
         animation: dash-back 1.25s linear alternate;
-        -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+         animation-fill-mode: forwards;
       }
 
     }
@@ -65,20 +65,20 @@
       #loc-bottom-line {
         animation: dash 1.7s linear alternate;
         animation-delay: 1.25s;
-        -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+         animation-fill-mode: forwards;
       }
       #loc-top-line {
         animation: dash 1.65s linear alternate;
         animation-delay: 1.25s;
-        -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+         animation-fill-mode: forwards;
       }
       #loc-center-hanging {
         animation: dash-back 1.25s linear alternate;
-        -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+         animation-fill-mode: forwards;
       }
       #loc-left-hanging {
         animation: dash-back 1.25s linear alternate;
-        -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+         animation-fill-mode: forwards;
       }
 
     }
@@ -111,30 +111,39 @@
   }
 
   #notify-email {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    input {
-      box-sizing: border-box;
-      background: transparent;
-      width: 36vw;
-      font-size: 1em;
-      line-height: 17px;
-      text-align: center;
-      padding: 20px;
-      margin: 40px 0;
-      box-shadow: 0px 12px 22px 0px rgba(0,0,0,0.1);
-      &:focus {
-        text-align: left;
-      }
-      @media screen and (max-width: 1344px) {
-        width: 60vw;
-        margin-bottom: 0;
-        font-size: 1em;
+    p {
+      margin-top: 40px;
+      font-size: 1.8em;
+      @media (max-width: 550px) {
+        font-size: 1.2em;
       }
     }
-    @media screen and (max-width: 1344px) {
-      margin-bottom: 100px;
+    form {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      input {
+        box-sizing: border-box;
+        background: transparent;
+        width: 36vw;
+        font-size: 1em;
+        line-height: 17px;
+        text-align: center;
+        padding: 20px;
+        margin: 40px 0;
+        box-shadow: 0px 12px 22px 0px rgba(0,0,0,0.04);
+        &:focus {
+          text-align: left;
+        }
+        @media screen and (max-width: 1344px) {
+          width: 60vw;
+          margin-bottom: 0;
+          font-size: 1em;
+        }
+      }
+      @media screen and (max-width: 1344px) {
+        margin-bottom: 100px;
+      }
     }
   }
 
