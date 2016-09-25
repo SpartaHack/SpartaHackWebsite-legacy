@@ -117,8 +117,8 @@
     input {
       box-sizing: border-box;
       background: transparent;
-      width: 26vw;
-      font-size: .7vw;
+      width: 36vw;
+      font-size: 1em;
       line-height: 17px;
       text-align: center;
       padding: 20px;
@@ -127,11 +127,14 @@
       &:focus {
         text-align: left;
       }
-      @media screen and (max-width: 774px) {
+      @media screen and (max-width: 1344px) {
         width: 60vw;
         margin-bottom: 0;
-        font-size: .5em;
+        font-size: 1em;
       }
+    }
+    @media screen and (max-width: 1344px) {
+      margin-bottom: 100px;
     }
   }
 
@@ -168,18 +171,21 @@
     height: 58px;
     position: absolute;
     top: 40px;
-    right: 17vw;
+    right: 12vw;
     width: 7vw;
     transition: .5s ease;
     outline: 0;
     &.hide {
       width: 0;
       padding: 0;
+      opacity: 0;
     }
-    @media screen and (max-width: 774px) {
+    @media screen and (max-width: 1344px) {
       width: 60vw;
-      margin-left: 0;
+      left: 5vw;
       font-size: 1em;
+      top: 100px;
+      transition: none;
     }
   }
 }
