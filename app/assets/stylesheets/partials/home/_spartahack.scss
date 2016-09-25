@@ -111,10 +111,13 @@
   }
 
   #notify-email {
+    display: flex;
+    justify-content: center;
+    position: relative;
     input {
       box-sizing: border-box;
       background: transparent;
-      width: 25vw;
+      width: 26vw;
       font-size: .7vw;
       line-height: 17px;
       text-align: center;
@@ -162,8 +165,16 @@
     color: white;
     font-family: "Lato-Light";
     font-size: .7vw;
+    height: 58px;
+    position: absolute;
+    top: 40px;
+    right: 17vw;
+    width: 7vw;
+    transition: .5s ease;
+    outline: 0;
     &.hide {
-      display: none;
+      width: 0;
+      padding: 0;
     }
     @media screen and (max-width: 774px) {
       width: 60vw;
