@@ -1,3 +1,3 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception, except: :subscribe
+  protect_from_forgery with: :exception
 end
