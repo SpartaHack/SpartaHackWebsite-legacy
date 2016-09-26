@@ -1,16 +1,66 @@
 ///////////////////////////////////////
 // Header
 ///////////////////////////////////////
-.front.page.navbar {
-
+.main-header {
+  font-family: "Lato-Light";
+  position: fixed;
+  // display: flex;
+  display: none;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 44vh;
+  top: calc(50% - 25px);
+  left: -17vh;
+  z-index: 2;
+  transform: rotate(90deg);
+  will-change: transform;
+  h4 {
+    font-size: .8vw;
+    text-transform: uppercase;
+    a {
+      text-decoration: none;
+      transition: all ease 0.5s;
+      border-bottom: none;
+      &::after {
+        transition: width ease .5s;
+        bottom: 0px;
+        height: 0px;
+        width: 0%;
+      }
+      &:hover::after {
+        height: 1px;
+        width: 100%;
+      }
+      &.active::after {
+        height: 1px;
+        width: 100%;
+      }
+    }
+  }
+  @media screen and (max-width: 1450px) {
+    left: -20vh;
+    background-color: white;
+    border: 1px solid $light-gold;
+    h4 {
+      font-size: 11px;
+    }
+  }
+  @media screen and (max-height: 854px ) {
+    left: -19vh;
+  }
 }
 
 
 ///////////////////////////////////////
 // Preview Site
 ///////////////////////////////////////
+
 .border {
   position: absolute;
+  opacity: 0;
+  animation: fade-in 1s linear alternate;
+  animation-delay: 1s;
+   animation-fill-mode: forwards;
   &.top {
     background: $light-gold;
     left: 5vw;
@@ -26,10 +76,7 @@
     }
   }
   &.right {
-    background: -webkit-linear-gradient($light-gold, $dark-gold); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient($light-gold, $dark-gold); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient($light-gold, $dark-gold); /* For Firefox 3.6 to 15 */
-    background: linear-gradient($light-gold, $dark-gold); /* Standard syntax */
+    background: linear-gradient($light-gold, $dark-gold);
     top: 4vw;
     width: 1px;
     &.inner {
@@ -40,10 +87,7 @@
       right: 4vw;
       height: 50%;
       &.lower {
-        background: -webkit-linear-gradient($dark-gold, $light-gold); /* For Safari 5.1 to 6.0 */
-        background: -o-linear-gradient($dark-gold, $light-gold); /* For Opera 11.1 to 12.0 */
-        background: -moz-linear-gradient($dark-gold, $light-gold); /* For Firefox 3.6 to 15 */
-        background: linear-gradient($dark-gold, $light-gold); /* Standard syntax */
+        background: linear-gradient($dark-gold, $light-gold);
         top: initial;
         bottom: 5vw;
         height: 30%
@@ -64,10 +108,7 @@
     }
   }
   &.left {
-    background: -webkit-linear-gradient($dark-gold, $medium-gold); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient($dark-gold, $medium-gold); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient($dark-gold, $medium-gold); /* For Firefox 3.6 to 15 */
-    background: linear-gradient($dark-gold, $medium-gold); /* Standard syntax */
+    background: linear-gradient($dark-gold, $medium-gold);
     width: 1px;
     &.inner {
       left: 6vw;
@@ -75,10 +116,7 @@
       height: calc(100% - 13vw);
     }
     &.outer {
-      background: -webkit-linear-gradient($light-gold, $dark-gold); /* For Safari 5.1 to 6.0 */
-      background: -o-linear-gradient($light-gold, $dark-gold); /* For Opera 11.1 to 12.0 */
-      background: -moz-linear-gradient($light-gold, $dark-gold); /* For Firefox 3.6 to 15 */
-      background: linear-gradient($light-gold, $dark-gold); /* Standard syntax */
+      background: linear-gradient($light-gold, $dark-gold);
       left: 5vw;
       top: 150px;
       height: 40%;
@@ -88,17 +126,14 @@
 
 .corner {
   position: absolute;
+  opacity: 0;
+  animation: fade-in 1s linear alternate;
+  animation-delay: 1.5s;
+   animation-fill-mode: forwards;
   width: 1px;
   &.top.right {
-    -ms-transform-origin: top left;
-    -webkit-transform-origin: top left;
     transform-origin: top left;
-    background: -webkit-linear-gradient($light-gold, $dark-gold); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient($light-gold, $dark-gold); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient($light-gold, $dark-gold); /* For Firefox 3.6 to 15 */
-    background: linear-gradient($light-gold, $dark-gold); /* Standard syntax */
-    -ms-transform: rotate(-45deg); /* IE 9 */
-    -webkit-transform: rotate(-45deg); /* Safari */
+    background: linear-gradient($light-gold, $dark-gold);
     transform: rotate(-45deg);
     &.inner {
       top: 5vw;
@@ -112,15 +147,8 @@
     }
   }
   &.bottom.left {
-    -ms-transform-origin: bottom right;
-    -webkit-transform-origin: bottom right;
     transform-origin: bottom right;
-    background: -webkit-linear-gradient($dark-gold, $medium-gold); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient($dark-gold, $medium-gold); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient($dark-gold, $medium-gold); /* For Firefox 3.6 to 15 */
-    background: linear-gradient($dark-gold, $medium-gold); /* Standard syntax */
-    -ms-transform: rotate(-45deg); /* IE 9 */
-    -webkit-transform: rotate(-45deg); /* Safari */
+    background: linear-gradient($dark-gold, $medium-gold);
     transform: rotate(-45deg);
     &.outer {
       bottom: 4vw;
@@ -138,6 +166,10 @@
 .logo {
   &.diamond {
     position: absolute;
+    opacity: 0;
+    animation: fade-in 1s linear alternate;
+    animation-delay: 1s;
+     animation-fill-mode: forwards;
     display: flex;
     justify-content: center;
     width: 10%;
@@ -154,6 +186,36 @@
       width: 40%;
     }
   }
+  &#logo-center {
+    width: 19vw;
+    height: auto;
+    max-height: 19vh;
+  }
+  &#inner-ring {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    overflow: auto;
+    width: 44vw;
+    height: 44vh;
+  }
+  &#outer-ring {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    overflow: auto;
+    width: 70vw;
+    height: 70vh;
+  }
+  &#hanging-lines {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    overflow: visible;
+    width: 70vw;
+    height: 70vw;
+    max-height: 70vh;
+  }
   &.main {
     height: 100vh;
     width: 100vw;
@@ -169,3 +231,8 @@
     }
   }
 }
+
+@import "../partials/home/head";
+@import "../partials/home/spartahack";
+@import "../partials/home/faq";
+@import "../partials/home/sponsors";

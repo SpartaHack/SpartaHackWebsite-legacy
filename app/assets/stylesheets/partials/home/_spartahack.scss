@@ -1,0 +1,201 @@
+#spartahack {
+
+  .spartahack-title-animation.start {
+    .title-paths-lines {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      stroke-width:0.5px;
+    }
+
+    #title-top-line {
+      animation: dash 1.7s linear alternate;
+      animation-delay: 1.25s;
+       animation-fill-mode: forwards;
+    }
+
+    #title-bottom-hanging {
+      animation: dash 1.65s linear alternate;
+      animation-delay: 1.25s;
+       animation-fill-mode: forwards;
+    }
+
+    #title-short-line {
+      animation: dash-back 1.25s linear alternate;
+       animation-fill-mode: forwards;
+    }
+
+    #title-center-hanging {
+      animation: dash-back 1.25s linear alternate;
+       animation-fill-mode: forwards;
+    }
+
+  }
+
+  #event-wrap {
+    margin: 50px 0px;
+
+    .loc-date-paths-lines {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+    }
+
+    #event-date-animation.start {
+      #date-center-hanging {
+        animation: dash 2.7s linear alternate;
+        animation-delay: 1.25s;
+         animation-fill-mode: forwards;
+      }
+      #date-bottom-hanging {
+        animation: dash 2.65s linear alternate;
+        animation-delay: 1.25s;
+         animation-fill-mode: forwards;
+      }
+      #date-bottom-line {
+        animation: dash-back 1.25s linear alternate;
+         animation-fill-mode: forwards;
+      }
+      #date-top-line {
+        animation: dash-back 1.25s linear alternate;
+         animation-fill-mode: forwards;
+      }
+
+    }
+
+    #event-location-animation.start {
+      #loc-bottom-line {
+        animation: dash 1.7s linear alternate;
+        animation-delay: 1.25s;
+         animation-fill-mode: forwards;
+      }
+      #loc-top-line {
+        animation: dash 1.65s linear alternate;
+        animation-delay: 1.25s;
+         animation-fill-mode: forwards;
+      }
+      #loc-center-hanging {
+        animation: dash-back 1.25s linear alternate;
+         animation-fill-mode: forwards;
+      }
+      #loc-left-hanging {
+        animation: dash-back 1.25s linear alternate;
+         animation-fill-mode: forwards;
+      }
+
+    }
+
+  }
+
+  #spartahack-title {
+    font-family: "Nemoy-Light";
+    font-weight: 100;
+    margin-bottom: 15px;
+    color: $medium-gold;
+    font-size: 5vw;
+    @media screen and (max-width: 774px) {
+      font-size: 6.5vw;
+    }
+  }
+
+  #event-date, #event-location {
+    text-transform: uppercase;
+    font-family: "Lato-Light";
+    margin-bottom: 15px;
+    color: $medium-gold;
+    font-size: 2em;
+    @media screen and (max-width: 774px) {
+      font-size: .85em;
+    }
+    @media (min-width: 775px) and (max-width: 1550px) {
+      font-size: 1.55em;
+    }
+  }
+
+  #notify-email {
+    p {
+      margin-top: 40px;
+      margin-bottom: 10px;
+      font-size: 1.8em;
+      line-height: 1;
+      @media (max-width: 550px) {
+        font-size: 1.2em;
+      }
+    }
+    form {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      input {
+        box-sizing: border-box;
+        background: transparent;
+        width: 36vw;
+        font-size: 1em;
+        line-height: 17px;
+        text-align: center;
+        padding: 20px;
+        box-shadow: 0px 12px 22px 0px rgba(0,0,0,0.04);
+        &:focus {
+          text-align: left;
+        }
+        @media screen and (max-width: 1344px) {
+          width: 60vw;
+          margin-bottom: 0;
+          font-size: 1em;
+        }
+      }
+      @media screen and (max-width: 1344px) {
+        margin-bottom: 100px;
+      }
+    }
+  }
+
+  .sweet-alert .sa-icon.sa-error,
+  .sweet-alert .sa-icon.sa-success .sa-placeholder {
+    border-color: $medium-gold !important;
+  }
+
+  .sweet-alert .sa-icon.sa-error .sa-line,
+  .sweet-alert .sa-icon.sa-success .sa-line {
+    background-color: $medium-gold !important;
+  }
+
+  .sweet-alert p {
+    font-family: "Lato-Light" !important;
+    color: $medium-gold !important;
+    font-weight: 100 !important;
+  }
+
+  .sweet-alert h2 {
+    font-family: "Nemoy-Light" !important;
+    color: $dark-gold !important;
+  }
+
+  .submit-button {
+    padding: 21px;
+    line-height: 17px;
+    margin-left: -5vw;
+    border: none;
+    background: linear-gradient(90deg, $light-gold, $dark-gold);
+    color: white;
+    font-family: "Lato-Light";
+    font-size: 1em;
+    // height: 58px;
+    position: absolute;
+    right: 12vw;
+    width: 7vw;
+    transition: .5s ease;
+    outline: 0;
+    &.hide {
+      width: 0;
+      opacity: 0;
+    }
+    @media screen and (max-width: 1344px) {
+      width: 60vw;
+      left: 5vw;
+      font-size: 1em;
+      top: 80px;
+      &.hide {
+        width: 60vw;
+      }
+    }
+  }
+}
