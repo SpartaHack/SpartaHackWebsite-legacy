@@ -4,7 +4,8 @@
 .main-header {
   font-family: "Lato-Light";
   position: fixed;
-  display: flex;
+  // display: flex;
+  display: none;
   flex-direction: row;
   justify-content: space-around;
   width: 44vh;

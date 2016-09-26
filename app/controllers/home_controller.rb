@@ -23,18 +23,17 @@ class HomeController < ApplicationController
       	@desc = "Now you just need to confirm your email address!"
       	@title = "Sweet!"
         @button = "#D4B166"
-      rescue Exception => e
+      rescue Exception
       	@type = "error"
       	@desc = "You've already signed up with this email."
       	@title = "Uh Oh!"
         @button = "#D4B166"
       end
     end
-	end
+  end
 
   def index
     @past_sponsors = Dir.glob("app/assets/images/pastSponsors/*").sort_by(&:downcase)
-    p @past_sponsors
   end
 
   private

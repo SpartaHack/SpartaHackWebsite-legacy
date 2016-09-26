@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <%= csrf_meta_tags %>
+    <meta name="theme-color" content="#ffffff">
+
+    <%= favicon_link_tag "favicons/apple-touch-icon.png", rel: 'apple-touch-icon', type: 'image/png', sizes: "180x180" %>
+    <link rel="manifest" href="<%= asset_path 'favicons/manifest.json' %>">
+    <link rel="mask-icon" href="<%= asset_path 'favicons/safari-pinned-tab.svg' %>" color="#5bbad5">
+    <% %w(16 32).each do |size| %>
+      <%= favicon_link_tag "favicons/favicon-#{size}x#{size}.png", rel: 'icon', type: 'image/png', sizes: "#{size}x#{size}" %>
+    <% end %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -16,14 +24,14 @@
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
     <%- end %>
-    <header class="main-header">
+    <!-- <header class="main-header">
       <h4><a class="nav-element active" id="topNav" href="top">17</a></h4>
       <h4><a class="nav-element" id="aboutNav" href="event-description">about</a></h4>
       <h4><a class="nav-element" id="notifyNav" href="notify-email">notify</a></h4>
       <h4><a class="nav-element" id="faqNav" href="faq">faq</a></h4>
       <h4><a class="nav-element" id="sponsorNav" href="sponsors">sponsor</a></h4>
       <h4><a class="nav-element" id="contactNav" href="contact">contact</a></h4>
-    </header>
+    </header> -->
 
     <%= yield %>
 
@@ -43,7 +51,7 @@
         </a>
       </div>
       <p id="love">
-        < \> with 💛 by &copy;SpartaHack17, Spartan Hackers. <br><a id="contact" href="mailto:hello@spartahack.com">hello@spartahack.com</a>
+        < \> with  by &copy;SpartaHack17, <a id="contact" href="mailto:hello@spartahack.com">hello@spartahack.com</a>
       </p>
 
     </footer>
