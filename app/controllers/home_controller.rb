@@ -3,15 +3,16 @@ class HomeController < ApplicationController
   require 'json'
 
   def subscribe
-    if subscribe_params[:emailinput] == "" && subscribe_params[:fname] == "" && subscribe_params[:lname] == ""
-      flash[:error] = "You cannot submit an empty form."
-      redirect_to "/#notify-email" and return
-    elsif subscribe_params[:emailinput] == ""
-      flash[:error] = "You must include your email."
-      redirect_to "/#notify-email" and return
+    if subscribe_params[:emailinput] == ""
+      @type = "error"
+      @desc = "You cannot submit an empty form."
+      @title = "Uh Oh!"
+      @button = "#D4B166"
     elsif subscribe_params[:emailinput].downcase !~ /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-      flash[:error] = "You must include a valid email."
-      redirect_to "/#notify-email" and return
+      @type = "error"
+      @desc = "You must include a valid email."
+      @title = "Uh Oh!"
+      @button = "#D4B166"
     else
       begin
       	mailchimp = Mailchimp::API.new(ENV["MAILCHIMP_API_KEY"])
@@ -23,8 +24,6 @@ class HomeController < ApplicationController
       	@title = "Sweet!"
         @button = "#D4B166"
       rescue Exception => e
-      	p e
-      	puts
       	@type = "error"
       	@desc = "You've already signed up with this email."
       	@title = "Uh Oh!"

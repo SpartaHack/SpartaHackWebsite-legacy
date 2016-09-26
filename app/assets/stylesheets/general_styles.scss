@@ -115,6 +115,7 @@ a {
   position: relative;
   text-decoration: none;
   padding-bottom: 7px;
+  transition: all .3s ease-in-out;
 
   &::after {
     content: "";
@@ -132,7 +133,6 @@ a {
    }
 
    &:hover {
-     transition: all .3s ease-in-out;
      opacity: .7;
    }
 }

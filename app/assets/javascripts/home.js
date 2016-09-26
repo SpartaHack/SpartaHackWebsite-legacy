@@ -35,12 +35,12 @@ window.onload = function(){
   ///////////////////////////////////////////////////
   var emailForm = document.getElementById("notify-email-input");
   emailForm.addEventListener("focus", function() {
-    this.setAttribute("placeholder", "Enter your email here and hit submit to get notified!");
+    this.setAttribute("placeholder", "Email");
     this.nextElementSibling.classList.remove("hide");
   });
 
   emailForm.addEventListener("blur", function() {
-    this.setAttribute("placeholder", "NOTIFY ME WHEN APPLICATIONS OPEN");
+    this.setAttribute("placeholder", "SIGN UP");
     this.nextElementSibling.classList.add("hide");
   });
 
