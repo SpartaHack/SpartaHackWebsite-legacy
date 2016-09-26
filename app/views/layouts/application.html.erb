@@ -2,9 +2,16 @@
 <html>
   <head>
     <title>SpartaHack 2017</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <%= csrf_meta_tags %>
+
+
+    <meta property="og:title" content="SpartaHack 2017"/>
+    <meta property="og:image" content="<%= asset_path 'preview.png' %>"/>
+    <meta property="og:description" content="SpartaHack 2017 is Michigan State University’s third annual student-run hackathon."/>
+    <meta name="description" content="SpartaHack 2017 is Michigan State University’s third annual student-run hackathon."/>
     <meta name="theme-color" content="#ffffff">
 
     <%= favicon_link_tag "favicons/apple-touch-icon.png", rel: 'apple-touch-icon', type: 'image/png', sizes: "180x180" %>
@@ -15,7 +22,7 @@
     <% end %>
 
     <!--  makes pages much more consistent across all browsers -->
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset-context/cssreset-context-min.css">
+    <%= stylesheet_link_tag    'cssreset' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
