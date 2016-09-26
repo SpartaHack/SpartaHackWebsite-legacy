@@ -113,59 +113,19 @@ window.onload = function(){
 
     // How far the scroll is from the top of the page
     var scroll = document.body.scrollTop;
-    // Navbar
-    var topNav = document.getElementById("topNav");
-    var notifyNav = document.getElementById("notifyNav");
-    var aboutNav = document.getElementById("aboutNav");
-    var faqNav = document.getElementById("faqNav");
-    var sponsorNav = document.getElementById("sponsorNav");
-    var contactNav = document.getElementById("contactNav");
-    // Sections
-    var emailSection = document.getElementById("notify-email");
-    var aboutSection = document.getElementById("event-description");
-    var faqSection = document.getElementById("faq");
-    var sponsorSection = document.getElementById("sponsors");
-    var contactSection = document.getElementById("contact");
+    // // Navbar
+    // var topNav = document.getElementById("topNav");
+    // var notifyNav = document.getElementById("notifyNav");
+    // var aboutNav = document.getElementById("aboutNav");
+    // var faqNav = document.getElementById("faqNav");
+    // var sponsorNav = document.getElementById("sponsorNav");
+    // var contactNav = document.getElementById("contactNav");
+    // // Sections
+    // var emailSection = document.getElementById("notify-email");
+    // var aboutSection = document.getElementById("event-description");
+    // var faqSection = document.getElementById("faq");
+    // var sponsorSection = document.getElementById("sponsors");
+    // var contactSection = document.getElementById("contact");
 
-    if (scroll >= 0 && scroll < emailSection.offsetTop) {
-      topNav.classList.add('active');
-      notifyNav.classList.remove('active');
-      aboutNav.classList.remove('active');
-      faqNav.classList.remove('active');
-      sponsorNav.classList.remove('active');
-    } else if (scroll >= emailSection.offsetTop && scroll < aboutSection.offsetTop) {
-      topNav.classList.remove('active');
-      notifyNav.classList.add('active');
-      aboutNav.classList.remove('active');
-      faqNav.classList.remove('active');
-      sponsorNav.classList.remove('active');
-    } else if (scroll >= aboutSection.offsetTop && scroll < faqSection.offsetTop) {
-      topNav.classList.remove('active');
-      notifyNav.classList.remove('active');
-      aboutNav.classList.add('active');
-      faqNav.classList.remove('active');
-      sponsorNav.classList.remove('active');
-    } else if (scroll >= faqSection.offsetTop && scroll < sponsorSection.offsetTop) {
-      topNav.classList.remove('active');
-      notifyNav.classList.remove('active');
-      aboutNav.classList.remove('active');
-      faqNav.classList.add('active');
-      sponsorNav.classList.remove('active');
-      contactNav.classList.remove('active');
-    } else if (scroll >= sponsorSection.offsetTop && scroll < contactSection.offsetTop) {
-      topNav.classList.remove('active');
-      notifyNav.classList.remove('active');
-      aboutNav.classList.remove('active');
-      faqNav.classList.remove('active');
-      sponsorNav.classList.add('active');
-      contactNav.classList.remove('active');
-    } else if (scroll >= sponsorSection.offsetTop && scroll < contactSection.offsetTop) {
-      topNav.classList.remove('active');
-      notifyNav.classList.remove('active');
-      aboutNav.classList.remove('active');
-      faqNav.classList.remove('active');
-      sponsorNav.classList.remove('active');
-      contactNav.classList.add('active');
-    }
   });
 };
