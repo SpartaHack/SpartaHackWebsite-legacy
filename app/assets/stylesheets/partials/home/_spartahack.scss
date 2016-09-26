@@ -85,6 +85,15 @@
 
   }
 
+  #event-location-animation,#event-date-animation {
+
+    @media screen and (max-width: 774px) {
+      max-width: inherit;
+    }
+
+  }
+
+
   #spartahack-title {
     font-family: "Nemoy-Light";
     font-weight: 100;
