@@ -178,7 +178,7 @@
     color: white;
     font-family: "Lato-Light";
     font-size: 1em;
-    height: 58px;
+    // height: 58px;
     position: absolute;
     right: 12vw;
     width: 7vw;
@@ -186,7 +186,6 @@
     outline: 0;
     &.hide {
       width: 0;
-      padding: 0;
       opacity: 0;
     }
     @media screen and (max-width: 1344px) {
@@ -194,6 +193,9 @@
       left: 5vw;
       font-size: 1em;
       top: 80px;
+      &.hide {
+        width: 60vw;
+      }
     }
   }
 }
