@@ -15,7 +15,7 @@
     <% end %>
 
     <!--  makes pages much more consistent across all browsers -->
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset-context/cssreset-context-min.css">
+    <%= stylesheet_link_tag    'cssreset' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
