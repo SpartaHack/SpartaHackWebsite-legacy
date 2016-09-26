@@ -7,9 +7,174 @@ body {
   position: relative;
   margin: 0;
   padding: 100vh 20% 115px;
-  min-height: 100vh;
-  background: -webkit-linear-gradient($white 69%, #FFF2D7 100%); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient($white 69%, #FFF2D7 100%); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient($white 69%, #FFF2D7 100%); /* For Firefox 3.6 to 15 */
-  background: linear-gradient($white 69%, #FFF2D7 100%); /* Standard syntax */
+  @media (max-width: 774px) {
+    padding: 100vh 20% 20px;
+  }
+
+
+  &::before {
+    content: ' ';
+    position: fixed; // instead of background-attachment
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: white;
+    background: linear-gradient($white 59%, #FFF3D8 100%);
+    // background: linear-gradient($white 69%, #FFF2D7 100%);
+    background-size: cover;
+    will-change: transform; // creates a new paint layer
+    z-index: -1;
+  }
+}
+
+.wrap {
+  margin-bottom: 100px;
+}
+.flex {
+  display: flex;
+}
+
+.wrap-row {
+  flex-flow: row wrap;
+  flex-direction: row;
+}
+
+.wrap-column {
+  flex-direction: column;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.start {
+  justify-content: flex-start;
+}
+
+.center {
+  justify-content: center;
+}
+
+.align-center {
+  align-content: center;
+  align-items: center;
+}
+
+/* Removes glowing outline on button focus */
+.remove-outline {
+    outline:0;
+}
+
+input {
+  border: 1px $light-gold solid;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+::placeholder {
+  color: $dark-gold;
+  font-family: "Lato-Light";
+}
+
+.section-head {
+  font-family: "Nemoy-Light";
+  font-weight: 100;
+  color: $medium-gold;
+  font-size: 2.5em;
+  @media screen and (max-width: 774px) {
+    font-size: 2em;
+  }
+}
+
+p {
+  font-family: "Lato-Light";
+  font-size: 1.2em;
+  line-height: 2;
+  color: $dark-gold;
+  @media (max-width: 550px) {
+    font-size: .9em;
+  }
+}
+
+svg {
+  path, line {
+    fill:none;
+    stroke-miterlimit:10;
+    stroke-width:1px;
+  }
+}
+
+a {
+  color: $dark-gold;
+  position: relative;
+  text-decoration: none;
+  padding-bottom: 7px;
+  transition: all .3s ease-in-out;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background: #B58A2D, ;
+    background: linear-gradient(left, #FAE2A4 0%, #B58A2D 100%);
+   }
+
+   &:visited {
+     color: $dark-gold;
+   }
+
+   &:hover {
+     opacity: .7;
+   }
+}
+
+
+
+///////////////////////////////////////
+// Footer
+///////////////////////////////////////
+#social-media-icons {
+  display: flex;
+  justify-content: space-around;
+  width: 35%;
+  margin: 200px auto auto;
+  @media screen and (max-width: 774px) {
+    width: 100%;
+  }
+  .footer-social-icon {
+    width: 2.5vw;
+    @media screen and (max-width: 774px) {
+      width: 10vw;
+    }
+  }
+
+  a {
+    border-bottom: none;
+    padding-bottom: 0px;
+
+    &::after {
+      bottom: 0px;
+      height: 0px;
+      width: 0%;
+     }
+
+     &:hover {
+       transform : scale(1.25);
+     }
+  }
+}
+
+#love {
+  @media (max-width: 550px) {
+    font-size: .8em !important;
+  }
 }
