@@ -102,6 +102,9 @@ window.onload = function(){
   }
 
   // Capture scroll events
+  checkAnimation(document.getElementsByClassName('spartahack-title-animation')[0]);
+  checkAnimation(document.getElementById('event-date-animation'));
+  checkAnimation(document.getElementById('event-location-animation'));
   window.addEventListener("scroll", function(){
     checkAnimation(document.getElementsByClassName('spartahack-title-animation')[0]);
     checkAnimation(document.getElementById('event-date-animation'));
