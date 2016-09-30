@@ -3,6 +3,7 @@
   font-family: "Lato-Light";
   padding-bottom: 100px;
 
+
   #sponsor-description {
     font-family: "Lato-Light";
     font-size: 1.2em;
@@ -15,7 +16,9 @@
 
   #past-sponsors {
     margin-top: 75px;
-    max-width: 60vw;
+    @media screen and (min-width: 710px) {
+      max-width: 60vw;
+    }
 
     #title {
       margin-bottom: 25px;
@@ -37,7 +40,6 @@
 
   #sponsorship-info {
     text-transform: uppercase;
-    width: 60vw;
     margin-top: 100px;
     color: $dark-gold;
     @media (max-width: 550px) {
@@ -46,6 +48,9 @@
     @media (max-width: 950px) {
       flex-direction: column;
       margin-top: 40px;
+    }
+    @media screen and (min-width: 710px) {
+      width: 60vw;
     }
 
 
@@ -97,7 +102,7 @@
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
-    @media (max-width: 550px) {
+    @media screen and (max-width: 550px) {
       flex-direction: column;
       -webkit-flex-direction: column;
     }

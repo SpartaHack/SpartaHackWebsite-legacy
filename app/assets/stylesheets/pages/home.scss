@@ -60,50 +60,56 @@
   opacity: 0;
   animation: fade-in 1s linear alternate;
   animation-delay: 1s;
-   animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  @media screen and (max-width: 710px) {
+   display:none;
+  }
   &.top {
     background: $light-gold;
-    left: 5vw;
+    left: 96px;
     height: 1px;
     &.inner {
-      top: 5vw;
-      width: 75%;
+      top: 96px;
+      width: calc(100vw - 479px);
+      @media screen and (max-width: 746px) {
+        display:none;
+      }
     }
     &.outer {
-      top: 4vw;
-      right: 5vw;
-      width: 90%;
+      top: 76px;
+      right: 96px;
+      width: calc(100vw - 192px);
     }
   }
   &.right {
     background: linear-gradient($light-gold, $dark-gold);
-    top: 4vw;
+    top: 76px;
     width: 1px;
     &.inner {
-      right: 5vw;
-      height: calc(100% - 13vw);
+      right: 96px;
+      height: calc(100% - 248px);
     }
     &.outer {
-      right: 4vw;
+      right: 76px;
       height: 50%;
       &.lower {
         background: linear-gradient($dark-gold, $light-gold);
         top: initial;
-        bottom: 5vw;
-        height: 30%
+        bottom: 96px;
+        height: 30%;
       }
     }
   }
   &.bottom {
     background: $medium-gold;
     height: 1px;
-    right: 4vw;
+    right: 76px;
     &.inner {
-      bottom: 5vw;
+      bottom: 96px;
       width: 75%;
     }
     &.outer {
-      bottom: 4vw;
+      bottom: 76px;
       width: 90%;
     }
   }
@@ -111,13 +117,13 @@
     background: linear-gradient($dark-gold, $medium-gold);
     width: 1px;
     &.inner {
-      left: 6vw;
-      bottom: 4vw;
-      height: calc(100% - 13vw);
+      left: 96px;
+      bottom: 76px;
+      height: calc(100% - 248px);
     }
     &.outer {
       background: linear-gradient($light-gold, $dark-gold);
-      left: 5vw;
+      left: 76px;
       top: 150px;
       height: 40%;
     }
@@ -129,21 +135,25 @@
   opacity: 0;
   animation: fade-in 1s linear alternate;
   animation-delay: 1.5s;
-   animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
   width: 1px;
+  @media screen and (max-width: 825px) {
+    display:none;
+  }
+
   &.top.right {
     transform-origin: top left;
     background: linear-gradient($light-gold, $dark-gold);
     transform: rotate(-45deg);
     &.inner {
-      top: 5vw;
-      right: 20%;
-      height: 21.2vw;
+      top: 97px;
+      right: 383px;
+      height: 406px;
     }
     &.outer {
-      top: 4vw;
-      right: 19%;
-      height: 13vw;
+      top: 77px;
+      right: 363px;
+      height: 249px;
     }
   }
   &.bottom.left {
@@ -151,12 +161,12 @@
     background: linear-gradient($dark-gold, $medium-gold);
     transform: rotate(-45deg);
     &.outer {
-      bottom: 4vw;
+      bottom: 76px;
       left: 20%;
-      height: 15vw;
+      height: 196px;
     }
     &.inner {
-      bottom: 5vw;
+      bottom: 96px;
       left: 21%;
       height: 21.2vw;
     }
@@ -172,32 +182,42 @@
      animation-fill-mode: forwards;
     display: flex;
     justify-content: center;
-    width: 10%;
-    height: 6vw;
+    width: 192px;
+    height: 115px;
+    @media screen and (max-width: 825px) {
+      display:none;
+    }
     &.top.right {
-      right: 5%;
-      top: 4vw;
+      right: 96px;
+      top: 76px;
     }
     &.bottom.left {
-      left: 5%;
-      bottom: 4vw;
+      left: 96px;
+      bottom: 76px;
     }
     img {
-      width: 40%;
+      width: 77px;
     }
   }
   &#logo-center {
-    width: 19vw;
+    width: 365px;
     height: auto;
     max-height: 19vh;
+    @media screen and (max-width: 480px) {
+      width: 70vw;
+      max-height: 100vh;
+    }
   }
   &#inner-ring {
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
     margin: auto;
     overflow: auto;
-    width: 44vw;
+    width: 476px;
     height: 44vh;
+    @media screen and (max-width: 480px) {
+      display:none;
+    }
   }
   &#outer-ring {
     position: absolute;
@@ -206,6 +226,9 @@
     overflow: auto;
     width: 70vw;
     height: 70vh;
+    @media screen and (max-width: 1100px) {
+      display:none;
+    }
   }
   &#hanging-lines {
     position: absolute;
@@ -215,6 +238,9 @@
     width: 70vw;
     height: 70vw;
     max-height: 70vh;
+    @media screen and (max-width: 1100px) {
+      display:none;
+    }
   }
   &.main {
     height: 100vh;
@@ -223,8 +249,12 @@
     top: 0;
     position: absolute;
     display: flex;
+    transition: height 1s ease;
     align-items: center;
     justify-content: center;
+    @media screen and (max-width: 710px) {
+      height: 50vh;
+    }
     img {
       width: 55%;
       max-height: 75vh;
@@ -232,6 +262,7 @@
   }
 }
 
+@import "../partials/home/navigation";
 @import "../partials/home/head";
 @import "../partials/home/spartahack";
 @import "../partials/home/faq";

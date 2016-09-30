@@ -61,24 +61,33 @@
 
 #page-corner {
   position: absolute;
-  top: 4vw;
-  left: 5vw;
-  width: 14vw;
+  top: 76px;
+  left: 96px;
+  width: 268px;
   height: auto;
-
-  .cls-1 {
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    animation: dash 5s linear alternate;
-    animation-delay: .6s;
-     animation-fill-mode: forwards;
+  @media screen and (max-width: 746px) {
+    width: 0;
   }
-  .cls-2 {
+
+  #page-corner-top-hanging {
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
-    animation: dash 5s linear alternate;
+    animation: dash 4s linear alternate;
+    animation-delay: .6s;
+    animation-fill-mode: forwards;
+    @media screen and (max-width: 746px) {
+      display:none;
+    }
+  }
+  #page-corner-bottom-hanging {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 2.94s linear alternate;
     animation-delay: .64s;
-     animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    @media screen and (max-width: 746px) {
+      display:none;
+    }
   }
 
 }
