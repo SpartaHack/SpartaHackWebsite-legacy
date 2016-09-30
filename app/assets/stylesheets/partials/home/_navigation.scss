@@ -72,9 +72,10 @@ nav {
       // animation: fade-in 1.45s linear alternate;
       // animation-delay: 1.2s;
       float: left;
-      padding: 0px 25px;
+      padding: 0px;
       text-transform: uppercase;
       font-family: "Lato-Light";
+      padding: 0px 25px;
       font-size: 15px;
       color: $medium-gold;
 
@@ -83,8 +84,22 @@ nav {
         width: 100%;
 
         &::after {
-          border-bottom: none;
-          display: none;
+          position: relative;
+
+        }
+
+        &:hover {
+            &::after {
+            content: "";
+            display: inherit;
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            height: 1px;
+            width: 100%;
+            background: #B58A2D, ;
+            background: linear-gradient(left, #FAE2A4 0%, #B58A2D 100%);
+          }
         }
 
       }
