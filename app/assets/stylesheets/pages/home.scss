@@ -1,57 +1,4 @@
 ///////////////////////////////////////
-// Header
-///////////////////////////////////////
-.main-header {
-  font-family: "Lato-Light";
-  position: fixed;
-  // display: flex;
-  display: none;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 44vh;
-  top: calc(50% - 25px);
-  left: -17vh;
-  z-index: 2;
-  transform: rotate(90deg);
-  will-change: transform;
-  h4 {
-    font-size: .8vw;
-    text-transform: uppercase;
-    a {
-      text-decoration: none;
-      transition: all ease 0.5s;
-      border-bottom: none;
-      &::after {
-        transition: width ease .5s;
-        bottom: 0px;
-        height: 0px;
-        width: 0%;
-      }
-      &:hover::after {
-        height: 1px;
-        width: 100%;
-      }
-      &.active::after {
-        height: 1px;
-        width: 100%;
-      }
-    }
-  }
-  @media screen and (max-width: 1450px) {
-    left: -20vh;
-    background-color: white;
-    border: 1px solid $light-gold;
-    h4 {
-      font-size: 11px;
-    }
-  }
-  @media screen and (max-height: 854px ) {
-    left: -19vh;
-  }
-}
-
-
-///////////////////////////////////////
 // Preview Site
 ///////////////////////////////////////
 
@@ -106,11 +53,12 @@
     right: 76px;
     &.inner {
       bottom: 96px;
-      width: 75%;
+      right: 96px;
+      width: calc(100vw - 499px);
     }
     &.outer {
       bottom: 76px;
-      width: 90%;
+      width: calc(100vw - 172px);
     }
   }
   &.left {
@@ -126,6 +74,12 @@
       left: 76px;
       top: 150px;
       height: 40%;
+      &.lower {
+        background: linear-gradient($dark-gold, $light-gold);
+        top: initial;
+        bottom: 96px;
+        height: 30%;
+      }
     }
   }
 }
@@ -160,15 +114,19 @@
     transform-origin: bottom right;
     background: linear-gradient($dark-gold, $medium-gold);
     transform: rotate(-45deg);
+    @media screen and (max-width: 1165px) {
+      display:none;
+    }
+
     &.outer {
-      bottom: 76px;
-      left: 20%;
+      bottom: 77px;
+      left: 383px;
       height: 196px;
     }
     &.inner {
-      bottom: 96px;
-      left: 21%;
-      height: 21.2vw;
+      bottom: 97px;
+      left: 403px;
+      height: 434px;
     }
   }
 }
@@ -194,6 +152,9 @@
     &.bottom.left {
       left: 96px;
       bottom: 76px;
+      @media screen and (max-width: 1165px) {
+        display:none;
+      }
     }
     img {
       width: 77px;
