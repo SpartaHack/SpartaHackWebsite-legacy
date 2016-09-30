@@ -1,4 +1,13 @@
+
+
 window.onload = function(){
+  ////////////////////////////////////////////////////
+  // Variables
+  ///////////////////////////////////////////////////
+  var headerBoxShadow = "0px 0px 22px 0px rgba(0,0,0,0.04)";
+
+
+
   ////////////////////////////////////////////////////
   // FAQ
   ///////////////////////////////////////////////////
@@ -44,6 +53,10 @@ window.onload = function(){
     this.nextElementSibling.classList.add("hide");
   });
 
+
+  ////////////////////////////////////////////////////
+  // SVG Animations
+  ///////////////////////////////////////////////////
   // Returns true if the specified element has been scrolled into the viewport.
   function isElementInViewport(elem) {
       var $elem = elem;
@@ -91,44 +104,41 @@ window.onload = function(){
       }
   }
 
-  // Also Navigation
-  var navElements = document.getElementsByClassName("nav-element");
+  ////////////////////////////////////////////////////
+  // Navigation
+  ///////////////////////////////////////////////////
+  $(function () {
+    $("[href^='#']").on("click", function (e)  {
+      var target = $(this).attr('href');
 
-  for (var i = 0; i < navElements.length; i++) {
-    navElements[i].addEventListener('click', function(event) {
-      event.preventDefault();
-      var element = document.getElementById(this.getAttribute('href')).scrollIntoView({behavior: "smooth"});
+      var scrollTop = $( target ).offset().top-$('#header').height()-$('#header').outerHeight();
+
+      if ( target =='#spartahack'){
+        scrollTop = 0;
+      }
+
+      $("body, html").animate({
+        scrollTop: scrollTop
+      }, 800);
+
+      e.preventDefault();
     });
-  }
+  });
 
-  // Capture scroll events
   checkAnimation(document.getElementsByClassName('spartahack-title-animation')[0]);
   checkAnimation(document.getElementById('event-date-animation'));
   checkAnimation(document.getElementById('event-location-animation'));
+  if($(window).scrollTop()) document.getElementById("header").style["boxShadow"] = headerBoxShadow;
+
+  // Capture scroll events
   window.addEventListener("scroll", function(){
+    if($(window).scrollTop()) { //abuse 0 == false :)
+      document.getElementById("header").style["boxShadow"] = headerBoxShadow;
+    } else {
+      document.getElementById("header").style["boxShadow"] = "none";
+    }
     checkAnimation(document.getElementsByClassName('spartahack-title-animation')[0]);
     checkAnimation(document.getElementById('event-date-animation'));
     checkAnimation(document.getElementById('event-location-animation'));
-
-    ////////////////////////////////////////////////////
-    // Navigation
-    ///////////////////////////////////////////////////
-
-    // How far the scroll is from the top of the page
-    var scroll = document.body.scrollTop;
-    // // Navbar
-    // var topNav = document.getElementById("topNav");
-    // var notifyNav = document.getElementById("notifyNav");
-    // var aboutNav = document.getElementById("aboutNav");
-    // var faqNav = document.getElementById("faqNav");
-    // var sponsorNav = document.getElementById("sponsorNav");
-    // var contactNav = document.getElementById("contactNav");
-    // // Sections
-    // var emailSection = document.getElementById("notify-email");
-    // var aboutSection = document.getElementById("event-description");
-    // var faqSection = document.getElementById("faq");
-    // var sponsorSection = document.getElementById("sponsors");
-    // var contactSection = document.getElementById("contact");
-
   });
 };
