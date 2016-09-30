@@ -22,8 +22,10 @@
     <% end %>
 
     <!--  makes pages much more consistent across all browsers -->
-    <%= stylesheet_link_tag    'cssreset' %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'cssreset', :media => "none", :onload =>"if(media!='all')media='all'" %>
+    <noscript><%= stylesheet_link_tag    'cssreset' %></noscript>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload', :media => "none", :onload =>"if(media!='all')media='all'" %>
+    <noscript><%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %></noscript>
   </head>
 
   <body>
