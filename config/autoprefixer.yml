@@ -1,5 +1,0 @@
-flexbox: no-2009
-browsers:
-  - "> 0.5%"
-  - "last 5 versions"
-  - "IE > 7"
