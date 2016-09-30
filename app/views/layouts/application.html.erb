@@ -27,14 +27,14 @@
   </head>
 
   <body>
-    <!-- <%= render "navigation" %> -->
+    <%= render "navigation" %>
     <%- if current_user.present? %>
 
     <%- end %>
 
     <%= yield %>
 
-    <footer>
+    <footer id="footer">
       <div id="social-media-icons">
         <a target="_blank" href="https://www.facebook.com/spartahackmsu">
           <%= image_tag 'SocialMedia/facebook.svg', class: "footer-social-icon" %>
