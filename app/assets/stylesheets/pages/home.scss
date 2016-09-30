@@ -1,57 +1,4 @@
 ///////////////////////////////////////
-// Header
-///////////////////////////////////////
-.main-header {
-  font-family: "Lato-Light";
-  position: fixed;
-  // display: flex;
-  display: none;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 44vh;
-  top: calc(50% - 25px);
-  left: -17vh;
-  z-index: 2;
-  transform: rotate(90deg);
-  will-change: transform;
-  h4 {
-    font-size: .8vw;
-    text-transform: uppercase;
-    a {
-      text-decoration: none;
-      transition: all ease 0.5s;
-      border-bottom: none;
-      &::after {
-        transition: width ease .5s;
-        bottom: 0px;
-        height: 0px;
-        width: 0%;
-      }
-      &:hover::after {
-        height: 1px;
-        width: 100%;
-      }
-      &.active::after {
-        height: 1px;
-        width: 100%;
-      }
-    }
-  }
-  @media screen and (max-width: 1450px) {
-    left: -20vh;
-    background-color: white;
-    border: 1px solid $light-gold;
-    h4 {
-      font-size: 11px;
-    }
-  }
-  @media screen and (max-height: 854px ) {
-    left: -19vh;
-  }
-}
-
-
-///////////////////////////////////////
 // Preview Site
 ///////////////////////////////////////
 
@@ -60,66 +7,79 @@
   opacity: 0;
   animation: fade-in 1s linear alternate;
   animation-delay: 1s;
-   animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  @media screen and (max-width: 710px) {
+   display:none;
+  }
   &.top {
     background: $light-gold;
-    left: 5vw;
+    left: 96px;
     height: 1px;
     &.inner {
-      top: 5vw;
-      width: 75%;
+      top: 96px;
+      width: calc(100vw - 479px);
+      @media screen and (max-width: 746px) {
+        display:none;
+      }
     }
     &.outer {
-      top: 4vw;
-      right: 5vw;
-      width: 90%;
+      top: 76px;
+      right: 96px;
+      width: calc(100vw - 192px);
     }
   }
   &.right {
     background: linear-gradient($light-gold, $dark-gold);
-    top: 4vw;
+    top: 76px;
     width: 1px;
     &.inner {
-      right: 5vw;
-      height: calc(100% - 13vw);
+      right: 96px;
+      height: calc(100% - 248px);
     }
     &.outer {
-      right: 4vw;
+      right: 76px;
       height: 50%;
       &.lower {
         background: linear-gradient($dark-gold, $light-gold);
         top: initial;
-        bottom: 5vw;
-        height: 30%
+        bottom: 96px;
+        height: 30%;
       }
     }
   }
   &.bottom {
     background: $medium-gold;
     height: 1px;
-    right: 4vw;
+    right: 76px;
     &.inner {
-      bottom: 5vw;
-      width: 75%;
+      bottom: 96px;
+      right: 96px;
+      width: calc(100vw - 499px);
     }
     &.outer {
-      bottom: 4vw;
-      width: 90%;
+      bottom: 76px;
+      width: calc(100vw - 172px);
     }
   }
   &.left {
     background: linear-gradient($dark-gold, $medium-gold);
     width: 1px;
     &.inner {
-      left: 6vw;
-      bottom: 4vw;
-      height: calc(100% - 13vw);
+      left: 96px;
+      bottom: 76px;
+      height: calc(100% - 248px);
     }
     &.outer {
       background: linear-gradient($light-gold, $dark-gold);
-      left: 5vw;
+      left: 76px;
       top: 150px;
       height: 40%;
+      &.lower {
+        background: linear-gradient($dark-gold, $light-gold);
+        top: initial;
+        bottom: 96px;
+        height: 30%;
+      }
     }
   }
 }
@@ -129,36 +89,44 @@
   opacity: 0;
   animation: fade-in 1s linear alternate;
   animation-delay: 1.5s;
-   animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
   width: 1px;
+  @media screen and (max-width: 825px) {
+    display:none;
+  }
+
   &.top.right {
     transform-origin: top left;
     background: linear-gradient($light-gold, $dark-gold);
     transform: rotate(-45deg);
     &.inner {
-      top: 5vw;
-      right: 20%;
-      height: 21.2vw;
+      top: 97px;
+      right: 383px;
+      height: 406px;
     }
     &.outer {
-      top: 4vw;
-      right: 19%;
-      height: 13vw;
+      top: 77px;
+      right: 363px;
+      height: 249px;
     }
   }
   &.bottom.left {
     transform-origin: bottom right;
     background: linear-gradient($dark-gold, $medium-gold);
     transform: rotate(-45deg);
+    @media screen and (max-width: 1165px) {
+      display:none;
+    }
+
     &.outer {
-      bottom: 4vw;
-      left: 20%;
-      height: 15vw;
+      bottom: 77px;
+      left: 383px;
+      height: 196px;
     }
     &.inner {
-      bottom: 5vw;
-      left: 21%;
-      height: 21.2vw;
+      bottom: 97px;
+      left: 403px;
+      height: 434px;
     }
   }
 }
@@ -172,32 +140,45 @@
      animation-fill-mode: forwards;
     display: flex;
     justify-content: center;
-    width: 10%;
-    height: 6vw;
+    width: 192px;
+    height: 115px;
+    @media screen and (max-width: 825px) {
+      display:none;
+    }
     &.top.right {
-      right: 5%;
-      top: 4vw;
+      right: 96px;
+      top: 76px;
     }
     &.bottom.left {
-      left: 5%;
-      bottom: 4vw;
+      left: 96px;
+      bottom: 76px;
+      @media screen and (max-width: 1165px) {
+        display:none;
+      }
     }
     img {
-      width: 40%;
+      width: 77px;
     }
   }
   &#logo-center {
-    width: 19vw;
+    width: 365px;
     height: auto;
     max-height: 19vh;
+    @media screen and (max-width: 480px) {
+      width: 70vw;
+      max-height: 100vh;
+    }
   }
   &#inner-ring {
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
     margin: auto;
     overflow: auto;
-    width: 44vw;
+    width: 476px;
     height: 44vh;
+    @media screen and (max-width: 480px) {
+      display:none;
+    }
   }
   &#outer-ring {
     position: absolute;
@@ -206,6 +187,9 @@
     overflow: auto;
     width: 70vw;
     height: 70vh;
+    @media screen and (max-width: 1100px) {
+      display:none;
+    }
   }
   &#hanging-lines {
     position: absolute;
@@ -215,6 +199,9 @@
     width: 70vw;
     height: 70vw;
     max-height: 70vh;
+    @media screen and (max-width: 1100px) {
+      display:none;
+    }
   }
   &.main {
     height: 100vh;
@@ -223,8 +210,12 @@
     top: 0;
     position: absolute;
     display: flex;
+    transition: height 1s ease;
     align-items: center;
     justify-content: center;
+    @media screen and (max-width: 710px) {
+      height: 50vh;
+    }
     img {
       width: 55%;
       max-height: 75vh;
@@ -232,6 +223,7 @@
   }
 }
 
+@import "../partials/home/navigation";
 @import "../partials/home/head";
 @import "../partials/home/spartahack";
 @import "../partials/home/faq";

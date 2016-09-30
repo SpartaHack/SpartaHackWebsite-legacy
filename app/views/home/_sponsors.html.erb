@@ -12,12 +12,12 @@
   </p>
 
   <section id="past-sponsors">
-    <h1 id="title">2016 Sponsors</hi>
+    <h2 id="title">2016 Sponsors</h2>
     <div class="media-grid">
       <% @past_sponsors.each do |sponsor|  %>
-        <article class="sub flex align-center center">
+        <div class="sub flex align-center center">
             <%= image_tag "pastSponsors/#{sponsor.split('/').last}", :class => "logo-sponsor" %>
-        </article>
+        </div>
       <% end %>
     </div>
   </section>
