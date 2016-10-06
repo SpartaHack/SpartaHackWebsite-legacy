@@ -142,12 +142,14 @@
     justify-content: center;
     width: 192px;
     height: 115px;
+    cursor: pointer;
     @media screen and (max-width: 825px) {
       display:none;
     }
     &.top.right {
       right: 96px;
       top: 76px;
+      z-index: 499;
     }
     &.bottom.left {
       left: 96px;
@@ -164,6 +166,8 @@
     width: 365px;
     height: auto;
     max-height: 19vh;
+    z-index: 400;
+    cursor: pointer;
     @media screen and (max-width: 480px) {
       width: 70vw;
       max-height: 100vh;

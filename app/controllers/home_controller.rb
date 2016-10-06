@@ -4,17 +4,20 @@ class HomeController < ApplicationController
   include ApplicationHelper
   require 'json'
 
+  def index
+    @past_sponsors = Dir.glob("app/assets/images/pastSponsors/*").sort_by(&:downcase)
+  end
+
   def subscribe
+    @button = "#D4B166"
     if subscribe_params[:emailinput] == ""
       @type = "error"
       @desc = "You cannot submit an empty form."
       @title = "Uh Oh!"
-      @button = "#D4B166"
     elsif subscribe_params[:emailinput].downcase !~ /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
       @type = "error"
       @desc = "You must include a valid email."
       @title = "Uh Oh!"
-      @button = "#D4B166"
     else
       begin
       	mailchimp = Mailchimp::API.new(ENV["MAILCHIMP_API_KEY"])
@@ -24,22 +27,30 @@ class HomeController < ApplicationController
       	@type = "success"
       	@desc = "Now you just need to confirm your email address!"
       	@title = "Sweet!"
-        @button = "#D4B166"
       rescue Exception
       	@type = "error"
       	@desc = "You've already signed up with this email."
       	@title = "Uh Oh!"
-        @button = "#D4B166"
       end
     end
   end
 
-  def index
-    @past_sponsors = Dir.glob("app/assets/images/pastSponsors/*").sort_by(&:downcase)
+  def rememberTheme
+    if remember_params[:theme] == 'dark'
+      session[:theme] = "dark"
+    elsif remember_params[:theme] == 'light'
+      session[:theme] = "light"
+    else
+      session[:theme] = ""
+    end
   end
 
   private
     def subscribe_params
       params.permit(:emailinput, :authenticity_token, :utf8)
+    end
+
+    def remember_params
+      params.permit(:theme)
     end
 end
