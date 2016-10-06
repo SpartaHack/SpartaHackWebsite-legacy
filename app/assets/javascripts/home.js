@@ -5,6 +5,7 @@ window.onload = function(){
   // Variables
   ///////////////////////////////////////////////////
   var headerBoxShadow = "0px 0px 22px 0px rgba(0,0,0,0.04)";
+  var themeElements = "body, nav, .active-q, .sweet-alert";
 
 
 
@@ -123,7 +124,7 @@ window.onload = function(){
     // if (clicks) {
       if (!themeTrigger) {
         darkTheme = !darkTheme;
-        $("body, nav, .active-q, .sweet-alert").toggleClass("dark");
+        $(themeElements).toggleClass("dark");
 
         swal({
           title:"Awesome",
@@ -143,7 +144,7 @@ window.onload = function(){
                data: {"theme" : "light"}
             });
 
-            $("body, nav, .active-q, .sweet-alert").removeClass("dark");
+            $(themeElements).removeClass("dark");
             darkTheme = false;
           } else {
             $.ajax({
@@ -151,7 +152,7 @@ window.onload = function(){
                type: 'post',
                data: {"theme" : "dark"}
             });
-            (darkTheme != true) ? $("body, nav, .active-q, .sweet-alert").toggleClass("dark") : null;
+            (darkTheme != true) ? $(themeElements).toggleClass("dark") : null;
             (darkTheme != true) ? darkTheme = true : null;
           }
         });
@@ -176,7 +177,7 @@ window.onload = function(){
                url: '/rememberTheme',
                type: 'post',
             });
-            $("body, nav, .active-q, .sweet-alert").toggleClass("dark");
+            $(themeElements).toggleClass("dark");
             $(".sweet-alert").removeClass("dark");
             themeTrigger = false;
             darkTheme = !darkTheme;

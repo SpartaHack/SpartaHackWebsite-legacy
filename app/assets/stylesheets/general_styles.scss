@@ -92,6 +92,7 @@ body {
 
 input {
   border: 1px $light-gold solid;
+  color: $dark-gold;
 }
 
 input:-webkit-autofill {
@@ -203,8 +204,20 @@ a {
 .sweet-alert {
   &.dark {
     background-color: #362F26 !important;
+    background: #362F26 !important;
+
+    .sa-icon.sa-success::before, .sa-icon.sa-success::after, .sa-icon.sa-success .sa-fix {
+      background: #362F26 !important;
+    }
+
+    .sa-icon.sa-error {
+      border-color: $medium-gold !important;
+    }
   }
 }
+
+.sweet-alert
+
 .sweet-alert .sa-icon.sa-error,
 .sweet-alert .sa-icon.sa-success .sa-placeholder {
   border-color: $medium-gold !important;
@@ -245,6 +258,7 @@ a {
   border-radius: 0px !important;
   font-family: "Lato-Light" !important;
   font-weight: 100 !important;
+  margin: 26px 5px !important;
 
   &:hover {
     opacity: .7;
