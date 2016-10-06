@@ -13,6 +13,11 @@ nav {
   animation: fade-in 1.45s linear alternate;
   animation-delay: 1.2s;
   animation-fill-mode: forwards;
+  transition: background-color .5s linear;
+
+  &.dark {
+    background-color: #362F26;
+  }
 
   @media screen and (max-width: 705px) {
     justify-content: center;
@@ -54,7 +59,7 @@ nav {
   #nav-diamond {
     height: 45px;
     width: auto;
-    margin-left: 96px;
+    margin-left: 95px;
     padding-right: 5px;
   }
 

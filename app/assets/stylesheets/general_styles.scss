@@ -24,12 +24,25 @@ body {
     left: 0;
     background-color: white;
     background: linear-gradient($white 59%, #FFF3D8 100%);
+    transition: opacity 0.5s linear;
     // background: linear-gradient($white 69%, #FFF2D7 100%);
     background-size: cover;
     will-change: transform; // creates a new paint layer
     z-index: -1;
   }
+
+  &.dark {
+    &::before {
+      opacity: 0;
+      background-color: #362F26;
+      background: #362F26;
+      animation: fade-in 0.5s linear alternate;
+      animation-fill-mode: forwards;
+    }
+  }
 }
+
+
 
 .wrap {
   margin-bottom: 100px;
@@ -79,6 +92,7 @@ body {
 
 input {
   border: 1px $light-gold solid;
+  color: $dark-gold;
 }
 
 input:-webkit-autofill {
@@ -186,6 +200,24 @@ a {
   }
 }
 
+
+.sweet-alert {
+  &.dark {
+    background-color: #362F26 !important;
+    background: #362F26 !important;
+
+    .sa-icon.sa-success::before, .sa-icon.sa-success::after, .sa-icon.sa-success .sa-fix {
+      background: #362F26 !important;
+    }
+
+    .sa-icon.sa-error {
+      border-color: $medium-gold !important;
+    }
+  }
+}
+
+.sweet-alert
+
 .sweet-alert .sa-icon.sa-error,
 .sweet-alert .sa-icon.sa-success .sa-placeholder {
   border-color: $medium-gold !important;
@@ -205,4 +237,30 @@ a {
 .sweet-alert h2 {
   font-family: "Nemoy-Light" !important;
   color: $dark-gold !important;
+}
+
+.sa-button-container.cancel, .sweet-alert button.cancel {
+  background-color: transparent !important;
+  color: $medium-gold !important;
+  border: $dark-gold 1px solid !important;
+  border-radius: 0px !important;
+  font-family: "Lato-Light" !important;
+  font-weight: 100 !important;
+
+  &:hover {
+    opacity: .7;
+  }
+}
+
+.sa-button-container.confirm, .sweet-alert button.confirm {
+  background-color: $dark-gold !important;
+  color: $light-gold !important;
+  border-radius: 0px !important;
+  font-family: "Lato-Light" !important;
+  font-weight: 100 !important;
+  margin: 26px 5px !important;
+
+  &:hover {
+    opacity: .7;
+  }
 }

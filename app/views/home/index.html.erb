@@ -1,6 +1,15 @@
 <%- if current_user.present? && current_user.role == 1 %>
   <%= render "admin_portal" %>
 <%- else %>
+  <script async="async">
+    <% if session[:theme] == 'dark' || session[:theme] == 'light' %>
+      var darkTheme = <%= session[:theme] == 'dark' ? true : false %>;
+      var themeTrigger = true;
+    <% else %>
+      var darkTheme = false;
+      var themeTrigger = false;
+    <% end %>
+  </script>
   <%= render "head" %>
   <%= render "spartahack" %>
   <%= render "faq" %>
