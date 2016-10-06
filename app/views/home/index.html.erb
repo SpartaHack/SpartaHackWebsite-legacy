@@ -2,8 +2,8 @@
   <%= render "admin_portal" %>
 <%- else %>
   <script async="async">
-    <% if session[:theme] == 'dark' || session[:theme] == 'light' %>
-      var darkTheme = <%= session[:theme] == 'dark' ? true : false %>;
+    <% if cookies.signed[:theme] %>
+      var darkTheme = <%= cookies.signed[:theme] == 'dark' ? true : false %>;
       var themeTrigger = true;
     <% else %>
       var darkTheme = false;
