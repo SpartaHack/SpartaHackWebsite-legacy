@@ -37,11 +37,11 @@ class HomeController < ApplicationController
 
   def rememberTheme
     if remember_params[:theme] == 'dark'
-      session[:theme] = "dark"
-    elsif remember_params[:theme] == 'light'
-      session[:theme] = "light"
+      cookies.signed[:theme] = { value: "dark" }
+    elsif remember_params[:theme] == { value: 'light' }
+      cookies.signed[:theme] = { value: "light" }
     else
-      session[:theme] = ""
+      cookies.delete :theme
     end
   end
 
