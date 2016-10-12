@@ -1,10 +1,14 @@
 #spartahack {
 
+  .spartahack-title-animation {
+    width: 80%;
+  }
+
   .spartahack-title-animation.start {
     .title-paths-lines {
       stroke-dasharray: 1000;
       stroke-dashoffset: 1000;
-      stroke-width:0.5px;
+      stroke-width:1px;
     }
 
     #title-top-line {
@@ -100,6 +104,9 @@
     margin-bottom: 15px;
     color: $medium-gold;
     font-size: 5vw;
+    background: linear-gradient(to bottom, #F9E1A3, $medium-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     @media screen and (max-width: 774px) {
       font-size: 6.5vw;
     }
@@ -152,6 +159,7 @@
           margin-bottom: 0;
           font-size: 1em;
         }
+
       }
       @media screen and (max-width: 1344px) {
         margin-bottom: 100px;
@@ -175,18 +183,29 @@
     right: 12vw;
     width: 7vw;
     transition: .5s ease;
+    transition-delay: .5s;
     outline: 0;
     &.hide {
       width: 0;
       opacity: 0;
     }
+    @media screen and (max-width: 710px) {
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+    @media screen and (min-width: 711px) and (max-width: 1344px){
+      left: 5vw;
+    }
+
     @media screen and (max-width: 1344px) {
       width: 60vw;
-      left: 5vw;
       // font-size: 1em;
       top: 80px;
+      z-index: 2;
       &.hide {
         width: 60vw;
+        z-index: -1;
       }
     }
   }

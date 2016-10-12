@@ -1,4 +1,14 @@
+
+
 window.onload = function(){
+  ////////////////////////////////////////////////////
+  // Variables
+  ///////////////////////////////////////////////////
+  var headerBoxShadow = "0px 0px 22px 0px rgba(0,0,0,0.04)";
+  var themeElements = "body, nav, .active-q, .sweet-alert";
+
+
+
   ////////////////////////////////////////////////////
   // FAQ
   ///////////////////////////////////////////////////
@@ -9,7 +19,17 @@ window.onload = function(){
       questions[questionIndex].addEventListener("click", function(){
         // Remove active-q class from previously selected element
         var currentQuestionList = this.parentElement.getElementsByClassName("active-q");
+        var currentModeList = this.parentElement.getElementsByClassName("dark");
+
         currentQuestionList[0].classList.remove("active-q");
+
+        if (currentModeList.length > 0) {
+          currentModeList[0].classList.remove("dark");
+
+          // Add dark mode to clicked element
+          this.classList.add("dark");
+        }
+
 
         // Add active-q to clicked element
         this.classList.add("active-q");
@@ -44,6 +64,10 @@ window.onload = function(){
     this.nextElementSibling.classList.add("hide");
   });
 
+
+  ////////////////////////////////////////////////////
+  // SVG Animations
+  ///////////////////////////////////////////////////
   // Returns true if the specified element has been scrolled into the viewport.
   function isElementInViewport(elem) {
       var $elem = elem;
@@ -91,41 +115,117 @@ window.onload = function(){
       }
   }
 
-  // Also Navigation
-  var navElements = document.getElementsByClassName("nav-element");
-
-  for (var i = 0; i < navElements.length; i++) {
-    navElements[i].addEventListener('click', function(event) {
-      event.preventDefault();
-      var element = document.getElementById(this.getAttribute('href')).scrollIntoView({behavior: "smooth"});
-    });
+  if (darkTheme == true) {
+    $("body, nav, .active-q").toggleClass("dark");
   }
+
+  $('.diamond, #logo-center').click(function() {
+    // var clicks = $(this).data('clicks');
+    // if (clicks) {
+      if (!themeTrigger) {
+        darkTheme = !darkTheme;
+        $(themeElements).toggleClass("dark");
+
+        swal({
+          title:"Awesome",
+          text: "You've found an easter egg! What theme should we remember?",
+          showCancelButton: true,
+          cancelButtonText: "Dark is swell",
+          confirmButtonColor: "#D4B166",
+          confirmButtonText: "Light is cool",
+          allowEscapeKey:	true,
+          allowOutsideClick: true,
+        },
+        function(isConfirm){
+          if (isConfirm) {
+            $.ajax({
+               url: '/rememberTheme',
+               type: 'post',
+               data: {"theme" : "light"}
+            });
+
+            $(themeElements).removeClass("dark");
+            darkTheme = false;
+          } else {
+            $.ajax({
+               url: '/rememberTheme',
+               type: 'post',
+               data: {"theme" : "dark"}
+            });
+            (darkTheme != true) ? $(themeElements).toggleClass("dark") : null;
+            (darkTheme != true) ? darkTheme = true : null;
+          }
+        });
+        (darkTheme == true) ? $(".sweet-alert").addClass("dark") : $(".sweet-alert").removeClass("dark");
+        themeTrigger = true;
+
+      } else {
+
+        swal({
+          title:"Hey again",
+          text: "Want us to forget your theme preference?",
+          showCancelButton: true,
+          cancelButtonText: "Nah",
+          confirmButtonColor: "#D4B166",
+          confirmButtonText: "Yeah dude",
+          allowEscapeKey:	true,
+          allowOutsideClick: true,
+        },
+        function(isConfirm){
+          if (isConfirm) {
+            $.ajax({
+               url: '/rememberTheme',
+               type: 'post',
+            });
+            $(themeElements).toggleClass("dark");
+            $(".sweet-alert").removeClass("dark");
+            themeTrigger = false;
+            darkTheme = !darkTheme;
+          }
+        });
+        (darkTheme == true) ? $(".sweet-alert").removeClass('dark').addClass("dark") : $(".sweet-alert").removeClass("dark");
+      }
+    // } else {
+    //   $("body").switchClass("light", "dark");
+    // }
+    // $(this).data("clicks", !clicks);
+  });
+
+  ////////////////////////////////////////////////////
+  // Navigation
+  ///////////////////////////////////////////////////
+  $(function () {
+    $("[href^='#']").on("click", function (e)  {
+      var target = $(this).attr('href');
+
+      var scrollTop = $( target ).offset().top-$('#header').height()-$('#header').outerHeight();
+
+      if ( target =='#spartahack'){
+        scrollTop = 0;
+      }
+
+      $("body, html").animate({
+        scrollTop: scrollTop
+      }, 800);
+
+      e.preventDefault();
+    });
+  });
+
+  checkAnimation(document.getElementsByClassName('spartahack-title-animation')[0]);
+  checkAnimation(document.getElementById('event-date-animation'));
+  checkAnimation(document.getElementById('event-location-animation'));
+  if($(window).scrollTop()) document.getElementById("header").style["boxShadow"] = headerBoxShadow;
 
   // Capture scroll events
   window.addEventListener("scroll", function(){
+    if($(window).scrollTop()) { //abuse 0 == false :)
+      document.getElementById("header").style["boxShadow"] = headerBoxShadow;
+    } else {
+      document.getElementById("header").style["boxShadow"] = "none";
+    }
     checkAnimation(document.getElementsByClassName('spartahack-title-animation')[0]);
     checkAnimation(document.getElementById('event-date-animation'));
     checkAnimation(document.getElementById('event-location-animation'));
-
-    ////////////////////////////////////////////////////
-    // Navigation
-    ///////////////////////////////////////////////////
-
-    // How far the scroll is from the top of the page
-    var scroll = document.body.scrollTop;
-    // // Navbar
-    // var topNav = document.getElementById("topNav");
-    // var notifyNav = document.getElementById("notifyNav");
-    // var aboutNav = document.getElementById("aboutNav");
-    // var faqNav = document.getElementById("faqNav");
-    // var sponsorNav = document.getElementById("sponsorNav");
-    // var contactNav = document.getElementById("contactNav");
-    // // Sections
-    // var emailSection = document.getElementById("notify-email");
-    // var aboutSection = document.getElementById("event-description");
-    // var faqSection = document.getElementById("faq");
-    // var sponsorSection = document.getElementById("sponsors");
-    // var contactSection = document.getElementById("contact");
-
   });
 };
