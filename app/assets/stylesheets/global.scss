@@ -7,11 +7,8 @@ body {
   position: relative;
   overflow-x: hidden;
   margin: 0;
-  padding: 100vh 20% 115px;
   transition: padding 1s ease, margin 1s ease;
   @media (max-width: 710px) {
-    margin-top: 90px;
-    padding: 50vh 5% 20px;
   }
 
 
