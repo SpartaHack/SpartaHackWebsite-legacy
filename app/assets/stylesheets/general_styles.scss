@@ -40,6 +40,8 @@ body {
       background: #362F26;
       animation: fade-in 0.5s linear alternate;
       animation-fill-mode: forwards;
+    }
+  }
   &.home {
     padding: 100vh 20% 115px;
     @media (max-width: 774px) {
