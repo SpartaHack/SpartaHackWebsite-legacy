@@ -16,7 +16,7 @@ nav {
   transition: background-color .5s linear;
 
   &.dark {
-    background-color: #362F26;
+    background-color: $dark-brown;
   }
 
   @media screen and (max-width: 705px) {
