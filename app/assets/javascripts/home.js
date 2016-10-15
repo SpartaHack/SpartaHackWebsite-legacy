@@ -52,17 +52,15 @@ window.onload = function(){
   // email
   ///////////////////////////////////////////////////
   var emailForm = document.getElementById("notify-email-input");
-  if (emailForm !== null) {
-    emailForm.addEventListener("focus", function() {
-      this.setAttribute("placeholder", "Email");
-      this.nextElementSibling.classList.remove("hide");
-    });
+  emailForm.addEventListener("focus", function() {
+    this.setAttribute("placeholder", "Email");
+    this.nextElementSibling.classList.remove("hide");
+  });
 
-    emailForm.addEventListener("blur", function() {
-      this.setAttribute("placeholder", "SIGN UP");
-      this.nextElementSibling.classList.add("hide");
-    });
-  }
+  emailForm.addEventListener("blur", function() {
+    this.setAttribute("placeholder", "SIGN UP");
+    this.nextElementSibling.classList.add("hide");
+  });
 
 
   ////////////////////////////////////////////////////
