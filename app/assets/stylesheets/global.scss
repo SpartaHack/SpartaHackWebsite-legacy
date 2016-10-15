@@ -7,11 +7,8 @@ body {
   position: relative;
   overflow-x: hidden;
   margin: 0;
-  padding: 100vh 20% 115px;
   transition: padding 1s ease, margin 1s ease;
   @media (max-width: 710px) {
-    margin-top: 90px;
-    padding: 50vh 5% 20px;
   }
 
   max-width: 100vw;
@@ -36,8 +33,8 @@ body {
   &.dark {
     &::before {
       opacity: 0;
-      background-color: #362F26;
-      background: #362F26;
+      background-color: $dark-brown;
+      background: $dark-brown;
       animation: fade-in 0.5s linear alternate;
       animation-fill-mode: forwards;
     }
@@ -98,14 +95,32 @@ body {
     outline:0;
 }
 
-input {
-  border: 1px $light-gold solid;
+input,textarea {
   color: $dark-gold;
+  border: 1px solid $light-gold;
+  border-radius: 2px;
+  background: none;
+  border-image: linear-gradient(to bottom, $light-gold 0%, $medium-gold 100%);
+  border-image-slice: 1;
+  transition: box-shadow .7s ease;
+  -webkit-font-smoothing: antialiased;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.08);
+  }
+
+
+  &:focus {
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.08);
+    outline: 0;
+  }
 }
 
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
+
 ::placeholder {
   color: $dark-gold;
   font-family: "Lato-Light";
@@ -249,11 +264,11 @@ footer {
 
 .sweet-alert {
   &.dark {
-    background-color: #362F26 !important;
-    background: #362F26 !important;
+    background-color: $dark-brown !important;
+    background: $dark-brown !important;
 
     .sa-icon.sa-success::before, .sa-icon.sa-success::after, .sa-icon.sa-success .sa-fix {
-      background: #362F26 !important;
+      background: $dark-brown !important;
     }
 
     .sa-icon.sa-error {

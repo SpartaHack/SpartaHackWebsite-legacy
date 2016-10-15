@@ -24,37 +24,26 @@
     <!--  makes pages much more consistent across all browsers -->
     <%= stylesheet_link_tag    'cssreset', :media => "none", :onload =>"if(media!='all')media='all'" %>
     <noscript><%= stylesheet_link_tag    'cssreset' %></noscript>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "application", params[:controller], media: 'all', 'data-turbolinks-track': 'reload'  %>
   </head>
 
   <body class="<%= controller_name %>">
-    <%= render "navigation" %>
     <%- if current_user.present? %>
 
     <%- end %>
 
     <%= yield %>
 
-    <footer id="footer">
-      <div id="social-media-icons">
-        <a target="_blank" href="https://www.facebook.com/spartahackmsu">
-          <%= image_tag 'SocialMedia/facebook.svg', class: "footer-social-icon" %>
-        </a>
-        <a target="_blank" href="https://twitter.com/SpartaHack">
-          <%= image_tag 'SocialMedia/twitter.svg', class: "footer-social-icon" %>
-        </a>
-        <a target="_blank" href="https://www.instagram.com/spartahackmsu/">
-          <%= image_tag 'SocialMedia/insta.svg', class: "footer-social-icon" %>
-        </a>
-        <a target="_blank" href="https://github.com/SpartaHack">
-          <%= image_tag 'SocialMedia/github.svg', class: "footer-social-icon" %>
-        </a>
-      </div>
-      <p id="love">
-        &lt;&nbsp;/&gt; with ♥ by &copy;SpartaHack17, <a id="contact" href="mailto:hello@spartahack.com">hello@spartahack.com</a>
-      </p>
-
-    </footer>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', :async => true%>
+    <%= render "home/footer" %>
+    <script async="async">
+      <% if cookies.signed[:theme] %>
+        var darkTheme = <%= cookies.signed[:theme] == 'dark' ? true : false %>;
+        var themeTrigger = true;
+      <% else %>
+        var darkTheme = false;
+        var themeTrigger = false;
+      <% end %>
+    </script>
+    <%= javascript_include_tag 'application', params[:controller], 'data-turbolinks-track': 'reload', :async => true%>
   </body>
 </html>

@@ -1,15 +1,7 @@
 <%- if current_user.present? && current_user.role == 1 %>
   <%= render "admin_portal" %>
 <%- else %>
-  <script async="async">
-    <% if cookies.signed[:theme] %>
-      var darkTheme = <%= cookies.signed[:theme] == 'dark' ? true : false %>;
-      var themeTrigger = true;
-    <% else %>
-      var darkTheme = false;
-      var themeTrigger = false;
-    <% end %>
-  </script>
+  <%= render "navigation" %>
   <%= render "head" %>
   <%= render "spartahack" %>
   <%= render "faq" %>

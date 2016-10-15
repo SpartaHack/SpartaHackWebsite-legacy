@@ -1,6 +1,18 @@
-///////////////////////////////////////
-// Preview Site
-///////////////////////////////////////
+/*
+ *
+ *
+ */
+
+ @import "partials/colors";
+ @import "partials/fonts";
+
+body {
+  padding: 100vh 20% 115px;
+  @media (max-width: 710px) {
+    margin-top: 90px;
+    padding: 50vh 5% 20px;
+  }
+}
 
 .border {
   position: absolute;
@@ -225,8 +237,8 @@
   }
 }
 
-@import "../partials/home/navigation";
-@import "../partials/home/head";
-@import "../partials/home/spartahack";
-@import "../partials/home/faq";
-@import "../partials/home/sponsors";
+@import "partials/home/navigation";
+@import "partials/home/head";
+@import "partials/home/spartahack";
+@import "partials/home/faq";
+@import "partials/home/sponsors";
