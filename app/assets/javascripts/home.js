@@ -1,47 +1,50 @@
 
 
 window.onload = function(){
+  ////////////////////////////////////////////////////
+  // Variables
+  ///////////////////////////////////////////////////
+  var headerBoxShadow = "0px 0px 22px 0px rgba(0,0,0,0.04)";
+  var themeElements = "body, nav, .active-q, .sweet-alert";
 
   ////////////////////////////////////////////////////
   // FAQ
   ///////////////////////////////////////////////////
-  if (document.getElementById('questions') !== null) {
-    var questions = document.getElementById("questions").getElementsByTagName("article");
+  var questions = document.getElementById("questions").getElementsByTagName("article");
 
-    for (var questionIndex = 0; questionIndex < questions.length; questionIndex++) {
-      if (questions.hasOwnProperty(questionIndex)) {
-        questions[questionIndex].addEventListener("click", function(){
-          // Remove active-q class from previously selected element
-          var currentQuestionList = this.parentElement.getElementsByClassName("active-q");
-          var currentModeList = this.parentElement.getElementsByClassName("dark");
+  for (var questionIndex = 0; questionIndex < questions.length; questionIndex++) {
+    if (questions.hasOwnProperty(questionIndex)) {
+      questions[questionIndex].addEventListener("click", function(){
+        // Remove active-q class from previously selected element
+        var currentQuestionList = this.parentElement.getElementsByClassName("active-q");
+        var currentModeList = this.parentElement.getElementsByClassName("dark");
 
-          currentQuestionList[0].classList.remove("active-q");
+        currentQuestionList[0].classList.remove("active-q");
 
-          if (currentModeList.length > 0) {
-            currentModeList[0].classList.remove("dark");
+        if (currentModeList.length > 0) {
+          currentModeList[0].classList.remove("dark");
 
-            // Add dark mode to clicked element
-            this.classList.add("dark");
-          }
+          // Add dark mode to clicked element
+          this.classList.add("dark");
+        }
 
 
-          // Add active-q to clicked element
-          this.classList.add("active-q");
+        // Add active-q to clicked element
+        this.classList.add("active-q");
 
-          var answers = document.getElementById("answers");
+        var answers = document.getElementById("answers");
 
-          // Add hidden-question class to previously selected element
-          var currentAnswerList = answers.getElementsByClassName("current-answer");
-          currentAnswerList[0].classList.add("hidden-answer");
-          currentAnswerList[0].classList.remove("current-answer");
+        // Add hidden-question class to previously selected element
+        var currentAnswerList = answers.getElementsByClassName("current-answer");
+        currentAnswerList[0].classList.add("hidden-answer");
+        currentAnswerList[0].classList.remove("current-answer");
 
-          // Add current-answer class to new element
-          hiddenAnswerList = answers.getElementsByClassName("hidden-answer");
-          var answerIndex = Number(this.children[0].getAttribute("id"));
-          hiddenAnswerList[answerIndex].classList.add("current-answer");
-          hiddenAnswerList[answerIndex].classList.remove("hidden-answer");
-        });
-      }
+        // Add current-answer class to new element
+        hiddenAnswerList = answers.getElementsByClassName("hidden-answer");
+        var answerIndex = Number(this.children[0].getAttribute("id"));
+        hiddenAnswerList[answerIndex].classList.add("current-answer");
+        hiddenAnswerList[answerIndex].classList.remove("hidden-answer");
+      });
     }
   }
 
@@ -111,17 +114,6 @@ window.onload = function(){
           addClass($elem, 'start');
       }
   }
-
-  checkAnimation(document.getElementsByClassName('spartahack-title-animation')[0]);
-  checkAnimation(document.getElementById('event-date-animation'));
-  checkAnimation(document.getElementById('event-location-animation'));
-  if($(window).scrollTop()) document.getElementById("header").style["boxShadow"] = headerBoxShadow;
-
-  ////////////////////////////////////////////////////
-  // Variables
-  ///////////////////////////////////////////////////
-  var headerBoxShadow = "0px 0px 22px 0px rgba(0,0,0,0.04)";
-  var themeElements = "body, nav, .active-q, .sweet-alert";
 
 
   ////////////////////////////////////////////////////
@@ -223,6 +215,11 @@ window.onload = function(){
       e.preventDefault();
     });
   });
+
+  checkAnimation(document.getElementsByClassName('spartahack-title-animation')[0]);
+  checkAnimation(document.getElementById('event-date-animation'));
+  checkAnimation(document.getElementById('event-location-animation'));
+  if($(window).scrollTop()) document.getElementById("header").style["boxShadow"] = headerBoxShadow;
 
   // Capture scroll events
   window.addEventListener("scroll", function(){
