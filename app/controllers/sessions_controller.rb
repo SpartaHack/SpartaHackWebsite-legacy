@@ -5,8 +5,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    session[:current_session] = Session.create( {:session => { :email => session_params[:email], :password => session_params[:password] } } )
-    redirect_to root_url
+    session_response = Session.create( { :email => session_params[:email], :password => session_params[:password] } )
+    if session_response.errors.messages.empty?
+      session[:current_session] = session_response
+      redirect_to root_url
+    else
+      render :new
+    end
 
   end
 
