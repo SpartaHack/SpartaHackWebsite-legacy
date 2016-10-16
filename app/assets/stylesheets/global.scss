@@ -39,12 +39,6 @@ body {
       animation-fill-mode: forwards;
     }
   }
-  &.home {
-    padding: 100vh 20% 115px;
-    @media (max-width: 774px) {
-      padding: 100vh 20% 20px;
-    }
-  }
 }
 
 
