@@ -1,5 +1,11 @@
-<%= simple_form_for :session do |f| %>
-  <%= f.input :email %>
-  <%= f.input :password %>
+<%= simple_form_for :session, html: { id: "logIn" } do |f| %>
+  <div class="title-wrap">
+    <h1 class="section-head">Login</h1>
+    <div class="hline"></div>
+  </div>
+  <div class="fields">
+    <%= f.input :email, label: false, placeholder: "Email" %>
+    <%= f.input :password, label: false, placeholder: "Password" %>
+  </div>
   <%= f.button :submit, "Log In" %>
 <% end %>
