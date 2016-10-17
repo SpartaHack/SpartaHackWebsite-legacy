@@ -42,6 +42,20 @@ window.onload = function(){
     }
   }
 
+  $('#questions').on('scroll', function() {
+      if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+          $(".fa-angle-down").fadeOut();
+      } else {
+        $(".fa-angle-down").fadeIn();
+      }
+
+      if($(this).scrollTop() == 0) {
+          $(".fa-angle-up").fadeOut();
+      } else {
+        $(".fa-angle-up").fadeIn();
+      }
+  })
+
   ////////////////////////////////////////////////////
   // email
   ///////////////////////////////////////////////////
