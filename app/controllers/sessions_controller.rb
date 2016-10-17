@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :set_http_auth_token, only: [:create, :destroy]
   # Sign in
   def new
 
@@ -10,6 +11,7 @@ class SessionsController < ApplicationController
       session[:current_session] = session_response
       redirect_to root_url
     else
+      p session_response.errors.messages
       render :new
     end
 
