@@ -112,31 +112,31 @@
           </div>
 
           <div class="under-textarea has-icon">
-            <%= image_tag "SocialMedia/github.svg", alt: "Github Icon", :class => "icon" %>
+            <%= image_tag "socialMedia/github.svg", alt: "Github Icon", :class => "icon" %>
             <%= label_tag(:github, "What is your GitHub handle?", class: 'no-label') %>
             <%= text_field_tag 'github', "#{@application['github'] if @application}", placeholder: 'GitHub handle?' %>
           </div>
 
           <div class="add-margin-top has-icon">
-            <%= image_tag "SocialMedia/linkedin.svg", alt: "LinkedIn Icon", :class => "icon" %>
+            <%= image_tag "socialMedia/linkedin.svg", alt: "LinkedIn Icon", :class => "icon" %>
             <%= label_tag(:linkedIn, "What is your LinkedIn handle?", class: 'no-label') %>
             <%= text_field_tag 'linkedIn', "#{@application['linkedIn'] if @application}", placeholder: 'LinkedIn handle?' %>
           </div>
 
           <div class="add-margin-top has-icon">
-            <%= image_tag "SocialMedia/devpost.svg", alt: "DevPost Icon", :class => "icon" %>
+            <%= image_tag "socialMedia/devpost.svg", alt: "DevPost Icon", :class => "icon" %>
             <%= label_tag(:devPost, "What is your DevPost handle?", class: 'no-label') %>
             <%= text_field_tag 'devPost', "#{@application['devPost'] if @application}", placeholder: 'DevPost handle?' %>
           </div>
 
           <div class="add-margin-top has-icon">
-            <%= image_tag "SocialMedia/portfolio.svg", alt: "Personal Website Icon", :class => "icon" %>
+            <%= image_tag "socialMedia/portfolio.svg", alt: "Personal Website Icon", :class => "icon" %>
             <%= label_tag(:website, "What is your personal website?", class: 'no-label') %>
             <%= text_field_tag 'website', "#{@application['website'] if @application}", placeholder: 'Your personal website?' %>
           </div>
 
           <div class="add-margin-top has-icon">
-            <%= image_tag "SocialMedia/coolsite.svg", alt: "Cool Link Icon", :class => "icon" %>
+            <%= image_tag "socialMedia/coolsite.svg", alt: "Cool Link Icon", :class => "icon" %>
             <%= label_tag(:coolLink, "A cool link you\'d like to share?", class: 'no-label') %>
             <%= text_field_tag 'coolLink', "#{@application['coolLink'] if @application}", placeholder: 'A cool link?' %>
           </div>
