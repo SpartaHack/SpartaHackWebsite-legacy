@@ -86,7 +86,11 @@
           </div>
 
           <div class="add-margin-bottom university-enrolled university">
-            <%= render partial: "user/application_partials/universities" %>
+            <%= render partial: "user/application_partials/universities", locals: { type: "enrolled" } %>
+          </div>
+
+          <div class="add-margin-bottom university-traveling university">
+            <%= render partial: "user/application_partials/universities", locals: { type: "traveling" } %>
           </div>
 
           <div class="add-margin-bottom university-enrolled" id="other-university-wrap">

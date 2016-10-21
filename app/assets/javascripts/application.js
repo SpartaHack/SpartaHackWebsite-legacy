@@ -152,8 +152,13 @@ $('#race').select2({
   allowClear: true
 });
 
-$('#university').select2({
+$('#university-enrolled').select2({
   placeholder: "Which school do you attend?",
+  allowClear: true
+});
+
+$('#university-traveling').select2({
+  placeholder: "Which school will you be travelling from? (Choose closest)",
   allowClear: true
 });
 
