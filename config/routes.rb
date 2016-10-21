@@ -30,6 +30,9 @@ Rails.application.routes.draw do
   post "/subscribe", to: 'home#subscribe'
   post "/rememberTheme", to: 'home#rememberTheme'
   resources :user
+  get '/apply', to: 'user#application'
+  get '/application', to: 'user#application'
+
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'

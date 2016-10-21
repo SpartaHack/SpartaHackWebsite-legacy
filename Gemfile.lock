@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-core.git
-  revision: c3c90c278fda997e0eaf3bdac08d162175dc060b
+  revision: 7deb6399ab4cbeeee87622cc5725ecbf19c6e83d
   branch: master
   specs:
     rspec-core (3.6.0.pre)
@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-expectations.git
-  revision: add9b271ecb1d65f7da5bc8a9dd8c64d81d92303
+  revision: 8343affb9b290d494a0793e894a83f77e28eff5c
   branch: master
   specs:
     rspec-expectations (3.6.0.pre)
@@ -26,7 +26,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-mocks.git
-  revision: 4d842fefb82eaca7d33554746c1fb8c03738b068
+  revision: 0c87b91d32f4f827d2c1953935adcfd5468263a5
   branch: master
   specs:
     rspec-mocks (3.6.0.pre)
@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-rails.git
-  revision: e8054a1cd03044f725030fe8315952cf3799a395
+  revision: be020b8280bc789a75533d5b8567698f5e93dd62
   branch: master
   specs:
     rspec-rails (3.6.0.pre)
@@ -49,7 +49,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-support.git
-  revision: e96cc73d0a7d46d9b1948d165c52f0aff78e9457
+  revision: 357ca45a15819b1b452e50f57f5df197710f7182
   branch: master
   specs:
     rspec-support (3.6.0.pre)
@@ -105,10 +105,10 @@ GEM
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 12.0)
     arel (7.1.2)
-    autoprefixer-rails (6.4.1.1)
+    autoprefixer-rails (6.5.0.1)
       execjs
     builder (3.2.2)
-    byebug (9.0.5)
+    byebug (9.0.6)
     capistrano (3.6.1)
       airbrussh (>= 1.0.0)
       capistrano-harrow
@@ -139,7 +139,7 @@ GEM
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     erubis (2.7.0)
-    excon (0.52.0)
+    excon (0.53.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
@@ -148,6 +148,8 @@ GEM
       railties (>= 3.0.0)
     ffaker (2.2.0)
     ffi (1.9.14)
+    font-awesome-rails (4.6.3.1)
+      railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -174,7 +176,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
-    minitest (5.9.0)
+    minitest (5.9.1)
     multi_json (1.12.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -279,6 +281,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   factory_girl_rails
   ffaker
+  font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails (~> 4.2.1)
   listen (~> 3.0.5)
