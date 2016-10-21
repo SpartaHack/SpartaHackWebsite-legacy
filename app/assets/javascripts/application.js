@@ -123,6 +123,10 @@ $(function () {
   });
 });
 
+////////////////////////////////////////////////////
+// Select2 calls (move these)
+///////////////////////////////////////////////////
+
 $('#gender').select2({
   placeholder: "Your Gender",
   allowClear: true
@@ -146,4 +150,16 @@ $('#birthyear').select2({
 $('#race').select2({
   placeholder: "Ethnicity/Race (Choose all that apply)",
   allowClear: true
+});
+
+$('#university').select2({
+  placeholder: "Which school do you attend?",
+  allowClear: true
+});
+
+////////////////////////////////////////////////////
+// Application (move these)
+///////////////////////////////////////////////////
+$('#other-university-confirm').click(function(){
+  $('.other-university-enrolled').toggle();
 });

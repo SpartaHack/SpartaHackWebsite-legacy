@@ -78,12 +78,14 @@
             <div id="radio-wrap">
               <input type="radio" name="universityStudent" id="highschool-student" value="false" >
               <label for="highschool-student">High School</label>
-              <input type="radio" name="universityStudent" id="university-student" value="true" >
-              <label for="university-student">College/University</label>
+              <input type="radio" name="undergradUniversityStudent" id="undergrad-university-student" value="true" >
+              <label for="undergrad-university-student">Undergraduate Student</label>
+              <input type="radio" name="gradUniversityStudent" id="grad-university-student" value="true" >
+              <label for="grad-university-student">Graduate Student</label>
             </div>
           </div>
 
-          <div class="add-margin-bottom university-enrolled university" style="display:none;">
+          <div class="add-margin-bottom university-enrolled university">
             <%= render partial: "user/application_partials/universities" %>
           </div>
 
