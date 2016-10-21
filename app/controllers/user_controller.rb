@@ -8,6 +8,13 @@ class UserController < ApplicationController
     end
   end
 
+  def application
+  end
+
+  def dashboard
+    current_user.exists? ? nil : redirect_to '/login'
+  end
+
   def edit
   end
 
