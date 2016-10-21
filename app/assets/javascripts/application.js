@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require sweetalert
+//= require select2.min
 
 ////////////////////////////////////////////////////
 // Variables
@@ -120,4 +121,29 @@ $(function () {
 
     e.preventDefault();
   });
+});
+
+$('#gender').select2({
+  placeholder: "Your Gender",
+  allowClear: true
+});
+
+$('#birthday').select2({
+  placeholder: "Birth Day",
+  allowClear: true
+});
+
+$('#birthmonth').select2({
+  placeholder: "Birth Month",
+  allowClear: true
+});
+
+$('#birthyear').select2({
+  placeholder: "Birth Year",
+  allowClear: true
+});
+
+$('#race').select2({
+  placeholder: "Ethnicity/Race (Choose all that apply)",
+  allowClear: true
 });

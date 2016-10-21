@@ -14,3 +14,6 @@ Rails.application.config.assets.precompile += %w( cssreset.css )
 %w( home user sessions ).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
 end
+
+# Precompile select2
+Rails.application.config.assets.precompile += %w( select2.min.js select2.css )
