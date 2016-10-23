@@ -107,6 +107,7 @@ input,textarea {
 
   &:focus {
     box-shadow: 0px 10px 25px rgba(0,0,0,0.08);
+    border-width: 2px;
     outline: 0;
   }
 }
