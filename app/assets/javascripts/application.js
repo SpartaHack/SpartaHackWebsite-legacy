@@ -172,6 +172,10 @@ $('#gradSemester').select2({
   allowClear: true
 });
 
+$('#major').select2({
+  placeholder: "What are you studying?"
+})
+
 ////////////////////////////////////////////////////
 // Application (move these)
 ///////////////////////////////////////////////////

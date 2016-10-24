@@ -140,6 +140,21 @@
     }
   }
 
+  input[type=number] {
+    box-sizing: border-box;         /* For IE and modern versions of Chrome */
+    height: 55px;
+    text-align:left;
+    font-size: 15px;
+    font-weight: 100;
+    padding: 8px 25px;
+    margin-bottom: 0px;
+    @media (max-width: 550px) {
+      width:100%;
+      height: 54px;
+      margin-bottom: 15px;
+    }
+  }
+
   textarea {
     width: 530px;
     height:150px;
@@ -421,7 +436,7 @@
 
   }
 
-  #mlh-text, #mlh-disclaimer-text, #other-university-text {
+  #mlh-text, #mlh-disclaimer-text, #other-university-enrolled-text, #other-university-travel-text {
     -webkit-font-smoothing: antialiased;
     color: $medium-gold;
     font-family: ubuntu;
@@ -438,7 +453,7 @@
     left: -9999px;
   }
 
-  #other-university-text {
+  #other-university-enrolled-text, #other-university-travel-text {
     position: absolute;
     margin-left: 30px;
     width: 380px;
