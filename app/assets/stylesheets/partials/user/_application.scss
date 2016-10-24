@@ -1,5 +1,6 @@
 #app{
   background-color: transparent;
+  margin-bottom: 50px;
   @media (max-width: 550px) {
     margin-top: 30px;
   }
@@ -140,6 +141,21 @@
     }
   }
 
+  input[type=number] {
+    box-sizing: border-box;         /* For IE and modern versions of Chrome */
+    height: 55px;
+    text-align:left;
+    font-size: 15px;
+    font-weight: 100;
+    padding: 8px 25px;
+    margin-bottom: 0px;
+    @media (max-width: 550px) {
+      width:100%;
+      height: 54px;
+      margin-bottom: 15px;
+    }
+  }
+
   textarea {
     width: 530px;
     height:150px;
@@ -160,14 +176,22 @@
     }
   }
 
-  #firstName, #lastName{
+  .split-select {
+    span.select2.select2-container {
+      @media (min-width: 550px) {
+        width: 252px!important;
+      }
+    }
+  }
+
+  #firstName, #lastName, #gradYear, #gradSemester{
     @media (min-width: 550px) {
       width: 225px;
       margin-bottom: 0px;
     }
   }
 
-  #hackathons, #university, #major, #gradeLevel, #gender{
+  #hackathons, #university-enrolled, #university-travelling, #major, #gender, #race{
     width: 100%;
     @media (min-width: 550px) {
       width: 530px;
@@ -186,6 +210,7 @@
   }
 
   #enrollment-wrap, #other-university-wrap {
+    color: $dark-gold;
     display: flex;
     display: -webkit-flex;
     flex-direction: column;
@@ -321,7 +346,7 @@
     }
   }
 
-  .university, #gradeLevel-wrap, .other-university-enrolled {
+  .university, .other-university-enrolled {
     margin-bottom: 0px;
     @media (min-width: 550px) {
       margin-bottom: 26px;
@@ -412,7 +437,7 @@
 
   }
 
-  #mlh-text, #mlh-disclaimer-text, #other-university-text {
+  #mlh-text, #mlh-disclaimer-text, #other-university-enrolled-text, #other-university-travel-text {
     -webkit-font-smoothing: antialiased;
     color: $medium-gold;
     font-family: ubuntu;
@@ -424,12 +449,12 @@
     }
   }
 
-  #agree, #other-university-confirm {
+  #agree, .check > input {
     position: absolute;
     left: -9999px;
   }
 
-  #other-university-text {
+  #other-university-enrolled-text, #other-university-travel-text {
     position: absolute;
     margin-left: 30px;
     width: 380px;
