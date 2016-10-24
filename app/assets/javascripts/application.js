@@ -157,14 +157,24 @@ $('#university-enrolled').select2({
   allowClear: true
 });
 
-$('#university-traveling').select2({
+$('#university-travelling').select2({
   placeholder: "Which school will you be travelling from? (Choose closest)",
+  allowClear: true
+});
+
+$('#gradYear').select2({
+  placeholder: "Graduation Year",
+  allowClear: true
+});
+
+$('#gradSemester').select2({
+  placeholder: "Graduation Semester",
   allowClear: true
 });
 
 ////////////////////////////////////////////////////
 // Application (move these)
 ///////////////////////////////////////////////////
-$('#other-university-confirm').click(function(){
+$('#other-university-enrolled-confirm').click(function(){
   $('.other-university-enrolled').toggle();
 });

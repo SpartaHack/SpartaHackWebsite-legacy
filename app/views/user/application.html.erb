@@ -78,19 +78,15 @@
             <div id="radio-wrap">
               <input type="radio" name="universityStudent" id="highschool-student" value="false" >
               <label for="highschool-student">High School</label>
-              <input type="radio" name="undergradUniversityStudent" id="undergrad-university-student" value="true" >
+              <input type="radio" name="universityStudent" id="undergrad-university-student" value="true" >
               <label for="undergrad-university-student">Undergraduate Student</label>
-              <input type="radio" name="gradUniversityStudent" id="grad-university-student" value="true" >
+              <input type="radio" name="universityStudent" id="grad-university-student" value="true" >
               <label for="grad-university-student">Graduate Student</label>
             </div>
           </div>
 
           <div class="add-margin-bottom university-enrolled university">
             <%= render partial: "user/application_partials/universities", locals: { type: "enrolled" } %>
-          </div>
-
-          <div class="add-margin-bottom university-traveling university">
-            <%= render partial: "user/application_partials/universities", locals: { type: "traveling" } %>
           </div>
 
           <div class="add-margin-bottom university-enrolled" id="other-university-wrap">
@@ -104,26 +100,43 @@
             <%= label_tag(:otherUniversity, "College/University not listed above? Enter it here.", class: 'no-label') %>
             <%= text_field_tag 'otherUniversity', "#{@application['otherUniversity'] if @application}", placeholder: 'Other College/University' %>
           </div>
-          <div class="university-enrolled">
-            <%= render partial: "user/application_partials/majors" %>
+
+          <div class="add-margin-bottom university-travelling university">
+            <%= render partial: "user/application_partials/universities", locals: { type: "travelling" } %>
           </div>
 
-          <div class="add-margin-top university-enrolled" id="gradeLevel-wrap">
-            <select id="gradeLevel" name="gradeLevel">
+          <div class="add-margin-bottom university-travelling" id="other-university-wrap">
+            <div class="check">
+              <input type="checkbox" value="true" id="other-university-travel-confirm" name="otherUniversityConfirm" />
+              <label for="other-university-travel-confirm"><div id="other-university-text">Travelling from outside of North America?</div></label>
+            </div>
+          </div>
+
+          <div class="add-margin-top other-university-travelling" style="display:none;">
+            <%= label_tag(:otherUniversity, "College/University not listed above? Enter it here.", class: 'no-label') %>
+            <%= text_field_tag 'otherUniversity', "#{@application['otherUniversity'] if @application}", placeholder: 'Other College/University' %>
+          </div>
+
+          <div class="inner add-margin-top split-select">
+            <select id="gradSemester" name="gradSemester">
               <option></option>
-              <option>First Year</option>
-              <option>Second Year</option>
-              <option>Third Year</option>
-              <option>Fourth Year</option>
-              <option>Fifth Year +</option>
-              <option>Graduate Student</option>
-              <option>Not a Student</option>
+              <option value="fall">Fall</option>
+              <option value="winter">Winter</option>
+              <option value="spring">Spring</option>
+              <option value="summer">Summer</option>
+            </select>
+
+            <select id="gradYear" name="gradYear">
+              <option></option>
+              <%= options_for_select((2016..2025).to_a)%>
             </select>
           </div>
 
-          <div>
-            <%= render partial: "user/application_partials/hackathons" %>
+          <div class="university-enrolled add-margin-top">
+            <%= render partial: "user/application_partials/majors" %>
           </div>
+
+          <div class="btn btn-primary"
 
           <div class="add-margin-top">
             <%= label_tag(:whyAttend, "Why do you want to attend SpartaHack 2016?", class: 'no-label') %>

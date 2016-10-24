@@ -160,14 +160,22 @@
     }
   }
 
-  #firstName, #lastName{
+  .split-select {
+    span.select2.select2-container {
+      @media (min-width: 550px) {
+        width: 252px!important;
+      }
+    }
+  }
+
+  #firstName, #lastName, #gradYear, #gradSemester{
     @media (min-width: 550px) {
       width: 225px;
       margin-bottom: 0px;
     }
   }
 
-  #hackathons, #university-enrolled, #university-traveling, #major, #gradeLevel, #gender, #race{
+  #hackathons, #university-enrolled, #university-travelling, #major, #gender, #race{
     width: 100%;
     @media (min-width: 550px) {
       width: 530px;
@@ -322,7 +330,7 @@
     }
   }
 
-  .university, #gradeLevel-wrap, .other-university-enrolled {
+  .university, .other-university-enrolled {
     margin-bottom: 0px;
     @media (min-width: 550px) {
       margin-bottom: 26px;
@@ -425,7 +433,7 @@
     }
   }
 
-  #agree, #other-university-confirm {
+  #agree, .check > input {
     position: absolute;
     left: -9999px;
   }
