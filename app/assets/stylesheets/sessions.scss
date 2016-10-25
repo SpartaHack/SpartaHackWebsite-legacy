@@ -1,25 +1,25 @@
- @import "partials/colors";
- @import "partials/fonts";
- @import "partials/border";
- @import "partials/animations";
- @import "partials/home/navigation";
+@import "partials/colors";
+@import "partials/fonts";
+@import "partials/border";
+@import "partials/animations";
+@import "partials/home/navigation";
 
- .session-border {
-   &.top {
-     &.inner {
-       left:0;
-       right: 0;
-       margin: auto;
-     }
-   }
-   &.right {
-     &.outer {
-       top: 0;
-       bottom: 0;
-       margin: auto;
-     }
+.session-border {
+ &.top {
+   &.inner {
+     left:0;
+     right: 0;
+     margin: auto;
    }
  }
+ &.right {
+   &.outer {
+     top: 0;
+     bottom: 0;
+     margin: auto;
+   }
+ }
+}
 
 #logIn {
   display: flex;
@@ -80,20 +80,24 @@
     display: flex;
     margin-bottom: 1em;
     flex-direction: column;
+
     input {
       padding-left: 1em;
     }
+
     div:nth-child(n+2) {
       margin-top: 1em;
     }
     @media (min-width: 557px) {
       flex-direction: row;
+
       div:nth-child(n+2) {
         margin-left: 1em;
         margin-top: 0;
       }
     }
   }
+
   input {
     height: 4em;
     opacity: 0;
@@ -106,7 +110,6 @@
     font-size: 1em;
     background-color: transparent;
     color: $dark-gold;
-    text-transform: uppercase;
     font-weight: 100;
 
     &::placeholder {
@@ -114,12 +117,13 @@
     }
 
     &.btn {
+      text-transform: uppercase;
       cursor: pointer;
       animation-delay: 1.5s;
     }
-
     @media (min-width: 557px) {
       width: 16em;
+
       &.btn {
         width: calc(33em + 5px);
       }

@@ -33,12 +33,12 @@
   color: $light-gold;
   height: 100%;
 
-  font-family: ubuntu;
+  font-family: Lato-Light;
 
 
   a {
     color: $medium-gold;
-    font-family: ubuntu;
+    font-family: Lato-Light;
     font-weight: 100;
     -webkit-appearance: none;
     -webkit-font-smoothing: antialiased;
@@ -64,7 +64,7 @@
   #required {
     text-align: left;
     margin-top: -20px;
-    font-family: ubuntu;
+    font-family: Lato-Light;
     -webkit-font-smoothing: antialiased;
     font-weight: 100;
     @media (min-width: 550px) {
@@ -79,7 +79,7 @@
   ::-webkit-input-placeholder {
     color: $medium-gold;
     opacity: 1;
-    font-family: ubuntu;
+    font-family: Lato-Light;
     font-weight: lighter;
     font-size: 15px;
     padding-right: 1em;
@@ -88,7 +88,7 @@
   :-moz-placeholder { /* Firefox 18- */
     color: $medium-gold;
     opacity: 1;
-    font-family: ubuntu;
+    font-family: Lato-Light;
     font-size: 15px;
     font-weight: lighter;
     padding-right: 1em;
@@ -97,7 +97,7 @@
   ::-moz-placeholder {  /* Firefox 19 */
     color: $medium-gold;
     opacity: 1;
-    font-family: ubuntu;
+    font-family: Lato-Light;
     font-weight: lighter;
     font-size: 15px;
     padding-right: 1em;
@@ -106,7 +106,7 @@
   :-ms-input-placeholder {
     color: $medium-gold;
     opacity: 1;
-    font-family: ubuntu;
+    font-family: Lato-Light;
     font-weight: lighter;
     font-size: 15px;
     padding-right: 1em;
@@ -162,7 +162,7 @@
     resize: none;
     margin-bottom: 0px;
     text-align:left;
-    font-family: ubuntu;
+    font-family: Lato-Light;
     font-size: 15px;
     font-weight: 100;
     color: $medium-gold;
@@ -393,7 +393,7 @@
     -webkit-flex-direction: row;
     justify-content: space-between;
     -webkit-justify-content: space-between;
-    font-family: ubuntu;
+    font-family: Lato-Light;
     font-weight: 100;
     -webkit-appearance: none;
     -webkit-font-smoothing: antialiased;
@@ -451,7 +451,7 @@
     -webkit-font-smoothing: antialiased;
     color: $medium-gold;
     text-align: left;
-    font-family: ubuntu;
+    font-family: Lato-Light;
     font-weight: 100;
     font-size: 15px;
 
@@ -467,6 +467,7 @@
 
   #other-university-enrolled-text, #other-university-travel-text {
     position: absolute;
+    top: -3px;
     margin-left: 30px;
     width: 380px;
     @media (max-width: 440px) {
@@ -605,7 +606,7 @@
   border-radius: 1px;
   overflow-y: hidden;
   color: $light-gold;
-  font-family: ubuntu;
+  font-family: Lato-Light;
   font-size: 18px;
   font-weight: 100;
   -webkit-appearance: none;
@@ -656,7 +657,7 @@
   border-radius: 1px;
   overflow-y: hidden;
   color: $light-gold;
-  font-family: ubuntu;
+  font-family: Lato-Light;
   font-size: 18px;
   font-weight: 100;
   -webkit-appearance: none;
