@@ -5,6 +5,7 @@
     color: $dark-gold;
     font-size: 2.2em;
     letter-spacing: 1px;
+    margin-bottom: 0px;
     &::before, &::after {
       background: none;
     }
@@ -13,14 +14,25 @@
     }
   }
 
-  #greeting-wrapper {
-    position: relative;
-    opacity: 0;
-  }
+
   #greeting{
+    width: 100%;
     text-align: left;
-    display: inline-block;
-    overflow: hidden;
+
+    p {
+      width: 100%;
+      font-family: "Nemoy-Light";
+      font-weight: 100;
+      margin: 0;
+      color: $medium-gold;
+      animation: type 1.3s steps(60, end);
+      white-space: nowrap;
+      overflow: hidden;
+
+      span{
+        animation: blink 1.25s infinite;
+      }
+    }
   }
 
   #app {
@@ -29,7 +41,7 @@
     max-width: 750px;
     margin: 0 15;
     margin-top: 25px;
-    border: solid 1px;
+    border: solid 1px $light-gold;
     opacity: 0;
     animation: fade-in 1s linear alternate;
     animation-delay: 1.5s;
@@ -59,5 +71,40 @@
         opacity: 1;
       }
     }
+  }
+
+  .dash-title-animation {
+    opacity: 0;
+    width: 120%;
+    margin: auto;
+    margin-left: -10%;
+    margin-bottom: 45px;
+  }
+
+  .dash-title-animation.start {
+    .dash-paths-lines {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      stroke-width:1px;
+    }
+
+    #dash-top-line {
+      animation: dash 1.1s linear alternate;
+      animation-delay: .2s;
+      animation-fill-mode: forwards;
+    }
+
+    #dash-bottom-line {
+      animation: dash 1.2s linear alternate;
+      animation-delay: .55s;
+      animation-fill-mode: forwards;
+    }
+
+    #dash-center-hanging {
+      animation: dash-back 1s linear alternate;
+      animation-delay: .2s;
+      animation-fill-mode: forwards;
+    }
+
   }
 }
