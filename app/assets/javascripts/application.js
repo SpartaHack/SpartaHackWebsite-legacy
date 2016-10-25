@@ -22,7 +22,6 @@
 var headerBoxShadow = "0px 0px 22px 0px rgba(0,0,0,0.04)";
 var themeElements = "body, nav, .active-q, .sweet-alert";
 
-
 ////////////////////////////////////////////////////
 // Dark Theme
 ///////////////////////////////////////////////////
@@ -33,69 +32,76 @@ if (darkTheme == true) {
 $('.diamond, #logo-center').click(function() {
   // var clicks = $(this).data('clicks');
   // if (clicks) {
-    if (!themeTrigger) {
-      darkTheme = !darkTheme;
-      $(themeElements).toggleClass("dark");
+  if (!themeTrigger) {
+    darkTheme = !darkTheme;
+    $(themeElements).toggleClass("dark");
 
-      swal({
-        title:"Awesome",
-        text: "You've found an easter egg! What theme should we remember?",
-        showCancelButton: true,
-        cancelButtonText: "Dark is swell",
-        confirmButtonColor: "#D4B166",
-        confirmButtonText: "Light is cool",
-        allowEscapeKey:	true,
-        allowOutsideClick: true,
-      },
-      function(isConfirm){
-        if (isConfirm) {
-          $.ajax({
-             url: '/rememberTheme',
-             type: 'post',
-             data: {"theme" : "light"}
-          });
+    swal({
+      title: "Awesome",
+      text: "You've found an easter egg! What theme should we remember?",
+      showCancelButton: true,
+      cancelButtonText: "Dark is swell",
+      confirmButtonColor: "#D4B166",
+      confirmButtonText: "Light is cool",
+      allowEscapeKey: true,
+      allowOutsideClick: true
+    }, function(isConfirm) {
+      if (isConfirm) {
+        $.ajax({
+          url: '/rememberTheme',
+          type: 'post',
+          data: {
+            "theme": "light"
+          }
+        });
 
-          $(themeElements).removeClass("dark");
-          darkTheme = false;
-        } else {
-          $.ajax({
-             url: '/rememberTheme',
-             type: 'post',
-             data: {"theme" : "dark"}
-          });
-          (darkTheme != true) ? $(themeElements).toggleClass("dark") : null;
-          (darkTheme != true) ? darkTheme = true : null;
-        }
-      });
-      (darkTheme == true) ? $(".sweet-alert").addClass("dark") : $(".sweet-alert").removeClass("dark");
-      themeTrigger = true;
+        $(themeElements).removeClass("dark");
+        darkTheme = false;
+      } else {
+        $.ajax({
+          url: '/rememberTheme',
+          type: 'post',
+          data: {
+            "theme": "dark"
+          }
+        });
+        (darkTheme != true)
+          ? $(themeElements).toggleClass("dark")
+          : null;
+        (darkTheme != true)
+          ? darkTheme = true
+          : null;
+      }
+    });
+    (darkTheme == true)
+      ? $(".sweet-alert").addClass("dark")
+      : $(".sweet-alert").removeClass("dark");
+    themeTrigger = true;
 
-    } else {
+  } else {
 
-      swal({
-        title:"Hey again",
-        text: "Want us to forget your theme preference?",
-        showCancelButton: true,
-        cancelButtonText: "Nah",
-        confirmButtonColor: "#D4B166",
-        confirmButtonText: "Yeah dude",
-        allowEscapeKey:	true,
-        allowOutsideClick: true,
-      },
-      function(isConfirm){
-        if (isConfirm) {
-          $.ajax({
-             url: '/rememberTheme',
-             type: 'post',
-          });
-          $(themeElements).toggleClass("dark");
-          $(".sweet-alert").removeClass("dark");
-          themeTrigger = false;
-          darkTheme = !darkTheme;
-        }
-      });
-      (darkTheme == true) ? $(".sweet-alert").removeClass('dark').addClass("dark") : $(".sweet-alert").removeClass("dark");
-    }
+    swal({
+      title: "Hey again",
+      text: "Want us to forget your theme preference?",
+      showCancelButton: true,
+      cancelButtonText: "Nah",
+      confirmButtonColor: "#D4B166",
+      confirmButtonText: "Yeah dude",
+      allowEscapeKey: true,
+      allowOutsideClick: true
+    }, function(isConfirm) {
+      if (isConfirm) {
+        $.ajax({url: '/rememberTheme', type: 'post'});
+        $(themeElements).toggleClass("dark");
+        $(".sweet-alert").removeClass("dark");
+        themeTrigger = false;
+        darkTheme = !darkTheme;
+      }
+    });
+    (darkTheme == true)
+      ? $(".sweet-alert").removeClass('dark').addClass("dark")
+      : $(".sweet-alert").removeClass("dark");
+  }
   // } else {
   //   $("body").switchClass("light", "dark");
   // }
@@ -105,13 +111,13 @@ $('.diamond, #logo-center').click(function() {
 ////////////////////////////////////////////////////
 // Navigation
 ///////////////////////////////////////////////////
-$(function () {
-  $("[href^='#']").on("click", function (e)  {
+$(function() {
+  $("[href^='#']").on("click", function(e) {
     var target = $(this).attr('href');
 
-    var scrollTop = $( target ).offset().top-$('#header').height()-$('#header').outerHeight();
+    var scrollTop = $(target).offset().top - $('#header').height() - $('#header').outerHeight();
 
-    if ( target =='#spartahack'){
+    if (target == '#spartahack') {
       scrollTop = 0;
     }
 
@@ -121,64 +127,4 @@ $(function () {
 
     e.preventDefault();
   });
-});
-
-////////////////////////////////////////////////////
-// Select2 calls (move these)
-///////////////////////////////////////////////////
-
-$('#gender').select2({
-  placeholder: "Your Gender",
-  allowClear: true
-});
-
-$('#birthday').select2({
-  placeholder: "Birth Day",
-  allowClear: true
-});
-
-$('#birthmonth').select2({
-  placeholder: "Birth Month",
-  allowClear: true
-});
-
-$('#birthyear').select2({
-  placeholder: "Birth Year",
-  allowClear: true
-});
-
-$('#race').select2({
-  placeholder: "Ethnicity/Race (Choose all that apply)",
-  allowClear: true
-});
-
-$('#university-enrolled').select2({
-  placeholder: "Which school do you attend?",
-  allowClear: true
-});
-
-$('#university-travelling').select2({
-  placeholder: "Which school will you be travelling from? (Choose closest)",
-  allowClear: true
-});
-
-$('#gradYear').select2({
-  placeholder: "Graduation Year",
-  allowClear: true
-});
-
-$('#gradSemester').select2({
-  placeholder: "Graduation Semester",
-  allowClear: true
-});
-
-$('#major').select2({
-  placeholder: "What are you studying?"
-})
-
-////////////////////////////////////////////////////
-// Application (move these)
-///////////////////////////////////////////////////
-$('#other-university-enrolled-confirm').click(function(){
-  $('.other-university-enrolled').toggle();
 });

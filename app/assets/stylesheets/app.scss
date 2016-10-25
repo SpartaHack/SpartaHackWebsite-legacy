@@ -1,7 +1,3 @@
-// Place all the styles related to the User controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 body {
   padding: 115px 20% 115px;
   @media (max-width: 710px) {
@@ -14,3 +10,4 @@ body {
 @import "partials/animations";
 @import "partials/fonts";
 @import "partials/home/navigation";
+@import "partials/app/application";

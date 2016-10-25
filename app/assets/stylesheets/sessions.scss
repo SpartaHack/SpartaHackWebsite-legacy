@@ -1,5 +1,5 @@
- @import "partials/colors";
- @import "partials/fonts";
+@import "partials/colors";
+@import "partials/fonts";
 
 #logIn {
   display: flex;
@@ -13,20 +13,24 @@
     display: flex;
     margin-bottom: 1em;
     flex-direction: column;
+
     input {
       padding-left: 1em;
     }
+
     div:nth-child(n+2) {
       margin-top: 1em;
     }
     @media (min-width: 557px) {
       flex-direction: row;
+
       div:nth-child(n+2) {
         margin-left: 1em;
         margin-top: 0;
       }
     }
   }
+
   input {
     height: 4em;
     box-sizing: border-box;
@@ -35,20 +39,20 @@
     font-size: 1em;
     background-color: transparent;
     color: $dark-gold;
-    text-transform: uppercase;
     font-weight: 100;
-    box-shadow: 0px 12px 22px 0px rgba(0,0,0,0.04);
+    box-shadow: 0 12px 22px 0 rgba(0,0,0,0.04);
 
     &::placeholder {
       text-transform: uppercase;
     }
 
     &.btn {
+      text-transform: uppercase;
       cursor: pointer;
     }
-
     @media (min-width: 557px) {
       width: 16em;
+
       &.btn {
         width: calc(33em + 5px);
       }
