@@ -1,5 +1,25 @@
  @import "partials/colors";
  @import "partials/fonts";
+ @import "partials/border";
+ @import "partials/animations";
+ @import "partials/home/navigation";
+
+ .session-border {
+   &.top {
+     &.inner {
+       left:0;
+       right: 0;
+       margin: auto;
+     }
+   }
+   &.right {
+     &.outer {
+       top: 0;
+       bottom: 0;
+       margin: auto;
+     }
+   }
+ }
 
 #logIn {
   display: flex;
@@ -8,6 +28,53 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  .title-wrap {
+    width: calc(33em + 5px);
+    .section-head {
+      opacity: 0;
+      animation: fade-in 1s linear alternate;
+      animation-delay: .2s;
+      animation-fill-mode: forwards;
+      &::before, &::after {
+        background: none;
+      }
+    }
+  }
+
+  .login-title-animation {
+    opacity: 0;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 45px;
+  }
+
+  .login-title-animation.start {
+    .login-paths-lines {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      stroke-width:1px;
+    }
+
+    #login-top-line {
+      animation: dash 1.1s linear alternate;
+      animation-delay: .2s;
+      animation-fill-mode: forwards;
+    }
+
+    #login-bottom-line {
+      animation: dash 1.2s linear alternate;
+      animation-delay: .55s;
+      animation-fill-mode: forwards;
+    }
+
+    #login-center-hanging {
+      animation: dash-back 1s linear alternate;
+      animation-delay: .2s;
+      animation-fill-mode: forwards;
+    }
+
+  }
 
   .fields {
     display: flex;
@@ -29,6 +96,10 @@
   }
   input {
     height: 4em;
+    opacity: 0;
+    animation: fade-in 1s linear alternate;
+    animation-delay: 1.3s;
+    animation-fill-mode: forwards;
     box-sizing: border-box;
     width: calc(33em + 5px);
     max-width: 90vw;
@@ -44,6 +115,7 @@
 
     &.btn {
       cursor: pointer;
+      animation-delay: 1.5s;
     }
 
     @media (min-width: 557px) {
@@ -52,5 +124,26 @@
         width: calc(33em + 5px);
       }
     }
+
+  }
+  #create {
+    margin-top: 50px;
+    color: $dark-gold;
+    font-weight: 100;
+    font-family: "Lato-Light";
+    -webkit-font-smoothing: antialiased;
+    opacity: 0;
+    animation: fade-in 1s linear alternate;
+    animation-delay: 1.7s;
+    animation-fill-mode: forwards;
+  }
+
+  #error {
+    width: calc(33em + 5px);
+    margin: 0px;
+    opacity: 0;
+    animation: fade-in 1s linear alternate;
+    animation-delay: 1.2s;
+    animation-fill-mode: forwards;
   }
 }

@@ -1,7 +1,7 @@
 <nav id="header" class="flex wrap-row align-center">
   <div id="left-wrap" class="flex wrap-row align-center">
     <%= image_tag "diamond-w-shadow.svg", :id => "nav-diamond", :class => "diamond"%>
-    <h1 id="nav-spartahack">SpartaHack 17</h1>
+    <h1 id="nav-spartahack"><a href='/'>SpartaHack 17</a></h1>
   </div>
   <div id="right-wrap" class="flex wrap-row end">
     <ul>
@@ -20,6 +20,21 @@
       <li>
           <a href="#footer">Contact</a>
       </li>
+      <%- if current_user.present? %>
+        <li>
+            <a href="/dashboard">My Dashboard</a>
+        </li>
+        <li>
+            <a href="/logout">Log Out</a>
+        </li>
+      <%- else %>
+        <li>
+            <a href="/application">Apply</a>
+        </li>
+        <li>
+            <a href="/login">Log In</a>
+        </li>
+      <%- end %>
     </ul>
   </div>
 

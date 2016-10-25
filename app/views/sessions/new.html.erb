@@ -1,11 +1,42 @@
+<%= render "user/application_partials/navigation" %>
+<div class="top outer border session-border"></div>
+<div class="top inner border session-border"></div>
+<div class="right outer border session-border"></div>
+<div class="right inner border session-border"></div>
+
 <%= simple_form_for :session, html: { id: "logIn" } do |f| %>
   <div class="title-wrap">
-    <h1 class="section-head">Login</h1>
-    <div class="hline"></div>
+    <h1 class="section-head">Log in</h1>
+    <div class="login-title-animation">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1" data-name="Layer 1" viewBox="0 0 592.07 37.13">
+      <defs>
+          <style>
+            #login-top-line{stroke:url(#New_Gradient_Swatch);}
+            #login-center-hanging{stroke-width:0.5px;stroke:url(#New_Gradient_Swatch-2);}
+            #login-bottom-line{stroke:url(#New_Gradient_Swatch-3);}
+          </style>
+          <linearGradient id="New_Gradient_Swatch" y1="0.5" x2="592.07" y2="0.5" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#f9e1a2"/>
+              <stop offset="1" stop-color="#b4892d"/>
+          </linearGradient>
+          <linearGradient id="New_Gradient_Swatch-2" x1="193.67" y1="37.89" x2="193.67" y2="15.65" xlink:href="#New_Gradient_Swatch"/>
+          <linearGradient id="New_Gradient_Swatch-3" x1="80.3" y1="15.06" x2="361.47" y2="15.06" xlink:href="#New_Gradient_Swatch"/>
+      </defs>
+      <line class="login-paths-lines" id="login-top-line" y1="0.5" x2="592.07" y2="0.5"/>
+      <path class="login-paths-lines" id="login-center-hanging" d="M143.28,15.82c2.91,3.06,22.78,23.27,53.66,21.73,26.27-1.31,43.51-18,47.13-21.73" transform="translate(0 -0.75)"/>
+      <line class="login-paths-lines" id="login-bottom-line" x1="80.3" y1="15.06" x2="361.47" y2="15.06"/>
+      </svg>
+    </div>
   </div>
+  <%- if flash[:error] %>
+    <p id="error">  <%= p flash[:error] %> </p>
+    <%- flash[:error] = nil %>
+  <%- end %>
   <div class="fields">
     <%= f.input :email, label: false, placeholder: "Email" %>
     <%= f.input :password, label: false, placeholder: "Password" %>
   </div>
   <%= f.button :submit, "Log In" %>
+
+  <a href="/application" id="create" >Need to Create an Account?</a>
 <% end %>
