@@ -10,8 +10,28 @@ body {
   }
 }
 
+.user-border {
+  &.top {
+    &.inner {
+      left:0;
+      right: 0;
+      margin: auto;
+    }
+  }
+  &.right {
+    &.outer {
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+  }
+}
+
 @import "partials/colors";
 @import "partials/animations";
 @import "partials/fonts";
 @import "partials/home/navigation";
+@import "partials/border";
+@import "select2-modified";
 @import "partials/user/application";
+@import "partials/user/dashboard";

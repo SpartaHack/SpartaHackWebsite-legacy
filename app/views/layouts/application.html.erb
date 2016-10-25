@@ -28,9 +28,6 @@
   </head>
 
   <body>
-    <%- if current_user.present? %>
-
-    <%- end %>
 
     <%= yield %>
 
@@ -44,6 +41,6 @@
         var themeTrigger = false;
       <% end %>
     </script>
-    <%= javascript_include_tag 'application', params[:controller], 'data-turbolinks-track': 'reload', :async => true%>
+    <%= javascript_include_tag 'application', params[:controller], 'data-turbolinks-track': 'reload', async: Rails.env.production? %>
   </body>
 </html>

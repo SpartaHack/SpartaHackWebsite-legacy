@@ -48,11 +48,21 @@ nav {
     font-weight: 100;
     color: $medium-gold;
     font-size: 34px;
-    background: linear-gradient(to bottom, #F9E1A3, $medium-gold);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     @media screen and (max-width: 1025px) {
       display: none;
+    }
+    a {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      background: linear-gradient(to bottom, #F9E1A3, $medium-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      &::after {
+        display: none;
+
+      }
     }
   }
 
@@ -93,7 +103,7 @@ nav {
 
         }
 
-        &:hover {
+        &:hover, &.active {
             &::after {
             content: "";
             display: inherit;

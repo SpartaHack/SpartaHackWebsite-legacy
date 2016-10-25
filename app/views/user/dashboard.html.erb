@@ -1,0 +1,16 @@
+<%= render "user/application_partials/navigation" %>
+<div class="top outer border user-border"></div>
+<div class="top inner border user-border"></div>
+
+<section id="dashboard" class="flex center wrap-column align-center">
+  <div id="greeting-wrapper">
+    <h2 id="greeting" class="section-head">
+      Greetings, <%= current_user.first_name.capitalize %>
+    </h2>
+  </div>
+
+  <div id="app">
+    <a href="/application">Application: Submitted | Edit Application</a>
+  </div>
+
+</section>

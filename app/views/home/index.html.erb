@@ -1,4 +1,4 @@
-<%- if current_user.present? && current_user.role == 1 %>
+<%- if current_user.present? && current_user.roles == ["Director"] %>
   <%= render "admin_portal" %>
 <%- else %>
   <%= render "navigation" %>

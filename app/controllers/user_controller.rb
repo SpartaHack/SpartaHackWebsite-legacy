@@ -1,5 +1,10 @@
 class UserController < ApplicationController
+  before_action :set_http_auth_token
+
   def new
+  end
+
+  def show
   end
 
   def create
@@ -9,6 +14,10 @@ class UserController < ApplicationController
   end
 
   def application
+  end
+
+  def dashboard
+    check_login
   end
 
   def edit
@@ -23,5 +32,11 @@ class UserController < ApplicationController
   private
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation, roles: [])
+    end
+
+    def check_login
+      if !current_user.present?
+        redirect_to '/login'
+      end
     end
 end

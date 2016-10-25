@@ -1,8 +1,7 @@
 module ApplicationHelper
   def current_user
     if session[:current_session].present?
-      require 'ostruct'
-      OpenStruct.new(session[:current_session])
+      User.find(session[:current_session]['id'])
     else
       nil
     end
