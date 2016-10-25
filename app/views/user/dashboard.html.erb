@@ -5,7 +5,10 @@
 <section id="dashboard" class="flex center wrap-column align-center">
   <div id="greeting-wrapper">
     <h2 id="greeting" class="section-head">
-      Greetings, <%= current_user.first_name.capitalize %>
+      <p>
+        Greetings, <%= current_user.first_name.capitalize %>
+        <span>|</span>
+      </p>
     </h2>
   </div>
 

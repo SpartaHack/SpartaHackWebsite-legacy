@@ -13,14 +13,23 @@
     }
   }
 
-  #greeting-wrapper {
-    position: relative;
-    opacity: 0;
-  }
   #greeting{
+    width: 100%;
     text-align: left;
-    display: inline-block;
-    overflow: hidden;
+
+    p {
+      width: 100%;
+      font-family: "Nemoy-Light";
+      font-weight: 100;
+      color: $medium-gold;
+      animation: type 1.3s steps(60, end);
+      white-space: nowrap;
+      overflow: hidden;
+
+      span{
+        animation: blink 1.25s infinite;
+      }
+    }
   }
 
   #app {
