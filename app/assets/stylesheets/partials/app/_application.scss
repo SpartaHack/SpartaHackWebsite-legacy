@@ -131,6 +131,7 @@
     }
   }
 
+  input[type=password],
   input[type=text] {
     height: 36px;
     text-align: left;
@@ -746,6 +747,6 @@
   }
 }
 
-.hide_page {
+.hide-page {
   display: none!important;
 }

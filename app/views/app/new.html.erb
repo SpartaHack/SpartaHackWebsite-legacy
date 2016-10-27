@@ -14,12 +14,12 @@
 
 <div class="wrap-main">
   <section id="app">
-    <a href="#app" id="backApp" class="page2 hide_page">Back to Application</a>
+    <a href="#app" id="backApp" class="page2 hide-page">Back to Application</a>
     <div class="row">
 
       <div class="title-wrap">
         <h1 class="section-head page1">You got this!</h1>
-        <h1 class="section-head page2 hide_page">Create Account</h1>
+        <h1 class="section-head page2 hide-page">Create Account</h1>
         <div class="hline"></div>
       </div>
 
@@ -33,7 +33,7 @@
         to go to your dashboard.</h4>
       <% end %>
 
-      <%= form_tag("/save", method: "post", id: "save_app", class: "save_app", :remote => true, :authenticity_token => true) do %>
+      <%= form_tag("/app", method: "post", id: "save_app", class: "save_app", :remote => true, :authenticity_token => true) do %>
       <div class="inner page1">
         <%= label_tag(:firstName, "First Name", class: 'no-label') %>
         <%= text_field_tag 'firstName', "#{@application["user"]['firstName'] if @application}", placeholder: 'First Name *', required:true %>
@@ -214,20 +214,20 @@
       </div>
       <% end %>
 
-      <div class="inner page2 hide_page">
+      <div class="inner page2 hide-page">
         <%= label_tag(:email, "Email", class: 'no-label') %>
         <%= text_field_tag 'email', '', placeholder: 'Email *' %>
       </div>
 
-      <div class="add-margin-top inner page2 hide_page">
+      <div class="add-margin-top inner page2 hide-page">
         <%= label_tag(:password, "Password", class: 'no-label') %>
-        <%= text_field_tag 'password', '', placeholder: 'Password *' %>
+        <%= password_field_tag 'password', '', placeholder: 'Password *' %>
         <%= label_tag(:password_confirmation, "Repeat Password ", class: 'no-label') %>
-        <%= text_field_tag 'repeat password', '', placeholder: 'Repeat Password *' %>
+        <%= password_field_tag 'repeat password', '', placeholder: 'Repeat Password *' %>
       </div>
 
       <% if @application.blank? || @application['status'].blank? %>
-      <div class="add-margin-top hvr-underline-from-center full page2 hide_page" id="save-app">
+      <div class="add-margin-top hvr-underline-from-center full page2 hide-page" id="save-app">
         <%= submit_tag("#{@application ? 'UPDATE APPLICATION' : 'SUBMIT APPLICATION'}", :id => "application") %>
       </div>
       <% end %>

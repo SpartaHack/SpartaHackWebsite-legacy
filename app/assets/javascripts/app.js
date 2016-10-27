@@ -35,13 +35,13 @@ $('#createAccount').click(function(event) {
   if (!form[0].checkValidity()) {
     $('#application').click();
   } else {
-    $('.page1').addClass('hide_page');
-    $('.page2').removeClass('hide_page');
+    $('.page1').addClass('hide-page');
+    $('.page2').removeClass('hide-page');
   }
 });
 
 $('#backApp').click(function(event) {
   event.preventDefault();
-  $('.page1').removeClass('hide_page');
-  $('.page2').addClass('hide_page');
+  $('.page1').removeClass('hide-page');
+  $('.page2').addClass('hide-page');
 });
