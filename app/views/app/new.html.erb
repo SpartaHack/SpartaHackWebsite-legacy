@@ -214,8 +214,20 @@
       </div>
       <% end %>
 
+      <div class="inner page2 hide_page">
+        <%= label_tag(:email, "Email", class: 'no-label') %>
+        <%= text_field_tag 'email', '', placeholder: 'Email *' %>
+      </div>
+
+      <div class="add-margin-top inner page2 hide_page">
+        <%= label_tag(:password, "Password", class: 'no-label') %>
+        <%= text_field_tag 'password', '', placeholder: 'Password *' %>
+        <%= label_tag(:password_confirmation, "Repeat Password ", class: 'no-label') %>
+        <%= text_field_tag 'repeat password', '', placeholder: 'Repeat Password *' %>
+      </div>
+
       <% if @application.blank? || @application['status'].blank? %>
-      <div class="hvr-underline-from-center full page2 hide_page" id="save-app">
+      <div class="add-margin-top hvr-underline-from-center full page2 hide_page" id="save-app">
         <%= submit_tag("#{@application ? 'Update Application' : 'Submit Application'}", :id => "application") %>
       </div>
       <% end %>

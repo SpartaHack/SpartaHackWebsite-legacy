@@ -201,13 +201,16 @@
   #firstName,
   #gradSemester,
   #gradYear,
-  #lastName {
+  #lastName,
+  #password,
+  #repeat_password {
     @media (min-width: 550px) {
       width: 225px;
       margin-bottom: 0;
     }
   }
 
+  #email,
   #gender,
   #hackathons,
   #major,
@@ -583,7 +586,6 @@
   }
 
   #save-app {
-    margin-top: 0;
     @media (min-width: 550px) {}
   }
 
