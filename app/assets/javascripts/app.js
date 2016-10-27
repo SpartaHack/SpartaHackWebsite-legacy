@@ -28,3 +28,20 @@ $('#major').select2({placeholder: "What are you studying?"});
 $('#other-university-enrolled-confirm').click(function() {
   $('.other-university-enrolled').toggle();
 });
+
+$('#createAccount').click(function(event) {
+  event.preventDefault();
+  var form = $('#save_app');
+  if (!form[0].checkValidity()) {
+    $('#application').click();
+  } else {
+    $('.page1').addClass('hide_page');
+    $('.page2').removeClass('hide_page');
+  }
+});
+
+$('#backApp').click(function(event) {
+  event.preventDefault();
+  $('.page1').removeClass('hide_page');
+  $('.page2').addClass('hide_page');
+});

@@ -13,138 +13,149 @@
 </div>
 
 <div class="wrap-main">
-  <section id="app" >
+  <section id="app">
+    <a href="#app" id="backApp" class="page2 hide_page">Back to Application</a>
     <div class="row">
 
       <div class="title-wrap">
-        <h1 class="section-head">You got this!</h1>
+        <h1 class="section-head page1">You got this!</h1>
+        <h1 class="section-head page2 hide_page">Create Account</h1>
         <div class="hline"></div>
       </div>
 
-    <% if @application.blank? || @application['status'].blank? %>
+      <% if @application.blank? || @application['status'].blank? %>
       <h4 id="required">* fields are required.</h4>
     <% else %>
-      <h4 id="required">A decision has been made on your application. <br> Click <a href="/dashboard">here</a> to go to your dashboard.</h4>
-    <% end %>
+      <h4 id="required">A decision has been made on your application.
+        <br>
+        Click
+        <a href="/dashboard">here</a>
+        to go to your dashboard.</h4>
+      <% end %>
 
-    <%= form_tag("/save", method: "post", id: "save_app", class: "save_app", :remote => true, :authenticity_token => true) do %>
-      <div class="inner">
+      <%= form_tag("/save", method: "post", id: "save_app", class: "save_app", :remote => true, :authenticity_token => true) do %>
+      <div class="inner page1">
         <%= label_tag(:firstName, "First Name", class: 'no-label') %>
         <%= text_field_tag 'firstName', "#{@application["user"]['firstName'] if @application}", placeholder: 'First Name *', required:true %>
         <%= label_tag(:lastName, "Last Name", class: 'no-label') %>
         <%= text_field_tag 'lastName', "#{@application["user"]['lastName'] if @application}", placeholder: 'Last Name *'  %>
       </div>
 
-        <div class="add-margin-top">
-          <select id="gender" name="gender" style="display=none;">
-            <option></option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="non-binary">Non-binary</option>
-          </select>
+      <div class="add-margin-top page1">
+        <select id="gender" name="gender" style="display=none;">
+          <option></option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="non-binary">Non-binary</option>
+        </select>
+      </div>
+
+      <div class="add-margin-top page1" id="birthdate-wrap">
+        <select id="birthday" name="birthday">
+          <option></option>
+          <%= options_for_select((1..31).to_a)%>
+        </select>
+        <select id="birthmonth" name="birthmonth">
+          <option></option>
+          <%= options_for_select(Date::MONTHNAMES[1..12]) %>
+        </select>
+        <select id="birthyear" name="birthyear">
+          <option></option>
+          <%= options_for_select((1950..2002).to_a.reverse) %>
+        </select>
+      </div>
+
+      <div class="add-margin-top page1">
+        <select id="race" name="race" style="display=none;" multiple="multiple">
+          <option></option>
+          <option value="american-indian-alaska-native">American Indian or Alaska Native</option>
+          <option value="asian">Asian</option>
+          <option value="black">Black</option>
+          <option value="hispanic-latino">Hispanic/Latino</option>
+          <option value="middle-eastern-north-african">Middle Eastern or North African</option>
+          <option value="native-hawaiian-pacific-islander">Native Hawaiian or Pacific Islander</option>
+          <option value="white">White</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="add-margin-top add-margin-bottom page1" id="enrollment-wrap">
+        <label id="highschool">Which of the following best describes your current enrollment? *</label>
+        <div id="radio-wrap">
+          <input type="radio" name="universityStudent" id="highschool-student" value="false">
+          <label for="highschool-student">High School</label>
+          <input type="radio" name="universityStudent" id="undergrad-university-student" value="true">
+          <label for="undergrad-university-student">Undergraduate Student</label>
+          <input type="radio" name="universityStudent" id="grad-university-student" value="true">
+          <label for="grad-university-student">Graduate Student</label>
         </div>
+      </div>
 
-        <div class="add-margin-top" id="birthdate-wrap">
-          <select id="birthday" name="birthday">
-            <option></option>
-            <%= options_for_select((1..31).to_a)%>
-          </select>
-          <select id="birthmonth" name="birthmonth">
-            <option></option>
-            <%= options_for_select(Date::MONTHNAMES[1..12]) %>
-          </select>
-          <select id="birthyear" name="birthyear">
-            <option></option>
-            <%= options_for_select((1950..2002).to_a.reverse) %>
-          </select>
+      <div class="add-margin-bottom university-enrolled university page1">
+        <%= render partial: "app/partials/universities", locals: { type: "enrolled" } %>
+      </div>
+
+      <div class="add-margin-bottom university-enrolled page1" id="other-university-wrap">
+        <div class="check">
+          <input type="checkbox" value="true" id="other-university-enrolled-confirm" name="otherUniversityEnrolledConfirm"/>
+          <label for="other-university-enrolled-confirm">
+            <div id="other-university-enrolled-text">College/University not listed?</div>
+          </label>
         </div>
+      </div>
 
-        <div class="add-margin-top">
-          <select id="race" name="race" style="display=none;" multiple="multiple">
-            <option></option>
-            <option value="american-indian-alaska-native">American Indian or Alaska Native</option>
-            <option value="asian">Asian</option>
-            <option value="black">Black</option>
-            <option value="hispanic-latino">Hispanic/Latino</option>
-            <option value="middle-eastern-north-african">Middle Eastern or North African</option>
-            <option value="native-hawaiian-pacific-islander">Native Hawaiian or Pacific Islander</option>
-            <option value="white">White</option>
-            <option value="other">Other</option>
-          </select>
+      <div class="add-margin-top other-university-enrolled page1" style="display:none;">
+        <%= label_tag(:otherUniversity, "College/University not listed above? Enter it here.", class: 'no-label') %>
+        <%= text_field_tag 'otherUniversity', "#{@application['otherUniversity'] if @application}", placeholder: 'Other College/University' %>
+      </div>
+
+      <div class="add-margin-bottom university-travelling university page1">
+        <%= render partial: "app/partials/universities", locals: { type: "travelling" } %>
+      </div>
+
+      <div class="add-margin-bottom university-travelling page1" id="other-university-wrap">
+        <div class="check">
+          <input type="checkbox" value="true" id="other-university-travel-confirm" name="otherUniversityTravelConfirm"/>
+          <label for="other-university-travel-confirm">
+            <div id="other-university-travel-text">Travelling from outside of North America?</div>
+          </label>
         </div>
+      </div>
 
-        <div class="add-margin-top add-margin-bottom" id="enrollment-wrap">
-          <label id="highschool">Which of the following best describes your current enrollment? *</label>
-          <div id="radio-wrap">
-            <input type="radio" name="universityStudent" id="highschool-student" value="false" >
-            <label for="highschool-student">High School</label>
-            <input type="radio" name="universityStudent" id="undergrad-university-student" value="true" >
-            <label for="undergrad-university-student">Undergraduate Student</label>
-            <input type="radio" name="universityStudent" id="grad-university-student" value="true" >
-            <label for="grad-university-student">Graduate Student</label>
-          </div>
-        </div>
+      <div class="add-margin-top other-university-travelling page1" style="display:none;">
+        <%= label_tag(:otherUniversity, "College/University not listed above? Enter it here.", class: 'no-label') %>
+        <%= text_field_tag 'otherUniversity', "#{@application['otherUniversity'] if @application}", placeholder: 'Other College/University' %>
+      </div>
 
-        <div class="add-margin-bottom university-enrolled university">
-          <%= render partial: "app/partials/universities", locals: { type: "enrolled" } %>
-        </div>
+      <div class="inner add-margin-top split-select page1">
+        <select id="gradSemester" name="gradSemester">
+          <option></option>
+          <option value="fall">Fall</option>
+          <option value="winter">Winter</option>
+          <option value="spring">Spring</option>
+          <option value="summer">Summer</option>
+        </select>
 
-        <div class="add-margin-bottom university-enrolled" id="other-university-wrap">
-          <div class="check">
-            <input type="checkbox" value="true" id="other-university-enrolled-confirm" name="otherUniversityEnrolledConfirm" />
-            <label for="other-university-enrolled-confirm"><div id="other-university-enrolled-text">College/University not listed?</div></label>
-          </div>
-        </div>
+        <select id="gradYear" name="gradYear">
+          <option></option>
+          <%= options_for_select((2016..2025).to_a)%>
+        </select>
+      </div>
 
-        <div class="add-margin-top other-university-enrolled" style="display:none;">
-          <%= label_tag(:otherUniversity, "College/University not listed above? Enter it here.", class: 'no-label') %>
-          <%= text_field_tag 'otherUniversity', "#{@application['otherUniversity'] if @application}", placeholder: 'Other College/University' %>
-        </div>
+      <div class="university-enrolled add-margin-top page1">
+        <%= render partial: "app/partials/majors" %>
+      </div>
 
-        <div class="add-margin-bottom university-travelling university">
-          <%= render partial: "app/partials/universities", locals: { type: "travelling" } %>
-        </div>
+      <div class="hackathons add-margin-top page1">
+        <%= number_field_tag 'hackathons', (@application if @application), placeholder: "How many hackathons have you been to?" %>
+      </div>
 
-        <div class="add-margin-bottom university-travelling" id="other-university-wrap">
-          <div class="check">
-            <input type="checkbox" value="true" id="other-university-travel-confirm" name="otherUniversityTravelConfirm" />
-            <label for="other-university-travel-confirm"><div id="other-university-travel-text">Travelling from outside of North America?</div></label>
-          </div>
-        </div>
+      <div class="add-margin-top page1">
+        <%= label_tag(:whyAttend, "Why do you want to attend SpartaHack 2016?", class: 'no-label') %>
+        <%= text_area_tag 'whyAttend', "#{@application['whyAttend'] if @application}", placeholder: 'Why do you want to attend SpartaHack 2016?' %>
+      </div>
 
-        <div class="add-margin-top other-university-travelling" style="display:none;">
-          <%= label_tag(:otherUniversity, "College/University not listed above? Enter it here.", class: 'no-label') %>
-          <%= text_field_tag 'otherUniversity', "#{@application['otherUniversity'] if @application}", placeholder: 'Other College/University' %>
-        </div>
-
-        <div class="inner add-margin-top split-select">
-          <select id="gradSemester" name="gradSemester">
-            <option></option>
-            <option value="fall">Fall</option>
-            <option value="winter">Winter</option>
-            <option value="spring">Spring</option>
-            <option value="summer">Summer</option>
-          </select>
-
-          <select id="gradYear" name="gradYear">
-            <option></option>
-            <%= options_for_select((2016..2025).to_a)%>
-          </select>
-        </div>
-
-        <div class="university-enrolled add-margin-top">
-          <%= render partial: "app/partials/majors" %>
-        </div>
-
-        <div class="hackathons add-margin-top">
-          <%= number_field_tag 'hackathons', (@application if @application), placeholder: "How many hackathons have you been to?" %>
-        </div>
-
-        <div class="add-margin-top">
-          <%= label_tag(:whyAttend, "Why do you want to attend SpartaHack 2016?", class: 'no-label') %>
-          <%= text_area_tag 'whyAttend', "#{@application['whyAttend'] if @application}", placeholder: 'Why do you want to attend SpartaHack 2016?' %>
-        </div>
-
+      <div class="links page1">
         <div class="under-textarea has-icon">
           <%= image_tag "socialMedia/github.svg", alt: "Github Icon", :class => "icon" %>
           <%= label_tag(:github, "What is your GitHub handle?", class: 'no-label') %>
@@ -174,23 +185,40 @@
           <%= label_tag(:coolLink, "A cool link you\'d like to share?", class: 'no-label') %>
           <%= text_field_tag 'coolLink', "#{@application['coolLink'] if @application}", placeholder: 'A cool link?' %>
         </div>
+      </div>
 
-        <div class="add-margin-top" id="mlh-disclaimer">
-          <p id="mlh-disclaimer-text">We participate in Major League Hacking (MLH) as a MLH Member Event. You authorize us to share certain application/registration information for event administration, ranking, MLH administration, and occasional messages about hackathons in line with the <a href="https://mlh.io/privacy" target="_blank">MLH Privacy Policy.</a></p>
+      <div class="add-margin-top page1" id="mlh-disclaimer">
+        <p id="mlh-disclaimer-text">We participate in Major League Hacking (MLH) as a MLH Member Event. You authorize us to share certain application/registration information for event administration, ranking, MLH administration, and occasional messages
+          about hackathons in line with the
+          <a href="https://mlh.io/privacy" target="_blank">MLH Privacy Policy.</a>
+        </p>
+      </div>
+
+      <div class="add-margin-top page1" id="mlh-wrap">
+        <div class="check check-mlh">
+          <input type="checkbox" value="true" id="agree" name="mlh"/>
+          <label for="agree">
+            <div id="mlh-text">I agree to the
+              <a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct</a>,
+              <a href="https://mlh.io/privacy" target="_blank">Privacy Policy</a>
+              and
+              <a href="https://github.com/MLH/mlh-policies/tree/master/prize-terms-and-conditions" target="_blank">Contest Terms and Conditions</a>
+              *</div>
+          </label>
         </div>
+      </div>
 
-        <div class="add-margin-top" id="mlh-wrap">
-          <div class="check check-mlh">
-            <input type="checkbox" value="true" id="agree" name="mlh" />
-            <label for="agree"><div id="mlh-text">I agree to the <a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct</a>, <a href="https://mlh.io/privacy" target="_blank">Privacy Policy</a> and <a href="https://github.com/MLH/mlh-policies/tree/master/prize-terms-and-conditions" target="_blank">Contest Terms and Conditions</a> *</div></label>
-          </div>
-        </div>
+      <% if @application.blank? %>
+      <div class="hvr-underline-from-center full page1">
+        <input type="submit" value="NEXT: CREATE ACCOUNT" id="createAccount"/>
+      </div>
+      <% end %>
 
-        <% if @application.blank? || @application['status'].blank? %>
-          <div class="hvr-underline-from-center full" id="save-app">
-            <%= submit_tag("#{@application ? 'Update Application' : 'Submit Application'}", :id => "application") %>
-          </div>
-        <% end %>
+      <% if @application.blank? || @application['status'].blank? %>
+      <div class="hvr-underline-from-center full page2 hide_page" id="save-app">
+        <%= submit_tag("#{@application ? 'Update Application' : 'Submit Application'}", :id => "application") %>
+      </div>
+      <% end %>
 
       <% end %>
 
@@ -200,48 +228,48 @@
 </div>
 
 <%= javascript_tag :async => true do %>
-  //validation for form submit
+//validation for form submit
 
-  <% if @application %>
-    <% if @application['university'] %>
-      $("#university").val("<%= @application['university'].html_safe %>").trigger("change");
-    <% end %>
-    <% if @application['major'] %>
-      $("#major").val(<%= raw @application['major'].to_a.to_json %>).trigger("change");
-    <% end %>
-    <% if @application['birthday'] %>
-      $("#birthday").val("<%= @application['birthday'].html_safe %>").trigger("change");
-    <% end %>
-    <% if @application['birthmonth'] %>
-      $("#birthmonth").val("<%= @application['birthmonth'].html_safe %>").trigger("change");
-    <% end %>
-    <% if @application['birthyear'] %>
-      $("#birthyear").val("<%= @application['birthyear'].html_safe %>").trigger("change");
-    <% end %>
-    <% if @application['gradeLevel'] %>
-      $("#gradeLevel").val("<%= @application['gradeLevel'].html_safe %>").trigger("change");
-    <% end %>
-    <% if @application['gender'] %>
-      $("#gender").val("<%= @application['gender'].html_safe %>").trigger("change");
-    <% end %>
-    <% if @application['hackathons'] %>
-      $("#hackathons").val(<%= raw @application['hackathons'] %>).trigger("change");
-    <% end %>
-    <% if @application['universityStudent'] %>
-      document.getElementById("university-student").checked = true;
-    <% else %>
-      document.getElementById("highschool-student").checked = true;
-    <% end %>
-    <% if @application['otherUniversityConfirm'].to_bool == true %>
-      $('#other-university-confirm').prop('checked', true);
-    <% else %>
-      $('#other-university-confirm').prop('checked', false);
-    <% end %>
-    <% if @application['mlh'] %>
-      document.getElementById("agree").checked = true;
-    <% end %>
-    <% if @application['status'] %>
-      $("#save_app :input").attr("disabled", true);
-    <% end %>
-  <% end %>
+<% if @application %>
+<% if @application['university'] %>
+$("#university").val("<%= @application['university'].html_safe %>").trigger("change");
+<% end %>
+<% if @application['major'] %>
+$("#major").val(<%= raw @application['major'].to_a.to_json %>).trigger("change");
+<% end %>
+<% if @application['birthday'] %>
+$("#birthday").val("<%= @application['birthday'].html_safe %>").trigger("change");
+<% end %>
+<% if @application['birthmonth'] %>
+$("#birthmonth").val("<%= @application['birthmonth'].html_safe %>").trigger("change");
+<% end %>
+<% if @application['birthyear'] %>
+$("#birthyear").val("<%= @application['birthyear'].html_safe %>").trigger("change");
+<% end %>
+<% if @application['gradeLevel'] %>
+$("#gradeLevel").val("<%= @application['gradeLevel'].html_safe %>").trigger("change");
+<% end %>
+<% if @application['gender'] %>
+$("#gender").val("<%= @application['gender'].html_safe %>").trigger("change");
+<% end %>
+<% if @application['hackathons'] %>
+$("#hackathons").val(<%= raw @application['hackathons'] %>).trigger("change");
+<% end %>
+<% if @application['universityStudent'] %>
+document.getElementById("university-student").checked = true;
+<% else %>
+document.getElementById("highschool-student").checked = true;
+<% end %>
+<% if @application['otherUniversityConfirm'].to_bool == true %>
+$('#other-university-confirm').prop('checked', true);
+<% else %>
+$('#other-university-confirm').prop('checked', false);
+<% end %>
+<% if @application['mlh'] %>
+document.getElementById("agree").checked = true;
+<% end %>
+<% if @application['status'] %>
+$("#save_app :input").attr("disabled", true);
+<% end %>
+<% end %>
 <% end %>
