@@ -200,8 +200,8 @@
   }
 
   #firstName,
-  #gradSemester,
-  #gradYear,
+  #graduation_season,
+  #graduation_year,
   #lastName,
   #password,
   #repeat_password {
@@ -337,13 +337,13 @@
     }
   }
 
-  #coolLink,
-  #devPost,
+  #devpost,
   #github,
-  #linkedIn,
-  #otherUniversity,
-  #website,
-  #whyAttend {
+  #linkedin,
+  #other_link,
+  #other_university,
+  #statement,
+  #website {
     width: 100%;
     @media (min-width: 550px) {
       width: 503px;
@@ -351,10 +351,10 @@
     }
   }
 
-  #coolLink,
-  #devPost,
+  #devpost,
   #github,
-  #linkedIn,
+  #linkedin,
+  #other_link,
   #website {
     padding-left: 50px;
     box-sizing: border-box;

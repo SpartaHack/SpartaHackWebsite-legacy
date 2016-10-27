@@ -51,15 +51,15 @@
       </div>
 
       <div class="add-margin-top page1" id="birthdate-wrap">
-        <select id="birthday" name="birthday">
+        <select id="birthday" name="birth_day">
           <option></option>
           <%= options_for_select((1..31).to_a)%>
         </select>
-        <select id="birthmonth" name="birthmonth">
+        <select id="birthmonth" name="birth_month">
           <option></option>
           <%= options_for_select(Date::MONTHNAMES[1..12]) %>
         </select>
-        <select id="birthyear" name="birthyear">
+        <select id="birthyear" name="birth_year">
           <option></option>
           <%= options_for_select((1950..2002).to_a.reverse) %>
         </select>
@@ -82,11 +82,11 @@
       <div class="add-margin-top add-margin-bottom page1" id="enrollment-wrap">
         <label id="highschool">Which of the following best describes your current enrollment? *</label>
         <div id="radio-wrap">
-          <input type="radio" name="universityStudent" id="highschool-student" value="false">
+          <input type="radio" name="education" id="highschool-student" value="highschool">
           <label for="highschool-student">High School</label>
-          <input type="radio" name="universityStudent" id="undergrad-university-student" value="true">
+          <input type="radio" name="education" id="undergrad-university-student" value="undergraduate">
           <label for="undergrad-university-student">Undergraduate Student</label>
-          <input type="radio" name="universityStudent" id="grad-university-student" value="true">
+          <input type="radio" name="education" id="grad-university-student" value="graduate">
           <label for="grad-university-student">Graduate Student</label>
         </div>
       </div>
@@ -97,7 +97,7 @@
 
       <div class="add-margin-bottom university-enrolled page1" id="other-university-wrap">
         <div class="check">
-          <input type="checkbox" value="true" id="other-university-enrolled-confirm" name="otherUniversityEnrolledConfirm"/>
+          <input type="checkbox" value="true" id="other-university-enrolled-confirm" name="other_universityEnrolledConfirm"/>
           <label for="other-university-enrolled-confirm">
             <div id="other-university-enrolled-text">College/University not listed?</div>
           </label>
@@ -105,8 +105,8 @@
       </div>
 
       <div class="add-margin-top other-university-enrolled page1" style="display:none;">
-        <%= label_tag(:otherUniversity, "College/University not listed above? Enter it here.", class: 'no-label') %>
-        <%= text_field_tag 'otherUniversity', "#{@application['otherUniversity'] if @application}", placeholder: 'Other College/University' %>
+        <%= label_tag(:other_university, "College/University not listed above? Enter it here.", class: 'no-label') %>
+        <%= text_field_tag 'other_university', "#{@application['other_university'] if @application}", placeholder: 'Other College/University' %>
       </div>
 
       <div class="add-margin-bottom university-travelling university page1">
@@ -115,7 +115,7 @@
 
       <div class="add-margin-bottom university-travelling page1" id="other-university-wrap">
         <div class="check">
-          <input type="checkbox" value="true" id="other-university-travel-confirm" name="otherUniversityTravelConfirm"/>
+          <input type="checkbox" value="true" id="other-university-travel-confirm" name="other_universityTravelConfirm"/>
           <label for="other-university-travel-confirm">
             <div id="other-university-travel-text">Travelling from outside of North America?</div>
           </label>
@@ -123,12 +123,12 @@
       </div>
 
       <div class="add-margin-top other-university-travelling page1" style="display:none;">
-        <%= label_tag(:otherUniversity, "College/University not listed above? Enter it here.", class: 'no-label') %>
-        <%= text_field_tag 'otherUniversity', "#{@application['otherUniversity'] if @application}", placeholder: 'Other College/University' %>
+        <%= label_tag(:other_university, "College/University not listed above? Enter it here.", class: 'no-label') %>
+        <%= text_field_tag 'other_university', "#{@application['other_university'] if @application}", placeholder: 'Other College/University' %>
       </div>
 
       <div class="inner add-margin-top split-select page1">
-        <select id="gradSemester" name="gradSemester">
+        <select id="graduation_season" name="graduation_season">
           <option></option>
           <option value="fall">Fall</option>
           <option value="winter">Winter</option>
@@ -136,7 +136,7 @@
           <option value="summer">Summer</option>
         </select>
 
-        <select id="gradYear" name="gradYear">
+        <select id="graduation_year" name="graduation_year">
           <option></option>
           <%= options_for_select((2016..2025).to_a)%>
         </select>
@@ -151,8 +151,8 @@
       </div>
 
       <div class="add-margin-top page1">
-        <%= label_tag(:whyAttend, "Why do you want to attend SpartaHack 2016?", class: 'no-label') %>
-        <%= text_area_tag 'whyAttend', "#{@application['whyAttend'] if @application}", placeholder: 'Why do you want to attend SpartaHack 2016?' %>
+        <%= label_tag(:statement, "Why do you want to attend SpartaHack 2016?", class: 'no-label') %>
+        <%= text_area_tag 'statement', "#{@application['statement'] if @application}", placeholder: 'Why do you want to attend SpartaHack 2016?' %>
       </div>
 
       <div class="links page1">
@@ -164,14 +164,14 @@
 
         <div class="add-margin-top has-icon">
           <%= image_tag "socialMedia/linkedin.svg", alt: "LinkedIn Icon", :class => "icon" %>
-          <%= label_tag(:linkedIn, "What is your LinkedIn handle?", class: 'no-label') %>
-          <%= text_field_tag 'linkedIn', "#{@application['linkedIn'] if @application}", placeholder: 'LinkedIn handle?' %>
+          <%= label_tag(:linkedin, "What is your LinkedIn handle?", class: 'no-label') %>
+          <%= text_field_tag 'linkedin', "#{@application['linkedin'] if @application}", placeholder: 'LinkedIn handle?' %>
         </div>
 
         <div class="add-margin-top has-icon">
-          <%= image_tag "socialMedia/devpost.svg", alt: "DevPost Icon", :class => "icon" %>
-          <%= label_tag(:devPost, "What is your DevPost handle?", class: 'no-label') %>
-          <%= text_field_tag 'devPost', "#{@application['devPost'] if @application}", placeholder: 'DevPost handle?' %>
+          <%= image_tag "socialMedia/devpost.svg", alt: "devpost Icon", :class => "icon" %>
+          <%= label_tag(:devpost, "What is your devpost handle?", class: 'no-label') %>
+          <%= text_field_tag 'devpost', "#{@application['devpost'] if @application}", placeholder: 'devpost handle?' %>
         </div>
 
         <div class="add-margin-top has-icon">
@@ -182,8 +182,8 @@
 
         <div class="add-margin-top has-icon">
           <%= image_tag "socialMedia/coolsite.svg", alt: "Cool Link Icon", :class => "icon" %>
-          <%= label_tag(:coolLink, "A cool link you\'d like to share?", class: 'no-label') %>
-          <%= text_field_tag 'coolLink', "#{@application['coolLink'] if @application}", placeholder: 'A cool link?' %>
+          <%= label_tag(:other_link, "A cool link you\'d like to share?", class: 'no-label') %>
+          <%= text_field_tag 'other_link', "#{@application['other_link'] if @application}", placeholder: 'A cool link?' %>
         </div>
       </div>
 
@@ -272,7 +272,7 @@ document.getElementById("university-student").checked = true;
 <% else %>
 document.getElementById("highschool-student").checked = true;
 <% end %>
-<% if @application['otherUniversityConfirm'].to_bool == true %>
+<% if @application['other_universityConfirm'].to_bool == true %>
 $('#other-university-confirm').prop('checked', true);
 <% else %>
 $('#other-university-confirm').prop('checked', false);

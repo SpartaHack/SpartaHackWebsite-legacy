@@ -13,7 +13,7 @@ $('#save-app').click(function(e){
   } else if (!document.getElementById('highschool-student').checked && !document.getElementById('university-student').checked) {
     $("#popup").html("Please indicate your current enrollment.");
     popUpBottom();
-  } else if (document.getElementById('university-student').checked && $("#university").val().length == 0 && $("#otherUniversity").val().length == 0) {
+  } else if (document.getElementById('university-student').checked && $("#university").val().length == 0 && $("#other_university").val().length == 0) {
     $("#popup").html("Please indicate your university.");
     popUpBottom();
   } else if (document.getElementById('university-student').checked && $("#major").val() == null || document.getElementById('university-student').checked && $("#major").val().length == 0) {

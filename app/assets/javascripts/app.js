@@ -16,9 +16,9 @@ $('#university-enrolled').select2({placeholder: "Which school do you attend?", a
 
 $('#university-travelling').select2({placeholder: "Which school will you be travelling from? (Choose closest)", allowClear: true});
 
-$('#gradYear').select2({placeholder: "Graduation Year", allowClear: true});
+$('#graduation_year').select2({placeholder: "Graduation Year", allowClear: true});
 
-$('#gradSemester').select2({placeholder: "Graduation Semester", allowClear: true});
+$('#graduation_season').select2({placeholder: "Graduation Semester", allowClear: true});
 
 $('#major').select2({placeholder: "What are you studying?"});
 
