@@ -1,7 +1,7 @@
 $('#save-app').click(function(e){
   e.preventDefault();
 
-  if ($("#firstName").val().length == 0 || $("#lastName").val().length == 0) {
+  if ($("#first_name").val().length == 0 || $("#last_name").val().length == 0) {
     $("#popup").html("You must input your full name.");
     popUpBottom();
   } else  if ($("#gender").val().length == 0 ) {

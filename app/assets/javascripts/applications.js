@@ -2,15 +2,15 @@
 // Select2 calls
 ///////////////////////////////////////////////////
 
-$('#gender').select2({placeholder: "Your Gender", allowClear: true});
+$('#application_gender').select2({placeholder: "Your Gender", allowClear: true});
 
-$('#birthday').select2({placeholder: "Birth Day", allowClear: true});
+$('#application_birth_day').select2({placeholder: "Birth Day", allowClear: true});
 
-$('#birthmonth').select2({placeholder: "Birth Month", allowClear: true});
+$('#application_birth_month').select2({placeholder: "Birth Month", allowClear: true});
 
-$('#birthyear').select2({placeholder: "Birth Year", allowClear: true});
+$('#application_birth_year').select2({placeholder: "Birth Year", allowClear: true});
 
-$('#race').select2({placeholder: "Ethnicity/Race (Choose all that apply)", allowClear: true});
+$('#application_race').select2({placeholder: "Ethnicity/Race (Choose all that apply)", allowClear: true});
 
 $('#university-enrolled').select2({placeholder: "Which school do you attend?", allowClear: true});
 
@@ -18,7 +18,7 @@ $('#university-travelling').select2({placeholder: "Which school will you be trav
 
 $('#graduation_year').select2({placeholder: "Graduation Year", allowClear: true});
 
-$('#graduation_season').select2({placeholder: "Graduation Semester", allowClear: true});
+$('#application_graduation_season').select2({placeholder: "Graduation Semester", allowClear: true});
 
 $('#major').select2({placeholder: "What are you studying?"});
 
@@ -31,7 +31,7 @@ $('#other-university-enrolled-confirm').click(function() {
 
 $('#createAccount').click(function(event) {
   event.preventDefault();
-  var form = $('#save_app');
+  var form = $('#application-form');
   if (!form[0].checkValidity()) {
     $('#application').click();
   } else {

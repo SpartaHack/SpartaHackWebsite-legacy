@@ -199,12 +199,10 @@
     }
   }
 
-  #firstName,
-  #graduation_season,
   #graduation_year,
-  #lastName,
   #password,
-  #repeat_password {
+  #password_confirmation,
+  .half-width-input {
     @media (min-width: 550px) {
       width: 225px;
       margin-bottom: 0;
@@ -217,10 +215,11 @@
   #major,
   #race,
   #university-enrolled,
-  #university-travelling {
-    width: 100%;
+  #university-travelling,
+  .full-width-input .select2-container {
+    width: 100%!important;
     @media (min-width: 550px) {
-      width: 530px;
+      width: 530px!important;
     }
   }
 
@@ -320,12 +319,10 @@
     }
   }
 
-  #birthday,
-  #birthmonth,
-  #birthyear {
-    width: 100%;
+  .third-width-input > span {
+    width: 100%!important;
     @media (min-width: 550px) {
-      width: 160px;
+      width: 160px!important;
       margin-bottom: 0;
     }
   }
