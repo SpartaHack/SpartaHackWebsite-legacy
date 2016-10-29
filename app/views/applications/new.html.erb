@@ -25,73 +25,64 @@
 
       <h4 id="required">* fields are required.</h4>
 
-      <%= simple_form_for :application, html: { id: "application-form"} do |f| %>
+      <%= simple_form_for :application, :url => "/application", html: { id: "application-form"} do |f| %>
       <div class="inner page1">
-        <%= f.input :first_name, label: false, placeholder: "First Name *", required: true, input_html: { class: "half-width-input" } %>
-        <%= f.input :last_name, label: false, placeholder: "Last Name *", required: true, input_html: { class: "half-width-input" } %>
+        <%= simple_fields_for :user do |ff| %>
+          <%= ff.input :first_name, placeholder: "First Name *", required: true, input_html: { class: "half-width-input" }, :label_html => { :class => "no-label" } %>
+          <%= ff.input :last_name, placeholder: "Last Name *", required: true, input_html: { class: "half-width-input" }, :label_html => { :class => "no-label" } %>
+        <% end %>
       </div>
 
       <div class="add-margin-top page1">
-        <%= f.input :gender, collection: ["Male", "Female", "Non-binary"], label: false, wrapper_html: { class: "full-width-input" } %>
+        <%= f.input :gender, collection: ["Male", "Female", "Non-binary"], wrapper_html: { class: "full-width-input" }, :label_html => { :class => "no-label" } %>
       </div>
 
       <div class="add-margin-top page1" id="birthdate-wrap">
-        <%= f.input :birth_day, collection: 1..31, label: false, wrapper_html: { class: "third-width-input" } %>
-        <%= f.input :birth_month, collection: Date::MONTHNAMES[1..31], label: false, wrapper_html: { class: "third-width-input" } %>
-        <%= f.input :birth_year, collection: (1..31).to_a.reverse, label: false, wrapper_html: { class: "third-width-input" } %>
+        <%= f.input :birth_day, collection: 1..31, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
+        <%= f.input :birth_month, collection: Date::MONTHNAMES[1..31], wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
+        <%= f.input :birth_year, collection: (1..31).to_a.reverse, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
       </div>
 
       <div class="add-margin-top page1">
-        <%= f.input :race, collection: ["American Indian or Alaska Native", "Asian", "Black", "Hispanic/Latino", "Middle Eastern or North African", "Native Hawaiian or Pacific Islander", "White", "other"], label: false, input_html: { multiple: true },
-        wrapper_html: { class: "full-width-input" } %>
+        <%= f.input :race, collection: ["American Indian or Alaska Native", "Asian", "Black", "Hispanic/Latino", "Middle Eastern or North African", "Native Hawaiian or Pacific Islander", "White", "other"], input_html: { multiple: true },
+        wrapper_html: { class: "full-width-input" }, :label_html => { :class => "no-label" } %>
       </div>
 
       <div class="add-margin-top add-margin-bottom page1" id="enrollment-wrap">
         <label id="highschool">Which of the following best describes your current enrollment? *</label>
         <div id="radio-wrap">
-          <input type="radio" name="education" id="highschool-student" value="highschool">
-          <label for="highschool-student">High School</label>
-          <input type="radio" name="education" id="undergrad-university-student" value="undergraduate">
-          <label for="undergrad-university-student">Undergraduate Student</label>
-          <input type="radio" name="education" id="grad-university-student" value="graduate">
-          <label for="grad-university-student">Graduate Student</label>
+          <%= f.collection_radio_buttons :education, [['highschool', 'High School'] ,['undergraduate', 'Undergraduate Student'],['graduate', 'Graduate Student']], :first, :last %>
         </div>
       </div>
 
       <div class="add-margin-bottom university-enrolled university page1">
-        <%= render partial: "applications/partials/universities", locals: { type: "enrolled" } %>
+        <%= render partial: "applications/partials/universities", locals: { type: "enrolled", :f => f  } %>
       </div>
 
       <div class="add-margin-bottom university-enrolled page1" id="other-university-wrap">
         <div class="check">
-          <input type="checkbox" value="true" id="other-university-enrolled-confirm" name="application[other_universityEnrolledConfirm]"/>
-          <label for="other-university-enrolled-confirm">
-            <div id="other-university-enrolled-text">College/University not listed?</div>
+          <input type="checkbox" value="true" id="other_university_enrolled-confirm" name="application[other_universityEnrolledConfirm]"/>
+          <label for="other_university_enrolled-confirm">
+            <div id="other_university_enrolled-text">College/University not listed?</div>
           </label>
         </div>
       </div>
 
-      <div class="add-margin-top other-university-enrolled page1" style="display:none;">
-        <%= label_tag(:other_university, "College/University not listed above? Enter it here.", class: 'no-label') %>
-        <%= text_field_tag 'other_university', "#{@application['other_university'] if @application}", placeholder: 'Other College/University' %>
+      <div class="add-margin-top other_university_enrolled page1" style="display:none;">
+        <%= f.input :other_university, placeholder: "Other College/University", required: false, input_html: { class: "full-width-input" }, :label_html => { :class => "no-label" } %>
       </div>
 
-      <div class="add-margin-bottom university-travelling university page1">
-        <%= render partial: "applications/partials/universities", locals: { type: "travelling" } %>
+      <div class="add-margin-bottom university-traveling university page1">
+        <%= render partial: "applications/partials/universities", locals: { type: "traveling", :f => f } %>
       </div>
 
-      <div class="add-margin-bottom university-travelling page1" id="other-university-wrap">
+      <div class="add-margin-bottom university-traveling page1" id="other-university-wrap">
         <div class="check">
           <input type="checkbox" value="true" id="other-university-travel-confirm" name="other_universityTravelConfirm"/>
           <label for="other-university-travel-confirm">
-            <div id="other-university-travel-text">Travelling from outside of North America?</div>
+            <div id="other-university-travel-text">traveling from outside of North America?</div>
           </label>
         </div>
-      </div>
-
-      <div class="add-margin-top other-university-travelling page1" style="display:none;">
-        <%= label_tag(:other_university, "College/University not listed above? Enter it here.", class: 'no-label') %>
-        <%= text_field_tag 'other_university', "#{@application['other_university'] if @application}", placeholder: 'Other College/University' %>
       </div>
 
       <div class="inner add-margin-top split-select page1">
@@ -177,15 +168,12 @@
 
       <%= simple_fields_for :user do |ff| %>
       <div class="inner page2 hide-page">
-        <%= label_tag(:email, "Email", class: 'no-label') %>
-        <%= text_field_tag 'email', '', placeholder: 'Email *' %>
+        <%= ff.input :email, placeholder: "Email *", required: true, :label_html => { :class => "no-label" }, wrapper: false%>
       </div>
 
       <div class="add-margin-top inner page2 hide-page">
-        <%= label_tag(:password, "Password", class: 'no-label') %>
-        <%= password_field_tag 'password', '', placeholder: 'Password *' %>
-        <%= label_tag(:password_confirmation, "Repeat Password ", class: 'no-label') %>
-        <%= password_field_tag 'password_confirmation', '', placeholder: 'Repeat Password *' %>
+        <%= ff.input :password, placeholder: "Password *", required: true, :label_html => { :class => "no-label" }, wrapper: false%>
+        <%= ff.input :password_confirmation, placeholder: "Repeat Password *", required: true, :label_html => { :class => "no-label" }, wrapper: false%>
       </div>
 
       <% if @application.blank? || @application['status'].blank? %>
@@ -203,7 +191,7 @@
   </section>
 </div>
 
-<%= javascript_tag :async => true do %>
+<%= javascript_tag do %>
 //validation for form submit
 
 <% if @application %>

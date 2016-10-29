@@ -131,6 +131,7 @@
     }
   }
 
+  input[type=email],
   input[type=password],
   input[type=text] {
     height: 36px;
@@ -200,8 +201,8 @@
   }
 
   #graduation_year,
-  #password,
-  #password_confirmation,
+  #user_password,
+  #user_password_confirmation,
   .half-width-input {
     @media (min-width: 550px) {
       width: 225px;
@@ -209,15 +210,16 @@
     }
   }
 
+  #application_university_enrolled,
+  #application_university_traveling,
   #email,
   #gender,
   #hackathons,
   #major,
   #race,
-  #university-enrolled,
-  #university-travelling,
+  #user_email,
   .full-width-input .select2-container {
-    width: 100%!important;
+    width: 100% !important;
     @media (min-width: 550px) {
       width: 530px!important;
     }
@@ -255,7 +257,7 @@
     font-weight: lighter;
     font-family: Lato-Light;
     -webkit-font-smoothing: antialiased;
-    height: 60px;
+    height: 54px;
 
     &:hover {
       box-shadow: 0 10px 25px rgba(0,0,0,0.08);
@@ -334,11 +336,11 @@
     }
   }
 
+  #application_other_university,
   #devpost,
   #github,
   #linkedin,
   #other_link,
-  #other_university,
   #statement,
   #website {
     width: 100%;
@@ -390,7 +392,7 @@
     }
   }
 
-  .other-university-enrolled,
+  .other_university_enrolled,
   .university {
     margin-bottom: 0;
     @media (min-width: 550px) {
@@ -482,8 +484,8 @@
 
   #mlh-disclaimer-text,
   #mlh-text,
-  #other-university-enrolled-text,
-  #other-university-travel-text {
+  #other-university-travel-text,
+  #other_university_enrolled-text {
     -webkit-font-smoothing: antialiased;
     color: $medium-gold;
     text-align: left;
@@ -502,8 +504,8 @@
     left: -9999px;
   }
 
-  #other-university-enrolled-text,
-  #other-university-travel-text {
+  #other-university-travel-text,
+  #other_university_enrolled-text {
     position: absolute;
     top: -3px;
     margin-left: 30px;
@@ -594,7 +596,7 @@
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
-  color: #000000;
+  color: #FFFFFF;
   position: absolute;
   top: 17px;
   right: 5px;
@@ -704,37 +706,7 @@
     font-size: 14px;
   }
 }
-@keyframes popup-error-wrapper {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-@-webkit-keyframes popup-error-wrapper {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
 @keyframes popup-wrapper {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-@-webkit-keyframes popup-wrapper {
   from {
     opacity: 1;
   }

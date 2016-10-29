@@ -1,19 +1,19 @@
 class ApplicationsController < ApplicationController
   before_action :set_http_auth_token, only: [:create]
-  # wrap_parameters :user, include: [:password, :password_confirmation]
+  wrap_parameters :user, include: [:password, :password_confirmation]
 
   def new
   end
 
   def create
-    user = User.create({
+    user = User.create({ :user => {
       first_name: user_params[:first_name],
       last_name: user_params[:last_name],
       email: user_params[:email],
       password: params[:password],
       password_confirmation: params[:password_confirmation],
       roles: ["hacker"]
-    })
+    }})
 
     if user.errors.messages.empty?
       if Applications.new(app_params)
@@ -56,8 +56,7 @@ class ApplicationsController < ApplicationController
         :last_name,
         :email,
         :password,
-        :password_confirmation,
-        :roles
+        :password_confirmation
       )
     end
 end
