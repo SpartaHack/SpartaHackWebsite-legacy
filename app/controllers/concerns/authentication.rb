@@ -7,7 +7,7 @@ module Authentication
 
   # Create this method when needed
   def set_user_auth_token
-    # ActiveResource::Base.headers["AUTHORIZATION"] = "Token token=\"ENV[AUTH_TOKEN]\""
+    ActiveResource::Base.headers["AUTHORIZATION"] = "Token token=\"#{current_user.auth_token}\""
     ActiveResource::Base.headers["Accept"] = "application/json"
   end
 
