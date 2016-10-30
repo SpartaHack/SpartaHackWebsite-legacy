@@ -28,8 +28,8 @@
       <%= simple_form_for :application, :url => "/application", html: { id: "application-form"} do |f| %>
       <div class="inner page1">
         <%= simple_fields_for :user do |ff| %>
-          <%= ff.input :first_name, placeholder: "First Name *", required: true, input_html: { class: "half-width-input" }, :label_html => { :class => "no-label" } %>
-          <%= ff.input :last_name, placeholder: "Last Name *", required: true, input_html: { class: "half-width-input" }, :label_html => { :class => "no-label" } %>
+        <%= ff.input :first_name, placeholder: "First Name *", required: true, input_html: { class: "half-width-input" }, :label_html => { :class => "no-label" } %>
+        <%= ff.input :last_name, placeholder: "Last Name *", required: true, input_html: { class: "half-width-input" }, :label_html => { :class => "no-label" } %>
         <% end %>
       </div>
 
@@ -40,12 +40,12 @@
       <div class="add-margin-top page1" id="birthdate-wrap">
         <%= f.input :birth_day, collection: 1..31, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
         <%= f.input :birth_month, collection: Date::MONTHNAMES[1..31], wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
-        <%= f.input :birth_year, collection: (1..31).to_a.reverse, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
+        <%= f.input :birth_year, collection: (1945..2016).to_a.reverse, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
       </div>
 
       <div class="add-margin-top page1">
-        <%= f.input :race, collection: ["American Indian or Alaska Native", "Asian", "Black", "Hispanic/Latino", "Middle Eastern or North African", "Native Hawaiian or Pacific Islander", "White", "other"], input_html: { multiple: true },
-        wrapper_html: { class: "full-width-input" }, :label_html => { :class => "no-label" } %>
+        <%= f.input :race, collection: ["American Indian or Alaska Native", "Asian", "Black", "Hispanic/Latino", "Middle Eastern or North African", "Native Hawaiian or Pacific Islander", "White", "other"], input_html: { multiple: true }, wrapper_html: {
+        class: "full-width-input" }, :label_html => { :class => "no-label" } %>
       </div>
 
       <div class="add-margin-top add-margin-bottom page1" id="enrollment-wrap">
