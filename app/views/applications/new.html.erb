@@ -56,7 +56,7 @@
       </div>
 
       <div class="add-margin-bottom university-enrolled university page1">
-        <%= render partial: "applications/partials/universities", locals: { type: "enrolled", :f => f  } %>
+        <%= render partial: "applications/partials/universities", :object => :application, locals: { type: "enrolled", :f => f  } %>
       </div>
 
       <div class="add-margin-bottom university-enrolled page1" id="other-university-wrap">
@@ -88,7 +88,7 @@
       <div class="inner add-margin-top split-select page1">
         <%= f.input :graduation_season, collection: ["Fall", "Winter", "Spring", "Summer"], label: false, class: "half-width-input" %>
 
-        <select id="graduation_year" name="graduation_year">
+        <select id="graduation_year" name="application[graduation_year]">
           <option></option>
           <%= options_for_select((2016..2025).to_a)%>
         </select>
@@ -99,43 +99,38 @@
       </div>
 
       <div class="hackathons add-margin-top page1">
-        <%= number_field_tag 'hackathons', (@application if @application), placeholder: "How many hackathons have you been to?" %>
+        <%= number_field_tag 'hackathons', (@application if @application), placeholder: "How many hackathons have you been to?", name: "application['hackathons']"%>
       </div>
 
       <div class="add-margin-top page1">
         <%= label_tag(:statement, "Why do you want to attend SpartaHack 2016?", class: 'no-label') %>
-        <%= text_area_tag 'statement', "#{@application['statement'] if @application}", placeholder: 'Why do you want to attend SpartaHack 2016?' %>
+        <%= text_area_tag 'application_statement', "#{@application['statement'] if @application}", placeholder: 'Why do you want to attend SpartaHack 2016?', name: "application['statement']" %>
       </div>
 
       <div class="links page1">
         <div class="under-textarea has-icon">
           <%= image_tag "socialMedia/github.svg", alt: "Github Icon", :class => "icon" %>
-          <%= label_tag(:github, "What is your GitHub handle?", class: 'no-label') %>
-          <%= text_field_tag 'github', "#{@application['github'] if @application}", placeholder: 'GitHub handle?' %>
+          <%= f.input :github, placeholder: "GitHub handle?", required: false, input_html: { class: "full-width-input" }, :label_html => { :class => "no-label" } %>
         </div>
 
         <div class="add-margin-top has-icon">
           <%= image_tag "socialMedia/linkedin.svg", alt: "LinkedIn Icon", :class => "icon" %>
-          <%= label_tag(:linkedin, "What is your LinkedIn handle?", class: 'no-label') %>
-          <%= text_field_tag 'linkedin', "#{@application['linkedin'] if @application}", placeholder: 'LinkedIn handle?' %>
+          <%= f.input :linkedin, placeholder: "LinkedIn handle?", required: false, input_html: { class: "full-width-input" }, :label_html => { :class => "no-label" } %>
         </div>
 
         <div class="add-margin-top has-icon">
           <%= image_tag "socialMedia/devpost.svg", alt: "devpost Icon", :class => "icon" %>
-          <%= label_tag(:devpost, "What is your devpost handle?", class: 'no-label') %>
-          <%= text_field_tag 'devpost', "#{@application['devpost'] if @application}", placeholder: 'devpost handle?' %>
+          <%= f.input :devpost, placeholder: "devpost handle?", required: false, input_html: { class: "full-width-input" }, :label_html => { :class => "no-label" } %>
         </div>
 
         <div class="add-margin-top has-icon">
           <%= image_tag "socialMedia/portfolio.svg", alt: "Personal Website Icon", :class => "icon" %>
-          <%= label_tag(:website, "What is your personal website?", class: 'no-label') %>
-          <%= text_field_tag 'website', "#{@application['website'] if @application}", placeholder: 'Your personal website?' %>
+          <%= f.input :website, placeholder: "Your personal website?", required: false, input_html: { class: "full-width-input" }, :label_html => { :class => "no-label" } %>
         </div>
 
         <div class="add-margin-top has-icon">
           <%= image_tag "socialMedia/coolsite.svg", alt: "Cool Link Icon", :class => "icon" %>
-          <%= label_tag(:other_link, "A cool link you\'d like to share?", class: 'no-label') %>
-          <%= text_field_tag 'other_link', "#{@application['other_link'] if @application}", placeholder: 'A cool link?' %>
+          <%= f.input :other_link, placeholder: "A cool link?", required: false, input_html: { class: "full-width-input" }, :label_html => { :class => "no-label" } %>
         </div>
       </div>
 

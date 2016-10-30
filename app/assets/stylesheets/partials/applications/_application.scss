@@ -336,13 +336,13 @@
     }
   }
 
+  #application_devpost,
+  #application_github,
+  #application_linkedin,
+  #application_other_link,
   #application_other_university,
-  #devpost,
-  #github,
-  #linkedin,
-  #other_link,
-  #statement,
-  #website {
+  #application_statement,
+  #application_website {
     width: 100%;
     @media (min-width: 550px) {
       width: 503px;
@@ -350,11 +350,11 @@
     }
   }
 
-  #devpost,
-  #github,
-  #linkedin,
-  #other_link,
-  #website {
+  #application_devpost,
+  #application_github,
+  #application_linkedin,
+  #application_other_link,
+  #application_website {
     padding-left: 50px;
     box-sizing: border-box;
     width: 530px;
