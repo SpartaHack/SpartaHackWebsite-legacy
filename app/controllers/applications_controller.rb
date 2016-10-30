@@ -1,24 +1,17 @@
 class ApplicationsController < ApplicationController
+  wrap_parameters :user, include: [:password, :password_confirmation]
   before_action :set_http_auth_token, only: [:create]
-  # wrap_parameters :user, include: [:password, :password_confirmation]
+  before_action :set_user_auth_token, only: [:create_application]
+
 
   def new
   end
 
   def create
-    user = User.create({
-      first_name: user_params[:first_name],
-      last_name: user_params[:last_name],
-      email: user_params[:email],
-      password: params[:password],
-      password_confirmation: params[:password_confirmation],
-      roles: ["hacker"]
-    })
-
-    if user.errors.messages.empty?
-      if Applications.new(app_params)
-        debugger
-      end
+    user = User.new(user_params.to_h)
+    if user.save
+      session[:current_session] = Session.create( { :email => user_params[:email], :password => user_params[:password] } )
+      create_application
     else
       p user.errors.messages
       # flash[:error] = user.errors.messages[:base][0]
@@ -26,9 +19,15 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def create_application
+    if Applications.new(app_params.to_h)
+      debugger
+    end
+  end
+
   private
     def app_params
-      params.permit(
+      params.require(:application).permit(
         :gender,
         :birth_day,
         :birth_month,
@@ -56,8 +55,7 @@ class ApplicationsController < ApplicationController
         :last_name,
         :email,
         :password,
-        :password_confirmation,
-        :roles
+        :password_confirmation
       )
     end
 end
