@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
   before_action :set_http_auth_token, only: [:create, :destroy]
+  skip_before_filter :verify_authenticity_token
+
   # Sign in
   def new
     check_login
