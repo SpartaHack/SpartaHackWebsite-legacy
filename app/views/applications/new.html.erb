@@ -23,81 +23,48 @@
         <div class="hline"></div>
       </div>
 
-      <% if @application.blank? || @application['status'].blank? %>
       <h4 id="required">* fields are required.</h4>
-    <% else %>
-      <h4 id="required">A decision has been made on your application.
-        <br>
-        Click
-        <a href="/dashboard">here</a>
-        to go to your dashboard.</h4>
-      <% end %>
 
-      <%= form_tag("/app", method: "post", id: "save_app", class: "save_app", :remote => true, :authenticity_token => true) do %>
+      <%= simple_form_for :application, html: { id: "application-form"} do |f| %>
       <div class="inner page1">
-        <%= label_tag(:firstName, "First Name", class: 'no-label') %>
-        <%= text_field_tag 'firstName', "#{@application["user"]['firstName'] if @application}", placeholder: 'First Name *', required:true %>
-        <%= label_tag(:lastName, "Last Name", class: 'no-label') %>
-        <%= text_field_tag 'lastName', "#{@application["user"]['lastName'] if @application}", placeholder: 'Last Name *'  %>
+        <%= f.input :first_name, label: false, placeholder: "First Name *", required: true, input_html: { class: "half-width-input" } %>
+        <%= f.input :last_name, label: false, placeholder: "Last Name *", required: true, input_html: { class: "half-width-input" } %>
       </div>
 
       <div class="add-margin-top page1">
-        <select id="gender" name="gender" style="display=none;">
-          <option></option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="non-binary">Non-binary</option>
-        </select>
+        <%= f.input :gender, collection: ["Male", "Female", "Non-binary"], label: false, wrapper_html: { class: "full-width-input" } %>
       </div>
 
       <div class="add-margin-top page1" id="birthdate-wrap">
-        <select id="birthday" name="birthday">
-          <option></option>
-          <%= options_for_select((1..31).to_a)%>
-        </select>
-        <select id="birthmonth" name="birthmonth">
-          <option></option>
-          <%= options_for_select(Date::MONTHNAMES[1..12]) %>
-        </select>
-        <select id="birthyear" name="birthyear">
-          <option></option>
-          <%= options_for_select((1950..2002).to_a.reverse) %>
-        </select>
+        <%= f.input :birth_day, collection: 1..31, label: false, wrapper_html: { class: "third-width-input" } %>
+        <%= f.input :birth_month, collection: Date::MONTHNAMES[1..31], label: false, wrapper_html: { class: "third-width-input" } %>
+        <%= f.input :birth_year, collection: (1..31).to_a.reverse, label: false, wrapper_html: { class: "third-width-input" } %>
       </div>
 
       <div class="add-margin-top page1">
-        <select id="race" name="race" style="display=none;" multiple="multiple">
-          <option></option>
-          <option value="american-indian-alaska-native">American Indian or Alaska Native</option>
-          <option value="asian">Asian</option>
-          <option value="black">Black</option>
-          <option value="hispanic-latino">Hispanic/Latino</option>
-          <option value="middle-eastern-north-african">Middle Eastern or North African</option>
-          <option value="native-hawaiian-pacific-islander">Native Hawaiian or Pacific Islander</option>
-          <option value="white">White</option>
-          <option value="other">Other</option>
-        </select>
+        <%= f.input :race, collection: ["American Indian or Alaska Native", "Asian", "Black", "Hispanic/Latino", "Middle Eastern or North African", "Native Hawaiian or Pacific Islander", "White", "other"], label: false, input_html: { multiple: true },
+        wrapper_html: { class: "full-width-input" } %>
       </div>
 
       <div class="add-margin-top add-margin-bottom page1" id="enrollment-wrap">
         <label id="highschool">Which of the following best describes your current enrollment? *</label>
         <div id="radio-wrap">
-          <input type="radio" name="universityStudent" id="highschool-student" value="false">
+          <input type="radio" name="education" id="highschool-student" value="highschool">
           <label for="highschool-student">High School</label>
-          <input type="radio" name="universityStudent" id="undergrad-university-student" value="true">
+          <input type="radio" name="education" id="undergrad-university-student" value="undergraduate">
           <label for="undergrad-university-student">Undergraduate Student</label>
-          <input type="radio" name="universityStudent" id="grad-university-student" value="true">
+          <input type="radio" name="education" id="grad-university-student" value="graduate">
           <label for="grad-university-student">Graduate Student</label>
         </div>
       </div>
 
       <div class="add-margin-bottom university-enrolled university page1">
-        <%= render partial: "app/partials/universities", locals: { type: "enrolled" } %>
+        <%= render partial: "applications/partials/universities", locals: { type: "enrolled" } %>
       </div>
 
       <div class="add-margin-bottom university-enrolled page1" id="other-university-wrap">
         <div class="check">
-          <input type="checkbox" value="true" id="other-university-enrolled-confirm" name="otherUniversityEnrolledConfirm"/>
+          <input type="checkbox" value="true" id="other-university-enrolled-confirm" name="application[other_universityEnrolledConfirm]"/>
           <label for="other-university-enrolled-confirm">
             <div id="other-university-enrolled-text">College/University not listed?</div>
           </label>
@@ -105,17 +72,17 @@
       </div>
 
       <div class="add-margin-top other-university-enrolled page1" style="display:none;">
-        <%= label_tag(:otherUniversity, "College/University not listed above? Enter it here.", class: 'no-label') %>
-        <%= text_field_tag 'otherUniversity', "#{@application['otherUniversity'] if @application}", placeholder: 'Other College/University' %>
+        <%= label_tag(:other_university, "College/University not listed above? Enter it here.", class: 'no-label') %>
+        <%= text_field_tag 'other_university', "#{@application['other_university'] if @application}", placeholder: 'Other College/University' %>
       </div>
 
       <div class="add-margin-bottom university-travelling university page1">
-        <%= render partial: "app/partials/universities", locals: { type: "travelling" } %>
+        <%= render partial: "applications/partials/universities", locals: { type: "travelling" } %>
       </div>
 
       <div class="add-margin-bottom university-travelling page1" id="other-university-wrap">
         <div class="check">
-          <input type="checkbox" value="true" id="other-university-travel-confirm" name="otherUniversityTravelConfirm"/>
+          <input type="checkbox" value="true" id="other-university-travel-confirm" name="other_universityTravelConfirm"/>
           <label for="other-university-travel-confirm">
             <div id="other-university-travel-text">Travelling from outside of North America?</div>
           </label>
@@ -123,27 +90,21 @@
       </div>
 
       <div class="add-margin-top other-university-travelling page1" style="display:none;">
-        <%= label_tag(:otherUniversity, "College/University not listed above? Enter it here.", class: 'no-label') %>
-        <%= text_field_tag 'otherUniversity', "#{@application['otherUniversity'] if @application}", placeholder: 'Other College/University' %>
+        <%= label_tag(:other_university, "College/University not listed above? Enter it here.", class: 'no-label') %>
+        <%= text_field_tag 'other_university', "#{@application['other_university'] if @application}", placeholder: 'Other College/University' %>
       </div>
 
       <div class="inner add-margin-top split-select page1">
-        <select id="gradSemester" name="gradSemester">
-          <option></option>
-          <option value="fall">Fall</option>
-          <option value="winter">Winter</option>
-          <option value="spring">Spring</option>
-          <option value="summer">Summer</option>
-        </select>
+        <%= f.input :graduation_season, collection: ["Fall", "Winter", "Spring", "Summer"], label: false, class: "half-width-input" %>
 
-        <select id="gradYear" name="gradYear">
+        <select id="graduation_year" name="graduation_year">
           <option></option>
           <%= options_for_select((2016..2025).to_a)%>
         </select>
       </div>
 
       <div class="university-enrolled add-margin-top page1">
-        <%= render partial: "app/partials/majors" %>
+        <%= render partial: "applications/partials/majors" %>
       </div>
 
       <div class="hackathons add-margin-top page1">
@@ -151,8 +112,8 @@
       </div>
 
       <div class="add-margin-top page1">
-        <%= label_tag(:whyAttend, "Why do you want to attend SpartaHack 2016?", class: 'no-label') %>
-        <%= text_area_tag 'whyAttend', "#{@application['whyAttend'] if @application}", placeholder: 'Why do you want to attend SpartaHack 2016?' %>
+        <%= label_tag(:statement, "Why do you want to attend SpartaHack 2016?", class: 'no-label') %>
+        <%= text_area_tag 'statement', "#{@application['statement'] if @application}", placeholder: 'Why do you want to attend SpartaHack 2016?' %>
       </div>
 
       <div class="links page1">
@@ -164,14 +125,14 @@
 
         <div class="add-margin-top has-icon">
           <%= image_tag "socialMedia/linkedin.svg", alt: "LinkedIn Icon", :class => "icon" %>
-          <%= label_tag(:linkedIn, "What is your LinkedIn handle?", class: 'no-label') %>
-          <%= text_field_tag 'linkedIn', "#{@application['linkedIn'] if @application}", placeholder: 'LinkedIn handle?' %>
+          <%= label_tag(:linkedin, "What is your LinkedIn handle?", class: 'no-label') %>
+          <%= text_field_tag 'linkedin', "#{@application['linkedin'] if @application}", placeholder: 'LinkedIn handle?' %>
         </div>
 
         <div class="add-margin-top has-icon">
-          <%= image_tag "socialMedia/devpost.svg", alt: "DevPost Icon", :class => "icon" %>
-          <%= label_tag(:devPost, "What is your DevPost handle?", class: 'no-label') %>
-          <%= text_field_tag 'devPost', "#{@application['devPost'] if @application}", placeholder: 'DevPost handle?' %>
+          <%= image_tag "socialMedia/devpost.svg", alt: "devpost Icon", :class => "icon" %>
+          <%= label_tag(:devpost, "What is your devpost handle?", class: 'no-label') %>
+          <%= text_field_tag 'devpost', "#{@application['devpost'] if @application}", placeholder: 'devpost handle?' %>
         </div>
 
         <div class="add-margin-top has-icon">
@@ -182,8 +143,8 @@
 
         <div class="add-margin-top has-icon">
           <%= image_tag "socialMedia/coolsite.svg", alt: "Cool Link Icon", :class => "icon" %>
-          <%= label_tag(:coolLink, "A cool link you\'d like to share?", class: 'no-label') %>
-          <%= text_field_tag 'coolLink', "#{@application['coolLink'] if @application}", placeholder: 'A cool link?' %>
+          <%= label_tag(:other_link, "A cool link you\'d like to share?", class: 'no-label') %>
+          <%= text_field_tag 'other_link', "#{@application['other_link'] if @application}", placeholder: 'A cool link?' %>
         </div>
       </div>
 
@@ -214,6 +175,7 @@
       </div>
       <% end %>
 
+      <%= simple_fields_for :user do |ff| %>
       <div class="inner page2 hide-page">
         <%= label_tag(:email, "Email", class: 'no-label') %>
         <%= text_field_tag 'email', '', placeholder: 'Email *' %>
@@ -223,13 +185,15 @@
         <%= label_tag(:password, "Password", class: 'no-label') %>
         <%= password_field_tag 'password', '', placeholder: 'Password *' %>
         <%= label_tag(:password_confirmation, "Repeat Password ", class: 'no-label') %>
-        <%= password_field_tag 'repeat password', '', placeholder: 'Repeat Password *' %>
+        <%= password_field_tag 'password_confirmation', '', placeholder: 'Repeat Password *' %>
       </div>
 
       <% if @application.blank? || @application['status'].blank? %>
       <div class="add-margin-top hvr-underline-from-center full page2 hide-page" id="save-app">
         <%= submit_tag("#{@application ? 'Update Application' : 'Submit Application'}", :id => "application") %>
       </div>
+      <% end %>
+
       <% end %>
 
       <% end %>
@@ -272,7 +236,7 @@ document.getElementById("university-student").checked = true;
 <% else %>
 document.getElementById("highschool-student").checked = true;
 <% end %>
-<% if @application['otherUniversityConfirm'].to_bool == true %>
+<% if @application['other_universityConfirm'].to_bool == true %>
 $('#other-university-confirm').prop('checked', true);
 <% else %>
 $('#other-university-confirm').prop('checked', false);
