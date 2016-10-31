@@ -5,6 +5,7 @@ class ApplicationsController < ApplicationController
 
 
   def new
+    @application = Applications.new
   end
 
   def create
