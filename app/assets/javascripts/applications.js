@@ -48,7 +48,7 @@ $('#application_graduation_season').select2({
 });
 
 $('#application_major').select2({
-  placeholder: "What are you studying?"
+  placeholder: "What are you studying? (Choose all that apply)"
 });
 
 ////////////////////////////////////////////////////
