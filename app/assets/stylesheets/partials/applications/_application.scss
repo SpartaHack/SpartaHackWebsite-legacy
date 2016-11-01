@@ -210,13 +210,12 @@
     }
   }
 
-  #application_university_enrolled,
-  #application_university_traveling,
-  #email,
-  #gender,
-  #hackathons,
-  #major,
-  #race,
+  #application_gender,
+  #application_hackathons,
+  #application_major,
+  #application_race,
+  #application_travel_origin,
+  #application_university,
   #user_email,
   .full-width-input .select2-container {
     width: 100% !important;
@@ -225,9 +224,9 @@
     }
   }
 
-  #gender,
-  #hackathons,
-  #major {
+  #application_gender,
+  #application_hackathons,
+  #application_major {
     @media (min-width: 550px) {
       margin-bottom: 0;
     }

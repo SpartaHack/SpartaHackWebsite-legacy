@@ -27,12 +27,12 @@ $('#application_race').select2({
   allowClear: true
 });
 
-$('#application_university_enrolled').select2({
+$('#application_university').select2({
   placeholder: "Which school do you attend?",
   allowClear: true
 });
 
-$('#application_university_traveling').select2({
+$('#application_travel_origin').select2({
   placeholder: "Which school will you be traveling from? (Choose closest)",
   allowClear: true
 });
@@ -47,7 +47,7 @@ $('#application_graduation_season').select2({
   allowClear: true
 });
 
-$('#major').select2({
+$('#application_major').select2({
   placeholder: "What are you studying?"
 });
 
