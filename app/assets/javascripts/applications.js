@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////
 
 $('#application_gender').select2({
-  placeholder: "Your Gender",
+  placeholder: "Your Gender (For statistical purposes only)",
   allowClear: true
 });
 
@@ -23,7 +23,7 @@ $('#application_birth_year').select2({
 });
 
 $('#application_race').select2({
-  placeholder: "Ethnicity/Race (Choose all that apply)",
+  placeholder: "Ethnicity/Race (Choose all that apply) (For statistical purposes only)",
   allowClear: true
 });
 

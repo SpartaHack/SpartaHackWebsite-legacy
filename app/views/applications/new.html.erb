@@ -34,7 +34,7 @@
       </div>
 
       <div class="add-margin-top page1">
-        <%= f.input :gender, collection: ["Male", "Female", "Non-binary"], wrapper_html: { class: "full-width-input" }, :label_html => { :class => "no-label" } %>
+        <%= f.input :gender, :placeholder => "Gender (For statistical purposes only)", collection: ["Male", "Female", "Non-binary"], wrapper_html: { class: "full-width-input" }, :label_html => { :class => "no-label" } %>
       </div>
 
       <div class="add-margin-top page1" id="birthdate-wrap">
