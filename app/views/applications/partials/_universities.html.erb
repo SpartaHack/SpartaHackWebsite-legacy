@@ -1,4 +1,4 @@
-<%= f.input "#{type == "enrolled" ? :university_enrolled : :university_traveling}", :as => :grouped_select, :collection => [
+<%= f.input "#{type == "enrolled" ? :university : :travel_origin}", :as => :grouped_select, :collection => [
   ['USA: Alabama', [
     "Air University",
     "Alabama A&M University",
@@ -2654,4 +2654,4 @@
     "University of the West of Scotland",
     "Writtle College",
     "York St John University"]]
-], input_html: { name: "#{type == "enrolled" ? "application[university]" : "application[travel_origin]"}"}, :label_html => { :class => "no-label" }, :group_method => :last %>
+], :label_html => { :class => "no-label" }, :group_method => :last %>

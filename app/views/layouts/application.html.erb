@@ -41,6 +41,6 @@
         var themeTrigger = false;
       <% end %>
     </script>
-    <%= javascript_include_tag 'application', params[:controller], 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', (params[:controller] == :application ? :applications : params[:controller]), 'data-turbolinks-track': 'reload' %>
   </body>
 </html>

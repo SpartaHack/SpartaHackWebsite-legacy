@@ -99,12 +99,13 @@
       </div>
 
       <div class="hackathons add-margin-top page1">
-        <%= number_field_tag 'hackathons', (@application if @application), placeholder: "How many hackathons have you been to?", name: "application['hackathons']"%>
+        <%= f.input :hackathons, :as => :integer, placeholder: "How many hackathons have you been to?" %>
       </div>
 
       <div class="add-margin-top page1">
         <%= label_tag(:statement, "Why do you want to attend SpartaHack 2016?", class: 'no-label') %>
-        <%= text_area_tag 'application_statement', "#{@application['statement'] if @application}", placeholder: 'Why do you want to attend SpartaHack 2016?', name: "application['statement']" %>
+        <%= f.input :statement, :as => :text, placeholder: "Why do you want to attend SpartaHack 2016?", required: false, :label_html => { :class => "no-label" } %>
+
       </div>
 
       <div class="links page1">
@@ -155,12 +156,6 @@
         </div>
       </div>
 
-      <% if @application.blank? %>
-      <div class="hvr-underline-from-center full page1">
-        <input type="submit" value="NEXT: CREATE ACCOUNT" id="createAccount"/>
-      </div>
-      <% end %>
-
       <%= simple_fields_for :user do |ff| %>
       <div class="inner page2 hide-page">
         <%= ff.input :email, placeholder: "Email *", required: true, :label_html => { :class => "no-label" }, wrapper: false%>
@@ -171,11 +166,9 @@
         <%= ff.input :password_confirmation, placeholder: "Repeat Password *", required: true, :label_html => { :class => "no-label" }, wrapper: false%>
       </div>
 
-      <% if @application.blank? || @application['status'].blank? %>
       <div class="add-margin-top hvr-underline-from-center full page2 hide-page" id="save-app">
-        <%= submit_tag("#{@application ? 'Update Application' : 'Submit Application'}", :id => "application") %>
+        <%= submit_tag("Submit Application", :id => "application") %>
       </div>
-      <% end %>
 
       <% end %>
 
@@ -185,50 +178,3 @@
 
   </section>
 </div>
-
-<%= javascript_tag do %>
-//validation for form submit
-
-<% if @application %>
-<% if @application['university'] %>
-$("#university").val("<%= @application['university'].html_safe %>").trigger("change");
-<% end %>
-<% if @application['major'] %>
-$("#major").val(<%= raw @application['major'].to_a.to_json %>).trigger("change");
-<% end %>
-<% if @application['birthday'] %>
-$("#birthday").val("<%= @application['birthday'].html_safe %>").trigger("change");
-<% end %>
-<% if @application['birthmonth'] %>
-$("#birthmonth").val("<%= @application['birthmonth'].html_safe %>").trigger("change");
-<% end %>
-<% if @application['birthyear'] %>
-$("#birthyear").val("<%= @application['birthyear'].html_safe %>").trigger("change");
-<% end %>
-<% if @application['gradeLevel'] %>
-$("#gradeLevel").val("<%= @application['gradeLevel'].html_safe %>").trigger("change");
-<% end %>
-<% if @application['gender'] %>
-$("#gender").val("<%= @application['gender'].html_safe %>").trigger("change");
-<% end %>
-<% if @application['hackathons'] %>
-$("#hackathons").val(<%= raw @application['hackathons'] %>).trigger("change");
-<% end %>
-<% if @application['universityStudent'] %>
-document.getElementById("university-student").checked = true;
-<% else %>
-document.getElementById("highschool-student").checked = true;
-<% end %>
-<% if @application['other_universityConfirm'].to_bool == true %>
-$('#other-university-confirm').prop('checked', true);
-<% else %>
-$('#other-university-confirm').prop('checked', false);
-<% end %>
-<% if @application['mlh'] %>
-document.getElementById("agree").checked = true;
-<% end %>
-<% if @application['status'] %>
-$("#save_app :input").attr("disabled", true);
-<% end %>
-<% end %>
-<% end %>
