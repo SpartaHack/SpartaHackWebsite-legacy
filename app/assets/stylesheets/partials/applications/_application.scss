@@ -144,11 +144,6 @@
       width: 100%;
       height: 54px;
       box-sizing: border-box;
-      /* For IE and modern versions of Chrome */
-      -moz-box-sizing: border-box;
-      /* For Firefox                          */
-      -webkit-box-sizing: border-box;
-      /* For Safari                           */
       margin-bottom: 15px;
     }
   }
@@ -217,10 +212,17 @@
   #application_travel_origin,
   #application_university,
   #user_email,
+  #user_email_confirmation,
   .full-width-input .select2-container {
     width: 100% !important;
     @media (min-width: 550px) {
       width: 530px!important;
+    }
+  }
+
+  #user_email {
+    @media (max-width: 550px) {
+      margin-bottom: 15px;
     }
   }
 
