@@ -15,18 +15,20 @@
 //= require turbolinks
 //= require sweetalert
 //= require select2.min
+//= require rails.validations
+//= require rails.validations.simple_form
 
 ////////////////////////////////////////////////////
 // Variables
 ///////////////////////////////////////////////////
 var headerBoxShadow = "0px 0px 22px 0px rgba(0,0,0,0.04)";
-var themeElements = "body, nav, .active-q, .sweet-alert";
+var themeElements = "body, nav, .active-q, .sweet-alert, input";
 
 ////////////////////////////////////////////////////
 // Dark Theme
 ///////////////////////////////////////////////////
 if (darkTheme === true) {
-  $("body, nav, .active-q").toggleClass("dark");
+  $(themeElements).toggleClass("dark");
 }
 
 $('.diamond, #logo-center').click(function() {
@@ -65,17 +67,14 @@ $('.diamond, #logo-center').click(function() {
             "theme": "dark"
           }
         });
-        (darkTheme != true)
-          ? $(themeElements).toggleClass("dark")
-          : null;
-        (darkTheme != true)
-          ? darkTheme = true
-          : null;
+        (darkTheme != true) ?
+        $(themeElements).toggleClass("dark"): null;
+        (darkTheme != true) ?
+        darkTheme = true: null;
       }
     });
-    (darkTheme == true)
-      ? $(".sweet-alert").addClass("dark")
-      : $(".sweet-alert").removeClass("dark");
+    (darkTheme == true) ?
+    $(".sweet-alert").addClass("dark"): $(".sweet-alert").removeClass("dark");
     themeTrigger = true;
 
   } else {
@@ -91,16 +90,18 @@ $('.diamond, #logo-center').click(function() {
       allowOutsideClick: true
     }, function(isConfirm) {
       if (isConfirm) {
-        $.ajax({url: '/rememberTheme', type: 'post'});
+        $.ajax({
+          url: '/rememberTheme',
+          type: 'post'
+        });
         $(themeElements).toggleClass("dark");
         $(".sweet-alert").removeClass("dark");
         themeTrigger = false;
         darkTheme = !darkTheme;
       }
     });
-    (darkTheme == true)
-      ? $(".sweet-alert").removeClass('dark').addClass("dark")
-      : $(".sweet-alert").removeClass("dark");
+    (darkTheme == true) ?
+    $(".sweet-alert").removeClass('dark').addClass("dark"): $(".sweet-alert").removeClass("dark");
   }
   // } else {
   //   $("body").switchClass("light", "dark");
@@ -134,20 +135,20 @@ $(function() {
 ///////////////////////////////////////////////////
 // Returns true if the specified element has been scrolled into the viewport.
 function isElementInViewport(elem) {
-    var $elem = elem;
+  var $elem = elem;
 
-    // Get the scroll position of the page.
-    var scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html');
-    var viewportTop = $(scrollElem).scrollTop();
-    var viewportBottom = viewportTop + $(window).height();
+  // Get the scroll position of the page.
+  var scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html');
+  var viewportTop = $(scrollElem).scrollTop();
+  var viewportBottom = viewportTop + $(window).height();
 
-    // Get the position of the element on the page.
-    var rect = $elem.getBoundingClientRect();
-    var elemTop = Math.round( rect.top + document.body.scrollTop );
+  // Get the position of the element on the page.
+  var rect = $elem.getBoundingClientRect();
+  var elemTop = Math.round(rect.top + document.body.scrollTop);
 
-    var elemBottom = elemTop + $elem.offsetHeight;
+  var elemBottom = elemTop + $elem.offsetHeight;
 
-    return ((elemTop < viewportBottom) && (elemBottom > viewportTop));
+  return ((elemTop < viewportBottom) && (elemBottom > viewportTop));
 }
 
 
@@ -155,26 +156,26 @@ function hasClass(el, cls) {
   return el.className && new RegExp("(\\s|^)" + cls + "(\\s|$)").test(el.className);
 }
 
-function addClass(ele,cls) {
-    if (!hasClass(ele,cls)) ele.className += " "+cls;
+function addClass(ele, cls) {
+  if (!hasClass(ele, cls)) ele.className += " " + cls;
 }
 
-function removeClass(ele,cls) {
-    if (hasClass(ele,cls)) {
-        var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
-        ele.className=ele.className.replace(reg,' ');
-    }
+function removeClass(ele, cls) {
+  if (hasClass(ele, cls)) {
+    var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
+    ele.className = ele.className.replace(reg, ' ');
+  }
 }
 
 // Check if it's time to start the animation.
 function checkAnimation(elem) {
-    var $elem = elem;
+  var $elem = elem;
 
-    // If the animation has already been started
-    if (hasClass($elem, 'start')) return;
+  // If the animation has already been started
+  if (hasClass($elem, 'start')) return;
 
-    if (isElementInViewport($elem)) {
-        // Start the animation
-        addClass($elem, 'start');
-    }
+  if (isElementInViewport($elem)) {
+    // Start the animation
+    addClass($elem, 'start');
+  }
 }

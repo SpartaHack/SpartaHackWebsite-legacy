@@ -1,10 +1,12 @@
-class ApplicationsController < ApplicationController
+class ApplicationsController < ::ApplicationController
   wrap_parameters :user, include: [:password, :password_confirmation]
   before_action :set_http_auth_token, only: [:create]
   before_action :set_user_auth_token, only: [:create_application]
 
 
   def new
+    @application = Application.new
+    p @application
   end
 
   def create
@@ -26,36 +28,36 @@ class ApplicationsController < ApplicationController
   end
 
   private
-    def app_params
-      params.require(:application).permit(
-        :gender,
-        :birth_day,
-        :birth_month,
-        :birth_year,
-        :education,
-        :university,
-        :other_university,
-        :travel_origin,
-        :graduation_season,
-        :graduation_year,
-        :major,
-        :hackathons,
-        :github,
-        :linkedin,
-        :website,
-        :devpost,
-        :other_link,
-        :statement
-      )
-    end
+  def app_params
+    params.require(:application).permit(
+      :gender,
+      :birth_day,
+      :birth_month,
+      :birth_year,
+      :education,
+      :university,
+      :other_university,
+      :travel_origin,
+      :graduation_season,
+      :graduation_year,
+      :major,
+      :hackathons,
+      :github,
+      :linkedin,
+      :website,
+      :devpost,
+      :other_link,
+      :statement
+    )
+  end
 
-    def user_params
-      params.require(:user).permit(
-        :first_name,
-        :last_name,
-        :email,
-        :password,
-        :password_confirmation
-      )
-    end
+  def user_params
+    params.require(:user).permit(
+      :first_name,
+      :last_name,
+      :email,
+      :password,
+      :password_confirmation
+    )
+  end
 end

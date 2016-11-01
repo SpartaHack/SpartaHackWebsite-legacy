@@ -25,10 +25,10 @@
 
       <h4 id="required">* fields are required.</h4>
 
-      <%= simple_form_for :application, :url => "/application", html: { id: "application-form"} do |f| %>
+      <%= simple_form_for @application, :url => "/application", html: { id: "application-form"}, validate: true do |f| %>
       <div class="inner page1">
         <%= simple_fields_for :user do |ff| %>
-        <%= ff.input :first_name, placeholder: "First Name *", required: true, input_html: { class: "half-width-input" }, :label_html => { :class => "no-label" } %>
+        <%= ff.input :first_name, placeholder: "First Name *", required: true, input_html: { class: "half-width-input" }, :label_html => { :class => "no-label" }, validate: { presence: true } %>
         <%= ff.input :last_name, placeholder: "Last Name *", required: true, input_html: { class: "half-width-input" }, :label_html => { :class => "no-label" } %>
         <% end %>
       </div>
@@ -38,20 +38,20 @@
       </div>
 
       <div class="add-margin-top page1" id="birthdate-wrap">
-        <%= f.input :birth_day, collection: 1..31, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
-        <%= f.input :birth_month, collection: Date::MONTHNAMES[1..31], wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
-        <%= f.input :birth_year, collection: (1945..2016).to_a.reverse, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
+        <%= f.input :birth_day, required: true, collection: 1..31, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
+        <%= f.input :birth_month, required: true, collection: Date::MONTHNAMES[1..31], wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
+        <%= f.input :birth_year, required: true, collection: (1945..2016).to_a.reverse, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
       </div>
 
       <div class="add-margin-top page1">
-        <%= f.input :race, collection: ["American Indian or Alaska Native", "Asian", "Black", "Hispanic/Latino", "Middle Eastern or North African", "Native Hawaiian or Pacific Islander", "White", "other"], input_html: { multiple: true }, wrapper_html: {
+        <%= f.input :race, collection: ["American Indian or Alaska Native", "Asian", "Black", "Hispanic/Latino", "Middle Eastern or North African", "Native Hawaiian or Pacific Islander", "White", "Other"], input_html: { multiple: true }, wrapper_html: {
         class: "full-width-input" }, :label_html => { :class => "no-label" } %>
       </div>
 
       <div class="add-margin-top add-margin-bottom page1" id="enrollment-wrap">
         <label id="highschool">Which of the following best describes your current enrollment? *</label>
         <div id="radio-wrap">
-          <%= f.collection_radio_buttons :education, [['highschool', 'High School'] ,['undergraduate', 'Undergraduate Student'],['graduate', 'Graduate Student']], :first, :last %>
+          <%= f.collection_radio_buttons :education, [['highschool', 'High School'] ,['undergraduate', 'Undergraduate Student'],['graduate', 'Graduate Student']], :first, :last, :required => true %>
         </div>
       </div>
 
@@ -80,13 +80,13 @@
         <div class="check">
           <input type="checkbox" value="true" id="other-university-travel-confirm" name="other_universityTravelConfirm"/>
           <label for="other-university-travel-confirm">
-            <div id="other-university-travel-text">traveling from outside of North America?</div>
+            <div id="other-university-travel-text">Traveling from outside of North America?</div>
           </label>
         </div>
       </div>
 
       <div class="inner add-margin-top split-select page1">
-        <%= f.input :graduation_season, collection: ["Fall", "Winter", "Spring", "Summer"], label: false, class: "half-width-input" %>
+        <%= f.input :graduation_season, required: true, collection: ["Fall", "Winter", "Spring", "Summer"], label: false, class: "half-width-input" %>
 
         <select id="graduation_year" name="application[graduation_year]">
           <option></option>
@@ -95,16 +95,16 @@
       </div>
 
       <div class="university-enrolled add-margin-top page1">
-        <%= render partial: "applications/partials/majors" %>
+        <%= render partial: "applications/partials/majors", :object => :application, locals: { :f => f  }%>
       </div>
 
       <div class="hackathons add-margin-top page1">
-        <%= number_field_tag 'hackathons', (@application if @application), placeholder: "How many hackathons have you been to?", name: "application['hackathons']"%>
+        <%= f.input :hackathons, :as => :integer, required: true, placeholder: "How many hackathons have you been to? *", :label_html => { :class => "no-label" }, input_html: { min: '0', step: 1, onkeypress:'return event.charCode >= 48 && event.charCode <= 57' } %>
       </div>
 
       <div class="add-margin-top page1">
         <%= label_tag(:statement, "Why do you want to attend SpartaHack 2016?", class: 'no-label') %>
-        <%= text_area_tag 'application_statement', "#{@application['statement'] if @application}", placeholder: 'Why do you want to attend SpartaHack 2016?', name: "application['statement']" %>
+        <%= f.input :statement, :as => :text, placeholder: "Why do you want to attend SpartaHack 2016?", required: false, :label_html => { :class => "no-label" } %>
       </div>
 
       <div class="links page1">
@@ -120,7 +120,7 @@
 
         <div class="add-margin-top has-icon">
           <%= image_tag "socialMedia/devpost.svg", alt: "devpost Icon", :class => "icon" %>
-          <%= f.input :devpost, placeholder: "devpost handle?", required: false, input_html: { class: "full-width-input" }, :label_html => { :class => "no-label" } %>
+          <%= f.input :devpost, placeholder: "Devpost handle?", required: false, input_html: { class: "full-width-input" }, :label_html => { :class => "no-label" } %>
         </div>
 
         <div class="add-margin-top has-icon">
@@ -135,35 +135,46 @@
       </div>
 
       <div class="add-margin-top page1" id="mlh-disclaimer">
-        <p id="mlh-disclaimer-text">We participate in Major League Hacking (MLH) as a MLH Member Event. You authorize us to share certain application/registration information for event administration, ranking, MLH administration, and occasional messages
-          about hackathons in line with the
-          <a href="https://mlh.io/privacy" target="_blank">MLH Privacy Policy.</a>
+        <p id="mlh-disclaimer-text">I agree to the terms of the MLH
+          <a href="https://github.com/MLH/mlh-policies/tree/master/prize-terms-and-conditions" target="_blank">
+            Contest Terms and Conditions</a>,
+          <a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">
+            Code of Conduct</a>, and
+          <a href="https://mlh.io/privacy" target="_blank">
+            Privacy Policy</a>.
+          Please note that you
+          may receive pre and post-event informational e-mails and occasional
+          messages about hackathons from MLH as per the MLH
+          <a href="https://mlh.io/privacy" target="_blank">
+            Privacy Policy.
+          </a>
         </p>
       </div>
 
       <div class="add-margin-top page1" id="mlh-wrap">
         <div class="check check-mlh">
-          <input type="checkbox" value="true" id="agree" name="mlh"/>
+          <input type="checkbox" value="true" required="true" id="agree" name="mlh"/>
           <label for="agree">
-            <div id="mlh-text">I agree to the
-              <a href="http://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct</a>,
-              <a href="https://mlh.io/privacy" target="_blank">Privacy Policy</a>
-              and
-              <a href="https://github.com/MLH/mlh-policies/tree/master/prize-terms-and-conditions" target="_blank">Contest Terms and Conditions</a>
-              *</div>
+            <div id="mlh-text">I acknowledge and agree to the above statement *
+            </div>
           </label>
         </div>
       </div>
 
-      <% if @application.blank? %>
       <div class="hvr-underline-from-center full page1">
-        <input type="submit" value="NEXT: CREATE ACCOUNT" id="createAccount"/>
+        <input type="submit" value="Next: Create Account" id="createAccount"/>
       </div>
-      <% end %>
 
       <%= simple_fields_for :user do |ff| %>
       <div class="inner page2 hide-page">
         <%= ff.input :email, placeholder: "Email *", required: true, :label_html => { :class => "no-label" }, wrapper: false%>
+      </div>
+
+      <div class="inner page2 hide-page add-margin-top">
+        <label class="email required no-label" for="user_email_confirmation">
+          <abbr title="required">*</abbr> Email
+        </label>
+        <input class="string email required" required="required" aria-required="true" placeholder="Repeat Email *" type="email" name="user[email_confirmation]" id="user_email_confirmation">
       </div>
 
       <div class="add-margin-top inner page2 hide-page">
@@ -171,11 +182,9 @@
         <%= ff.input :password_confirmation, placeholder: "Repeat Password *", required: true, :label_html => { :class => "no-label" }, wrapper: false%>
       </div>
 
-      <% if @application.blank? || @application['status'].blank? %>
       <div class="add-margin-top hvr-underline-from-center full page2 hide-page" id="save-app">
-        <%= submit_tag("#{@application ? 'Update Application' : 'Submit Application'}", :id => "application") %>
+        <%= submit_tag("Submit Application", :id => "application") %>
       </div>
-      <% end %>
 
       <% end %>
 
@@ -185,50 +194,3 @@
 
   </section>
 </div>
-
-<%= javascript_tag do %>
-//validation for form submit
-
-<% if @application %>
-<% if @application['university'] %>
-$("#university").val("<%= @application['university'].html_safe %>").trigger("change");
-<% end %>
-<% if @application['major'] %>
-$("#major").val(<%= raw @application['major'].to_a.to_json %>).trigger("change");
-<% end %>
-<% if @application['birthday'] %>
-$("#birthday").val("<%= @application['birthday'].html_safe %>").trigger("change");
-<% end %>
-<% if @application['birthmonth'] %>
-$("#birthmonth").val("<%= @application['birthmonth'].html_safe %>").trigger("change");
-<% end %>
-<% if @application['birthyear'] %>
-$("#birthyear").val("<%= @application['birthyear'].html_safe %>").trigger("change");
-<% end %>
-<% if @application['gradeLevel'] %>
-$("#gradeLevel").val("<%= @application['gradeLevel'].html_safe %>").trigger("change");
-<% end %>
-<% if @application['gender'] %>
-$("#gender").val("<%= @application['gender'].html_safe %>").trigger("change");
-<% end %>
-<% if @application['hackathons'] %>
-$("#hackathons").val(<%= raw @application['hackathons'] %>).trigger("change");
-<% end %>
-<% if @application['universityStudent'] %>
-document.getElementById("university-student").checked = true;
-<% else %>
-document.getElementById("highschool-student").checked = true;
-<% end %>
-<% if @application['other_universityConfirm'].to_bool == true %>
-$('#other-university-confirm').prop('checked', true);
-<% else %>
-$('#other-university-confirm').prop('checked', false);
-<% end %>
-<% if @application['mlh'] %>
-document.getElementById("agree").checked = true;
-<% end %>
-<% if @application['status'] %>
-$("#save_app :input").attr("disabled", true);
-<% end %>
-<% end %>
-<% end %>
