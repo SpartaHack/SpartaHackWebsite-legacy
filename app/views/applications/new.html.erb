@@ -39,8 +39,8 @@
 
       <div class="add-margin-top page1" id="birthdate-wrap">
         <%= f.input :birth_day, required: true, collection: 1..31, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
-        <%= f.input :birth_month, required: true, collection: Date::MONTHNAMES[1..31], wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
-        <%= f.input :birth_year, required: true, collection: (1945..2016).to_a.reverse, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
+        <%= f.input :birth_month, required: true, collection: (1..12).to_a.map{|i| [I18n.t("date.month_names")[i], i]}, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
+        <%= f.input :birth_year, required: true, collection: (1945..2008).to_a.reverse, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
       </div>
 
       <div class="add-margin-top page1">
