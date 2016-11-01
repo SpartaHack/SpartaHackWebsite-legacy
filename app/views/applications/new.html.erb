@@ -99,7 +99,7 @@
       </div>
 
       <div class="hackathons add-margin-top page1">
-        <%= f.input :hackathons, :as => :integer, placeholder: "How many hackathons have you been to?", :label_html => { :class => "no-label" }, input_html: { min: '0', step: 1 } %>
+        <%= f.input :hackathons, :as => :integer, placeholder: "How many hackathons have you been to?", :label_html => { :class => "no-label" }, input_html: { min: '0', step: 1, onkeypress:'return event.charCode >= 48 && event.charCode <= 57' } %>
       </div>
 
       <div class="add-margin-top page1">
