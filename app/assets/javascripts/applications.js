@@ -8,17 +8,17 @@ $('#application_gender').select2({
 });
 
 $('#application_birth_day').select2({
-  placeholder: "Birth Day",
+  placeholder: "Birth Day *",
   allowClear: true
 });
 
 $('#application_birth_month').select2({
-  placeholder: "Birth Month",
+  placeholder: "Birth Month *",
   allowClear: true
 });
 
 $('#application_birth_year').select2({
-  placeholder: "Birth Year",
+  placeholder: "Birth Year *",
   allowClear: true
 });
 
@@ -28,27 +28,27 @@ $('#application_race').select2({
 });
 
 $('#application_university').select2({
-  placeholder: "Which school do you attend?",
+  placeholder: "Which school do you attend? *",
   allowClear: true
 });
 
 $('#application_travel_origin').select2({
-  placeholder: "Which school will you be traveling from? (Choose closest)",
+  placeholder: "Which school will you be traveling from? (Choose closest) *",
   allowClear: true
 });
 
 $('#graduation_year').select2({
-  placeholder: "Graduation Year",
+  placeholder: "Graduation Year *",
   allowClear: true
 });
 
 $('#application_graduation_season').select2({
-  placeholder: "Graduation Semester",
+  placeholder: "Graduation Semester *",
   allowClear: true
 });
 
 $('#application_major').select2({
-  placeholder: "What are you studying? (Choose all that apply)"
+  placeholder: "What are you studying? (Choose all that apply) *"
 });
 
 ////////////////////////////////////////////////////

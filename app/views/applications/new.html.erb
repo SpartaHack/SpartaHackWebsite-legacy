@@ -38,9 +38,9 @@
       </div>
 
       <div class="add-margin-top page1" id="birthdate-wrap">
-        <%= f.input :birth_day, collection: 1..31, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
-        <%= f.input :birth_month, collection: Date::MONTHNAMES[1..31], wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
-        <%= f.input :birth_year, collection: (1945..2016).to_a.reverse, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
+        <%= f.input :birth_day, required: true, collection: 1..31, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
+        <%= f.input :birth_month, required: true, collection: Date::MONTHNAMES[1..31], wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
+        <%= f.input :birth_year, required: true, collection: (1945..2016).to_a.reverse, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
       </div>
 
       <div class="add-margin-top page1">
@@ -51,7 +51,7 @@
       <div class="add-margin-top add-margin-bottom page1" id="enrollment-wrap">
         <label id="highschool">Which of the following best describes your current enrollment? *</label>
         <div id="radio-wrap">
-          <%= f.collection_radio_buttons :education, [['highschool', 'High School'] ,['undergraduate', 'Undergraduate Student'],['graduate', 'Graduate Student']], :first, :last %>
+          <%= f.collection_radio_buttons :education, [['highschool', 'High School'] ,['undergraduate', 'Undergraduate Student'],['graduate', 'Graduate Student']], :first, :last, :required => true %>
         </div>
       </div>
 
@@ -86,7 +86,7 @@
       </div>
 
       <div class="inner add-margin-top split-select page1">
-        <%= f.input :graduation_season, collection: ["Fall", "Winter", "Spring", "Summer"], label: false, class: "half-width-input" %>
+        <%= f.input :graduation_season, required: true, collection: ["Fall", "Winter", "Spring", "Summer"], label: false, class: "half-width-input" %>
 
         <select id="graduation_year" name="application[graduation_year]">
           <option></option>
@@ -99,7 +99,7 @@
       </div>
 
       <div class="hackathons add-margin-top page1">
-        <%= f.input :hackathons, :as => :integer, placeholder: "How many hackathons have you been to?", :label_html => { :class => "no-label" }, input_html: { min: '0', step: 1, onkeypress:'return event.charCode >= 48 && event.charCode <= 57' } %>
+        <%= f.input :hackathons, :as => :integer, required: true, placeholder: "How many hackathons have you been to? *", :label_html => { :class => "no-label" }, input_html: { min: '0', step: 1, onkeypress:'return event.charCode >= 48 && event.charCode <= 57' } %>
       </div>
 
       <div class="add-margin-top page1">
@@ -153,7 +153,7 @@
 
       <div class="add-margin-top page1" id="mlh-wrap">
         <div class="check check-mlh">
-          <input type="checkbox" value="true" id="agree" name="mlh"/>
+          <input type="checkbox" value="true" required="true" id="agree" name="mlh"/>
           <label for="agree">
             <div id="mlh-text">I acknowledge and agree to the above statement *
             </div>
