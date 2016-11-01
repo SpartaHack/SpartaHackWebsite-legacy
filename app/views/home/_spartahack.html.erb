@@ -94,10 +94,10 @@
 
     <div id="notify-email">
       <p>
-        Get notified when applications open!
+        Find out how to become a volunteer!
       </p>
       <%= form_tag "/subscribe", :remote => true, :authenticity_token => true %>
-        <%= email_field_tag "emailinput", nil, id: "notify-email-input", class: "remove-outline", placeholder: "SIGN UP", autocomplete: "off" %>
+        <%= email_field_tag "emailinput", nil, id: "notify-email-input", class: "remove-outline", placeholder: "VOLUNTEER SIGN UP", autocomplete: "off" %>
         <button class="submit-button hide">SUBMIT</button>
       </form>
     </div>
