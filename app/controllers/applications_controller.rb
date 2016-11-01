@@ -12,7 +12,7 @@ class ApplicationsController < ::ApplicationController
     if user.save
       session[:current_session] = Session.create( {
         :email => user_params[:email], :password => user_params[:password]
-      })
+      }).id
       create_application
     else
       p user.errors.messages
