@@ -25,7 +25,9 @@ class ApplicationsController < ::ApplicationController
     set_user_auth_token
     app = Application.new(app_params.to_h)
     if app.save
-      UserMailer.notify_of_status( app.email ).deliver_now
+      UserMailer.welcome_email(
+        user_params[:first_name], user_params[:email]
+      ).deliver_now
       redirect_to '/dashboard'
     else
       p app.errors.messages
