@@ -1,3 +1,3 @@
 class Session < ActiveResource::Base
-  self.site = "https://d.api.spartahack.com"
+  self.site = "#{ENV['API_SITE']}"
 end

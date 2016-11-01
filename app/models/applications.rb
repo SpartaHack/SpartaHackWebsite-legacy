@@ -1,4 +1,4 @@
 class Applications < ActiveResource::Base
-  self.site = "https://d.api.spartahack.com"
+  self.site = "#{ENV['API_SITE']}"
   self.element_name = "application"
 end
