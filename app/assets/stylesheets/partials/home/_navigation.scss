@@ -13,27 +13,25 @@ nav {
   animation: fade-in 1.45s linear alternate;
   animation-delay: 1.2s;
   animation-fill-mode: forwards;
-  transition: background-color .5s linear;
+  transition: background-color 0.5s linear;
 
   &.dark {
     background-color: $dark-brown;
   }
-
   @media screen and (max-width: 705px) {
     justify-content: center;
   }
-
   @media screen and (max-width: 485px) {
     display: none !important;
   }
 
-  #left-wrap{
+  #left-wrap {
     width: 442px;
     @media screen and (max-width: 1025px) {
       width: auto;
     }
     @media screen and (max-width: 705px) {
-      display:none;
+      display: none;
     }
   }
 
@@ -51,6 +49,7 @@ nav {
     @media screen and (max-width: 1025px) {
       display: none;
     }
+
     a {
       margin: 0;
       padding: 0;
@@ -61,7 +60,6 @@ nav {
 
       &::after {
         display: none;
-
       }
     }
   }
@@ -76,9 +74,8 @@ nav {
   ul {
     list-style: none;
     margin: 0;
-    padding: 0px 76px 0px 0px;
+    padding: 0 76px 0 0;
     height: auto;
-
     @media (max-width: 710px) {
       padding: 0;
     }
@@ -87,10 +84,10 @@ nav {
       // animation: fade-in 1.45s linear alternate;
       // animation-delay: 1.2s;
       float: left;
-      padding: 0px;
+      padding: 0;
       text-transform: uppercase;
       font-family: "Lato-Light";
-      padding: 0px 25px;
+      padding: 0 25px;
       font-size: 15px;
       color: $medium-gold;
 
@@ -100,11 +97,11 @@ nav {
 
         &::after {
           position: relative;
-
         }
 
-        &:hover, &.active {
-            &::after {
+        &.active,
+        &:hover {
+          &::after {
             content: "";
             display: inherit;
             position: absolute;
@@ -112,19 +109,15 @@ nav {
             left: 0;
             height: 1px;
             width: 100%;
-            background: #B58A2D, ;
-            background: linear-gradient(left, #FAE2A4 0%, #B58A2D 100%);
+            background: #B58A2D,;
+            background: linear-gradient(to left, #FAE2A4 0%, #B58A2D 100%);
           }
         }
-
       }
-
     }
-
   }
 
   #mobile {
     display: none;
   }
-
 }
