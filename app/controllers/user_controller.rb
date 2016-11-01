@@ -30,13 +30,13 @@ class UserController < ApplicationController
   end
 
   private
-    def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, roles: [])
-    end
+  def user_params
+    params.require(:user).permit(:email, :password, :password_confirmation, roles: [])
+  end
 
-    def check_login
-      if !current_user.present?
-        redirect_to '/login'
-      end
+  def check_login
+    if !current_user.present?
+      redirect_to '/login'
     end
+  end
 end

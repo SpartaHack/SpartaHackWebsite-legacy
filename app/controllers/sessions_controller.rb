@@ -8,12 +8,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    session_response = Session.create( { :email => session_params[:email], :password => session_params[:password] } )
-    if session_response.errors.messages.empty?
-      session[:current_session] = session_response
+    session[:current_session] = Session.create( { :email => session_params[:email], :password => session_params[:password] } )
+
+    if session[:current_session].errors.messages.empty?
       redirect_to '/dashboard'
     else
       p session_response.errors.messages
+      session[:current_session] = nil
       flash[:error] = session_response.errors.messages[:base][0]
       render :new
     end
@@ -26,14 +27,14 @@ class SessionsController < ApplicationController
   end
 
   private
-    def session_params
-      params.require(:session).permit(:email, :password)
-    end
+  def session_params
+    params.require(:session).permit(:email, :password)
+  end
 
-    def check_login
-      if current_user.present?
-        redirect_to '/dashboard'
-      end
+  def check_login
+    if current_user.present?
+      redirect_to '/dashboard'
     end
+  end
 
 end
