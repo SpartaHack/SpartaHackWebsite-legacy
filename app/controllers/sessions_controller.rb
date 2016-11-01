@@ -8,9 +8,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    session[:current_session] = Session.create( { :email => session_params[:email], :password => session_params[:password] } )
+    session_response = Session.create( { :email => session_params[:email], :password => session_params[:password] } )
 
-    if session[:current_session].errors.messages.empty?
+    if session_response.errors.messages.empty?
+      session[:current_session] = session_response.id
       redirect_to '/dashboard'
     else
       p session_response.errors.messages
