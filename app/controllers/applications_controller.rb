@@ -1,46 +1,54 @@
 class ApplicationsController < ::ApplicationController
   wrap_parameters :user, include: [:password, :password_confirmation]
   before_action :set_http_auth_token, only: [:create]
-  before_action :set_user_auth_token, only: [:create_application]
 
 
   def new
     @application = Application.new
-    p @application
   end
 
   def create
     user = User.new(user_params.to_h)
     if user.save
-      session[:current_session] = Session.create( { :email => user_params[:email], :password => user_params[:password] } )
+      session[:current_session] = Session.create( {
+        :email => user_params[:email], :password => user_params[:password]
+      })
       create_application
     else
       p user.errors.messages
       # flash[:error] = user.errors.messages[:base][0]
-      # render :new
     end
+
   end
 
   def create_application
-    if Applications.new(app_params.to_h)
-      debugger
+    set_user_auth_token
+    app = Application.new(app_params.to_h)
+    if app.save
+      UserMailer.welcome_email(
+        user_params[:first_name], user_params[:email]
+      ).deliver_now
+      redirect_to '/dashboard'
+    else
+      p app.errors.messages
     end
   end
 
   private
   def app_params
     params.require(:application).permit(
-      :gender,
       :birth_day,
       :birth_month,
       :birth_year,
       :education,
       :university,
+      :gender,
+      {:race => []},
       :other_university,
       :travel_origin,
       :graduation_season,
       :graduation_year,
-      :major,
+      {:major => []},
       :hackathons,
       :github,
       :linkedin,
