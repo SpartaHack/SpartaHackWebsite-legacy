@@ -72,7 +72,7 @@
       <div class="add-margin-top add-margin-bottom page1" id="enrollment-wrap">
         <label id="highschool">Which of the following best describes your current enrollment? *</label>
         <div id="radio-wrap">
-          <%= f.collection_radio_buttons :education, [['highschool', 'High School'] ,['undergraduate', 'Undergraduate Student'],['graduate', 'Graduate Student']], :first, :last, :required => true %>
+          <%= f.collection_radio_buttons :education, [['High School', 'High School'] ,['Undergraduate', 'Undergraduate Student'],['Graduate', 'Graduate Student']], :first, :last, :required => true %>
         </div>
       </div>
 
@@ -96,7 +96,7 @@
       <div class="add-margin-top add-margin-bottom page1" id="enrollment-wrap">
         <label id="outside-north-america">Traveling from outside of North America? *</label>
         <div class="radio-wrap">
-          <%= f.collection_radio_buttons :outside_north_america, [['yes', 'Yes'] ,['no', 'No']], :first, :last, :required => true %>
+          <%= f.collection_radio_buttons :outside_north_america, [['Yes', 'Yes'] ,['No', 'No']], :first, :last, :required => true %>
         </div>
       </div>
 
