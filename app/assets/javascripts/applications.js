@@ -109,7 +109,7 @@ function validateFormOne() {
   } else if ($("#application_birth_day").val().length == 0 || $("#application_birth_year").val().length == 0 || $("#application_birth_month").val().length == 0) {
     $("#popup").html("Your full birthdate is required.")
     popUpTop();
-  } else if (!document.getElementById('application_education_highschool').checked && !document.getElementById('application_education_undergraduate').checked && !document.getElementById('application_education_graduate').checked) {
+  } else if (!document.getElementById('application_education_high_school').checked && !document.getElementById('application_education_undergraduate').checked && !document.getElementById('application_education_graduate').checked) {
     $("#popup").html("Please indicate your current enrollment.");
     popUpTop();
   } else if ((document.getElementById('application_education_undergraduate').checked || document.getElementById('application_education_graduate').checked) && ($("#application_university").val().length === 0) && !($('#other_university_enrolled_confirm')[0].checked && $('#application_other_university').val() !== "")) {

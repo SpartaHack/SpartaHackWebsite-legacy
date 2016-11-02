@@ -368,7 +368,6 @@
       display: -webkit-flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
       border: 1px solid $light-gold;
       border-radius: 2px;
       background: none;
@@ -388,6 +387,7 @@
 
     #continent-wrap,
     #enrollment-wrap {
+      align-items: center;
       @media (max-width: 550px) {
         height: 75px;
       }
