@@ -1,4 +1,8 @@
 class User < ActiveResource::Base
-  self.headers["AUTHORIZATION"] = "Token token=\"#{ENV['AUTH_TOKEN']}\""
-  self.site = "d.api.spartahack.com"
+  self.site = "#{ENV['API_SITE']}"
+  self.element_name = "user"
+
+  schema do
+    string :first_name, :last_name, :email, :password, :password_confirmation
+  end
 end

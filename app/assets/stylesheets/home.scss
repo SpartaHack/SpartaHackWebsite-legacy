@@ -1,86 +1,17 @@
-///////////////////////////////////////
-// Preview Site
-///////////////////////////////////////
+/*
+ *= require font-awesome
+ *
+ */
 
-.border {
-  position: absolute;
-  opacity: 0;
-  animation: fade-in 1s linear alternate;
-  animation-delay: 1s;
-  animation-fill-mode: forwards;
-  @media screen and (max-width: 710px) {
-   display:none;
-  }
-  &.top {
-    background: $light-gold;
-    left: 96px;
-    height: 1px;
-    &.inner {
-      top: 96px;
-      width: calc(100vw - 479px);
-      @media screen and (max-width: 746px) {
-        display:none;
-      }
-    }
-    &.outer {
-      top: 76px;
-      right: 96px;
-      width: calc(100vw - 192px);
-    }
-  }
-  &.right {
-    background: linear-gradient($light-gold, $dark-gold);
-    top: 76px;
-    width: 1px;
-    &.inner {
-      right: 96px;
-      height: calc(100% - 248px);
-    }
-    &.outer {
-      right: 76px;
-      height: 50%;
-      &.lower {
-        background: linear-gradient($dark-gold, $light-gold);
-        top: initial;
-        bottom: 96px;
-        height: 30%;
-      }
-    }
-  }
-  &.bottom {
-    background: $medium-gold;
-    height: 1px;
-    right: 76px;
-    &.inner {
-      bottom: 96px;
-      right: 96px;
-      width: calc(100vw - 499px);
-    }
-    &.outer {
-      bottom: 76px;
-      width: calc(100vw - 172px);
-    }
-  }
-  &.left {
-    background: linear-gradient($dark-gold, $medium-gold);
-    width: 1px;
-    &.inner {
-      left: 96px;
-      bottom: 76px;
-      height: calc(100% - 248px);
-    }
-    &.outer {
-      background: linear-gradient($light-gold, $dark-gold);
-      left: 76px;
-      top: 150px;
-      height: 40%;
-      &.lower {
-        background: linear-gradient($dark-gold, $light-gold);
-        top: initial;
-        bottom: 96px;
-        height: 30%;
-      }
-    }
+ @import "partials/colors";
+ @import "partials/fonts";
+ @import "partials/border";
+
+body {
+  padding: 100vh 20% 115px;
+  @media (max-width: 710px) {
+    margin-top: 90px;
+    padding: 50vh 5% 20px;
   }
 }
 
@@ -225,8 +156,8 @@
   }
 }
 
-@import "../partials/home/navigation";
-@import "../partials/home/head";
-@import "../partials/home/spartahack";
-@import "../partials/home/faq";
-@import "../partials/home/sponsors";
+@import "partials/home/navigation";
+@import "partials/home/head";
+@import "partials/home/spartahack";
+@import "partials/home/faq";
+@import "partials/home/sponsors";
