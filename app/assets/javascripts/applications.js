@@ -60,7 +60,7 @@ $('#other_university_enrolled_confirm').click(function() {
 });
 
 $('input[name="application[education]"]').change(function() {
-  if (this.value === "undergraduate" || this.value === "graduate") {
+  if (this.value === "Undergraduate" || this.value === "Graduate") {
     $('.university-enrolled').show();
   } else {
     $('.university-enrolled').hide();
@@ -71,7 +71,7 @@ $('input[name="application[education]"]').change(function() {
 });
 
 $('input[name="application[outside_north_america]"]').change(function() {
-  if (this.value === "yes") {
+  if (this.value === "Yes") {
     $('.university-traveling').hide();
   } else {
     $('.university-traveling').show();

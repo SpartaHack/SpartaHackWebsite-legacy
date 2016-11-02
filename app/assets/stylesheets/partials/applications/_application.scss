@@ -360,15 +360,15 @@
       text-align: center;
     }
 
+    #continent-wrap,
     #enrollment-wrap,
     #other-university-wrap {
       color: $medium-gold;
       display: flex;
       display: -webkit-flex;
       flex-direction: column;
-      -webkit-flex-direction: column;
       justify-content: center;
-      -webkit-justify-content: center;
+      align-items: center;
       border: 1px solid $light-gold;
       border-radius: 2px;
       background: none;
@@ -386,6 +386,7 @@
       }
     }
 
+    #continent-wrap,
     #enrollment-wrap {
       @media (max-width: 550px) {
         height: 75px;
@@ -422,6 +423,10 @@
       -webkit-justify-content: space-around;
       align-items: center;
       -webkit-align-items: center;
+    }
+
+    #outside-na {
+      max-width: 300px;
     }
 
     #birthdate-wrap {
