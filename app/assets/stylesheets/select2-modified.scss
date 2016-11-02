@@ -71,6 +71,7 @@
 }
 
 .select2-container .select2-search--inline {
+  width: 100%;
   float: left;
 }
 
@@ -417,6 +418,7 @@
   margin-top: 8px;
   // max-width: 350px !important;
   min-width: 228px !important;
+  width: 100% !important;
   height: 35px !important;
   font-weight: 100;
   color: $dark-gold;
