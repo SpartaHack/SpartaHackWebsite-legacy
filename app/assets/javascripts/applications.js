@@ -143,6 +143,8 @@ function validateFormOne() {
   }
 }
 
+var emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
 function validateFormTwo() {
   if ($("#user_email").val().length === 0) {
     $("#popup").html("Please indicate your email");
@@ -152,6 +154,9 @@ function validateFormTwo() {
     popUpTop();
   } else if ($("#user_email_confirmation").val() !== $("#user_email").val()) {
     $("#popup").html("Your emails do not match.");
+    popUpTop();
+  } else if (!emailPattern.test($("#user_email").val())) {
+    $("#popup").html("Your email is invalid.");
     popUpTop();
   } else if ($("#user_password").val().length === 0) {
     $("#popup").html("Please indicate your password");

@@ -27,6 +27,11 @@
   <div id="popup"></div>
 </div>
 
+<div id="apply-online">
+  <h1>Sorry :(</h1>
+  <p>Please apply on desktop for a better experience</p>
+</div>
+
 <div class="wrap-main">
   <section id="app">
     <a href="#app" id="backApp" class="page2 hide-page">Back to Application</a>
@@ -176,7 +181,7 @@
 
       <%= simple_fields_for :user do |ff| %>
       <div class="inner page2 hide-page">
-        <%= ff.input :email, placeholder: "Email *", required: true, :label_html => { :class => "no-label" }, wrapper: false%>
+        <%= ff.input :email, placeholder: "Email *", required: true, label_html: { :class => "no-label" },  wrapper: false%>
       </div>
 
       <div class="inner page2 hide-page add-margin-top">
