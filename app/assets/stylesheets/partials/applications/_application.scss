@@ -50,7 +50,6 @@
 }
 
 #popup {
-  position: fixed;
   z-index: 9;
   background-color: $dark-gold;
   border: 1px solid $dark-gold;
@@ -82,13 +81,6 @@
   right: 0;
   top: 75px;
   margin: auto;
-  animation: popup-error-wrapper 1s 1;
-  -webkit-animation: popup-error-wrapper 1s 1;
-  animation-fill-mode: forwards;
-  animation-delay: 5s;
-  -webkit-animation-delay: 5s;
-  /* Safari and Chrome */
-  -webkit-animation-fill-mode: forwards;
   @media (max-width: 550px) {
     width: 87%;
   }
@@ -120,16 +112,6 @@
   ul {
     list-style: none;
     text-align: left;
-  }
-}
-@keyframes popup-wrapper {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-    visibility: hidden;
   }
 }
 
