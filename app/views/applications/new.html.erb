@@ -70,15 +70,15 @@
         </div>
       </div>
 
-      <div class="add-margin-bottom university-enrolled university page1">
+      <div class="add-margin-bottom university-enrolled university page1" style="display:none;">
         <%= render partial: "applications/partials/universities", :object => :application, locals: { type: "enrolled", :f => f  } %>
       </div>
 
-      <div class="add-margin-bottom university-enrolled page1" id="other-university-wrap">
+      <div class="add-margin-bottom university-enrolled page1" id="other-university-wrap" style="display:none;">
         <div class="check">
-          <input type="checkbox" value="true" id="other_university_enrolled-confirm" name="application[other_universityEnrolledConfirm]"/>
-          <label for="other_university_enrolled-confirm">
-            <div id="other_university_enrolled-text">College/University not listed?</div>
+          <input type="checkbox" value="true" id="other_university_enrolled_confirm" name="application[other_universityEnrolledConfirm]"/>
+          <label for="other_university_enrolled_confirm">
+            <div id="other_university_enrolled_text">College/University not listed?</div>
           </label>
         </div>
       </div>
@@ -87,7 +87,14 @@
         <%= f.input :other_university, placeholder: "Other College/University", required: false, input_html: { class: "full-width-input" }, :label_html => { :class => "no-label" } %>
       </div>
 
-      <div class="add-margin-bottom university-traveling university page1">
+      <div class="add-margin-top add-margin-bottom page1" id="enrollment-wrap">
+        <label id="outside-north-america">Traveling from outside of North America? *</label>
+        <div class="radio-wrap">
+          <%= f.collection_radio_buttons :outside_north_america, [['yes', 'Yes'] ,['no', 'No']], :first, :last, :required => true %>
+        </div>
+      </div>
+
+      <div class="add-margin-bottom university-traveling university page1" style="display:none;">
         <%= render partial: "applications/partials/universities", locals: { type: "traveling", :f => f } %>
       </div>
 
@@ -109,7 +116,7 @@
         </select>
       </div>
 
-      <div class="university-enrolled add-margin-top page1">
+      <div class="university-enrolled add-margin-top page1" style="display:none;">
         <%= render partial: "applications/partials/majors", :object => :application, locals: { :f => f  }%>
       </div>
 
@@ -118,8 +125,8 @@
       </div>
 
       <div class="add-margin-top page1">
-        <%= label_tag(:statement, "Why do you want to attend SpartaHack 2016?", class: 'no-label') %>
-        <%= f.input :statement, :as => :text, placeholder: "Why do you want to attend SpartaHack 2016?", required: false, :label_html => { :class => "no-label" } %>
+        <%= label_tag(:statement, "Why do you want to attend SpartaHack?", class: 'no-label') %>
+        <%= f.input :statement, :as => :text, placeholder: "Why do you want to attend SpartaHack?", required: false, :label_html => { :class => "no-label" } %>
       </div>
 
       <div class="links page1">

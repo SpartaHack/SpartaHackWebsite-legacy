@@ -20,7 +20,7 @@
 // Variables
 ///////////////////////////////////////////////////
 var headerBoxShadow = "0px 0px 22px 0px rgba(0,0,0,0.04)";
-var themeElements = "body, nav, .active-q, .sweet-alert, input";
+var themeElements = "body, nav, .active-q, .sweet-alert, input, #popup-wrapper";
 
 ////////////////////////////////////////////////////
 // Dark Theme
