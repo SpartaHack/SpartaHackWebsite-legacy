@@ -114,12 +114,6 @@ textarea {
   }
 }
 
-::-webkit-input-placeholder {
-  /* WebKit browsers */
-  opacity: 1 !important;
-  color: $light-gold !important;
-}
-
 span {
   &:focus {
     box-shadow: 0 10px 25px rgba(0,0,0,0.08);
@@ -130,6 +124,12 @@ span {
 
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px white inset;
+  -webkit-text-fill-color: $medium-gold;
+}
+
+.dark input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px $dark-brown inset;
+  -webkit-text-fill-color: $medium-gold;
 }
 
 ::placeholder {
