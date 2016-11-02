@@ -52,11 +52,31 @@ $('#application_major').select2({
 });
 
 ////////////////////////////////////////////////////
-// Application
+// Conditionality
 ///////////////////////////////////////////////////
-$('#other-university-enrolled-confirm').click(function() {
-  $('.other-university-enrolled').toggle();
+$('#other_university_enrolled_confirm').click(function() {
+  $('.other_university_enrolled').toggle();
 });
+
+$('input[name="application[education]"]').change(function() {
+  if (this.value === "undergraduate" || this.value === "graduate") {
+    $('.university-enrolled').show();
+  } else {
+    $('.university-enrolled').hide();
+  }
+});
+
+$('input[name="application[outside_north_america]"]').change(function() {
+  if (this.value === "yes") {
+    $('.university-traveling').hide();
+  } else {
+    $('.university-traveling').show();
+  }
+});
+
+////////////////////////////////////////////////////
+// Validations
+///////////////////////////////////////////////////
 
 $('#createAccount').click(function(event) {
   event.preventDefault();
