@@ -98,15 +98,6 @@
         <%= render partial: "applications/partials/universities", locals: { type: "traveling", :f => f } %>
       </div>
 
-      <div class="add-margin-bottom university-traveling page1" id="other-university-wrap">
-        <div class="check">
-          <input type="checkbox" value="true" id="other-university-travel-confirm" name="other_universityTravelConfirm"/>
-          <label for="other-university-travel-confirm">
-            <div id="other-university-travel-text">Traveling from outside of North America?</div>
-          </label>
-        </div>
-      </div>
-
       <div class="inner add-margin-top split-select page1">
         <%= f.input :graduation_season, required: true, collection: ["Fall", "Winter", "Spring", "Summer"], label: false, class: "half-width-input" %>
         <%= f.input :graduation_year, required: true, collection: (2016..2025), label: false, class: "half-width-input" %>
