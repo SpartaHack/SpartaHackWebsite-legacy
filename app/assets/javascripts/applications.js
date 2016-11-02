@@ -191,7 +191,7 @@ $('#popup-wrapper, #popup-error-wrapper').click(function(e) {
   if (e.target !== this)
     return;
 
-  $('#popup-wrapper').fadeOut('slow');
+  $('#popup-wrapper, #popup-error-wrapper').fadeOut('slow');
 });
 
 $(window).resize(function() {

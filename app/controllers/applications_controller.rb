@@ -4,16 +4,22 @@ class ApplicationsController < ::ApplicationController
 
 
   def new
-    @application = Application.new
+    if flash[:app_params]
+      @application = Application.new(flash[:app_params])
+      @user = User.new(flash[:user_params])
+    else
+      @application = Application.new
+      @user = User.new
+    end
   end
 
   def create
-    p app_params
+    p params
     flash[:params] = app_params
     flash[:popup] = []
     flash[:popup_errors] = []
     if user_params['first_name'].blank? then flash[:popup].push("First name") end
-    if app_params['last_name'].blank? then flash[:popup].push("Last name") end
+    if user_params['last_name'].blank? then flash[:popup].push("Last name") end
     if user_params['email'].blank? then flash[:popup].push("Email") end
     if user_params['email_confirmation'].blank? then flash[:popup].push("Email confirmation") end
     if user_params['email_confirmation'] != user_params['email'] && user_params['email'].length > 1
@@ -38,11 +44,13 @@ class ApplicationsController < ::ApplicationController
     if app_params["graduation_season"].blank? then flash[:popup].push("Graduation season") end
     if app_params["graduation_year"].blank? then flash[:popup].push("Graduation year") end
     if app_params['major'].blank? then flash[:popup].push("Major") end
-    if app_params['hackathons'].blank? then flash[:popup].push("Major") end
-    if app_params["mlh"].blank?
+    if app_params['hackathons'].blank? then flash[:popup].push("Hackathons attended count") end
+    if params["mlh"] != "true"
       flash[:popup_errors].push("You must agree to our terms.")
     end
     if flash[:popup].size > 0 || flash[:popup_errors].size > 0 || !flash[:popup_agree].blank?
+      flash[:app_params] = app_params.to_h
+      flash[:user_params] = user_params.to_h
       redirect_to '/apply' and return
     end
 
@@ -66,6 +74,7 @@ class ApplicationsController < ::ApplicationController
       UserMailer.welcome_email(
         user_params[:first_name], user_params[:email]
       ).deliver_now
+      flash[:email] = user_params[:email]
       redirect_to '/dashboard'
     else
       p app.errors.messages
