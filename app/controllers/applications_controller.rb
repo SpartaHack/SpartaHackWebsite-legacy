@@ -53,8 +53,8 @@ class ApplicationsController < ::ApplicationController
       }).id
       create_application
     else
-      p user.errors.messages
-      # flash[:error] = user.errors.messages[:base][0]
+      flash[:popup_errors] = user.errors.messages[:base][0]
+      redirect_to '/apply' and return
     end
 
   end

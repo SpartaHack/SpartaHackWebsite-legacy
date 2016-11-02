@@ -1,55 +1,56 @@
 ////////////////////////////////////////////////////
 // Select2 calls
 ///////////////////////////////////////////////////
+function createSelects() {
+  $('#application_gender').select2({
+    placeholder: "Your Gender (For statistical purposes only)",
+    allowClear: true
+  });
 
-$('#application_gender').select2({
-  placeholder: "Your Gender (For statistical purposes only)",
-  allowClear: true
-});
+  $('#application_birth_day').select2({
+    placeholder: "Birth Day *",
+    allowClear: true
+  });
 
-$('#application_birth_day').select2({
-  placeholder: "Birth Day *",
-  allowClear: true
-});
+  $('#application_birth_month').select2({
+    placeholder: "Birth Month *",
+    allowClear: true
+  });
 
-$('#application_birth_month').select2({
-  placeholder: "Birth Month *",
-  allowClear: true
-});
+  $('#application_birth_year').select2({
+    placeholder: "Birth Year *",
+    allowClear: true
+  });
 
-$('#application_birth_year').select2({
-  placeholder: "Birth Year *",
-  allowClear: true
-});
+  $('#application_race').select2({
+    placeholder: "Ethnicity/Race (Choose all that apply) (For statistical purposes only)",
+    allowClear: true
+  });
 
-$('#application_race').select2({
-  placeholder: "Ethnicity/Race (Choose all that apply) (For statistical purposes only)",
-  allowClear: true
-});
+  $('#application_university').select2({
+    placeholder: "Which school do you attend? *",
+    allowClear: true
+  });
 
-$('#application_university').select2({
-  placeholder: "Which school do you attend? *",
-  allowClear: true
-});
+  $('#application_travel_origin').select2({
+    placeholder: "Which school will you be traveling from? (Choose closest) *",
+    allowClear: true
+  });
 
-$('#application_travel_origin').select2({
-  placeholder: "Which school will you be traveling from? (Choose closest) *",
-  allowClear: true
-});
+  $('#application_graduation_year').select2({
+    placeholder: "Graduation Year *",
+    allowClear: true
+  });
 
-$('#application_graduation_year').select2({
-  placeholder: "Graduation Year *",
-  allowClear: true
-});
+  $('#application_graduation_season').select2({
+    placeholder: "Graduation Semester *",
+    allowClear: true
+  });
 
-$('#application_graduation_season').select2({
-  placeholder: "Graduation Semester *",
-  allowClear: true
-});
-
-$('#application_major').select2({
-  placeholder: "What are you studying? (Choose all that apply) *"
-});
+  $('#application_major').select2({
+    placeholder: "What are you studying? (Choose all that apply) *"
+  });
+}
 
 ////////////////////////////////////////////////////
 // Conditionality
@@ -87,7 +88,9 @@ $('input[name="application[outside_north_america]"]').change(function() {
 
 $('#createAccount').click(function(event) {
   event.preventDefault();
+  console.log("before val 1")
   validateFormOne();
+  console.log("after val 1")
   return false;
 });
 
@@ -184,9 +187,19 @@ function popUpTop() {
   $("#popup-wrapper").fadeIn("slow");
 }
 
-$('#popup-wrapper').click(function(e) {
+$('#popup-wrapper, #popup-error-wrapper').click(function(e) {
   if (e.target !== this)
     return;
 
   $('#popup-wrapper').fadeOut('slow');
 });
+
+$(window).resize(function() {
+  createSelects();
+})
+
+$(window).scroll(function() {
+  $("#popup-wrapper, #popup-error-wrapper").fadeOut('fast');
+});
+
+createSelects();
