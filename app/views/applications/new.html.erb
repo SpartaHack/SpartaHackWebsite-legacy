@@ -109,11 +109,7 @@
 
       <div class="inner add-margin-top split-select page1">
         <%= f.input :graduation_season, required: true, collection: ["Fall", "Winter", "Spring", "Summer"], label: false, class: "half-width-input" %>
-
-        <select id="graduation_year" name="application[graduation_year]">
-          <option></option>
-          <%= options_for_select((2016..2025).to_a)%>
-        </select>
+        <%= f.input :graduation_year, required: true, collection: (2016..2025), label: false, class: "half-width-input" %>
       </div>
 
       <div class="university-enrolled add-margin-top page1" style="display:none;">
