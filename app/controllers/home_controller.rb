@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:subscribe, :rememberTheme]
 
-  include ApplicationHelper
   require 'json'
 
   def index
@@ -27,7 +26,7 @@ class HomeController < ApplicationController
       	@type = "success"
       	@desc = "Now you just need to confirm your email address!"
       	@title = "Sweet!"
-      rescue Exception => e
+      rescue Exception
       	@type = "error"
       	@desc = "You've already signed up with this email."
       	@title = "Uh Oh!"

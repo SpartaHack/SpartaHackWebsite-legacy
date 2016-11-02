@@ -1,0 +1,14 @@
+body {
+  padding: 115px 20%;
+  @media (max-width: 710px) {
+    margin-top: 90px;
+    padding: 20px 5%;
+  }
+}
+@import "partials/colors";
+@import "partials/animations";
+@import "partials/fonts";
+@import "partials/home/navigation";
+@import "partials/border";
+@import "select2-modified";
+@import "partials/applications/application";

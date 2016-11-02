@@ -40,6 +40,12 @@ gem 'mailchimp-api', require: 'mailchimp'
 
 gem 'sweetalert-rails'
 
+gem "font-awesome-rails"
+
+gem 'client_side_validations', git: 'https://github.com/DavyJonesLocker/client_side_validations.git', branch: 'rails5'
+
+gem 'client_side_validations-simple_form', git: 'https://github.com/DavyJonesLocker/client_side_validations-simple_form.git', branch: 'rails5'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
