@@ -1,12 +1,27 @@
 <%= render "user/navigation" %>
 
-<% if flash[:popup] %>
-<div id="popup-error-wrapper">
-  <div id="popup-error">
-    <%= "#{flash[:popup]}" %>
-    <div id="sub-text"><%= "#{flash[:sub]}" %></div>
+<% if !flash[:popup].blank? || !flash[:popup_errors].blank? %>
+  <div id="popup-error-wrapper">
+    <div id="popup-error">
+    <% if !flash[:popup].blank? %>
+      The following can not be blank
+      <ul>
+        <% flash[:popup].each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+      </br>
+    <% end %>
+    <% if !flash[:popup_errors].blank? %>
+      The following errors occured
+      <ul>
+        <% flash[:popup_errors].each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    </div>
   </div>
-</div>
 <% end %>
 <div id="popup-wrapper">
   <div id="popup"></div>

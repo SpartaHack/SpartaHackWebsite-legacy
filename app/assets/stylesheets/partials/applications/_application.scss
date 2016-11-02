@@ -623,7 +623,7 @@
   height: 100%;
   left: 0;
   right: 0;
-  top: 60px;
+  top: 75px;
   margin: auto;
   animation: popup-wrapper 1s 1;
   -webkit-animation: popup-wrapper 1s 1;
@@ -665,11 +665,10 @@
   position: fixed;
   z-index: 9;
   background-color: rgba(3, 3, 22, .9);
-  width: 100%;
   height: 100%;
   left: 0;
   right: 0;
-  top: 60px;
+  top: 75px;
   margin: auto;
   animation: popup-error-wrapper 1s 1;
   -webkit-animation: popup-error-wrapper 1s 1;
@@ -701,15 +700,14 @@
   width: 528px;
   left: 0;
   right: 0;
-  top: 60px;
   margin: auto;
   @media (max-width: 550px) {
     width: 87%;
   }
 
-  #sub-text {
-    margin-top: 3px;
-    font-size: 14px;
+  ul {
+    list-style: none;
+    text-align: left;
   }
 }
 @keyframes popup-wrapper {
