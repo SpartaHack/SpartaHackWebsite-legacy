@@ -32,6 +32,12 @@
     </div>
   </div>
 
+  <% if !flash[:email].blank? %>
+    <h3 id="notice">Account created and application submitted!</br>A confirmation email has been
+      sent to <%= flash[:email] %>.
+    </h3>
+  <% end %>
+
   <div id="app">
     <a href="/application">Application: Submitted | Edit Application</a>
   </div>
