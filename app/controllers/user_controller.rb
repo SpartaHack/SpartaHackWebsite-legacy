@@ -38,8 +38,8 @@ class UserController < ApplicationController
     uri = URI.parse("#{ENV['API_SITE']}users/#{u.id}.json")
     # uri.query = URI.encode_www_form(id_hash)
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = false
-    # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     request = Net::HTTP::Delete.new(uri.request_uri)
     request['Authorization'] =  u.auth_token
     http.request(request).body
