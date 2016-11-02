@@ -114,6 +114,12 @@ textarea {
   }
 }
 
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  opacity: 1 !important;
+  color: $light-gold !important;
+}
+
 span {
   &:focus {
     box-shadow: 0 10px 25px rgba(0,0,0,0.08);
