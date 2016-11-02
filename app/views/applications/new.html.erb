@@ -61,7 +61,7 @@
       <div class="add-margin-top page1" id="birthdate-wrap">
         <%= f.input :birth_day, required: true, collection: 1..31, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
         <%= f.input :birth_month, required: true, collection: (1..12).to_a.map{|i| [I18n.t("date.month_names")[i], i]}, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
-        <%= f.input :birth_year, required: true, collection: (1945..2008).to_a.reverse, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
+        <%= f.input :birth_year, required: true, collection: (1945..2004).to_a.reverse, wrapper_html: { class: "third-width-input" }, :label_html => { :class => "no-label" } %>
       </div>
 
       <div class="add-margin-top page1">
@@ -82,7 +82,7 @@
 
       <div class="add-margin-bottom university-enrolled page1" id="other-university-wrap" style="display:none;">
         <div class="check">
-          <input type="checkbox" value="true" id="other_university_enrolled_confirm" name="application[other_universityEnrolledConfirm]"/>
+          <input type="checkbox" value="true" id="other_university_enrolled_confirm" name="application[other_university_enrolled_confirm]"/>
           <label for="other_university_enrolled_confirm">
             <div id="other_university_enrolled_text">College/University not listed?</div>
           </label>
