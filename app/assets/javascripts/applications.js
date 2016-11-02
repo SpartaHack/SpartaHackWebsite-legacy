@@ -168,18 +168,18 @@ function validateFormTwo() {
 }
 
 function popUpBottom() {
-	$("#popup").css("bottom", "170px");
-	$("#popup").css("top", "");
-	$("#popup-wrapper").fadeIn("slow");
+  $("#popup").css("bottom", "170px");
+  $("#popup").css("top", "");
+  $("#popup-wrapper").fadeIn("slow");
 }
 
 function popUpTop() {
-	$("#popup").css("top", "80px");
-	$("#popup").css("bottom", "");
-	$("#popup-wrapper").fadeIn("slow");
+  $("#popup").css("top", "80px");
+  $("#popup").css("bottom", "");
+  $("#popup-wrapper").fadeIn("slow");
 }
 
-$('#popup-wrapper').click(function(e){
+$('#popup-wrapper').click(function(e) {
   if (e.target !== this)
     return;
 
