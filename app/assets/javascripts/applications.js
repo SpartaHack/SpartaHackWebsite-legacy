@@ -113,7 +113,7 @@ function validateFormOne() {
   } else if (!document.getElementById('application_education_highschool').checked && !document.getElementById('application_education_undergraduate').checked && !document.getElementById('application_education_graduate').checked) {
     $("#popup").html("Please indicate your current enrollment.");
     popUpTop();
-  } else if ((document.getElementById('application_education_undergraduate').checked || document.getElementById('application_education_graduate').checked) && ($("#application_university").val().length == 0)) {
+  } else if ((document.getElementById('application_education_undergraduate').checked || document.getElementById('application_education_graduate').checked) && ($("#application_university").val().length === 0) && !($('#other_university_enrolled_confirm')[0].checked && $('#application_other_university').val() !== "")) {
     $("#popup").html("Please indicate your university.");
     popUpTop();
   } else if (!$('#application_outside_north_america_no')[0].checked && !$('#application_outside_north_america_yes')[0].checked) {
