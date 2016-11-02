@@ -15,8 +15,6 @@
 //= require turbolinks
 //= require sweetalert
 //= require select2.min
-//= require rails.validations
-//= require rails.validations.simple_form
 
 ////////////////////////////////////////////////////
 // Variables
