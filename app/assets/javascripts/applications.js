@@ -64,6 +64,12 @@ $('#createAccount').click(function(event) {
   return false;
 });
 
+$('#application').click(function(event) {
+  event.preventDefault();
+  validateFormTwo();
+  return false;
+});
+
 $('#backApp').click(function(event) {
   event.preventDefault();
   $('.page1').removeClass('hide-page');
@@ -73,31 +79,31 @@ $('#backApp').click(function(event) {
 function validateFormOne() {
   if ($("#user_first_name").val().length == 0 || $("#user_last_name").val().length == 0) {
     $("#popup").html("You must input your full name.");
-    popUpBottom();
+    popUpTop();
   } else if ($("#application_birth_day").val().length == 0 || $("#application_birth_year").val().length == 0 || $("#application_birth_month").val().length == 0) {
     $("#popup").html("Your full birthdate is required.")
-    popUpBottom();
+    popUpTop();
   } else if (!document.getElementById('application_education_highschool').checked && !document.getElementById('application_education_undergraduate').checked && !document.getElementById('application_education_graduate').checked) {
     $("#popup").html("Please indicate your current enrollment.");
-    popUpBottom();
+    popUpTop();
   } else if ((document.getElementById('application_education_undergraduate').checked || document.getElementById('application_education_graduate').checked) && ($("#application_university").val().length == 0)) {
     $("#popup").html("Please indicate your university.");
-    popUpBottom();
+    popUpTop();
   } else if (!$('#application_outside_north_america_no')[0].checked && !$('#application_outside_north_america_yes')[0].checked) {
     $("#popup").html("Please indicate if you are traveling from outside North America.");
-    popUpBottom();
+    popUpTop();
   } else if ($('#application_outside_north_america_no')[0].checked && $("#application_travel_origin").val().length == 0) {
     $("#popup").html("Please indicate the university you are traveling from.");
-    popUpBottom();
+    popUpTop();
   } else if ($("#application_graduation_season").val().length == 0 || $("#application_graduation_year").val().length == 0) {
     $("#popup").html("Please indicate when you intend to graduate.");
-    popUpBottom();
+    popUpTop();
   } else if ((document.getElementById('application_education_undergraduate').checked || document.getElementById('application_education_graduate').checked) && ($("#application_major").val() == null)) {
     $("#popup").html("Please indicate your major.");
-    popUpBottom();
+    popUpTop();
   } else if ($('#application_hackathons').val() == "") {
     $("#popup").html("Please indicate the number of hackathons you have attended.");
-    popUpBottom();
+    popUpTop();
   } else if (!document.getElementById('agree').checked) {
     $("#popup").html("Please agree to the MLH Code of Conduct.");
     popUpTop();
@@ -107,21 +113,48 @@ function validateFormOne() {
   }
 }
 
+function validateFormTwo() {
+  if ($("#user_email").val().length === 0) {
+    $("#popup").html("Please indicate your email");
+    popUpTop();
+  } else if ($("#user_email_confirmation").val().length === 0) {
+    $("#popup").html("Please indicate your confirmed email");
+    popUpTop();
+  } else if ($("#user_email_confirmation").val() !== $("#user_email").val()) {
+    $("#popup").html("Your emails do not match.");
+    popUpTop();
+  } else if ($("#user_password").val().length === 0) {
+    $("#popup").html("Please indicate your password");
+    popUpTop();
+  } else if ($("#user_password_confirmation").val().length === 0) {
+    $("#popup").html("Please indicate your confirmed password");
+    popUpTop();
+  } else if ($("#user_password_confirmation").val() !== $("#user_password").val()) {
+    $("#popup").html("Your passwords do not match.");
+    popUpTop();
+  } else if ($("#user_password").val().length < 6) {
+    $("#popup").html("Your password is too short.");
+    popUpTop();
+  } else {
+    $('#application-form')[0].submit();
+  }
+}
+
 function popUpBottom() {
 	$("#popup").css("bottom", "170px");
 	$("#popup").css("top", "");
-	$("#popup-wrapper").fadeIn("fast");
+	$("#popup-wrapper").fadeIn("slow");
 }
 
 function popUpTop() {
-	$("#popup").css("top", "60px");
+	$("#popup").css("top", "80px");
 	$("#popup").css("bottom", "");
-	$("#popup-wrapper").fadeIn("fast");
+	$("#popup-wrapper").fadeIn("slow");
 }
 
 $('#popup-wrapper').click(function(e){
   if (e.target !== this)
     return;
 
-  $('#popup-wrapper').fadeOut('fast');
+  $('#popup-wrapper').fadeOut('slow');
 });
