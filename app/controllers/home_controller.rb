@@ -1,12 +1,12 @@
 class HomeController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:subscribe, :rememberTheme]
 
-  include ApplicationHelper
   require 'json'
 
   def index
     @past_sponsors = Dir.glob("app/assets/images/pastSponsors/*").sort_by(&:downcase)
   end
+
 
   def subscribe
     @button = "#D4B166"
@@ -20,17 +20,17 @@ class HomeController < ApplicationController
       @title = "Uh Oh!"
     else
       begin
-      	mailchimp = Mailchimp::API.new(ENV["MAILCHIMP_API_KEY"])
-    		mailchimp.lists.subscribe(ENV["MAILCHIMP_LIST_ID"],
-    		                   { "email" => subscribe_params['emailinput']})
+        mailchimp = Mailchimp::API.new(ENV["MAILCHIMP_API_KEY"])
+        mailchimp.lists.subscribe(ENV["MAILCHIMP_LIST_ID"],
+        { "email" => subscribe_params['emailinput']})
 
-      	@type = "success"
-      	@desc = "Now you just need to confirm your email address!"
-      	@title = "Sweet!"
-      rescue Exception => e
-      	@type = "error"
-      	@desc = "You've already signed up with this email."
-      	@title = "Uh Oh!"
+        @type = "success"
+        @desc = "Now you just need to confirm your email address!"
+        @title = "Sweet!"
+      rescue Exception
+        @type = "error"
+        @desc = "You've already signed up with this email."
+        @title = "Uh Oh!"
       end
     end
   end
@@ -46,11 +46,11 @@ class HomeController < ApplicationController
   end
 
   private
-    def subscribe_params
-      params.permit(:emailinput, :authenticity_token, :utf8)
-    end
+  def subscribe_params
+    params.permit(:emailinput, :authenticity_token, :utf8)
+  end
 
-    def remember_params
-      params.permit(:theme)
-    end
+  def remember_params
+    params.permit(:theme)
+  end
 end
