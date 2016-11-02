@@ -96,7 +96,7 @@ class ApplicationsController < ::ApplicationController
       :travel_origin,
       :graduation_season,
       :graduation_year,
-      :outside_north_america
+      :outside_north_america,
       {:major => []},
       :hackathons,
       :github,
@@ -117,5 +117,16 @@ class ApplicationsController < ::ApplicationController
       :password,
       :password_confirmation
     )
+  end
+
+  def conditionality
+    if app_params[:education] == "High School"
+      params[:application].delete :university
+      params[:application].delete :other_university
+      params[:application].delete :major
+    elsif app_params[:outside_north_america] == "Yes"
+      params[:application].delete :travel_origin
+    end
+
   end
 end
