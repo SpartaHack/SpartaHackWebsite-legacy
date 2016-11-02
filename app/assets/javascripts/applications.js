@@ -57,9 +57,6 @@ function createSelects() {
 ///////////////////////////////////////////////////
 $('#other_university_enrolled_confirm').click(function() {
   $('.other_university_enrolled').toggle();
-  if (!this.checked) {
-    $('.other_university_enrolled input').val("");
-  }
 });
 
 $('input[name="application[education]"]').change(function() {
@@ -67,7 +64,6 @@ $('input[name="application[education]"]').change(function() {
     $('.university-enrolled').show();
   } else {
     $('.university-enrolled').hide();
-    $('.university-enrolled select').val("").trigger('change');
     if ($('#other_university_enrolled_confirm')[0].checked) {
       $('#other_university_enrolled_confirm').click();
     }
