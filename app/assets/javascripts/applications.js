@@ -183,7 +183,7 @@ function popUpTop() {
   $("#popup-wrapper").fadeIn("slow");
 }
 
-$('#popup-wrapper, #popup-error-wrapper').click(function(e) {
+$('#popup-wrapper, #popup-error-wrapper, #popup-wrapper p').click(function(e) {
   if (e.target !== this)
     return;
 
