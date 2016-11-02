@@ -14,7 +14,6 @@ class ApplicationsController < ::ApplicationController
   end
 
   def create
-    p params
     flash[:params] = app_params
     flash[:popup] = []
     flash[:popup_errors] = []
@@ -62,6 +61,8 @@ class ApplicationsController < ::ApplicationController
       create_application
     else
       flash[:popup_errors] = user.errors.messages[:base][0]
+      flash[:app_params] = app_params.to_h
+      flash[:user_params] = user_params.to_h
       redirect_to '/apply' and return
     end
 
@@ -95,6 +96,7 @@ class ApplicationsController < ::ApplicationController
       :travel_origin,
       :graduation_season,
       :graduation_year,
+      :outside_north_america
       {:major => []},
       :hackathons,
       :github,
