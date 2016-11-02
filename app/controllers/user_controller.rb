@@ -34,8 +34,7 @@ class UserController < ApplicationController
   end
 
   def delete_u(u, id_hash)
-    p u
-    uri = URI.parse("#{ENV['API_SITE']}users/#{u.id}.json")
+    uri = URI.parse("#{ENV['API_SITE']}/users/#{u.id}.json")
     # uri.query = URI.encode_www_form(id_hash)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
