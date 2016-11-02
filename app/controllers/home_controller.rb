@@ -4,10 +4,6 @@ class HomeController < ApplicationController
   require 'json'
 
   def index
-    @past_sponsors = Dir.glob("app/assets/images/pastSponsors/*").sort_by(&:downcase)
-    UserMailer.welcome_email(
-      "Bogdan", "bogdanpozderca@gmail.com"
-    ).deliver_now
   end
 
 
