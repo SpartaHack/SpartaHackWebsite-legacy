@@ -64,6 +64,12 @@ $('#createAccount').click(function(event) {
   return false;
 });
 
+$('#application').click(function(event) {
+  event.preventDefault();
+  validateFormTwo();
+  return false;
+});
+
 $('#backApp').click(function(event) {
   event.preventDefault();
   $('.page1').removeClass('hide-page');
@@ -104,6 +110,31 @@ function validateFormOne() {
   } else {
     $('.page1').addClass('hide-page');
     $('.page2').removeClass('hide-page');
+  }
+}
+
+function validateFormTwo() {
+  if ($("#user_email").val().length === 0) {
+    $("#popup").html("Please indicate your email");
+    popUpBottom();
+  } else if ($("#user_email_confirmation").val().length === 0) {
+    $("#popup").html("Please indicate your confirmed email");
+    popUpBottom();
+  } else if ($("#user_email_confirmation").val() !== $("#user_email").val()) {
+    $("#popup").html("Your emails do not match.");
+    popUpBottom();
+  } else if ($("#user_password").val().length === 0) {
+    $("#popup").html("Please indicate your password");
+    popUpBottom();
+  } else if ($("#user_password_confirmation").val().length === 0) {
+    $("#popup").html("Please indicate your confirmed password");
+    popUpBottom();
+  } else if ($("#user_password_confirmation").val() !== $("#user_password").val()) {
+    $("#popup").html("Your passwords do not match.");
+    popUpBottom();
+  } else if ($("#user_password").val().length <= 6) {
+    $("#popup").html("Your password is too short.");
+    popUpBottom();
   }
 }
 
