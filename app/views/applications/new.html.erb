@@ -47,7 +47,7 @@
 
       <%= simple_form_for @application, :url => "/application", html: { id: "application-form"}, validate: true do |f| %>
       <div class="inner page1">
-        <%= simple_fields_for :user do |ff| %>
+        <%= simple_fields_for @user do |ff| %>
         <%= ff.input :first_name, placeholder: "First Name *", required: true, input_html: { class: "half-width-input" }, :label_html => { :class => "no-label" }, validate: { presence: true } %>
         <%= ff.input :last_name, placeholder: "Last Name *", required: true, input_html: { class: "half-width-input" }, :label_html => { :class => "no-label" } %>
         <% end %>
@@ -179,7 +179,7 @@
         <input type="submit" value="Next: Create Account" id="createAccount"/>
       </div>
 
-      <%= simple_fields_for :user do |ff| %>
+      <%= simple_fields_for @user do |ff| %>
       <div class="inner page2 hide-page">
         <%= ff.input :email, placeholder: "Email *", required: true, label_html: { :class => "no-label" },  wrapper: false%>
       </div>

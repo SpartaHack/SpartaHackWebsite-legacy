@@ -4,7 +4,13 @@ class ApplicationsController < ::ApplicationController
 
 
   def new
-    @application = Application.new
+    if flash[:app_params]
+      @application = Application.new(flash[:app_params])
+      @user = User.new(flash[:user_params])
+    else
+      @application = Application.new
+      @user = User.new
+    end
   end
 
   def create
@@ -43,6 +49,8 @@ class ApplicationsController < ::ApplicationController
       flash[:popup_errors].push("You must agree to our terms.")
     end
     if flash[:popup].size > 0 || flash[:popup_errors].size > 0 || !flash[:popup_agree].blank?
+      flash[:app_params] = app_params.to_h
+      flash[:user_params] = user_params.to_h
       redirect_to '/apply' and return
     end
 
