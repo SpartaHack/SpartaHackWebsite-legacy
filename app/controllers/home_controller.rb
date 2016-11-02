@@ -5,7 +5,11 @@ class HomeController < ApplicationController
 
   def index
     @past_sponsors = Dir.glob("app/assets/images/pastSponsors/*").sort_by(&:downcase)
+    UserMailer.welcome_email(
+      "Bogdan", "bogdanpozderca@gmail.com"
+    ).deliver_now
   end
+
 
   def subscribe
     @button = "#D4B166"
@@ -19,17 +23,17 @@ class HomeController < ApplicationController
       @title = "Uh Oh!"
     else
       begin
-      	mailchimp = Mailchimp::API.new(ENV["MAILCHIMP_API_KEY"])
-    		mailchimp.lists.subscribe(ENV["MAILCHIMP_LIST_ID"],
-    		                   { "email" => subscribe_params['emailinput']})
+        mailchimp = Mailchimp::API.new(ENV["MAILCHIMP_API_KEY"])
+        mailchimp.lists.subscribe(ENV["MAILCHIMP_LIST_ID"],
+        { "email" => subscribe_params['emailinput']})
 
-      	@type = "success"
-      	@desc = "Now you just need to confirm your email address!"
-      	@title = "Sweet!"
+        @type = "success"
+        @desc = "Now you just need to confirm your email address!"
+        @title = "Sweet!"
       rescue Exception
-      	@type = "error"
-      	@desc = "You've already signed up with this email."
-      	@title = "Uh Oh!"
+        @type = "error"
+        @desc = "You've already signed up with this email."
+        @title = "Uh Oh!"
       end
     end
   end
@@ -45,11 +49,11 @@ class HomeController < ApplicationController
   end
 
   private
-    def subscribe_params
-      params.permit(:emailinput, :authenticity_token, :utf8)
-    end
+  def subscribe_params
+    params.permit(:emailinput, :authenticity_token, :utf8)
+  end
 
-    def remember_params
-      params.permit(:theme)
-    end
+  def remember_params
+    params.permit(:theme)
+  end
 end
