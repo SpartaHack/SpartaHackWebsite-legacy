@@ -8,7 +8,7 @@ class Application < ActiveResource::Base
 
     string :github, :linkedin, :website, :devpost, :other_link, :gender,
     :education, :university, :other_university, :travel_origin,
-    :graduation_season
+    :graduation_season, :outside_north_america
 
     # unsupported types should be left as strings
     # overload the accessor methods if you need to convert them
