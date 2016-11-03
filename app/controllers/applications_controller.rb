@@ -21,10 +21,8 @@ class ApplicationsController < ::ApplicationController
     @user = User.new(user_params.to_h)
     begin
       if @user.save
-        session[:current_session] = Session.create( {
-          :email => user_params[:email], :password => user_params[:password]
-        }).id
-        set_user_auth_token
+        session[:current_session] = @user.id
+        # set_user_auth_token
         create_application
       else
         messages = []
@@ -64,6 +62,7 @@ class ApplicationsController < ::ApplicationController
     if current_user.present?
       validate('/application/edit', 1)
       conditionality
+      set_http_auth_token
       @user = current_user
       set_user_auth_token
       update_user
@@ -160,6 +159,7 @@ class ApplicationsController < ::ApplicationController
   end
 
   def create_application
+    ActiveResource::Base.headers["X-WWW-User-Token"] = "#{ @user.auth_token }"
     app = Application.new(app_params.to_h)
     begin
       if app.save
@@ -170,6 +170,7 @@ class ApplicationsController < ::ApplicationController
         redirect_to '/dashboard' and return
       else
         messages = []
+        set_user_auth_token
         @user.destroy
         app.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
         Rails.logger.debug "Error on application creation: #{messages}"
