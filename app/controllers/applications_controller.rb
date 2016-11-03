@@ -33,7 +33,9 @@ class ApplicationsController < ::ApplicationController
         flash[:user_params] = user_params.to_h
         redirect_to '/apply' and return
       end
-    rescue
+    rescue => e
+      Rails.logger.error e.message
+      Rails.logger.error e.backtrace.join("\n")
       logger.debug "Fatal error on user creation"
       flash[:popup_errors].push("Something went wrong, please resubmit.")
       flash[:app_params] = app_params.to_h
@@ -122,7 +124,9 @@ class ApplicationsController < ::ApplicationController
         flash[:user_params] = user_params.to_h
         redirect_to '/application/edit' and return
       end
-    rescue
+    rescue => e
+      Rails.logger.error e.message
+      Rails.logger.error e.backtrace.join("\n")
       Rails.logger.debug "Fatal error on user update"
       flash[:popup_errors].push("Something went wrong, please resubmit.")
       flash[:app_params] = app_params.to_h
@@ -147,7 +151,9 @@ class ApplicationsController < ::ApplicationController
         flash[:user_params] = user_params.to_h
         redirect_to '/application/edit' and return
       end
-    rescue
+    rescue => e
+      Rails.logger.error e.message
+      Rails.logger.error e.backtrace.join("\n")
       Rails.logger.debug "Fatal error on application update"
       flash[:popup_errors].push("Something went wrong, please resubmit.")
       flash[:app_params] = app_params.to_h
@@ -178,7 +184,9 @@ class ApplicationsController < ::ApplicationController
         flash[:user_params] = user_params.to_h
         redirect_to '/apply' and return
       end
-    rescue
+    rescue => e
+      Rails.logger.error e.message
+      Rails.logger.error e.backtrace.join("\n")
       Rails.logger.debug "Fatal error on application creation"
       @user.destroy
       flash[:popup_errors].push("Something went wrong, please resubmit.")
