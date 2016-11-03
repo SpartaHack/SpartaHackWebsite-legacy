@@ -49,6 +49,8 @@ Rails.application.routes.draw do
   get '/apply', to: 'applications#new'
   get '/application', to: 'applications#new'
   post '/application', to: 'applications#create'
+  get '/application/edit', to: 'applications#edit'
+  put '/application', to: 'applications#update'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

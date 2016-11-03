@@ -84,9 +84,7 @@ $('input[name="application[outside_north_america]"]').change(function() {
 
 $('#createAccount').click(function(event) {
   event.preventDefault();
-  console.log("before val 1")
   validateFormOne();
-  console.log("after val 1")
   return false;
 });
 
@@ -96,13 +94,19 @@ $('#application').click(function(event) {
   return false;
 });
 
+$('#application-edit').click(function(event) {
+  event.preventDefault();
+  validateFormOne('edit');
+  return false;
+});
+
 $('#backApp').click(function(event) {
   event.preventDefault();
   $('.page1').removeClass('hide-page');
   $('.page2').addClass('hide-page');
 });
 
-function validateFormOne() {
+function validateFormOne(edit) {
   if ($("#user_first_name").val().length == 0 || $("#user_last_name").val().length == 0) {
     $("#popup").html("You must input your full name.");
     popUpTop();
@@ -134,8 +138,10 @@ function validateFormOne() {
     $("#popup").html("Please agree to the MLH Code of Conduct.");
     popUpTop();
   } else {
-    $('.page1').addClass('hide-page');
-    $('.page2').removeClass('hide-page');
+    if (edit === undefined) {
+      $('.page1').addClass('hide-page');
+      $('.page2').removeClass('hide-page');
+    }
   }
 }
 
