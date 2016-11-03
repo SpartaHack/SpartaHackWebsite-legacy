@@ -18,17 +18,24 @@ class ApplicationsController < ::ApplicationController
     validate('/apply')
     conditionality
     @user = User.new(user_params.to_h)
-    if @user.save
-      session[:current_session] = Session.create( {
-        :email => user_params[:email], :password => user_params[:password]
-      }).id
-      set_user_auth_token
-      create_application
-    else
-      messages = []
-      user.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
-      logger.debug "Error on user creation: #{messages}"
-      flash[:popup_errors] = messages
+    begin
+      if @user.save
+        session[:current_session] = Session.create( {
+          :email => user_params[:email], :password => user_params[:password]
+        }).id
+        set_user_auth_token
+        create_application
+      else
+        messages = []
+        user.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
+        logger.debug "Error on user creation: #{messages}"
+        flash[:popup_errors].push(messages)
+        flash[:app_params] = app_params.to_h
+        flash[:user_params] = user_params.to_h
+        redirect_to '/apply' and return
+      end
+    rescue
+      logger.debug "Fatal error on user creation"
       flash[:app_params] = app_params.to_h
       flash[:user_params] = user_params.to_h
       redirect_to '/apply' and return
@@ -99,54 +106,72 @@ class ApplicationsController < ::ApplicationController
   def update_user
 
     @user.load(user_params.to_h)
-    # begin
-    if @user.save
-      update_application
-    else
-      messages = []
-      @user.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
-      logger.debug "Error on user update: #{messages}"
-      debugger
+    begin
+      if @user.save
+        update_application
+      else
+        messages = []
+        @user.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
+        Rails.logger.debug "Error on user update: #{messages}"
+        flash[:app_params] = app_params.to_h
+        flash[:user_params] = user_params.to_h
+        redirect_to '/application/edit' and return
+      end
+    rescue
+      Rails.logger.debug "Fatal error on user update"
+      flash[:app_params] = app_params.to_h
+      flash[:user_params] = user_params.to_h
+      redirect_to '/application/edit' and return
     end
-    # rescue
-    # end
 
   end
 
   def update_application
     @application = Application.find(@user.application.id)
     @application.load(app_params.to_h)
-    # # begin
-    if @application.save
-      redirect_to '/dashboard' and return
-    else
-      messages = []
-      @user.destroy
-      @app.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
-      Rails.logger.debug "Error on application update: #{messages}"
+    begin
+      if @application.save
+        redirect_to '/dashboard' and return
+      else
+        messages = []
+        @user.destroy
+        @app.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
+        Rails.logger.debug "Error on application update: #{messages}"
+        flash[:popup_errors].push(messages)
+        flash[:app_params] = app_params.to_h
+        flash[:user_params] = user_params.to_h
+        redirect_to '/application/edit' and return
+      end
+    rescue
+      Rails.logger.debug "Fatal error on application update"
       flash[:popup_errors] = messages
       flash[:app_params] = app_params.to_h
       flash[:user_params] = user_params.to_h
-      redirect_to '/apply' and return
+      redirect_to '/application/edit' and return
     end
-    # # rescue
-    # # end
 
   end
 
   def create_application
     app = Application.new(app_params.to_h)
-    if app.save
-      UserMailer.welcome_email(
-        user_params[:first_name], user_params[:email]
-      ).deliver_now
-      flash[:email] = user_params[:email]
-      redirect_to '/dashboard' and return
-    else
-      messages = []
-      app.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
-      Rails.logger.debug "Error on application creation: #{messages}"
-      flash[:popup_errors] = messages
+    begin
+      if app.save
+        UserMailer.welcome_email(
+          user_params[:first_name], user_params[:email]
+        ).deliver_now
+        flash[:email] = user_params[:email]
+        redirect_to '/dashboard' and return
+      else
+        messages = []
+        app.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
+        Rails.logger.debug "Error on application creation: #{messages}"
+        flash[:popup_errors].push(messages)
+        flash[:app_params] = app_params.to_h
+        flash[:user_params] = user_params.to_h
+        redirect_to '/apply' and return
+      end
+    rescue
+      Rails.logger.debug "Fatal error on application creation"
       flash[:app_params] = app_params.to_h
       flash[:user_params] = user_params.to_h
       redirect_to '/apply' and return
