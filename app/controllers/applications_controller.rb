@@ -51,7 +51,7 @@ class ApplicationsController < ::ApplicationController
     elsif current_user.present?
       set_http_auth_token
       user = current_user
-      Rails.logger.debug "User: ---------------------- #{user.application} "
+      Rails.logger.debug "User: ---------------------- #{user} "
       hash = user.application.instance_variables.each_with_object({}) { |var, hash|
         hash[var.to_s.delete("@")] = user.application.instance_variable_get(var)
       }
@@ -65,10 +65,10 @@ class ApplicationsController < ::ApplicationController
       validate('/application/edit', 1)
       conditionality
       @user = current_user
-      Rails.logger.debug "Current User #{session[:current_session]} "
       set_user_auth_token
       update_user
     else
+      flash[:error] = "An error occured please try again by logging in."
       redirect_to '/login'
     end
   end
