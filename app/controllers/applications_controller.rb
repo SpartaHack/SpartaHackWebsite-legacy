@@ -37,6 +37,7 @@ class ApplicationsController < ::ApplicationController
       end
     rescue
       logger.debug "Fatal error on user creation"
+      flash[:popup_errors].push("Something went wrong, please resubmit.")
       flash[:app_params] = app_params.to_h
       flash[:user_params] = user_params.to_h
       redirect_to '/apply' and return
@@ -51,7 +52,6 @@ class ApplicationsController < ::ApplicationController
     elsif current_user.present?
       set_http_auth_token
       user = current_user
-      Rails.logger.debug "User: ---------------------- #{user} "
       hash = user.application.instance_variables.each_with_object({}) { |var, hash|
         hash[var.to_s.delete("@")] = user.application.instance_variable_get(var)
       }
@@ -126,6 +126,7 @@ class ApplicationsController < ::ApplicationController
       end
     rescue
       Rails.logger.debug "Fatal error on user update"
+      flash[:popup_errors].push("Something went wrong, please resubmit.")
       flash[:app_params] = app_params.to_h
       flash[:user_params] = user_params.to_h
       redirect_to '/application/edit' and return
@@ -141,7 +142,6 @@ class ApplicationsController < ::ApplicationController
         redirect_to '/dashboard' and return
       else
         messages = []
-        @user.destroy
         @app.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
         Rails.logger.debug "Error on application update: #{messages}"
         flash[:popup_errors].push(messages)
@@ -151,7 +151,7 @@ class ApplicationsController < ::ApplicationController
       end
     rescue
       Rails.logger.debug "Fatal error on application update"
-      flash[:popup_errors] = messages
+      flash[:popup_errors].push("Something went wrong, please resubmit.")
       flash[:app_params] = app_params.to_h
       flash[:user_params] = user_params.to_h
       redirect_to '/application/edit' and return
@@ -170,6 +170,7 @@ class ApplicationsController < ::ApplicationController
         redirect_to '/dashboard' and return
       else
         messages = []
+        @user.destroy
         app.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
         Rails.logger.debug "Error on application creation: #{messages}"
         flash[:popup_errors].push(messages)
@@ -179,6 +180,8 @@ class ApplicationsController < ::ApplicationController
       end
     rescue
       Rails.logger.debug "Fatal error on application creation"
+      @user.destroy
+      flash[:popup_errors].push("Something went wrong, please resubmit.")
       flash[:app_params] = app_params.to_h
       flash[:user_params] = user_params.to_h
       redirect_to '/apply' and return
