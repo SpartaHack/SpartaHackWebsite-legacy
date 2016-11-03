@@ -1,8 +1,6 @@
 class ApplicationsController < ::ApplicationController
   wrap_parameters :user, include: [:password, :password_confirmation]
   before_action :set_http_auth_token, only: [:create]
-  before_action :set_user_auth_token, only: [:update]
-
 
   def new
     if flash[:app_params]
