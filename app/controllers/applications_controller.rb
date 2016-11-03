@@ -24,6 +24,7 @@ class ApplicationsController < ::ApplicationController
       session[:current_session] = Session.create( {
         :email => user_params[:email], :password => user_params[:password]
       }).id
+      set_user_auth_token
       create_application
     else
       messages = []
@@ -202,8 +203,8 @@ class ApplicationsController < ::ApplicationController
   end
 
   def create_application
-    set_user_auth_token
     app = Application.new(app_params.to_h)
+   begin
     if app.save
       UserMailer.welcome_email(
         user_params[:first_name], user_params[:email]
@@ -219,5 +220,9 @@ class ApplicationsController < ::ApplicationController
       flash[:user_params] = user_params.to_h
       redirect_to '/apply' and return
     end
+   rescue
+     ActiveResource::Base.headers["User_Token"] = "#{ current_user.auth_token }"
+     create_application
+   end
   end
 end
