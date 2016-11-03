@@ -1,4 +1,5 @@
 class Application < ActiveResource::Base
+  self.headers["AUTHORIZATION"] = "Token token=\"#{ENV['API_AUTH_TOKEN']}\""
   self.site = "#{ENV['API_SITE']}"
   self.element_name = "application"
 
