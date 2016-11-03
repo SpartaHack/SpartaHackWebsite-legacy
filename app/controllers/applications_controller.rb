@@ -7,6 +7,8 @@ class ApplicationsController < ::ApplicationController
     if flash[:app_params]
       @application = Application.new(flash[:app_params])
       @user = User.new(flash[:user_params])
+    elsif current_user.present?
+      redirect_to '/application/edit' and return
     else
       @application = Application.new
       @user = User.new
@@ -32,6 +34,15 @@ class ApplicationsController < ::ApplicationController
       redirect_to '/apply' and return
     end
 
+  end
+
+  def edit
+    user = current_user
+    hash = user.application.instance_variables.each_with_object({}) { |var, hash|
+      hash[var.to_s.delete("@")] = user.application.instance_variable_get(var)
+    }
+    @application = Application.new(hash['attributes'])
+    @user = User.new({first_name: user.first_name, last_name: user.last_name})
   end
 
   def create_application
