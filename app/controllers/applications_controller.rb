@@ -197,7 +197,7 @@ class ApplicationsController < ::ApplicationController
     if user_params['first_name'].blank? then flash[:popup].push("First name") end
     if user_params['last_name'].blank? then flash[:popup].push("Last name") end
 
-    if edit == 1
+    if edit != 1
       if user_params['email'].blank? then flash[:popup].push("Email") end
       if user_params['email_confirmation'].blank? then flash[:popup].push("Email confirmation") end
       if user_params['email_confirmation'] != user_params['email'] && !user_params['email'].blank?
