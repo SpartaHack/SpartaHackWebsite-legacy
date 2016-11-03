@@ -187,7 +187,10 @@ class ApplicationsController < ::ApplicationController
     if app_params[:education] != "High School" && app_params['major'].blank?
       flash[:popup].push("Major")
     end
-    if app_params['hackathons'].blank? then flash[:popup].push("Hackathons attended count") end
+    if app_params['hackathons'].blank? ||
+      (app_params['hackathons'].blank? && app_params['hackathons'] < 0)
+      flash[:popup_errors].push("Hackathons attended must be 0 or more")
+    end
     if params["mlh"] != "true"
       flash[:popup_errors].push("You must agree to our terms.")
     end
