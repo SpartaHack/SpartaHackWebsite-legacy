@@ -61,12 +61,16 @@ class ApplicationsController < ::ApplicationController
   end
 
   def update
-    validate('/application/edit', 1)
-    conditionality
-    @user = current_user
-    Rails.logger.debug "Current User #{session[:current_session]} "
-    set_user_auth_token
-    update_user
+    if current_user.present?
+      validate('/application/edit', 1)
+      conditionality
+      @user = current_user
+      Rails.logger.debug "Current User #{session[:current_session]} "
+      set_user_auth_token
+      update_user
+    else
+      redirect_to '/login'
+    end
   end
 
   private
