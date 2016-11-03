@@ -112,6 +112,8 @@ class ApplicationsController < ::ApplicationController
   def update_user
 
     @user.load(user_params.to_h)
+    set_http_auth_token
+    @user.reload
     ActiveResource::Base.headers["X-WWW-User-Token"] = "#{ @user.auth_token }"
     begin
       if @user.save
