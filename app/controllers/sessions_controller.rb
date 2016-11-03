@@ -14,7 +14,9 @@ class SessionsController < ApplicationController
       session[:current_session] = session_response.id
       redirect_to '/dashboard'
     else
-      p session_response.errors.messages
+      messages = []
+      session_response.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
+      Rails.logger.debug "Error on application creation: #{messages}"
       session[:current_session] = nil
       flash[:error] = session_response.errors.messages[:base][0]
       render :new
