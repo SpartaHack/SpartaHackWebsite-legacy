@@ -64,7 +64,7 @@ class ApplicationsController < ::ApplicationController
       conditionality
       set_http_auth_token
       @user = current_user
-      set_user_auth_token
+      @user.load(user_params.to_h)
       update_user
     else
       flash[:error] = "An error occured please try again by logging in."
@@ -110,10 +110,6 @@ class ApplicationsController < ::ApplicationController
   end
 
   def update_user
-
-    @user.load(user_params.to_h)
-    set_http_auth_token
-    @user.reload
     ActiveResource::Base.headers["X-WWW-User-Token"] = "#{ @user.auth_token }"
     begin
       if @user.save
