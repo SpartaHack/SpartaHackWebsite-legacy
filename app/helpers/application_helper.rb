@@ -4,8 +4,7 @@ module ApplicationHelper
       begin
         User.find(session[:current_session])
       rescue
-        ActiveResource::Base.headers["AUTHORIZATION"] = "Token token=\"#{ENV['API_AUTH_TOKEN']}\""
-        current_user
+        redirect_to '/login'
       end
     end
   end
