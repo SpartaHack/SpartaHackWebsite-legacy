@@ -89,35 +89,35 @@
         </div>
       </div>
 
-      <div class="add-margin-top other_university_enrolled page1" style="display:none;">
+      <div class="add-margin-bottom other_university_enrolled page1" style="display:none;">
         <%= f.input :other_university, placeholder: "Other College/University", required: false, :label_html => { :class => "no-label" } %>
       </div>
 
-      <div class="add-margin-top add-margin-bottom page1" id="continent-wrap">
+      <div class="add-margin-bottom page1" id="continent-wrap">
         <label id="outside-north-america">Traveling from outside of North America? *</label>
         <div class="radio-wrap" id="outside-na">
           <%= f.collection_radio_buttons :outside_north_america, [['Yes', 'Yes'] ,['No', 'No']], :first, :last, :required => true %>
         </div>
       </div>
 
-      <div class="add-margin-bottom university-traveling university page1" style="display:none;">
+      <div class="add-margin-bottom university-traveling page1" style="display:none;">
         <%= render partial: "applications/partials/universities", locals: { type: "traveling", :f => f } %>
       </div>
 
-      <div class="inner add-margin-top split-select page1">
+      <div class="inner add-margin-bottom split-select page1">
         <%= f.input :graduation_season, required: true, collection: ["Fall", "Winter", "Spring", "Summer"], label: false, class: "half-width-input" %>
         <%= f.input :graduation_year, required: true, collection: (2016..2025), label: false, class: "half-width-input" %>
       </div>
 
-      <div class="university-enrolled add-margin-top page1" style="display:none;">
+      <div class="university-enrolled add-margin-bottom page1" style="display:none;">
         <%= render partial: "applications/partials/majors", :object => :application, locals: { :f => f  }%>
       </div>
 
-      <div class="hackathons add-margin-top page1">
+      <div class="hackathons add-margin-bottom page1">
         <%= f.input :hackathons, :as => :integer, required: true, placeholder: "How many hackathons have you been to? *", :label_html => { :class => "no-label" }, input_html: { min: '0', step: 1, onkeypress:'return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 8' } %>
       </div>
 
-      <div class="add-margin-top page1">
+      <div class="add-margin-bottom page1">
         <%= label_tag(:statement, "Why do you want to attend SpartaHack?", class: 'no-label') %>
         <%= f.input :statement, :as => :text, placeholder: "Why do you want to attend SpartaHack?", required: false, :label_html => { :class => "no-label" } %>
       </div>

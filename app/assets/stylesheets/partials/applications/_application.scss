@@ -521,7 +521,8 @@
     }
 
     .other_university_enrolled,
-    .university {
+    .university,
+    .university-traveling {
       margin-bottom: 0;
       @media (min-width: 550px) {
         margin-bottom: 26px;
@@ -722,7 +723,8 @@
       @media (min-width: 550px) {}
     }
 
-    #application {
+    #application,
+    #application-edit {
       margin-bottom: 0;
     }
   }

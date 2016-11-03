@@ -56,25 +56,51 @@ function createSelects() {
 // Conditionality
 ///////////////////////////////////////////////////
 $('#other_university_enrolled_confirm').click(function() {
-  $('.other_university_enrolled').toggle();
+  if ($(this).is(':checked')) {
+    $('.university').stop().slideUp(function() {
+      $('.other_university_enrolled').stop().slideDown({
+        start: createSelects
+      });
+    });
+    createSelects();
+  } else {
+    $('.other_university_enrolled').stop().slideUp(function() {
+      $('.university').stop().slideDown({
+        start: createSelects
+      });
+    });
+  }
 });
 
 $('input[name="application[education]"]').change(function() {
   if (this.value === "Undergraduate" || this.value === "Graduate") {
-    $('.university-enrolled').show();
+    $('.university-enrolled').stop().slideDown({
+      duration: 'slow',
+      start: createSelects
+    });
   } else {
-    $('.university-enrolled').hide();
     if ($('#other_university_enrolled_confirm')[0].checked) {
-      $('#other_university_enrolled_confirm').click();
+      $('#other_university_enrolled_confirm').prop('checked', false).change();
+      $('.other_university_enrolled').stop().slideUp();
     }
+    $('.university-enrolled').stop().slideUp({
+      duration: 'slow',
+      start: createSelects
+    });
   }
 });
 
 $('input[name="application[outside_north_america]"]').change(function() {
   if (this.value === "Yes") {
-    $('.university-traveling').hide();
+    $('.university-traveling').stop().slideUp({
+      duration: 'slow',
+      start: createSelects
+    });
   } else {
-    $('.university-traveling').show();
+    $('.university-traveling').stop().slideDown({
+      duration: 'slow',
+      start: createSelects
+    });
   }
 });
 
@@ -141,6 +167,8 @@ function validateFormOne(edit) {
     if (edit === undefined) {
       $('.page1').addClass('hide-page');
       $('.page2').removeClass('hide-page');
+    } else {
+      $('#application-form')[0].submit();
     }
   }
 }
@@ -205,3 +233,7 @@ $(window).scroll(function() {
 });
 
 createSelects();
+// hide old selection arrow;
+// $('b[role="presentation"]').hide();
+// $('.select2-selection__arrow').append('<i class="fa fa-angle-down"></i>');
+// $('.select2-container--open').append('<i class="fa fa-angle-up"></i>');
