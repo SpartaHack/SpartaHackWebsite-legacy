@@ -50,6 +50,7 @@ class ApplicationsController < ::ApplicationController
     elsif current_user.present?
       set_http_auth_token
       user = current_user
+      Rails.logger "User: ---------------------- #{user} "
       hash = user.application.instance_variables.each_with_object({}) { |var, hash|
         hash[var.to_s.delete("@")] = user.application.instance_variable_get(var)
       }
