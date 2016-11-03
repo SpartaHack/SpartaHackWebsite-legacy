@@ -48,6 +48,7 @@ class ApplicationsController < ::ApplicationController
       @application = Application.new(flash[:app_params])
       @user = User.new(flash[:user_params])
     elsif current_user.present?
+      set_http_auth_token
       user = current_user
       hash = user.application.instance_variables.each_with_object({}) { |var, hash|
         hash[var.to_s.delete("@")] = user.application.instance_variable_get(var)
