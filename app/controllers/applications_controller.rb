@@ -54,6 +54,7 @@ class ApplicationsController < ::ApplicationController
     # validation('/application/edit')
     # conditionality
     @user = current_user
+    Rails.logger.debug "Current User #{@user} "
     set_user_auth_token
     update_user
   end
