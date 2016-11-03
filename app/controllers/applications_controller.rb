@@ -1,6 +1,7 @@
 class ApplicationsController < ::ApplicationController
   wrap_parameters :user, include: [:password, :password_confirmation]
   before_action :set_http_auth_token, only: [:create]
+  before_action :set_user_auth_token, only: [:update]
 
 
   def new
@@ -16,7 +17,7 @@ class ApplicationsController < ::ApplicationController
   end
 
   def create
-    validation
+    validation('/apply')
     conditionality
     user = User.new(user_params.to_h)
     if user.save
@@ -37,32 +38,25 @@ class ApplicationsController < ::ApplicationController
   end
 
   def edit
-    user = current_user
-    hash = user.application.instance_variables.each_with_object({}) { |var, hash|
-      hash[var.to_s.delete("@")] = user.application.instance_variable_get(var)
-    }
-    @application = Application.new(hash['attributes'])
-    @user = User.new({first_name: user.first_name, last_name: user.last_name})
+    if flash[:app_params]
+      @application = Application.new(flash[:app_params])
+      @user = User.new(flash[:user_params])
+    elsif current_user.present?
+      user = current_user
+      hash = user.application.instance_variables.each_with_object({}) { |var, hash|
+        hash[var.to_s.delete("@")] = user.application.instance_variable_get(var)
+      }
+      @application = Application.new(hash['attributes'])
+      @user = User.new({first_name: user.first_name, last_name: user.last_name})
+    end
   end
 
-  def create_application
+  def update
+    # validation('/application/edit')
+    # conditionality
+    @user = current_user
     set_user_auth_token
-    app = Application.new(app_params.to_h)
-    if app.save
-      UserMailer.welcome_email(
-        user_params[:first_name], user_params[:email]
-      ).deliver_now
-      flash[:email] = user_params[:email]
-      redirect_to '/dashboard' and return
-    else
-      messages = []
-      app.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
-      logger.debug "Error on application creation: #{messages}"
-      flash[:popup_errors] = messages
-      flash[:app_params] = app_params.to_h
-      flash[:user_params] = user_params.to_h
-      redirect_to '/apply' and return
-    end
+    update_user
   end
 
   private
@@ -102,7 +96,7 @@ class ApplicationsController < ::ApplicationController
     )
   end
 
-  def validation
+  def validation(redirection)
     params[:application][:hackathons] = params[:application][:hackathons].to_i
     params[:application][:birth_day] = params[:application][:birth_day].to_i
     params[:application][:birth_month] = params[:application][:birth_month].to_i
@@ -135,7 +129,7 @@ class ApplicationsController < ::ApplicationController
     if app_params[:education].blank? then flash[:popup].push("Current enrollment") end
     if app_params[:education] != "High School" &&
       app_params[:university].blank? && app_params["other_university"].blank?
-      flash[:popup].push("University")
+      flash[:popup_errors].push("College or University is required")
     end
     if app_params[:outside_north_america].blank?
       flash[:popup_error].push("Indicate if you are traveling from North America")
@@ -153,10 +147,10 @@ class ApplicationsController < ::ApplicationController
       flash[:popup_errors].push("You must agree to our terms.")
     end
     if flash[:popup].size > 0 || flash[:popup_errors].size > 0
-      logger.debug "Error on user creation: #{[flash[:popup], flash[:popup_errors]]}"
+      logger.debug "Errors on validation: #{[flash[:popup], flash[:popup_errors]]}"
       flash[:app_params] = app_params.to_h
       flash[:user_params] = user_params.to_h
-      redirect_to '/apply' and return
+      redirect_to redirection and return
     end
   end
 
@@ -168,6 +162,62 @@ class ApplicationsController < ::ApplicationController
     elsif app_params[:outside_north_america] == "Yes"
       params[:application].delete :travel_origin
     end
+  end
 
+  def update_user
+
+    @user.load(user_params.to_h)
+    # begin
+    if @user.save
+      update_application
+    else
+      messages = []
+      @user.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
+      logger.debug "Error on user update: #{messages}"
+      debugger
+    end
+    # rescue
+    # end
+
+  end
+
+  def update_application
+    @application = Application.find(@user.application.id)
+    @application.load(app_params.to_h)
+    # # begin
+    if @application.save
+      redirect_to '/dashboard' and return
+    else
+      messages = []
+      @app.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
+      logger.debug "Error on application update: #{messages}"
+      flash[:popup_errors] = messages
+      flash[:app_params] = app_params.to_h
+      flash[:user_params] = user_params.to_h
+      redirect_to '/apply' and return
+    end
+    # # rescue
+    # # end
+
+  end
+
+  def create_application
+    set_user_auth_token
+    app = Application.new(app_params.to_h)
+    if app.save
+      UserMailer.welcome_email(
+        user_params[:first_name], user_params[:email]
+      ).deliver_now
+      flash[:email] = user_params[:email]
+      redirect_to '/dashboard' and return
+    else
+      messages = []
+      app.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
+      logger.debug "Error on application creation: #{messages}"
+      flash[:popup_errors] = messages
+      flash[:app_params] = app_params.to_h
+      flash[:user_params] = user_params.to_h
+      redirect_to '/apply' and return
+    end
   end
 end

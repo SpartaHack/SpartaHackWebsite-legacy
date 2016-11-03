@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'activeresource', git: 'https://github.com/rails/activeresource.git'
+gem 'activeresource', github: 'rails/activeresource', branch: 'master'
 
 gem 'simple_form'
 
@@ -49,7 +49,7 @@ group :development, :test do
   gem 'annotate'
   # Use rspec for testing
   %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
-      gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master'
+    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master'
   end
   gem "factory_girl_rails"
   gem 'ffaker'
