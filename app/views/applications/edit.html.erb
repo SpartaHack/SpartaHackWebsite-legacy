@@ -118,9 +118,12 @@
         <%= f.input :hackathons, :as => :integer, required: true, placeholder: "How many hackathons have you been to? *", :label_html => { :class => "no-label" }, input_html: { min: '0', step: 1, onkeypress:'return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 8' } %>
       </div>
 
-      <div class="add-margin-bottom page1">
-        <%= label_tag(:statement, "Why do you want to attend SpartaHack?", class: 'no-label') %>
-        <%= f.input :statement, :as => :text, placeholder: "Why do you want to attend SpartaHack?", required: false, :label_html => { :class => "no-label" } %>
+      <div class="add-margin-bottom page1 application_statement">
+        <%= f.input :statement, :as => :text, placeholder: "Why do you want to attend SpartaHack?", required: false, :input_html => {:maxlength => 3000}, :label_html => { :class => "no-label" } %>
+        <div id="statement_count">
+          <span id="current">0</span>
+          <span id="maximum">/ 3000</span>
+        </div>
       </div>
 
       <div class="links page1">

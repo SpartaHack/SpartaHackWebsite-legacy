@@ -118,6 +118,20 @@
 .hide-page {
   display: none!important;
 }
+
+#statement_count {
+  position: absolute;
+  top: 0;
+  right: 6px;
+  background: white;
+  margin: 3px 0;
+  color: $medium-gold;
+  font-size: 11px;
+
+  &.dark {
+    background: $dark-brown;
+  }
+}
 @media (min-width: 550px) and (min-height: 550px) {
   #app {
     background-color: transparent;
@@ -290,12 +304,13 @@
       height: 150px;
       resize: none;
       margin-bottom: 0;
+      box-sizing: border-box;
       text-align: left;
       font-family: Lato-Light;
       font-size: 15px;
       font-weight: 100;
       color: $medium-gold;
-      padding: 18px 0 8px 25px;
+      padding: 18px 25px 8px;
       -webkit-font-smoothing: antialiased;
       @media (max-width: 550px) {
         width: 100%;
@@ -469,13 +484,25 @@
     #application_linkedin,
     #application_other_link,
     #application_other_university,
-    #application_statement,
     #application_website {
       width: 100%;
       @media (min-width: 550px) {
         width: 503px;
         margin-bottom: 0;
       }
+    }
+
+    #application_statement {
+      width: 100%;
+      @media (min-width: 550px) {
+        width: 530px;
+        margin-bottom: 0;
+      }
+    }
+
+    .application_statement {
+      position: relative;
+      max-height: 150px;
     }
 
     #application_devpost,
