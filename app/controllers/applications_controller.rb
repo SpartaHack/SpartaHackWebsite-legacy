@@ -55,9 +55,16 @@ class ApplicationsController < ::ApplicationController
     elsif current_user.present?
       set_http_auth_token
       user = current_user
-      hash = user.application.instance_variables.each_with_object({}) { |var, hash|
-        hash[var.to_s.delete("@")] = user.application.instance_variable_get(var)
-      }
+      if !user.application.blank?
+        hash = user.application.instance_variables.each_with_object({}) { |var, hash|
+          hash[var.to_s.delete("@")] = user.application.instance_variable_get(var)
+        }
+        @application = Application.new(hash['attributes'])
+      else
+        @application = Application.new()
+      end
+      @user = User.new({first_name: user.first_name, last_name: user.last_name})
+    else
       @application = Application.new(hash['attributes'])
       @user = User.new({first_name: user.first_name, last_name: user.last_name})
     end
@@ -118,7 +125,11 @@ class ApplicationsController < ::ApplicationController
     ActiveResource::Base.headers["X-WWW-User-Token"] = "#{ @user.auth_token }"
     begin
       if @user.save
-        update_application
+        if @user.application.blank?
+          create_application
+        else
+          update_application
+        end
       else
         messages = []
         @user.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
