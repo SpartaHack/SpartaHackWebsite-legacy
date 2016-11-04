@@ -228,6 +228,7 @@ class ApplicationsController < ::ApplicationController
     params[:application][:birth_month] = params[:application][:birth_month].to_i
     params[:application][:birth_year] = params[:application][:birth_year].to_i
 
+    if params[:application][:hackathons] > 100 then params[:application][:hackathons] = 100 end
     if app_params[:birth_day].blank? then flash[:popup].push("Birth day") end
     if app_params[:birth_month].blank? then flash[:popup].push("Birth month") end
     if app_params[:birth_year].blank? then flash[:popup].push("Birth year") end

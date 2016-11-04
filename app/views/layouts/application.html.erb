@@ -24,7 +24,7 @@
     <!--  makes pages much more consistent across all browsers -->
     <%= stylesheet_link_tag    'cssreset', :media => "none", :onload =>"if(media!='all')media='all'" %>
     <noscript><%= stylesheet_link_tag    'cssreset' %></noscript>
-    <%= stylesheet_link_tag "application", "#{params[:controller]}", media: 'all', 'data-turbolinks-track': 'reload'  %>
+    <%= stylesheet_link_tag "application", "#{params[:controller]}", media: 'all'%>
   </head>
 
   <body>
@@ -41,6 +41,6 @@
         var themeTrigger = false;
       <% end %>
     </script>
-    <%= javascript_include_tag 'application', params[:controller], 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', params[:controller]%>
   </body>
 </html>
