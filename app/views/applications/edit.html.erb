@@ -192,10 +192,6 @@
   <%= javascript_tag do %>
   window.onload = function() {
     <% if @application %>
-      <% if @application.university.blank? %>
-        document.getElementById("other_university_enrolled_confirm").checked = true;
-        $('#other_university_enrolled_confirm').click();
-      <% end %>
       <% if @application.education.downcase == "high school" %>
         $('.university-enrolled').hide();
         $("#application_education_high_school").prop("checked", true);
@@ -205,6 +201,10 @@
       <% else %>
         $('.university-enrolled').show();
         $("#application_education_graduate").prop("checked", true);
+      <% end %>
+      <% if @application.university.blank? %>
+        $('.university-enrolled').hide();
+        $('#other_university_enrolled_confirm').click();
       <% end %>
       <% if !@application.outside_north_america.blank? %>
         <% if  @application.outside_north_america.downcase == 'yes' %>
