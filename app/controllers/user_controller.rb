@@ -1,6 +1,4 @@
 class UserController < ApplicationController
-  before_action :set_http_auth_token, :except => [:destroy]
-
   def new
   end
 
@@ -8,9 +6,6 @@ class UserController < ApplicationController
   end
 
   def create
-    if User.new(user_params)
-      redirect_to '/admin'
-    end
   end
 
   def dashboard
@@ -24,11 +19,14 @@ class UserController < ApplicationController
   end
 
   def destroy
-    set_http_auth_token
     @user = User.current_user
-    set_user_auth_token
     @user.destroy
-    redirect_to '/logout'
+
+    # Terminates user from Thread and session
+    User.current_user = nil
+    session.delete(:current_session)
+
+    redirect_to '/'
   end
 
   private

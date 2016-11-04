@@ -1,10 +1,9 @@
-require 'pp'
 class ApplicationsController < ::ApplicationController
   wrap_parameters :user, include: [:password, :password_confirmation]
-  before_action :set_http_auth_token, only: [:create]
 
   def new
     if flash[:app_params]
+      # In the event of an error repopulate form.
       @application = Application.new(flash[:app_params])
       @user = User.new(flash[:user_params])
     elsif User.current_user.present?
@@ -18,8 +17,7 @@ class ApplicationsController < ::ApplicationController
   def create
     session.clear
     reset_session
-    flash[:popup] = []
-    flash[:popup_errors] = []
+
     validate('/apply')
     conditionality
     @user = User.new(user_params.to_h)
@@ -32,15 +30,15 @@ class ApplicationsController < ::ApplicationController
         messages = []
         @user.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
         logger.debug "Error on user creation: #{messages}"
+
         flash[:popup_errors].push(messages)
         flash[:app_params] = app_params.to_h
         flash[:user_params] = user_params.to_h
         redirect_to '/apply' and return
       end
     rescue => e
-      Rails.logger.error e.message
-      Rails.logger.error e.backtrace.join("\n")
-      logger.debug "Fatal error on user creation"
+      logger.debug "Fatal error on user creation: #{Rails.logger.error e.message}"
+
       flash[:popup_errors].push("Something went wrong, please resubmit.")
       flash[:app_params] = app_params.to_h
       flash[:user_params] = user_params.to_h
@@ -49,14 +47,15 @@ class ApplicationsController < ::ApplicationController
 
   end
 
+  # Allows the editing of a User's Application.
   def edit
     if flash[:app_params]
+      # In the event of an error repopulate form.
       @application = Application.new(flash[:app_params])
       @user = User.new(flash[:user_params])
     elsif User.current_user.present?
-      set_http_auth_token
       user = User.current_user
-      pp user
+      # In the event a user is created but no application exists for them.
       if !user.application.blank?
         hash = user.application.instance_variables.each_with_object({}) { |var, hash|
           hash[var.to_s.delete("@")] = user.application.instance_variable_get(var)
@@ -71,16 +70,19 @@ class ApplicationsController < ::ApplicationController
     end
   end
 
+  # Updates the User and Application.
   def update
-    flash[:popup] = []
-    flash[:popup_errors] = []
     if User.current_user.present?
+      @user = User.current_user
       validate('/application/edit', 1)
       conditionality
-      set_http_auth_token
-      @user = User.current_user
-      @user.load(user_params.to_h)
-      update_user
+
+      # Only upate the user if anything has changed.
+      if @user.first_name != user_params[:first_name] || @user.last_name != user_params[:last_name]
+        update_user
+      else
+        update_application
+      end
     else
       flash[:error] = "An error occured please try again by logging in."
       redirect_to '/login'
@@ -124,9 +126,10 @@ class ApplicationsController < ::ApplicationController
     )
   end
 
+  # Updates a User with new first_name or last_name.
   def update_user
+    @user.load(user_params.to_h)
     begin
-      set_user_auth_token
       if @user.save
         if @user.application.blank?
           create_application
@@ -137,14 +140,16 @@ class ApplicationsController < ::ApplicationController
         messages = []
         @user.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
         Rails.logger.debug "Error on user update: #{messages}"
+
+        flash[:popup_errors].push(messages)
         flash[:app_params] = app_params.to_h
         flash[:user_params] = user_params.to_h
         redirect_to '/application/edit' and return
       end
     rescue => e
-      Rails.logger.error e.message
-      Rails.logger.error e.backtrace.join("\n")
       Rails.logger.debug "Fatal error on user update"
+      Rails.logger.error e.message
+
       flash[:popup_errors].push("Something went wrong, please resubmit.")
       flash[:app_params] = app_params.to_h
       flash[:user_params] = user_params.to_h
@@ -153,6 +158,7 @@ class ApplicationsController < ::ApplicationController
 
   end
 
+  # Updates a User's Application.
   def update_application
     @application = Application.find(@user.application.id)
     @application.load(app_params.to_h)
@@ -163,15 +169,16 @@ class ApplicationsController < ::ApplicationController
         messages = []
         @app.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
         Rails.logger.debug "Error on application update: #{messages}"
+
         flash[:popup_errors].push(messages)
         flash[:app_params] = app_params.to_h
         flash[:user_params] = user_params.to_h
         redirect_to '/application/edit' and return
       end
     rescue => e
-      Rails.logger.error e.message
-      Rails.logger.error e.backtrace.join("\n")
       Rails.logger.debug "Fatal error on application update"
+      Rails.logger.error e.message
+
       flash[:popup_errors].push("Something went wrong, please resubmit.")
       flash[:app_params] = app_params.to_h
       flash[:user_params] = user_params.to_h
@@ -180,9 +187,10 @@ class ApplicationsController < ::ApplicationController
 
   end
 
+  # Creates an Application on successful User creation.
   def create_application
-    app = Application.new(app_params.to_h)
     begin
+      app = Application.new(app_params.to_h)
       if app.save
         UserMailer.welcome_email(
           user_params[:first_name], user_params[:email]
@@ -191,22 +199,20 @@ class ApplicationsController < ::ApplicationController
         redirect_to '/dashboard' and return
       else
         messages = []
-
-        ActiveResource::Base.headers["X-WWW-User-Token"] = "#{ @user.auth_token }"
-        @user.destroy
         app.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
         Rails.logger.debug "Error on application creation: #{messages}"
+        @user.destroy
+
         flash[:popup_errors].push(messages)
         flash[:app_params] = app_params.to_h
         flash[:user_params] = user_params.to_h
         redirect_to '/apply' and return
       end
     rescue => e
-      Rails.logger.error e.message
-      Rails.logger.error e.backtrace.join("\n")
       Rails.logger.debug "Fatal error on application creation"
-      ActiveResource::Base.headers["X-WWW-User-Token"] = "#{ @user.auth_token }"
+      Rails.logger.error e.message
       @user.destroy
+
       flash[:popup_errors].push("Something went wrong, please resubmit.")
       flash[:app_params] = app_params.to_h
       flash[:user_params] = user_params.to_h
@@ -214,12 +220,16 @@ class ApplicationsController < ::ApplicationController
     end
   end
 
+  # Calls the User and Application validation checks and redirects on errors.
   def validate(redirection, edit = 0)
+    flash[:popup] = []
+    flash[:popup_errors] = []
     application_validation
     user_validation(edit)
     redirect_on_errors(redirection)
   end
 
+  # Checks for all required fields related to Application creation and update.
   def application_validation
     params[:application][:hackathons] = params[:application][:hackathons].to_i
     params[:application][:birth_day] = params[:application][:birth_day].to_i
@@ -255,10 +265,12 @@ class ApplicationsController < ::ApplicationController
     end
   end
 
+  # Checks for all required fields related to User creation or update.
   def user_validation(edit)
     if user_params['first_name'].blank? then flash[:popup].push("First name") end
     if user_params['last_name'].blank? then flash[:popup].push("Last name") end
 
+    # These validations aren't necessary for application editing.
     if edit != 1
       if user_params['email'].blank? then flash[:popup].push("Email") end
       if user_params['email_confirmation'].blank? then flash[:popup].push("Email confirmation") end
@@ -279,6 +291,7 @@ class ApplicationsController < ::ApplicationController
     end
   end
 
+  # Called after validations, redirects if errors on validation.
   def redirect_on_errors(redirection)
     if flash[:popup].size > 0 || flash[:popup_errors].size > 0
       logger.debug "Errors on validation: #{[flash[:popup], flash[:popup_errors]]}"
@@ -288,6 +301,7 @@ class ApplicationsController < ::ApplicationController
     end
   end
 
+  # Prevents storage of unnecessary information.
   def conditionality
     if app_params[:education] == "High School"
       params[:application].delete :university
