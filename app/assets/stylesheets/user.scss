@@ -1,0 +1,35 @@
+// Place all the styles related to the User controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  padding: 115px 20% 115px;
+  @media (max-width: 710px) {
+    margin-top: 90px;
+    padding: 20px 5%;
+  }
+}
+
+.user-border {
+  &.top {
+    &.inner {
+      left:0;
+      right: 0;
+      margin: auto;
+    }
+  }
+  &.right {
+    &.outer {
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+  }
+}
+
+@import "partials/colors";
+@import "partials/animations";
+@import "partials/fonts";
+@import "partials/home/navigation";
+@import "partials/border";
+@import "partials/user/dashboard";

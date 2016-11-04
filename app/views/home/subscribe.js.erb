@@ -1,0 +1,6 @@
+swal({title:"<%= @title.html_safe %>", text: "<%= @desc.html_safe %>", type: "<%= @type.html_safe %>", confirmButtonColor: "<%= @button.html_safe %>", allowEscapeKey:	true})
+<% if cookies.signed[:theme] == 'dark' %>
+  $(".sweet-alert").removeClass('dark').addClass("dark");
+<% else %>
+  $(".sweet-alert").removeClass("dark");
+<% end %>

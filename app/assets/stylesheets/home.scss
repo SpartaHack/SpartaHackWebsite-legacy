@@ -1,0 +1,163 @@
+/*
+ *= require font-awesome
+ *
+ */
+
+ @import "partials/colors";
+ @import "partials/fonts";
+ @import "partials/border";
+
+body {
+  padding: 100vh 20% 115px;
+  @media (max-width: 710px) {
+    margin-top: 90px;
+    padding: 50vh 5% 20px;
+  }
+}
+
+.corner {
+  position: absolute;
+  opacity: 0;
+  animation: fade-in 1s linear alternate;
+  animation-delay: 1.5s;
+  animation-fill-mode: forwards;
+  width: 1px;
+  @media screen and (max-width: 825px) {
+    display:none;
+  }
+
+  &.top.right {
+    transform-origin: top left;
+    background: linear-gradient($light-gold, $dark-gold);
+    transform: rotate(-45deg);
+    &.inner {
+      top: 97px;
+      right: 383px;
+      height: 406px;
+    }
+    &.outer {
+      top: 77px;
+      right: 363px;
+      height: 249px;
+    }
+  }
+  &.bottom.left {
+    transform-origin: bottom right;
+    background: linear-gradient($dark-gold, $medium-gold);
+    transform: rotate(-45deg);
+    @media screen and (max-width: 1165px) {
+      display:none;
+    }
+
+    &.outer {
+      bottom: 77px;
+      left: 383px;
+      height: 196px;
+    }
+    &.inner {
+      bottom: 97px;
+      left: 403px;
+      height: 434px;
+    }
+  }
+}
+
+.logo {
+  &.diamond {
+    position: absolute;
+    opacity: 0;
+    animation: fade-in 1s linear alternate;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+    display: flex;
+    justify-content: center;
+    width: 192px;
+    height: 115px;
+    @media screen and (max-width: 825px) {
+      display:none;
+    }
+    &.top.right {
+      right: 96px;
+      top: 76px;
+      z-index: 499;
+    }
+    &.bottom.left {
+      left: 96px;
+      bottom: 76px;
+      @media screen and (max-width: 1165px) {
+        display:none;
+      }
+    }
+    img {
+      width: 77px;
+    }
+  }
+  &#logo-center {
+    width: 365px;
+    height: auto;
+    max-height: 19vh;
+    z-index: 400;
+    @media screen and (max-width: 480px) {
+      width: 70vw;
+      max-height: 100vh;
+    }
+  }
+  &#inner-ring {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    overflow: auto;
+    width: 476px;
+    height: 44vh;
+    @media screen and (max-width: 480px) {
+      display:none;
+    }
+  }
+  &#outer-ring {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    overflow: auto;
+    width: 70vw;
+    height: 70vh;
+    @media screen and (max-width: 1100px) {
+      display:none;
+    }
+  }
+  &#hanging-lines {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    overflow: visible;
+    width: 70vw;
+    height: 70vw;
+    max-height: 70vh;
+    @media screen and (max-width: 1100px) {
+      display:none;
+    }
+  }
+  &.main {
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+    top: 0;
+    position: absolute;
+    display: flex;
+    transition: height 1s ease;
+    align-items: center;
+    justify-content: center;
+    @media screen and (max-width: 710px) {
+      height: 50vh;
+    }
+    img {
+      width: 55%;
+      max-height: 75vh;
+    }
+  }
+}
+
+@import "partials/home/navigation";
+@import "partials/home/head";
+@import "partials/home/spartahack";
+@import "partials/home/faq";
+@import "partials/home/sponsors";
