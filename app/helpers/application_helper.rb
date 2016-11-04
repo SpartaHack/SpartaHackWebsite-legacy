@@ -1,4 +1,5 @@
 module ApplicationHelper
+  # Deprecated
   def current_user
     if session[:current_session].present?
       begin
