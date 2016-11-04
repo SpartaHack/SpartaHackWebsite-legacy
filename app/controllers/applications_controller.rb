@@ -31,7 +31,7 @@ class ApplicationsController < ::ApplicationController
         create_application
       else
         messages = []
-        user.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
+        @user.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
         logger.debug "Error on user creation: #{messages}"
         flash[:popup_errors].push(messages)
         flash[:app_params] = app_params.to_h
