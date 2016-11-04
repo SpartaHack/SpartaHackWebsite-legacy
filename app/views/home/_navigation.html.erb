@@ -20,7 +20,7 @@
       <li>
           <a href="#footer">Contact</a>
       </li>
-      <%- if current_user.present? %>
+      <%- if User.current_user.present? %>
         <li>
             <a href="/dashboard">My Dashboard</a>
         </li>

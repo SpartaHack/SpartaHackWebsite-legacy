@@ -25,7 +25,7 @@ class UserController < ApplicationController
 
   def destroy
     set_http_auth_token
-    @user = current_user
+    @user = User.current_user
     set_user_auth_token
     @user.destroy
     redirect_to '/logout'
@@ -37,7 +37,7 @@ class UserController < ApplicationController
   end
 
   def check_login
-    if !current_user.present?
+    if !User.current_user.present?
       redirect_to '/login'
     end
   end

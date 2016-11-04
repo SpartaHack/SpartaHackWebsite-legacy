@@ -7,7 +7,7 @@ class ApplicationsController < ::ApplicationController
     if flash[:app_params]
       @application = Application.new(flash[:app_params])
       @user = User.new(flash[:user_params])
-    elsif current_user.present?
+    elsif User.current_user.present?
       redirect_to '/application/edit' and return
     else
       @application = Application.new
@@ -25,9 +25,8 @@ class ApplicationsController < ::ApplicationController
     @user = User.new(user_params.to_h)
     begin
       if @user.save
+        User.current_user = @user
         session[:current_session] = @user.id
-        # set_user_auth_token
-        ActiveResource::Base.headers["X-WWW-User-Token"] = "#{ @user.auth_token }"
         create_application
       else
         messages = []
@@ -54,9 +53,10 @@ class ApplicationsController < ::ApplicationController
     if flash[:app_params]
       @application = Application.new(flash[:app_params])
       @user = User.new(flash[:user_params])
-    elsif current_user.present?
+    elsif User.current_user.present?
       set_http_auth_token
-      user = current_user
+      user = User.current_user
+      pp user
       if !user.application.blank?
         hash = user.application.instance_variables.each_with_object({}) { |var, hash|
           hash[var.to_s.delete("@")] = user.application.instance_variable_get(var)
@@ -74,11 +74,11 @@ class ApplicationsController < ::ApplicationController
   def update
     flash[:popup] = []
     flash[:popup_errors] = []
-    if current_user.present?
+    if User.current_user.present?
       validate('/application/edit', 1)
       conditionality
       set_http_auth_token
-      @user = current_user
+      @user = User.current_user
       @user.load(user_params.to_h)
       update_user
     else
@@ -125,8 +125,8 @@ class ApplicationsController < ::ApplicationController
   end
 
   def update_user
-    ActiveResource::Base.headers["X-WWW-User-Token"] = "#{ @user.auth_token }"
     begin
+      set_user_auth_token
       if @user.save
         if @user.application.blank?
           create_application
@@ -181,10 +181,8 @@ class ApplicationsController < ::ApplicationController
   end
 
   def create_application
-    ActiveResource::Base.headers["X-WWW-User-Token"] = "#{ @user.auth_token }"
     app = Application.new(app_params.to_h)
     begin
-      ActiveResource::Base.headers["X-WWW-User-Token"] = "#{ @user.auth_token }"
       if app.save
         UserMailer.welcome_email(
           user_params[:first_name], user_params[:email]

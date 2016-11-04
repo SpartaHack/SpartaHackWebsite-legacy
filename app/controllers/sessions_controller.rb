@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
     session_response = Session.create( { :email => session_params[:email], :password => session_params[:password] } )
 
     if session_response.errors.messages.empty?
-      session[:current_session] = session_response.id
+      User.current_user = session_response
+      session[:current_session] = User.current_user.id
       redirect_to '/dashboard'
     else
       messages = []
@@ -35,7 +36,7 @@ class SessionsController < ApplicationController
   end
 
   def check_login
-    if current_user.present?
+    if User.current_user.present?
       redirect_to '/dashboard'
     end
   end

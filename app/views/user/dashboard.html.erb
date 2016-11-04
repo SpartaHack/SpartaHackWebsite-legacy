@@ -6,7 +6,7 @@
   <div id="greeting-wrapper">
     <h2 id="greeting" class="section-head">
       <p>
-        Greetings, <%= current_user.first_name.capitalize %>
+        Greetings, <%= User.current_user.first_name.capitalize %>
         <span>|</span>
       </p>
     </h2>
