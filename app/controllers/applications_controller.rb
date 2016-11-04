@@ -179,7 +179,8 @@ class ApplicationsController < ::ApplicationController
         redirect_to '/dashboard' and return
       else
         messages = []
-        set_user_auth_token
+
+        ActiveResource::Base.headers["X-WWW-User-Token"] = "#{ @user.auth_token }"
         @user.destroy
         app.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
         Rails.logger.debug "Error on application creation: #{messages}"
