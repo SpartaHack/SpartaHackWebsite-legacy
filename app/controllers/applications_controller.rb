@@ -16,6 +16,8 @@ class ApplicationsController < ::ApplicationController
   end
 
   def create
+    flash[:popup] = []
+    flash[:popup_errors] = []
     validate('/apply')
     conditionality
     @user = User.new(user_params.to_h)
@@ -65,12 +67,13 @@ class ApplicationsController < ::ApplicationController
       end
       @user = User.new({first_name: user.first_name, last_name: user.last_name})
     else
-      @application = Application.new(hash['attributes'])
-      @user = User.new({first_name: user.first_name, last_name: user.last_name})
+      redirect_to "/login"
     end
   end
 
   def update
+    flash[:popup] = []
+    flash[:popup_errors] = []
     if current_user.present?
       validate('/application/edit', 1)
       conditionality
@@ -225,9 +228,6 @@ class ApplicationsController < ::ApplicationController
     params[:application][:birth_month] = params[:application][:birth_month].to_i
     params[:application][:birth_year] = params[:application][:birth_year].to_i
 
-    flash[:params] = app_params
-    flash[:popup] = []
-    flash[:popup_errors] = []
     if app_params[:birth_day].blank? then flash[:popup].push("Birth day") end
     if app_params[:birth_month].blank? then flash[:popup].push("Birth month") end
     if app_params[:birth_year].blank? then flash[:popup].push("Birth year") end
