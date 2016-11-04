@@ -52,85 +52,24 @@ function createSelects() {
   });
 }
 
-////////////////////////////////////////////////////
-// Conditionality
-///////////////////////////////////////////////////
-$('#other_university_enrolled_confirm').click(function() {
-  if ($(this).is(':checked')) {
+function showOtherUniversity() {
+  if ($('.university').is(':visible')) {
     $('.university').stop().slideUp(function() {
       $('.other_university_enrolled').stop().slideDown({
         start: createSelects
       });
     });
-    createSelects();
-  } else {
-    $('.other_university_enrolled').stop().slideUp(function() {
-      $('.university').stop().slideDown({
-        start: createSelects
-      });
-    });
   }
-});
+  createSelects();
+}
 
-$('input[name="application[education]"]').change(function() {
-  if (this.value === "Undergraduate" || this.value === "Graduate") {
-    $('.university-enrolled').stop().slideDown({
-      duration: 'slow',
+function hideOtherUniversity() {
+  $('.other_university_enrolled').stop().slideUp(function() {
+    $('.university').stop().slideDown({
       start: createSelects
     });
-  } else {
-    if ($('#other_university_enrolled_confirm')[0].checked) {
-      $('#other_university_enrolled_confirm').prop('checked', false).change();
-      $('.other_university_enrolled').stop().slideUp();
-    }
-    $('.university-enrolled').stop().slideUp({
-      duration: 'slow',
-      start: createSelects
-    });
-  }
-});
-
-$('input[name="application[outside_north_america]"]').change(function() {
-  if (this.value === "Yes") {
-    $('.university-traveling').stop().slideUp({
-      duration: 'slow',
-      start: createSelects
-    });
-  } else {
-    $('.university-traveling').stop().slideDown({
-      duration: 'slow',
-      start: createSelects
-    });
-  }
-});
-
-////////////////////////////////////////////////////
-// Validations
-///////////////////////////////////////////////////
-
-$('#createAccount').click(function(event) {
-  event.preventDefault();
-  validateFormOne();
-  return false;
-});
-
-$('#application').click(function(event) {
-  event.preventDefault();
-  validateFormTwo();
-  return false;
-});
-
-$('#application-edit').click(function(event) {
-  event.preventDefault();
-  validateFormOne('edit');
-  return false;
-});
-
-$('#backApp').click(function(event) {
-  event.preventDefault();
-  $('.page1').removeClass('hide-page');
-  $('.page2').addClass('hide-page');
-});
+  });
+}
 
 function validateFormOne(edit) {
   if ($("#user_first_name").val().length == 0 || $("#user_last_name").val().length == 0) {
@@ -217,65 +156,141 @@ function popUpTop() {
   $("#popup-wrapper").fadeIn("slow");
 }
 
-$('#popup-wrapper, #popup-error-wrapper, #popup-wrapper p').click(function(e) {
-  if (e.target !== this)
-    return;
+////////////////////////////////////////////////////
+// Conditionality
+///////////////////////////////////////////////////
+window.onload = function() {
+  $('#other_university_enrolled_confirm').click(function() {
+    if ($(this).is(':checked')) {
+      showOtherUniversity();
+    } else {
+      hideOtherUniversity();
+    }
+  });
 
-  $('#popup-wrapper, #popup-error-wrapper').fadeOut('slow');
-});
+  $('input[name="application[education]"]').change(function() {
+    if (this.value === "Undergraduate" || this.value === "Graduate") {
+      $('.university-enrolled').stop().slideDown({
+        duration: 'slow',
+        start: createSelects
+      });
 
-$(window).resize(function() {
+      if ($('#other_university_enrolled_confirm').is(':checked')) {
+        showOtherUniversity();
+      } else {
+        hideOtherUniversity();
+      }
+
+    } else {
+      $('.university-enrolled').stop().slideUp({
+        duration: 'slow',
+        start: createSelects
+      });
+    }
+  });
+
+  $('input[name="application[outside_north_america]"]').change(function() {
+    if (this.value === "Yes") {
+      $('.university-traveling').stop().slideUp({
+        duration: 'slow',
+        start: createSelects
+      });
+    } else {
+      $('.university-traveling').stop().slideDown({
+        duration: 'slow',
+        start: createSelects
+      });
+    }
+  });
+
+  ////////////////////////////////////////////////////
+  // Validations
+  ///////////////////////////////////////////////////
+
+  $('#createAccount').click(function(event) {
+    event.preventDefault();
+    validateFormOne();
+    return false;
+  });
+
+  $('#application').click(function(event) {
+    event.preventDefault();
+    validateFormTwo();
+    return false;
+  });
+
+  $('#application-edit').click(function(event) {
+    event.preventDefault();
+    validateFormOne('edit');
+    return false;
+  });
+
+  $('#backApp').click(function(event) {
+    event.preventDefault();
+    $('.page1').removeClass('hide-page');
+    $('.page2').addClass('hide-page');
+  });
+
+  $('#popup-wrapper, #popup-error-wrapper, #popup-wrapper p').click(function(e) {
+    if (e.target !== this)
+      return;
+
+    $('#popup-wrapper, #popup-error-wrapper').fadeOut('slow');
+  });
+
+  $(window).resize(function() {
+    createSelects();
+  })
+
+  $(window).scroll(function() {
+    $("#popup-wrapper, #popup-error-wrapper").fadeOut('fast');
+  });
+
+  var characterCount = $("#application_statement").val().length
+  $('#current').text(characterCount);
+  $('#application_statement').keyup(function() {
+
+    characterCount = $(this).val().length,
+      current = $('#current'),
+      maximum = $('#maximum'),
+      theCount = $('#the-count');
+
+    current.text(characterCount);
+
+
+    /*This isn't entirely necessary, just playin around*/
+    if (characterCount < 1000) {
+      current.css('color', '#D4B166');
+      current.css('font-weight', 'normal');
+    }
+    if (characterCount > 999 && characterCount < 2000) {
+      current.css('color', '#D4B166');
+      current.css('font-weight', 'bold');
+    }
+    if (characterCount > 1999 && characterCount < 2500) {
+      current.css('color', '#B58A2D');
+      current.css('font-weight', 'normal');
+    }
+    if (characterCount > 2499 && characterCount < 3000) {
+      current.css('color', '#B58A2D');
+      current.css('font-weight', '900');
+    }
+
+    if (characterCount == 3000) {
+      maximum.css('color', '#B58A2D');
+      current.css('color', '#B58A2D');
+      theCount.css('font-weight', '900');
+    } else {
+      maximum.css('color', '#D4B166');
+      theCount.css('font-weight', 'normal');
+    }
+
+
+  });
+
   createSelects();
-})
-
-$(window).scroll(function() {
-  $("#popup-wrapper, #popup-error-wrapper").fadeOut('fast');
-});
-
-var characterCount = $("#application_statement").val().length
-$('#current').text(characterCount);
-$('#application_statement').keyup(function() {
-
-  characterCount = $(this).val().length,
-    current = $('#current'),
-    maximum = $('#maximum'),
-    theCount = $('#the-count');
-
-  current.text(characterCount);
-
-
-  /*This isn't entirely necessary, just playin around*/
-  if (characterCount < 1000) {
-    current.css('color', '#D4B166');
-    current.css('font-weight', 'normal');
-  }
-  if (characterCount > 999 && characterCount < 2000) {
-    current.css('color', '#D4B166');
-    current.css('font-weight', 'bold');
-  }
-  if (characterCount > 1999 && characterCount < 2500) {
-    current.css('color', '#B58A2D');
-    current.css('font-weight', 'normal');
-  }
-  if (characterCount > 2499 && characterCount < 3000) {
-    current.css('color', '#B58A2D');
-    current.css('font-weight', '900');
-  }
-
-  if (characterCount == 3000) {
-    maximum.css('color', '#B58A2D');
-    current.css('color', '#B58A2D');
-    theCount.css('font-weight', '900');
-  } else {
-    maximum.css('color', '#D4B166');
-    theCount.css('font-weight', 'normal');
-  }
-
-
-});
-
-createSelects();
-// hide old selection arrow;
-// $('b[role="presentation"]').hide();
-// $('.select2-selection__arrow').append('<i class="fa fa-angle-down"></i>');
-// $('.select2-container--open').append('<i class="fa fa-angle-up"></i>');
+  // hide old selection arrow;
+  // $('b[role="presentation"]').hide();
+  // $('.select2-selection__arrow').append('<i class="fa fa-angle-down"></i>');
+  // $('.select2-container--open').append('<i class="fa fa-angle-up"></i>');
+}
