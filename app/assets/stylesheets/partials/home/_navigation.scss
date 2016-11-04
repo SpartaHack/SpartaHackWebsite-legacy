@@ -18,19 +18,19 @@ nav {
   &.dark {
     background-color: $dark-brown;
   }
-  @media screen and (max-width: 705px) {
+  @media screen and (max-width: 990px) {
     justify-content: center;
   }
-  @media screen and (max-width: 485px) {
+  @media screen and (max-width: 769px) {
     display: none !important;
   }
 
   #left-wrap {
     width: 442px;
-    @media screen and (max-width: 1025px) {
+    @media screen and (max-width: 1299px) {
       width: auto;
     }
-    @media screen and (max-width: 705px) {
+    @media screen and (max-width: 990px) {
       display: none;
     }
   }
@@ -46,7 +46,7 @@ nav {
     font-weight: 100;
     color: $medium-gold;
     font-size: 34px;
-    @media screen and (max-width: 1025px) {
+    @media screen and (max-width: 1299px) {
       display: none;
     }
 
@@ -76,7 +76,7 @@ nav {
     margin: 0;
     padding: 0 76px 0 0;
     height: auto;
-    @media (max-width: 710px) {
+    @media (max-width: 990px) {
       padding: 0;
     }
 
