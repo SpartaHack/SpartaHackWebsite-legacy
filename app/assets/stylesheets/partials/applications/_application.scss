@@ -269,9 +269,10 @@
     input[type=email],
     input[type=password],
     input[type=text] {
-      height: 36px;
+      height: 56px;
       text-align: left;
       font-size: 15px;
+      box-sizing: border-box;
       font-weight: 100;
       padding: 8px 0 8px 25px;
       margin-bottom: 0;
@@ -332,11 +333,18 @@
     }
 
     #graduation_year,
+    .half-width-input {
+      @media (min-width: 550px) {
+        width: 225px;
+        margin-bottom: 0;
+      }
+    }
+
     #user_password,
     #user_password_confirmation,
     .half-width-input {
       @media (min-width: 550px) {
-        width: 225px;
+        width: 252px;
         margin-bottom: 0;
       }
     }
