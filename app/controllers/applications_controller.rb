@@ -23,6 +23,7 @@ class ApplicationsController < ::ApplicationController
       if @user.save
         session[:current_session] = @user.id
         # set_user_auth_token
+        ActiveResource::Base.headers["X-WWW-User-Token"] = "#{ @user.auth_token }"
         create_application
       else
         messages = []
@@ -167,6 +168,7 @@ class ApplicationsController < ::ApplicationController
     ActiveResource::Base.headers["X-WWW-User-Token"] = "#{ @user.auth_token }"
     app = Application.new(app_params.to_h)
     begin
+      ActiveResource::Base.headers["X-WWW-User-Token"] = "#{ @user.auth_token }"
       if app.save
         UserMailer.welcome_email(
           user_params[:first_name], user_params[:email]
@@ -188,6 +190,7 @@ class ApplicationsController < ::ApplicationController
       Rails.logger.error e.message
       Rails.logger.error e.backtrace.join("\n")
       Rails.logger.debug "Fatal error on application creation"
+      ActiveResource::Base.headers["X-WWW-User-Token"] = "#{ @user.auth_token }"
       @user.destroy
       flash[:popup_errors].push("Something went wrong, please resubmit.")
       flash[:app_params] = app_params.to_h
