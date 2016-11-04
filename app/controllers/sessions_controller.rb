@@ -1,6 +1,4 @@
 class SessionsController < ApplicationController
-  before_action :set_http_auth_token, only: [:create, :destroy]
-  skip_before_filter :verify_authenticity_token
 
   # Sign in
   def new
@@ -26,7 +24,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    User.current_user = nil
     session.delete(:current_session)
+
     redirect_to root_url
   end
 
