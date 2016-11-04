@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   around_filter :set_current_user
-  include Authentication
   include ApplicationHelper
 
   protect_from_forgery with: :null_session, if: ->{request.format.json?}
