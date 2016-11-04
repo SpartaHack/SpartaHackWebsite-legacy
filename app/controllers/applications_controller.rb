@@ -16,6 +16,8 @@ class ApplicationsController < ::ApplicationController
   end
 
   def create
+    session.clear
+    reset_session
     flash[:popup] = []
     flash[:popup_errors] = []
     validate('/apply')
@@ -23,8 +25,6 @@ class ApplicationsController < ::ApplicationController
     @user = User.new(user_params.to_h)
     begin
       if @user.save
-        session.clear
-        reset_session
         session[:current_session] = @user.id
         # set_user_auth_token
         ActiveResource::Base.headers["X-WWW-User-Token"] = "#{ @user.auth_token }"
