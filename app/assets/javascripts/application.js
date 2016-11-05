@@ -21,7 +21,7 @@
 ///////////////////////////////////////////////////
 var headerBoxShadow = "0px 0px 22px 0px rgba(0,0,0,0.04)";
 var themeElements = "body, nav, .active-q, .sweet-alert, input, #popup-wrapper, \
-#popup-error-wrapper, #statement_count";
+#popup-error-wrapper, .popup, #statement_count";
 
 ////////////////////////////////////////////////////
 // Dark Theme

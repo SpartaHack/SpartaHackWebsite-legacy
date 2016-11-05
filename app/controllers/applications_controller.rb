@@ -31,7 +31,7 @@ class ApplicationsController < ::ApplicationController
         @user.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
         logger.debug "Error on user creation: #{messages}"
 
-        flash[:popup_errors].push(messages)
+        flash[:popup_errors] = messages
         flash[:app_params] = app_params.to_h
         flash[:user_params] = user_params.to_h
         redirect_to '/apply' and return
@@ -141,7 +141,7 @@ class ApplicationsController < ::ApplicationController
         @user.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
         Rails.logger.debug "Error on user update: #{messages}"
 
-        flash[:popup_errors].push(messages)
+        flash[:popup_errors] = messages
         flash[:app_params] = app_params.to_h
         flash[:user_params] = user_params.to_h
         redirect_to '/application/edit' and return
@@ -170,7 +170,7 @@ class ApplicationsController < ::ApplicationController
         @app.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
         Rails.logger.debug "Error on application update: #{messages}"
 
-        flash[:popup_errors].push(messages)
+        flash[:popup_errors] = messages
         flash[:app_params] = app_params.to_h
         flash[:user_params] = user_params.to_h
         redirect_to '/application/edit' and return
@@ -203,7 +203,7 @@ class ApplicationsController < ::ApplicationController
         Rails.logger.debug "Error on application creation: #{messages}"
         @user.destroy
 
-        flash[:popup_errors].push(messages)
+        flash[:popup_errors] = messages
         flash[:app_params] = app_params.to_h
         flash[:user_params] = user_params.to_h
         redirect_to '/apply' and return
