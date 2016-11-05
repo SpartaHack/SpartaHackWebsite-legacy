@@ -1,0 +1,23 @@
+var element = document.getElementById('group-update');
+var addError = function() { element.classList.add('error'); };
+var removeError = function() { element.classList.remove('error'); };
+<%- if !@batch.blank? %>
+    var group_text = "<p id=\"group-apply-share\">This is your group token: <strong><%= @batch.token %></strong>, share it with your friends to be considered together!</p>"
+
+  <% if @batch.hackers.count == 0 %>
+    group_text += "<p id=\"group-apply\">We're considering you in a group application but you're the only one in your group.</p>"
+  <% else %>
+    group_text += "<p id=\"group-apply\">We're considering you in a group application with <%= @batch.hackers.to_sentence %>.</p>"
+  <% end %>
+    group_text += '<div class="form-wrapper flex wrap-row align-center center"><%= form_tag "/batch/destroy", :id =>"leave-group" %><%= hidden_field(:batch, :token, :value => @batch.token)%><%= submit_tag "Leave group" %></form>'
+
+  $("#group-wrapper").stop().fadeOut(function(){
+    removeError()
+    $(this).html(group_text);
+    $("#group-wrapper").fadeIn();
+  })
+<% else %>
+  addError();
+  setTimeout(removeError,1000);
+
+<% end %>

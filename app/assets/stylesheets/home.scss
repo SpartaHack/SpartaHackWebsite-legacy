@@ -2,14 +2,13 @@
  *= require font-awesome
  *
  */
-
- @import "partials/colors";
- @import "partials/fonts";
- @import "partials/border";
+@import "partials/colors";
+@import "partials/fonts";
+@import "partials/border";
 
 body {
   padding: 100vh 20% 115px;
-  @media (max-width: 710px) {
+  @media (max-width: 709px) {
     margin-top: 90px;
     padding: 50vh 5% 20px;
   }
@@ -23,30 +22,33 @@ body {
   animation-fill-mode: forwards;
   width: 1px;
   @media screen and (max-width: 825px) {
-    display:none;
+    display: none;
   }
 
   &.top.right {
     transform-origin: top left;
     background: linear-gradient($light-gold, $dark-gold);
     transform: rotate(-45deg);
+
     &.inner {
       top: 97px;
       right: 383px;
       height: 406px;
     }
+
     &.outer {
       top: 77px;
       right: 363px;
       height: 249px;
     }
   }
+
   &.bottom.left {
     transform-origin: bottom right;
     background: linear-gradient($dark-gold, $medium-gold);
     transform: rotate(-45deg);
     @media screen and (max-width: 1165px) {
-      display:none;
+      display: none;
     }
 
     &.outer {
@@ -54,6 +56,7 @@ body {
       left: 383px;
       height: 196px;
     }
+
     &.inner {
       bottom: 97px;
       left: 403px;
@@ -74,24 +77,28 @@ body {
     width: 192px;
     height: 115px;
     @media screen and (max-width: 825px) {
-      display:none;
+      display: none;
     }
+
     &.top.right {
       right: 96px;
       top: 76px;
       z-index: 499;
     }
+
     &.bottom.left {
       left: 96px;
       bottom: 76px;
       @media screen and (max-width: 1165px) {
-        display:none;
+        display: none;
       }
     }
+
     img {
       width: 77px;
     }
   }
+
   &#logo-center {
     width: 365px;
     height: auto;
@@ -102,40 +109,53 @@ body {
       max-height: 100vh;
     }
   }
+
   &#inner-ring {
     position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     margin: auto;
     overflow: auto;
     width: 476px;
     height: 44vh;
     @media screen and (max-width: 480px) {
-      display:none;
+      display: none;
     }
   }
+
   &#outer-ring {
     position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     margin: auto;
     overflow: auto;
     width: 70vw;
     height: 70vh;
     @media screen and (max-width: 1100px) {
-      display:none;
+      display: none;
     }
   }
+
   &#hanging-lines {
     position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     margin: auto;
     overflow: visible;
     width: 70vw;
     height: 70vw;
     max-height: 70vh;
     @media screen and (max-width: 1100px) {
-      display:none;
+      display: none;
     }
   }
+
   &.main {
     height: 100vh;
     width: 100vw;
@@ -149,6 +169,7 @@ body {
     @media screen and (max-width: 710px) {
       height: 50vh;
     }
+
     img {
       width: 55%;
       max-height: 75vh;
@@ -156,6 +177,12 @@ body {
   }
 }
 
+#footer {
+  bottom: 88px;
+  @media screen and (max-width: 710px) {
+    bottom: 0;
+  }
+}
 @import "partials/home/navigation";
 @import "partials/home/head";
 @import "partials/home/spartahack";

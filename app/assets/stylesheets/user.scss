@@ -3,7 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-  padding: 115px 20% 115px;
+  padding: 115px 20% 0;
+  position: relative;
   @media (max-width: 710px) {
     margin-top: 90px;
     padding: 20px 5%;
@@ -13,11 +14,12 @@ body {
 .user-border {
   &.top {
     &.inner {
-      left:0;
+      left: 0;
       right: 0;
       margin: auto;
     }
   }
+
   &.right {
     &.outer {
       top: 0;
@@ -26,7 +28,6 @@ body {
     }
   }
 }
-
 @import "partials/colors";
 @import "partials/animations";
 @import "partials/fonts";

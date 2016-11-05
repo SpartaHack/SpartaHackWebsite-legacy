@@ -1,8 +1,6 @@
 #sponsors {
-
   font-family: "Lato-Light";
-  padding-bottom: 100px;
-
+  padding-bottom: 150px;
 
   #sponsor-description {
     font-family: "Lato-Light";
@@ -10,7 +8,7 @@
     line-height: 2;
     color: $dark-gold;
     @media (max-width: 550px) {
-      font-size: .9em;
+      font-size: 0.9em;
     }
   }
 
@@ -22,7 +20,7 @@
 
     #title {
       margin-bottom: 25px;
-      margin-top: 0px;
+      margin-top: 0;
       font-size: 1.5em;
       font-weight: 100;
       color: $dark-gold;
@@ -33,7 +31,7 @@
     margin-top: 25px;
     color: $dark-gold;
     @media (max-width: 550px) {
-      font-size: .9em;
+      font-size: 0.9em;
       margin-top: 15px;
     }
   }
@@ -43,7 +41,7 @@
     margin-top: 100px;
     color: $dark-gold;
     @media (max-width: 550px) {
-      font-size: .9em;
+      font-size: 0.9em;
     }
     @media (max-width: 950px) {
       flex-direction: column;
@@ -53,9 +51,9 @@
       width: 60vw;
     }
 
-
-    #prospectus, #tiers {
-      padding: 25px 0px;
+    #prospectus,
+    #tiers {
+      padding: 25px 0;
       width: 250px;
       border-top: 1px solid;
       border-bottom: 1px solid;
@@ -69,7 +67,7 @@
         &::after {
           display: none;
           border-bottom: none;
-          padding: 0px;
+          padding: 0;
         }
       }
     }
@@ -83,20 +81,18 @@
       line-height: 2;
 
       #past-events-links {
-        font-size: .9em;
+        font-size: 0.9em;
       }
     }
-
     @media (max-width: 340px) {
       margin-top: 40px;
       line-height: 2;
 
       #past-events-links {
-        font-size: .81em;
+        font-size: 0.81em;
       }
     }
   }
-
 
   .media-grid {
     display: flex;
@@ -108,26 +104,23 @@
       flex-direction: column;
       -webkit-flex-direction: column;
     }
-
   }
 
   .sub {
     width: 150px;
     height: 70px;
     margin: 15px 25px;
+
     .logo-sponsor {
       max-width: 150px;
       min-width: 150px;
       max-height: 70px;
       height: auto;
       width: 100%;
-      margin-bottom: 0px;
+      margin-bottom: 0;
     }
     @media (max-width: 550px) {
       margin: 5px 15px;
     }
-
-
   }
-
 }

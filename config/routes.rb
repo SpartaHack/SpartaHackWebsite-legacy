@@ -57,4 +57,10 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   get '/destroy', to: 'user#destroy'
   root "home#index"
+
+  post '/batch/create', to: 'batch#create'
+  post '/batch/destroy', to: 'batch#destroy'
+  post '/batch/update', to: 'batch#update'
+
+
 end

@@ -1,5 +1,6 @@
 #dashboard {
-  height: 50vh;
+  margin-top: 150px;
+  padding-bottom: 350px;
 
   .section-head {
     color: $dark-gold;
@@ -41,13 +42,24 @@
     width: 100%;
     max-width: 750px;
     margin: 25px 15 0;
-    border: solid 1px $light-gold;
+    border: 1px solid $light-gold;
+    border-radius: 2px;
+    background: none;
+    border-image: linear-gradient(to bottom, $light-gold 0%, $medium-gold 100%);
+    border-image-slice: 1;
     opacity: 0;
+    color: $dark-gold;
     animation: fade-in 1s linear alternate;
     animation-delay: 1.5s;
     animation-fill-mode: forwards;
     transition: box-shadow 0.7s ease;
     @media (max-width: 760px) {}
+
+    &.dark {
+      a {
+        color: $light-gold;
+      }
+    }
 
     &:hover {
       cursor: pointer;
@@ -70,6 +82,84 @@
 
       &:hover {
         opacity: 1;
+      }
+    }
+  }
+
+  #group-wrapper {
+    width: 100%;
+    max-width: 750px;
+    opacity: 0;
+    animation: fade-in 0.5s linear alternate;
+    animation-delay: 1.8s;
+    animation-fill-mode: forwards;
+    transition: box-shadow 0.7s ease;
+
+    #group-apply-single {
+      margin-top: 50px;
+      margin-bottom: 15px;
+    }
+
+    #group-apply-share {
+      margin-top: 50px;
+      margin-bottom: 0;
+    }
+
+    #group-apply {
+      margin: 0;
+    }
+  }
+
+  #get-token,
+  #leave-group {
+    width: 48%;
+
+    input[type=submit] {
+      text-align: center;
+      color: $medium-gold;
+      font-weight: 200;
+      font-size: 15px;
+      height: 60px;
+      width: 100%;
+      cursor: pointer;
+      -webkit-font-smoothing: antialiased;
+      @media (min-width: 550px) {
+        padding: 10px 15px;
+      }
+
+      &.dark {
+        color: $light-gold;
+      }
+    }
+  }
+
+  #leave-group {
+    width: 100%;
+  }
+
+  #update-token {
+    width: 48%;
+
+    input {
+      text-align: center;
+      color: $medium-gold;
+      font-weight: 200;
+      font-size: 15px;
+      box-sizing: border-box;
+      height: 60px;
+      width: 100%;
+      cursor: pointer;
+      -webkit-font-smoothing: antialiased;
+      @media (min-width: 550px) {
+        padding: 10px 15px;
+      }
+
+      &.dark {
+        color: $light-gold;
+      }
+
+      &.error {
+        animation: shake 0.2s ease-in-out 0s 2;
       }
     }
   }

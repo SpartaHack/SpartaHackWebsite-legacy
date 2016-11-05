@@ -10,6 +10,14 @@ class UserController < ApplicationController
 
   def dashboard
     check_login
+    begin
+      @batch = Batch.find(:first, :params => {:id => User.current_user.id})
+      @batch.hackers.delete("#{User.current_user.first_name.capitalize} #{User.current_user.last_name.capitalize}")
+    rescue
+      @batch = nil
+    end
+
+
   end
 
   def edit
