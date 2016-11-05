@@ -106,6 +106,7 @@ function validateFormOne(edit) {
     if (edit === undefined) {
       $('.page1').addClass('hide-page');
       $('.page2').removeClass('hide-page');
+      window.scrollTo(0, 0);
     } else {
       $('#application-form')[0].submit();
     }

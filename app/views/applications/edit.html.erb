@@ -91,7 +91,7 @@
       </div>
 
       <div class="add-margin-bottom other_university_enrolled page1" style="display:none;">
-        <%= f.input :other_university, placeholder: "Other College/University", required: false, :label_html => { :class => "no-label" } %>
+        <%= f.input :other_university, placeholder: "Other College/University *", required: false, :label_html => { :class => "no-label" } %>
       </div>
 
       <div class="add-margin-bottom page1" id="continent-wrap">
@@ -194,7 +194,9 @@
 
   <%= javascript_tag do %>
   window.onload = function() {
+    console.log("SDf");
     <% if @application %>
+      console.log("here");
       <% if @application.education.downcase == "high school" %>
         $('.university-enrolled').hide();
         $("#application_education_high_school").prop("checked", true);
@@ -206,7 +208,7 @@
         $("#application_education_graduate").prop("checked", true);
       <% end %>
       <% if @application.university.blank? %>
-        $('.university-enrolled').hide();
+        $('.university').hide();
         $('#other_university_enrolled_confirm').click();
       <% end %>
       <% if !@application.outside_north_america.blank? %>
@@ -218,7 +220,7 @@
           $("#application_outside_north_america_no").prop("checked", true);
         <% end %>
       <% end %>
-        document.getElementById("agree").checked = true;
+        $("#agree").prop("checked", true).change();
     <% end %>
   };
   <% end %>
