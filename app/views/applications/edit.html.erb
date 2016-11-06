@@ -2,7 +2,7 @@
 
 <% if !flash[:popup].blank? || !flash[:popup_errors].blank? %>
   <div id="popup-error-wrapper">
-    <div id="popup-error">
+    <div class="popup">
     <% if !flash[:popup].blank? %>
       The following can not be blank
       <ul>
@@ -25,7 +25,7 @@
   </div>
 <% end %>
 <div id="popup-wrapper">
-  <div id="popup"></div>
+  <div class="popup"></div>
   <p>Click anywhere to dismiss.</p>
 </div>
 
