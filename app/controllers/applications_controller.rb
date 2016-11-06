@@ -111,7 +111,8 @@ class ApplicationsController < ::ApplicationController
       :website,
       :devpost,
       :other_link,
-      :statement
+      :statement,
+      :other_university_enrolled_confirm
     )
   end
 
@@ -309,6 +310,12 @@ class ApplicationsController < ::ApplicationController
       params[:application].delete :major
     elsif app_params[:outside_north_america] == "Yes"
       params[:application].delete :travel_origin
+    end
+
+    if app_params[:other_university_enrolled_confirm] == "true"
+      params[:application].delete :university
+    else
+      params[:application].delete :other_university
     end
   end
 end
