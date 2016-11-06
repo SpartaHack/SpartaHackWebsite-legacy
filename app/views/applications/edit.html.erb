@@ -205,7 +205,7 @@
         $('.university-enrolled').show();
         $("#application_education_graduate").prop("checked", true);
       <% end %>
-      <% if @application.university.blank? %>
+      <% if @application.university.blank? && !@application.education.downcase == "high school"%>
         $('#other_university_enrolled_confirm').click();
       <% end %>
       <% if !@application.outside_north_america.blank? %>
