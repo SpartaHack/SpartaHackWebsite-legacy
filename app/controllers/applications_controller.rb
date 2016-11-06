@@ -307,7 +307,7 @@ class ApplicationsController < ::ApplicationController
     if app_params[:education] == "High School"
       app_params[:university] = nil
       app_params[:other_university] = nil
-      app_params[:major] = nil
+      app_params[:major] = []
     end
 
     if app_params[:outside_north_america].downcase == "yes"
