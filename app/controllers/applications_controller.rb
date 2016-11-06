@@ -308,7 +308,7 @@ class ApplicationsController < ::ApplicationController
       app_params[:university] = nil
       app_params[:other_university] = nil
       app_params[:major] = nil
-    elsif app_params[:outside_north_america] == "Yes"
+    elsif app_params[:outside_north_america].downcase == "yes"
       app_params[:travel_origin] = nil
     end
 
