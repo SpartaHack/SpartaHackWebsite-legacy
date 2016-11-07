@@ -1,109 +1,38 @@
-<section id="faq">
-  <h2 class="section-head faq-top">
-    FAQ
-  </h2>
+<% if !@faqs.blank? %>
+  <section id="faq">
+    <h2 class="section-head faq-top">
+      FAQ
+    </h2>
 
+    <div id="faq-box">
+      <div id="questions-wrap">
+        <div class="arrow-wrap">
+          <i class="fa fa-angle-up" style="display:none;"></i>
+        </div>
+        <div id="questions">
+          <% @faqs.each_with_index do |faq, index| %>
+            <%= index == 0 ? '<article class="active-q">'.html_safe : '<article>'.html_safe %>
+              <h3 id="<%= index %>">
+                <span><%= faq.question.capitalize %></span>
+              </h3>
+            </article>
 
-
-  <div id="faq-box">
-    <div id="questions-wrap">
-      <div class="arrow-wrap">
-        <i class="fa fa-angle-up" style="display:none;"></i>
+            <% if index < @faqs.count %>
+            <div class="a-hline"></div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="arrow-wrap">
+          <i class="fa fa-angle-down"></i>
+        </div>
       </div>
-      <div id="questions">
-        <article class="active-q">
-          <h3 id="0">
-            <span>What is SpartaHack?</span>
-          </h3>
-        </article>
-
-        <div class="a-hline"></div>
-
-        <article>
-          <h3 id="1">
-            <span>How do I sign up for SpartaHack?</span>
-          </h3>
-        </article>
-
-        <div class="a-hline"></div>
-
-        <article>
-          <h3 id="2">
-            <span>Do I need to know how to code to come to SpartaHack?</span>
-          </h3>
-        </article>
-
-        <div class="a-hline"></div>
-
-        <article>
-          <h3 id="3">
-            <span>Who can come to SpartaHack?</span>
-          </h3>
-        </article>
-
-        <div class="a-hline"></div>
-
-        <article>
-          <h3 id="4">
-            <span>What should I make at SpartaHack?</span>
-          </h3>
-        </article>
-
-        <div class="a-hline"></div>
-
-        <article>
-          <h3 id="5">
-            <span>Can I work with a team at SpartaHack?</span>
-          </h3>
-        </article>
-
-        <div class="a-hline"></div>
-
-        <article>
-          <h3 id="6">
-            <span>Do you offer travel reimbursement?</span>
-          </h3>
-        </article>
-
-        <div class="a-hline"></div>
-
-        <article>
-          <h3 id="7">
-            <span>I have a question that isn’t in this list!</span>
-          </h3>
-        </article>
-
-      </div>
-      <div class="arrow-wrap">
-        <i class="fa fa-angle-down"></i>
+      <div id="answers">
+        <% @faqs.each_with_index do |faq, index| %>
+          <p class="<%= index == 0 ? "current-answer" : "hidden-answer" %>">
+            <%= faq.answer.capitalize %>
+          </p>
+        <% end %>
       </div>
     </div>
-    <div id="answers">
-      <p class="current-answer">
-        SpartaHack is a 36-hour programming marathon and competition held at Michigan State University on the weekend of January 20th-22nd. We provide tons of meals, snacks, nap spaces, and swag, free of cost so all you need to worry about is making something cool.
-      </p>
-      <p class="hidden-answer">
-        Applications are open! Head over to our <a href="/application">application</a> to apply now!
-      </p>
-      <p class="hidden-answer">
-        Definitely not! No programming experience is necessary; we have workshops and mentors at the event to help you learn about a variety of topics.
-      </p>
-      <p class="hidden-answer">
-        Anyone who is currently a student or has graduated within 12 months of SpartaHack! Graduate students, undergrads, and high-school students from any field of study are welcome.
-      </p>
-      <p class="hidden-answer">
-        Whatever you want to! A lot of people use hackathons as an opportunity to learn a new piece of tech, while others work with tools they know already to build something more challenging. You can check out last year’s projects <a href="https://spartahack2016.devpost.com/submissions">here</a>.
-      </p>
-      <p class="hidden-answer">
-        Sure! Teams can have up to 4 students.
-      </p>
-      <p class="hidden-answer">
-        We plan to! We’ll have more details about our travel policy soon.
-      </p>
-      <p class="hidden-answer">
-        Reach out to us at <a href="mailto:hello@spartahack.com">hello@spartahack.com</a> and we’ll get back to you.
-      </p>
-
-    </div>
-  </div>
-</section>
+  </section>
+<% end %>

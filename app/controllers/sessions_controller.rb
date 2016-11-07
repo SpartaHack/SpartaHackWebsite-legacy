@@ -11,7 +11,11 @@ class SessionsController < ApplicationController
     if session_response.errors.messages.empty?
       User.current_user = session_response
       session[:current_session] = User.current_user.id
-      redirect_to '/dashboard'
+      if User.current_user.roles.include? "director"
+        redirect_to '/admin' and return
+      else
+        redirect_to '/dashboard' and return
+      end
     else
       messages = []
       session_response.errors.each {|attr, msg| messages.push(attr.to_s.humanize + " " + msg)}
@@ -37,7 +41,11 @@ class SessionsController < ApplicationController
 
   def check_login
     if User.current_user.present?
-      redirect_to '/dashboard'
+      if User.current_user.roles.include?("director")
+        redirect_to '/admin'
+      else
+        redirect_to '/dashboard'
+      end
     end
   end
 

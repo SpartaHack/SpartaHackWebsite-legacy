@@ -1,0 +1,22 @@
+<%= render "admin/partials/navigation" %>
+
+<div class="wrap-main">
+	<section id="faq">
+		<div class="row">
+      <div class="title-wrap">
+        <h1 class="section-head">Edit FAQ</h1>
+        <div class="hline"></div>
+      </div>
+
+      <%= simple_form_for @faq, :html => { id: "faq_form" }, :method => :put do |f| %>
+        <%= f.input :id, :as => :hidden, :label_html => { :class => "no-label" } %>
+        <%= f.input :question, placeholder: "Question", required: true, :label_html => { :class => "no-label" }, validate: { presence: true } %>
+        <%= f.input :answer, as: :text, placeholder: "Answer", required: true, :label_html => { :class => "no-label" }, validate: { presence: true } %>
+        <div id="submit_wrap">
+          <%= f.button :submit, :id => "faq_view_submit", :value => "Update FAQ" %>
+          <%= f.button :submit, :id => "faq_view_delete", :value => "Delete FAQ" %>
+        </div>
+			<% end %>
+    </div>
+  </section>
+</div>

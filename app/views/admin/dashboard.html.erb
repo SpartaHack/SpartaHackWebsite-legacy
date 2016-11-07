@@ -1,0 +1,141 @@
+<%= render "admin/partials/navigation" %>
+
+<div id="wrap-admin">
+  <div id="popup-wrapper">
+  </div>
+
+  <section id="user-stat">
+    <div class="row">
+      <div class="inner-wrap">
+        <div class="box" ><%= @total[0] %></div>
+        <div class="stat-text">Users</div>
+      </div>
+      <div class="inner-wrap">
+        <div class="box" ><%= @total[1] %></div>
+        <div class="stat-text">Applications</div>
+      </div>
+      <div class="inner-wrap">
+        <div class="box last" ><%= @total[2] %></div>
+        <div class="stat-text">RSVPs</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="topic-selection">
+    <div class="row">
+      <div class="title-wrap">
+        <h1 class="section-head">Admin Topics</h1>
+        <div class="hline"></div>
+      </div>
+    <% if @user.roles.include? "director"%>
+      <div class="hvr-underline-from-left full">
+      	<a href="/admin/sponsorship"><div class="topic" >Sponsorship</div></a>
+      </div>
+      <div class="hvr-underline-from-left full">
+      	<a href="/admin/faq"><div class="topic" >FAQ</div></a>
+      </div>
+    <% end %>
+    <% if @user.roles.include? "director" or @user.roles.include? "volunteer" %>
+      <!-- <div class="hvr-underline-from-left full" id="users">
+        <a href=""><div class="topic" >Users</div></a>
+      </div> -->
+    <% end %>
+    <% if @user.roles.include? "director" %>
+      <!-- <div class="hvr-underline-from-left full" id="announcements">
+        <a href=""><div class="topic" >Announcements</div></a>
+      </div> -->
+    <% end %>
+      <div class="hvr-underline-from-left full">
+        <a href="/admin/statistics"><div class="topic" >Statistics</div></a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="title-wrap">
+        <h1 class="section-head">Attendee Topics</h1>
+        <div class="hline"></div>
+      </div>
+
+      <div class="hvr-underline-from-left full">
+        <a href="/application"><div class="topic" >Application</div></a>
+      </div>
+      <div class="hvr-underline-from-left full">
+        <a href="/dashboard"><div class="topic" >Dashboard</div></a>
+      </div>
+      <!-- <div class="hvr-underline-from-left full">
+        <a href="/rsvp"><div class="topic" >RSVP</div></a>
+      </div> -->
+      <!-- <div class="hvr-underline-from-left full">
+        <a href="/mentorship/register"><div class="topic" >Mentorship</div></a>
+      </div> -->
+    </div>
+
+  </section>
+</div>
+
+<%= javascript_tag do %>
+
+    <!-- $('#users').click(function(e){
+        e.preventDefault();
+
+        $('#popup-wrapper').html(
+            "<= j(render partial: 'admin/admin_users')  %>"
+        );
+
+        $('#generate_code').click(function(e){
+            e.preventDefault();
+
+                    $.ajax({
+                            url: "/admin/users/generate",
+                            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+                            type: "post",
+                            context: document.body
+                    });
+        });
+
+        $("#popup-wrapper").css("display", "flex");
+    }) -->
+
+
+
+    <!-- $('#announcements').click(function(e){
+        e.preventDefault();
+
+        $('#popup-wrapper').html(
+            "<= j(render partial: 'admin/admin_notifications')  %>"
+        );
+
+        $('#role').select2({
+          placeholder: "Role",
+          allowClear: true,
+          minimumResultsForSearch: -1,
+        });
+
+        $('#announce').submit(function(e){
+            e.preventDefault();
+            $.ajax({
+                url: "/admin/notifications",
+                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+                type: "post",
+                context: document.body,
+                data: $(this).serialize()
+            });
+            $(this).closest('form').find("input[type=text], textarea").val("");
+            $("#pinned").removeAttr('checked');
+        });
+
+        $('#announce-internal').submit(function(e){
+            e.preventDefault();
+            $.ajax({
+                url: "/admin/internal-notifications",
+                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+                type: "post",
+                context: document.body,
+                data: $(this).serialize()
+            });
+            $(this).closest('form').find("input[type=text], textarea").val("");
+        });
+
+        $("#popup-wrapper").css("display", "flex");
+    }) -->
+<% end %>

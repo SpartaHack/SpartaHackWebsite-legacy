@@ -1,0 +1,31 @@
+<%= render "admin/partials/navigation" %>
+
+<div class="wrap-main">
+	<section id="faq">
+		<div class="row">
+      <div class="title-wrap">
+        <h1 class="section-head">Add FAQ</h1>
+        <div class="hline"></div>
+      </div>
+
+      <%= simple_form_for @faq, :remote => true, :html => { :data => { :type => :json }, id: "faq_form" } do |f| %>
+        <%= f.input :question, placeholder: "Question", required: true, :label_html => { :class => "no-label" }, validate: { presence: true } %>
+        <%= f.input :answer, as: :text, placeholder: "Answer", required: true, :label_html => { :class => "no-label" }, validate: { presence: true } %>
+        <%= f.button :submit %>
+			<% end %>
+    </div>
+
+		<div class="row">
+      <div class="title-wrap">
+        <h1 class="section-head">Edit FAQ</h1>
+        <div class="hline"></div>
+      </div>
+			<div id="faq_wrap">
+        <% @faqs.each do |f| %>
+            <a class="view_faq" href="/admin/faq/view?id=<%= f.id %>"><%= f.question.slice(0,1).capitalize + f.question.slice(1..-1) %></a>
+        <% end %>
+			</div>
+
+		</div>
+  </section>
+</div>
