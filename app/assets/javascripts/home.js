@@ -64,13 +64,10 @@ window.onload = function() {
     } else {
       mlhJs = true
     }
-    console.log($(window).scrollTop())
     if ($(window).scrollTop() >= 300 && !mlhHasBeenTrigged && mlhJs) {
-      console.log("sdf")
       $('#mlh-trust-badge img').fadeIn(2000);
       mlhHasBeenTrigged = true;
     } else if ($(window).scrollTop() < 300 && mlhHasBeenTrigged && mlhJs) {
-      console.log("aaa")
       $('#mlh-trust-badge img').fadeOut();
       mlhHasBeenTrigged = false;
     }

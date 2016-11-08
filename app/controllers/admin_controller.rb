@@ -4,8 +4,8 @@ class AdminController < ApplicationController
   def dashboard
     @user = User.current_user
 
-    user_t = User.all().count
-    app_t = Application.all().count
+    user_t = User.all.count
+    app_t = Application.all.count
     @total = [user_t,app_t,0]
   end
 
@@ -13,13 +13,13 @@ class AdminController < ApplicationController
   end
 
   def faq
-    @faq = Faq.new()
-    @faqs = Faq.all()
+    @faq = Faq.new
+    @faqs = Faq.all
     @faqs.to_a.sort! { |a,b| a.question.downcase <=> b.question.downcase }
   end
 
   def faq_view
-    if !faq_params.blank?
+    if faq_params.present?
       @faq = Faq.find(faq_params[:id])
     else
       redirect_to "/admin/faq" and return
@@ -29,7 +29,7 @@ class AdminController < ApplicationController
   private
 
   def check_login
-    if !User.current_user.present? || !User.current_user.roles.include?("director")
+    if User.current_user.blank? || User.current_user.roles.exclude?("director")
       redirect_to '/dashboard'
     end
   end

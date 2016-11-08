@@ -5,6 +5,7 @@ class FaqsController < ApplicationController
 
   def create
     @faq = Faq.create(faq_params)
+    redirect_to "/admin/faq" and return
   end
 
   def update

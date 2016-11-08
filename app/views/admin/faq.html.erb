@@ -8,7 +8,7 @@
         <div class="hline"></div>
       </div>
 
-      <%= simple_form_for @faq, :remote => true, :html => { :data => { :type => :json }, id: "faq_form" } do |f| %>
+      <%= simple_form_for @faq, :html => { id: "faq_form" } do |f| %>
         <%= f.input :question, placeholder: "Question", required: true, :label_html => { :class => "no-label" }, validate: { presence: true } %>
         <%= f.input :answer, as: :text, placeholder: "Answer", required: true, :label_html => { :class => "no-label" }, validate: { presence: true } %>
         <%= f.button :submit %>
