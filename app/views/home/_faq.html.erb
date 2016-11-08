@@ -13,7 +13,7 @@
           <% @faqs.each_with_index do |faq, index| %>
             <%= index == 0 ? '<article class="active-q">'.html_safe : '<article>'.html_safe %>
               <h3 id="<%= index %>">
-                <span><%= faq.question.capitalize %></span>
+                <span><%= faq.question.slice(0,1).capitalize + faq.question.slice(1..-1) %></span>
               </h3>
             </article>
 
