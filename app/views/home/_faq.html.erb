@@ -29,7 +29,7 @@
       <div id="answers">
         <% @faqs.each_with_index do |faq, index| %>
           <p class="<%= index == 0 ? "current-answer" : "hidden-answer" %>">
-            <%= faq.answer.capitalize %>
+            <%= faq.answer.html_safe %>
           </p>
         <% end %>
       </div>
