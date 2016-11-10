@@ -11,6 +11,10 @@
       <%= simple_form_for @faq, :html => { id: "faq_form" } do |f| %>
         <%= f.input :question, placeholder: "Question", required: true, :label_html => { :class => "no-label" }, validate: { presence: true } %>
         <%= f.input :answer, as: :text, placeholder: "Answer", required: true, :label_html => { :class => "no-label" }, validate: { presence: true } %>
+        <div class="column_wrap">
+          <%= f.input :display, :as => :select, :label_html => { :class => "no-label" } %>
+          <%= f.input :priority, required: true, collection: 1..(@faqs.count+1), :placeholder => "Priority", :label_html => { :class => "no-label" } %>
+        </div>
         <%= f.button :submit %>
 			<% end %>
     </div>
@@ -21,11 +25,25 @@
         <div class="hline"></div>
       </div>
 			<div id="faq_wrap">
-        <% @faqs.each do |f| %>
-            <a class="view_faq" href="/admin/faq/view?id=<%= f.id %>"><%= f.question.slice(0,1).capitalize + f.question.slice(1..-1) %></a>
+        <% @faqs.each_with_index do |f, i| %>
+            <a class="view_faq" href="/admin/faq/view?id=<%= f.id %>"><%= i+1 %>. <%= f.question.slice(0,1).capitalize + f.question.slice(1..-1) %></a>
         <% end %>
 			</div>
 
 		</div>
   </section>
+
+  <%= javascript_tag do %>
+    window.onload = function() {
+      $('#faq_display').select2({
+        placeholder: "Visible?",
+        allowClear: true
+      });
+
+      $('#faq_priority').select2({
+        placeholder: "Priority",
+        allowClear: true
+      });
+    }
+  <% end %>
 </div>

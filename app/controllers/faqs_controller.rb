@@ -21,6 +21,6 @@ class FaqsController < ApplicationController
 
   private
   def faq_params
-    params.require(:faq).permit(:question, :answer, :id)
+    params.require(:faq).permit(:question, :answer, :id, :priority, :display)
   end
 end

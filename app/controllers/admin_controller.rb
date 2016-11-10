@@ -14,11 +14,11 @@ class AdminController < ApplicationController
 
   def faq
     @faq = Faq.new
-    @faqs = Faq.all
-    @faqs.to_a.sort! { |a,b| a.question.downcase <=> b.question.downcase }
+    @faqs = Faq.all.to_a.sort_by {|obj| obj.priority}
   end
 
   def faq_view
+    @faqs = Faq.all
     if faq_params.present?
       @faq = Faq.find(faq_params[:id])
     else
