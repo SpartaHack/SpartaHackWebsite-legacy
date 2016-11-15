@@ -60,7 +60,7 @@ window.onload = function() {
   function checkMlh() {
     if ($(window).width() < 769) {
       mlhJs = false
-      $('#mlh-trust-badge img').fadeIn(1200);
+      $('#mlh-trust-badge img').delay(1000).fadeIn(2000);
     } else {
       mlhJs = true
     }

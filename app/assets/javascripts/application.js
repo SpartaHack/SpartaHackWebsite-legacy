@@ -19,6 +19,7 @@
 ////////////////////////////////////////////////////
 // Variables
 ///////////////////////////////////////////////////
+var mobileToggled = false
 var headerBoxShadow = "0px 0px 22px 0px rgba(0,0,0,0.04)";
 var themeElements = "body, nav, .active-q, .sweet-alert, input, #popup-wrapper, \
 #popup-error-wrapper, .popup, #statement_count, #dashboard #app, #mlh-trust-badge";
@@ -111,8 +112,28 @@ $('.diamond, #logo-center').click(function() {
 ////////////////////////////////////////////////////
 // Navigation
 ///////////////////////////////////////////////////
+$('#mobile-overlay').on('click', function() {
+  $('#mobile-menu-icon').click();
+});
+
+$('#mobile-menu-icon').on('click', function() {
+  $('#mobile-overlay').toggleClass('overlayed')
+  if (!mobileToggled) {
+    $("#mobile").animate({
+      right: 0
+    }, 250);
+    mobileToggled = true
+  } else {
+    $("#mobile").animate({
+      right: '-50vw'
+    }, 150);
+    mobileToggled = false
+  }
+})
+
 $(function() {
   $("[href^='#']").on("click", function(e) {
+    $('#mobile-menu-icon').click();
     var target = $(this).attr('href');
 
     var scrollTop = $(target).offset().top - $('#header').height() - $('#header').outerHeight();

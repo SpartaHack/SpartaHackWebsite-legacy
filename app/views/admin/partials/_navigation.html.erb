@@ -1,4 +1,4 @@
-<nav id="header" class="flex wrap-row align-center">
+<nav id="header" class="wrap-row align-center">
   <div id="left-wrap" class="flex wrap-row align-center">
     <%= image_tag "diamond-w-shadow.svg", :id => "nav-diamond", :class => "diamond"%>
     <h1 id="nav-spartahack"><a href='/'>SpartaHack 17</a></h1>
@@ -15,6 +15,15 @@
   </div>
 
   <div id="mobile">
-
+    <ul>
+      <li>
+          <a href="/admin">Admin Dashboard</a>
+      </li>
+      <li>
+          <a href="/logout">Log Out</a>
+      </li>
+    </ul>
   </div>
+  <%= image_tag "menu.svg", :id => "mobile-menu-icon" %>
 </nav>
+<div id="mobile-overlay"></div>

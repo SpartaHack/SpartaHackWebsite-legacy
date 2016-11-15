@@ -1,0 +1,38 @@
+<ul>
+  <li>
+      <a href="#spartahack">17</a>
+  </li>
+  <li>
+      <a href="#event-description">About</a>
+  </li>
+  <li>
+      <a href="#faq">FAQ</a>
+  </li>
+  <li>
+      <a href="#sponsors">Sponsor</a>
+  </li>
+  <li>
+      <a href="#footer">Contact</a>
+  </li>
+  <%- if User.current_user.present? %>
+    <%- if User.current_user.roles.include? 'director' %>
+  <li>
+      <a href="/admin">Admin</a>
+  </li>
+    <%- else %>
+  <li>
+      <a href="/dashboard">My Dashboard</a>
+  </li>
+    <%- end %>
+  <li>
+      <a href="/logout">Log Out</a>
+  </li>
+  <%- else %>
+  <li>
+      <a href="/application">Apply</a>
+  </li>
+  <li>
+      <a href="/login">Log In</a>
+  </li>
+  <%- end %>
+</ul>
