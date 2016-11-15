@@ -44,6 +44,11 @@ Rails.application.routes.draw do
 
   resources :user
   get '/dashboard', to: 'user#dashboard'
+  get '/admin', to: 'admin#dashboard'
+  get '/admin/faq', to: 'admin#faq'
+  get '/admin/faq/view', to: 'admin#faq_view'
+  get '/admin/statistics', to: 'admin#statistics'
+  get '/stats', to: 'admin#stats'
 
   resources :applications
   get '/apply', to: 'applications#new'
@@ -55,6 +60,15 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
-  get '/destroy', to: 'user#destroy'
+  post '/destroy', to: 'user#destroy'
   root "home#index"
+
+  post '/batch/create', to: 'batch#create'
+  post '/batch/destroy', to: 'batch#destroy'
+  post '/batch/update', to: 'batch#update'
+
+  resources :faqs
+
+
+
 end

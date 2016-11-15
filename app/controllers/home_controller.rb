@@ -5,6 +5,8 @@ class HomeController < ApplicationController
 
   def index
     @past_sponsors = Dir.glob("app/assets/images/pastSponsors/*").sort_by(&:downcase)
+    @faqs = Faq.all.to_a.sort_by {|obj| obj.priority}
+    @faqs = @faqs.select { |faq| faq.display? }
   end
 
 

@@ -42,4 +42,34 @@
     <a href="/application/edit">Application: Submitted | Edit Application</a>
   </div>
 
+  <div id="group-wrapper">
+    <% if @batch.blank? %>
+      <p id="group-apply-single">We're considering you as a single applicant. Want to be considered with friends?
+      </p>
+
+      <div class="form-wrapper flex wrap-row align-center space-between">
+      <%= form_tag "/batch/create", :id =>"get-token", :remote => true, :authenticity_token => true %>
+        <%= submit_tag "Get a token" %>
+      </form>
+
+      <%= form_tag "/batch/update", :id => "update-token", :remote => true, :authenticity_token => true %>
+        <%= text_field(:batch, :token, :id => "group-update", :value => nil, :placeholder => 'Enter a group token') %>
+      </form>
+    </div>
+    <% else %>
+      <p id="group-apply-share">This is your group token: <strong><%= @batch.token %></strong>, share it with your friends to be considered together!</p>
+      <% if @batch.hackers.count == 0%>
+        <p id="group-apply">We're considering you in a group application but you're the only one in your group.</p>
+      <% else %>
+        <p id="group-apply">We're considering you in a group application with <%= @batch.hackers.to_sentence %>.</p>
+      <% end %>
+      <div class="form-wrapper flex wrap-row align-center center">
+        <%= form_tag "/batch/destroy", :id =>"leave-group" %>
+          <%= hidden_field(:batch, :token, :value => @batch.token)%>
+          <%= submit_tag "Leave group" %>
+        </form>
+      </div>
+    <% end %>
+  </div>
+
 </section>

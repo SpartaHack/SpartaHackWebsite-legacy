@@ -1,5 +1,6 @@
 nav {
   position: fixed;
+  display: flex;
   top: 0;
   left: 0;
   margin: 0;
@@ -17,12 +18,27 @@ nav {
 
   &.dark {
     background-color: $dark-brown;
+
+    #mobile {
+      background-color: $dark-brown;
+
+      ul li a {
+        color: $light-gold;
+      }
+    }
+  }
+
+  #mobile {
+    display: none;
   }
   @media screen and (max-width: 990px) {
     justify-content: center;
   }
-  @media screen and (max-width: 769px) {
-    display: none !important;
+  @media screen and (min-width: 770px) {
+    #mobile,
+    #mobile-menu-icon {
+      display: none;
+    }
   }
 
   #left-wrap {
@@ -30,13 +46,67 @@ nav {
     @media screen and (max-width: 1299px) {
       width: auto;
     }
-    @media screen and (max-width: 990px) {
+    @media screen and (min-width: 508px) and (max-width: 769px) {
+      width: 442px;
+    }
+    @media screen and (min-width: 770px) and (max-width: 990px) {
       display: none;
     }
   }
 
-  #right-wrap {
-    @media screen and (max-width: 485px) {
+  #mobile-menu-icon {
+    margin-right: 15px;
+    z-index: 501;
+    @media screen and (min-width: 615px) {
+      margin-right: 95px;
+    }
+  }
+  @media screen and (max-width: 769px) {
+    display: block;
+
+    #left-wrap {
+      display: flex;
+      float: left;
+      height: 75px;
+    }
+
+    #mobile-menu-icon {
+      float: right;
+      display: block;
+      margin-top: 12.5px;
+      width: 50px;
+      height: 50px;
+    }
+
+    #mobile {
+      will-change: right;
+      position: absolute;
+      top: 75px;
+      width: 50vw;
+      z-index: 200;
+      right: -50vw;
+      height: calc( 100vh - 75px);
+      background: white;
+      display: block;
+
+      ul {
+        display: inline;
+
+        li {
+          float: right;
+          clear: right;
+          font-size: 20px;
+          text-align: right;
+
+          a {
+            padding: 15px 0;
+            margin-right: 25px;
+          }
+        }
+      }
+    }
+
+    #right-wrap {
       display: none;
     }
   }
@@ -46,7 +116,10 @@ nav {
     font-weight: 100;
     color: $medium-gold;
     font-size: 34px;
-    @media screen and (max-width: 1299px) {
+    @media screen and (min-width: 770px) and (max-width: 1299px) {
+      display: none;
+    }
+    @media screen and (max-width: 508px) {
       display: none;
     }
 
@@ -67,8 +140,11 @@ nav {
   #nav-diamond {
     height: 45px;
     width: auto;
-    margin-left: 95px;
     padding-right: 5px;
+    margin-left: 15px;
+    @media screen and (min-width: 615px) {
+      margin-left: 95px;
+    }
   }
 
   ul {
@@ -116,8 +192,62 @@ nav {
       }
     }
   }
+}
 
-  #mobile {
+#mobile-overlay {
+  display: none;
+}
+@media screen and (max-width: 769px) {
+  #mobile-overlay {
+    pointer-events: none;
+    opacity: 0;
+    width: 100vw;
+    height: 100vh;
+    display: initial;
+    background: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: opacity 0.2s linear;
+  }
+
+  .overlayed {
+    pointer-events: auto !important;
+    opacity: 0.3 !important;
+    z-index: 199;
+  }
+}
+
+#mlh-trust-badge {
+  display: block;
+  max-width: 100px;
+  min-width: 60px;
+  position: fixed;
+  width: 10%;
+  top: 75px;
+  z-index: 100;
+
+  img {
+    display: none;
+  }
+  @media screen and (min-width: 770px) {
+    right: 110px;
+  }
+  @media screen and (max-width: 760px) {
+    right: 0;
+  }
+
+  img {
+    content: image-url("socialMedia/mlh-white.svg");
+  }
+
+  &.dark {
+    img {
+      content: image-url("socialMedia/mlh-gray.svg");
+    }
+  }
+
+  &::after {
     display: none;
   }
 }

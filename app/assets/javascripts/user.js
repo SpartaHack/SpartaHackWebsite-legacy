@@ -4,3 +4,10 @@ if ($('#dashboard').length > 0) {
   }, 200);
   checkAnimation(document.getElementsByClassName('dash-title-animation')[0]);
 }
+
+$('#group-update').keyup(function() {
+  if ($(this).val().length == 6) {
+    console.log("heh")
+    $("#update-token").trigger('submit.rails');
+  }
+})

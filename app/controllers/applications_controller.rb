@@ -91,7 +91,7 @@ class ApplicationsController < ::ApplicationController
 
   private
   def app_params
-    params.require(:application).permit(
+    @app_params ||= params.require(:application).permit(
       :birth_day,
       :birth_month,
       :birth_year,
@@ -111,7 +111,8 @@ class ApplicationsController < ::ApplicationController
       :website,
       :devpost,
       :other_link,
-      :statement
+      :statement,
+      :other_university_enrolled_confirm
     )
   end
 
@@ -304,11 +305,19 @@ class ApplicationsController < ::ApplicationController
   # Prevents storage of unnecessary information.
   def conditionality
     if app_params[:education] == "High School"
-      params[:application].delete :university
-      params[:application].delete :other_university
-      params[:application].delete :major
-    elsif app_params[:outside_north_america] == "Yes"
-      params[:application].delete :travel_origin
+      app_params[:university] = nil
+      app_params[:other_university] = nil
+      app_params[:major] = []
+    end
+
+    if app_params[:outside_north_america].downcase == "yes"
+      app_params[:travel_origin] = nil
+    end
+
+    if app_params[:other_university_enrolled_confirm] == "true"
+      app_params[:university] = nil
+    else
+      app_params[:other_university] = nil
     end
   end
 end

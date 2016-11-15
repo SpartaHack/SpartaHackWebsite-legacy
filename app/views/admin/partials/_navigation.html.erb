@@ -4,11 +4,25 @@
     <h1 id="nav-spartahack"><a href='/'>SpartaHack 17</a></h1>
   </div>
   <div id="right-wrap" class="flex wrap-row end">
-    <%= render "user/navigation_items" %>
+    <ul>
+      <li>
+          <a href="/admin">Admin Dashboard</a>
+      </li>
+      <li>
+          <a href="/logout">Log Out</a>
+      </li>
+    </ul>
   </div>
 
   <div id="mobile">
-    <%= render "user/navigation_items" %>
+    <ul>
+      <li>
+          <a href="/admin">Admin Dashboard</a>
+      </li>
+      <li>
+          <a href="/logout">Log Out</a>
+      </li>
+    </ul>
   </div>
   <%= image_tag "menu.svg", :id => "mobile-menu-icon" %>
 </nav>

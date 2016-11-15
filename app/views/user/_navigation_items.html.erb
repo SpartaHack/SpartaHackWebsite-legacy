@@ -1,0 +1,18 @@
+<ul>
+<%- if User.current_user.present? %>
+  <li>
+      <a class="active" href="/dashboard">My Dashboard</a>
+  </li>
+
+  <li>
+      <a href="/logout">Log Out</a>
+  </li>
+<%- else %>
+<li>
+    <a class="active" href="/apply">Apply</a>
+</li>
+  <li>
+      <a class="active" href="/login">Log In</a>
+  </li>
+<%- end %>
+</ul>
