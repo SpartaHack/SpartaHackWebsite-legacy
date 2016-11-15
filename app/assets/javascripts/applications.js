@@ -161,6 +161,7 @@ function popUpTop() {
 // Conditionality
 ///////////////////////////////////////////////////
 $('#other_university_enrolled_confirm').click(function() {
+  createSelects();
   if ($(this).is(':checked')) {
     showOtherUniversity();
   } else {

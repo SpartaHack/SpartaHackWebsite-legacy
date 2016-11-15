@@ -29,11 +29,6 @@
   <p>Click anywhere to dismiss.</p>
 </div>
 
-<div id="apply-online">
-  <h1>Sorry :(</h1>
-  <p>Please edit on desktop for a better experience</p>
-</div>
-
 <div class="wrap-main">
   <section id="app">
     <a href="#app" id="backApp" class="page2 hide-page">Back to Application</a>
@@ -174,7 +169,7 @@
         <div class="check check-mlh">
           <input type="checkbox" value="true" required="true" id="agree" name="mlh"/>
           <label for="agree">
-            <div id="mlh-text">I acknowledge and agree to the above statement *
+            <div id="mlh-text">I acknowledge and agree to the above statement*
             </div>
           </label>
         </div>
@@ -219,6 +214,7 @@
       <% end %>
         $("#agree").prop("checked", true).change();
     <% end %>
+    createSelects();
   };
   <% end %>
 </div>

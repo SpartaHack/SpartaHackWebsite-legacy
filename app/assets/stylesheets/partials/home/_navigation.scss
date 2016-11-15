@@ -199,6 +199,7 @@ nav {
 }
 @media screen and (max-width: 769px) {
   #mobile-overlay {
+    pointer-events: none;
     opacity: 0;
     width: 100vw;
     height: 100vh;
@@ -211,6 +212,7 @@ nav {
   }
 
   .overlayed {
+    pointer-events: auto !important;
     opacity: 0.3 !important;
     z-index: 199;
   }
