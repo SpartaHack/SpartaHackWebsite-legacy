@@ -133,8 +133,10 @@ $('#mobile-menu-icon').on('click', function() {
 
 $(function() {
   $("[href^='#']").on("click", function(e) {
-    $('#mobile-menu-icon').click();
     var target = $(this).attr('href');
+    if (target != "#app") {
+      $('#mobile-menu-icon').click();
+    }
 
     var scrollTop = $(target).offset().top - $('#header').height() - $('#header').outerHeight();
 
