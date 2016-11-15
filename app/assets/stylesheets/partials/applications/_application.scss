@@ -200,7 +200,7 @@
     opacity: 1;
     font-family: Lato-Light;
     font-weight: lighter;
-    font-size: 15px;
+    font-size: 16px;
     padding-right: 1em;
   }
 
@@ -209,7 +209,7 @@
     color: $medium-gold;
     opacity: 1;
     font-family: Lato-Light;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: lighter;
     padding-right: 1em;
   }
@@ -220,7 +220,7 @@
     opacity: 1;
     font-family: Lato-Light;
     font-weight: lighter;
-    font-size: 15px;
+    font-size: 16px;
     padding-right: 1em;
   }
 
@@ -229,7 +229,7 @@
     opacity: 1;
     font-family: Lato-Light;
     font-weight: lighter;
-    font-size: 15px;
+    font-size: 16px;
     padding-right: 1em;
   }
 
@@ -250,7 +250,7 @@
   input[type=text] {
     height: 56px;
     text-align: left;
-    font-size: 15px;
+    font-size: 16px;
     box-sizing: border-box;
     font-weight: 100;
     padding: 8px 0 8px 25px;
@@ -268,7 +268,7 @@
     /* For IE and modern versions of Chrome */
     height: 55px;
     text-align: left;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 100;
     padding: 8px 25px;
     margin-bottom: 0;
@@ -568,7 +568,7 @@
     text-align: center;
     color: $medium-gold;
     font-weight: 200;
-    font-size: 15px;
+    font-size: 16px;
     height: 60px;
     width: 100%;
     cursor: pointer;
@@ -754,5 +754,24 @@
   #application,
   #application-edit {
     margin-bottom: 0;
+  }
+
+  input[type="color"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="email"],
+  input[type="month"],
+  input[type="number"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="text"],
+  input[type="time"],
+  input[type="url"],
+  input[type="week"],
+  select,
+  textarea {
+    font-size: 16px;
   }
 }
