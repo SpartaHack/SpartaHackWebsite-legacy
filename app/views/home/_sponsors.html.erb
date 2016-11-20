@@ -13,13 +13,54 @@
 
   <section id="past-sponsors">
     <h2 id="title">2016 Sponsors</h2>
+
+  <% if @sponsors[:commander].any? %>
     <div class="media-grid">
-      <% @past_sponsors.each do |sponsor|  %>
-        <div class="sub flex align-center center">
-            <%= image_tag "pastSponsors/#{sponsor.split('/').last}", :class => "logo-sponsor" %>
+      <% @sponsors[:commander].each do |sponsor|  %>
+        <div class="commander flex align-center center">
+          <a href="<%= sponsor['url'] %>">
+            <%= image_tag sponsor['logo_svg_light'], :alt => sponsor['name'], :class => "logo-sponsor" %>
+          </a>
         </div>
       <% end %>
     </div>
+  <% end %>
+
+  <% if @sponsors[:warrior].any? %>
+    <div class="media-grid">
+      <% @sponsors[:warrior].each do |sponsor|  %>
+        <div class="warrior flex align-center center">
+          <a href="<%= sponsor['url'] %>">
+            <%= image_tag sponsor['logo_svg_light'], :alt => sponsor['name'], :class => "logo-sponsor" %>
+          </a>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @sponsors[:trainee].any? %>
+    <div class="media-grid">
+      <% @sponsors[:trainee].each do |sponsor|  %>
+        <div class="trainee flex align-center center">
+          <a href="<%= sponsor['url'] %>">
+            <%= image_tag sponsor['logo_svg_light'], :alt => sponsor['name'], :class => "logo-sponsor" %>
+          </a>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @sponsors[:partner].any? %>
+    <div class="media-grid">
+      <% @sponsors[:partner].each do |sponsor|  %>
+        <div class="partner flex align-center center">
+          <a href="<%= sponsor['url'] %>">
+            <%= image_tag sponsor['logo_svg_light'], :alt => sponsor['name'], :class => "logo-sponsor" %>
+          </a>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
   </section>
 
   <div id="interested">

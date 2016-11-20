@@ -2,11 +2,37 @@ class HomeController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:subscribe, :rememberTheme]
 
   require 'json'
+  require 'net/http'
 
   def index
-    @past_sponsors = Dir.glob("app/assets/images/pastSponsors/*").sort_by(&:downcase)
     @faqs = Faq.all.to_a.sort_by {|obj| obj.priority}
     @faqs = @faqs.select { |faq| faq.display? }
+
+    # get sponsors
+    url = URI.parse('http://localhost:3001/sponsors')
+    req = Net::HTTP::Get.new(url.to_s)
+    req.add_field("Authorization", "Token token=\"#{ENV['API_AUTH_TOKEN']}\"")
+    res = Net::HTTP.start(url.host, url.port) {|http|
+      http.use_ssl = ENV['API_SSL_ON'] == "true" ? true : false
+      http.request(req)
+    }
+
+    unfiltered_sponsors =  JSON.parse(res.body)
+
+    @sponsors = { :partner => [], :trainee => [], :warrior => [], :commander => [] }
+    unfiltered_sponsors.each do |sponsor|
+      if sponsor["level"].downcase == "commander"
+        @sponsors[:commander].push sponsor
+      elsif sponsor["level"].downcase == "warrior"
+        @sponsors[:warrior].push sponsor
+      elsif sponsor["level"].downcase == "trainee"
+        @sponsors[:trainee].push sponsor
+      else
+        @sponsors[:partner].push sponsor
+      end
+
+    end
+
   end
 
 

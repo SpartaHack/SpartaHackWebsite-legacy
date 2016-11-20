@@ -1,5 +1,6 @@
 API_AUTH_TOKEN: ""
 API_SITE: "http://"
+API_SSL_ON: true
 
 MAIL_FROM_EMAIL: ""
 MAIL_FROM_EMAIL_NAME: ""

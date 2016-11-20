@@ -100,13 +100,18 @@
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
+    margin-bottom: 75px;
+
+    a:after {
+      display: none;
+    }
     @media screen and (max-width: 550px) {
       flex-direction: column;
       -webkit-flex-direction: column;
     }
   }
 
-  .sub {
+  .partner {
     width: 150px;
     height: 70px;
     margin: 15px 25px;
@@ -121,6 +126,70 @@
     }
     @media (max-width: 550px) {
       margin: 5px 15px;
+    }
+  }
+
+  .trainee {
+    width: 250px;
+    height: 100px;
+    margin: 15px 25px;
+    position: relative;
+
+    #auto-owners,
+    .logo-sponsor {
+      max-width: 250px;
+      min-width: 250px;
+      max-height: 100px;
+      height: auto;
+      width: 100%;
+      @media (max-width: 550px) {
+        min-width: 160px;
+        max-width: 200px;
+        height: auto;
+      }
+    }
+  }
+
+  .warrior {
+    width: 300px;
+    height: 150px;
+    margin: 15px 25px;
+
+    .logo-sponsor {
+      width: 300px;
+      min-width: 275px;
+      max-height: 150px;
+      height: auto;
+      width: 100%;
+    }
+    @media (max-width: 550px) {
+      max-width: 260px;
+
+      .logo-sponsor {
+        max-width: 260px;
+        height: auto;
+        margin: 0 0 25px;
+      }
+    }
+  }
+
+  .commander {
+    width: 585px;
+    height: 175px;
+    margin: 15px 25px;
+
+    .logo-sponsor {
+      max-width: 585px;
+      min-width: 585px;
+      max-height: 175px;
+      height: auto;
+      width: 100%;
+      @media (max-width: 550px) {
+        min-width: 300px;
+        max-width: 325px;
+        height: auto;
+        margin: 0 0 25px;
+      }
     }
   }
 }
