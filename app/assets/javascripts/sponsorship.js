@@ -24,7 +24,6 @@ window.onload = function() {
 
   $('#create_sponsor').submit(function() {
     var formData = new FormData($(this)[0]);
-    console.log($(this).find('input[name="user"]').val())
 
     $.ajax({
       url: $(this).attr('action'),
@@ -42,7 +41,7 @@ window.onload = function() {
       }
     });
 
-    return false
+    return false;
   })
 
 };
