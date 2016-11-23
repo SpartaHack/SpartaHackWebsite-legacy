@@ -1,0 +1,329 @@
+@import 'partials/colors';
+@import 'partials/fonts';
+
+#sponsorship {
+  @media (max-width: 550px) {
+    margin-top: 30px;
+  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  color: $light-gold;
+  font-family: "Lato-Light";
+  height: 100%;
+
+  .title-wrap {
+    margin-bottom: 15px;
+
+    .hline {
+      border-top: solid 1px $medium-gold;
+      background: none;
+      width: 100%;
+    }
+
+    .section-head {
+      margin-bottom: 10px;
+      color: $medium-gold;
+      text-align: left;
+      font-size: 150%;
+      @media (max-width: 550px) {
+        font-size: 130%;
+      }
+    }
+  }
+
+  .row {
+    width: 87%;
+    margin-top: 50px;
+    padding: 0 15px;
+    @media (min-width: 550px) {
+      width: 530px;
+      margin-top: 50px;
+    }
+  }
+
+  ::-webkit-input-placeholder {
+    color: $light-gold;
+    opacity: 1;
+    font-family: "Lato-Light";
+    font-weight: lighter;
+    font-size: 14px;
+    padding-right: 1em;
+  }
+
+  :-moz-placeholder {
+    /* Firefox 18- */
+    color: $light-gold;
+    opacity: 1;
+    font-family: "Lato-Light";
+    font-size: 14px;
+    font-weight: lighter;
+    padding-right: 1em;
+  }
+
+  ::-moz-placeholder {
+    /* Firefox 19 */
+    color: $light-gold;
+    opacity: 1;
+    font-family: "Lato-Light";
+    font-weight: lighter;
+    font-size: 14px;
+    padding-right: 1em;
+  }
+
+  :-ms-input-placeholder {
+    color: $light-gold;
+    opacity: 1;
+    font-family: "Lato-Light";
+    font-weight: lighter;
+    font-size: 14px;
+    padding-right: 1em;
+  }
+
+  #outer-wrap {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    padding-bottom: 0;
+    margin-right: 15px;
+    width: 100%;
+    @media (max-width: 550px) {
+      padding-bottom: 0;
+      margin-right: 0;
+    }
+  }
+
+  .inner-wrap {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    -webkit-justify-content: space-between;
+    @media (max-width: 550px) {
+      padding-bottom: 0;
+      flex-direction: column-reverse;
+      -webkit-flex-direction: column-reverse;
+    }
+
+    #inner-wrap {
+      width: 100%;
+    }
+  }
+
+  input {
+    text-align: left;
+    border: solid 1px $medium-gold;
+    font-size: 14px;
+    font-weight: 100;
+    box-sizing: border-box;
+    color: $light-gold;
+    background: none;
+    padding: 8px 0 8px 25px;
+    -webkit-appearance: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  input[type=file] {
+    padding: 0;
+    margin: 0;
+  }
+
+  #name {
+    height: 56px;
+    @media (min-width: 550px) {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  }
+
+  #level {
+    margin: 0 0 15px;
+    width: 100%;
+    @media (min-width: 550px) {
+      width: 100%;
+      margin: 0;
+    }
+  }
+
+  #url {
+    height: 54px;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 15px 0;
+    @media (min-width: 550px) {
+      margin-right: 15px;
+      margin-bottom: 0;
+    }
+  }
+
+  #name {
+    @media (max-width: 550px) {
+      margin: 15px 0;
+    }
+  }
+
+  input:focus {
+    border-color: rgba(128, 295, 219, 0.8) !important;
+    box-shadow: 0 1px 1px rgba(128, 295, 219, 0.075) inset, 0 0 8px rgba(128, 295, 219, 0.6) !important;
+    outline: 0 none !important;
+  }
+
+  #addsponsor {
+    padding-right: 25px;
+    text-align: center;
+    width: 100%;
+    @media (min-width: 550px) {
+      padding-right: 30px;
+      width: 530px;
+    }
+  }
+
+  .img_prev {
+    width: 100px;
+    max-height: 100px;
+  }
+
+  #sponsor-wrap {
+    margin-bottom: 15px;
+    margin-top: -7.5px;
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+  }
+
+  input[type=submit] {
+    background: none;
+    border-style: none;
+    text-align: right;
+    border: solid 1px $medium-gold;
+    color: $light-gold;
+    font-weight: 100;
+    font-size: 15px;
+    border-radius: 0;
+    height: 60px;
+    cursor: pointer;
+    cursor: hand;
+    -webkit-appearance: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #viewsponsor {
+    text-align: center;
+    padding: 0 15px;
+    margin: 7.5px;
+  }
+
+  #deletesponsor,
+  #editsponsor {
+    width: 257px;
+    text-align: center;
+    padding: 0;
+    @media (max-width: 550px) {
+      width: 190px;
+    }
+  }
+
+  #deletesponsor {
+    font-weight: 600;
+    color: rgba(192, 57, 43, 1);
+  }
+  @keyframes border-pulsate {
+    0% {
+      border-color: rgba(243, 70, 74, 1);
+      color: rgba(243, 70, 74, 1);
+    }
+
+    50% {
+      border-color: rgba(243, 70, 74, .5);
+      color: rgba(243, 70, 74, .5);
+    }
+
+    100% {
+      border-color: rgba(243, 70, 74, 1);
+      color: rgba(243, 70, 74, 1);
+    }
+  }
+
+  #deletesponsor:hover {
+    animation: border-pulsate 1s infinite;
+  }
+
+  #submit-wrap {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+  }
+
+  #addsponsor:hover,
+  #editsponsor:hover,
+  #viewsponsor:hover {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 0;
+    -webkit-box-shadow: 0 0 5px $light-gold;
+    -moz-box-shadow: 0 0 5px $light-gold;
+    box-shadow: 0 0 5px $light-gold;
+  }
+
+  .no-label {
+    display: none;
+  }
+
+  .thumb-wrap {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  .thumbnail {
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    position: relative;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    border: solid 1px $medium-gold;
+    margin-right: 0;
+    margin-top: 15px;
+    @media (min-width: 550px) {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .form-group-file {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    @media (min-width: 550px) {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .form-group-file input {
+    width: 100% !important;
+    height: 100px;
+    @media (min-width: 550px) {
+      width: 100px !important;
+    }
+    opacity: 0 !important;
+    cursor: pointer;
+  }
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 17px;
+  right: 8px;
+  width: 20px;
+}

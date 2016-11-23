@@ -26,6 +26,28 @@ class AdminController < ApplicationController
     end
   end
 
+  def sponsorship
+    # Used to populate Edit Sponsors section.
+    @sponsors = []
+
+    # get sponsors
+    url = URI.parse('http://localhost:3001/sponsors')
+    req = Net::HTTP::Get.new(url.to_s)
+    req.add_field("Authorization", "Token token=\"#{ENV['API_AUTH_TOKEN']}\"")
+    res = Net::HTTP.start(url.host, url.port) {|http|
+      http.use_ssl = ENV['API_SSL_ON'] == "true" ? true : false
+      http.request(req)
+    }
+
+    companies =  JSON.parse(res.body)
+    companies.each do |c|
+      @sponsors.push([c["id"].to_i, c["name"]])
+    end
+  end
+
+  def sponsorship_view
+  end
+
   private
 
   def check_login
