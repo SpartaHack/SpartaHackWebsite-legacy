@@ -213,6 +213,7 @@ class ApplicationsController < ::ApplicationController
       Rails.logger.debug "Fatal error on application creation"
       Rails.logger.error e.message
       @user.destroy
+      session.clear
 
       flash[:popup_errors].push("Something went wrong, please resubmit.")
       flash[:app_params] = app_params.to_h
