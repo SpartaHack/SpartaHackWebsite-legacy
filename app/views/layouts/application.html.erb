@@ -27,7 +27,11 @@
     <%= stylesheet_link_tag "application", "#{params[:controller]}", media: 'all', "data-turbolinks-track" => "reload" %>
   </head>
 
-  <body>
+  <% if cookies.signed[:theme] && cookies.signed[:theme] == 'dark' %>
+    <body class="dark">
+  <% else %>
+    <body>
+  <% end %>
 
     <%= yield %>
 

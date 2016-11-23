@@ -1,4 +1,8 @@
+<% if cookies.signed[:theme] && cookies.signed[:theme] == 'dark' %>
+<nav id="header" class="wrap-row align-center dark">
+<% else %>
 <nav id="header" class="wrap-row align-center">
+<% end %>
   <div id="left-wrap" class="flex wrap-row align-center">
     <%= image_tag "diamond-w-shadow.svg", :id => "nav-diamond", :class => "diamond"%>
     <h1 id="nav-spartahack"><a href='/'>SpartaHack 17</a></h1>
