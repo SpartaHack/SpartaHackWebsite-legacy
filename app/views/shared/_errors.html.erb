@@ -1,0 +1,29 @@
+<% if !flash[:popup].blank? || !flash[:popup_errors].blank? %>
+  <div id="popup-error-wrapper">
+    <div class="popup">
+    <% if !flash[:popup].blank? %>
+      The following can not be blank
+      <ul>
+        <% flash[:popup].each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+      </br>
+    <% end %>
+    <% if !flash[:popup_errors].blank? %>
+      The following errors occurred
+      <ul>
+        <% flash[:popup_errors].each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    </div>
+  </div>
+<% end %>
+
+
+<div id="popup-wrapper">
+  <div class="popup"></div>
+  <p>Click anywhere to dismiss.</p>
+</div>
