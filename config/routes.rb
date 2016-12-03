@@ -20,6 +20,11 @@
 #                  PUT    /user/:id(.:format)              user#update
 #                  DELETE /user/:id(.:format)              user#destroy
 #        dashboard GET    /dashboard(.:format)             user#dashboard
+#            admin GET    /admin(.:format)                 admin#dashboard
+#        admin_faq GET    /admin/faq(.:format)             admin#faq
+#   admin_faq_view GET    /admin/faq/view(.:format)        admin#faq_view
+# admin_statistics GET    /admin/statistics(.:format)      admin#statistics
+#            stats GET    /stats(.:format)                 admin#stats
 #     applications GET    /applications(.:format)          applications#index
 #                  POST   /applications(.:format)          applications#create
 #  new_application GET    /applications/new(.:format)      applications#new
@@ -30,10 +35,34 @@
 #                  DELETE /applications/:id(.:format)      applications#destroy
 #            apply GET    /apply(.:format)                 applications#new
 #                  GET    /application(.:format)           applications#new
+#                  POST   /application(.:format)           applications#create
+# application_edit GET    /application/edit(.:format)      applications#edit
+#                  PUT    /application(.:format)           applications#update
+#       rsvp_index GET    /rsvp(.:format)                  rsvp#index
+#                  POST   /rsvp(.:format)                  rsvp#create
+#         new_rsvp GET    /rsvp/new(.:format)              rsvp#new
+#        edit_rsvp GET    /rsvp/:id/edit(.:format)         rsvp#edit
+#             rsvp GET    /rsvp/:id(.:format)              rsvp#show
+#                  PATCH  /rsvp/:id(.:format)              rsvp#update
+#                  PUT    /rsvp/:id(.:format)              rsvp#update
+#                  DELETE /rsvp/:id(.:format)              rsvp#destroy
+#                  GET    /rsvp(.:format)                  rsvp#new
 #            login GET    /login(.:format)                 sessions#new
 #                  POST   /login(.:format)                 sessions#create
 #           logout GET    /logout(.:format)                sessions#destroy
+#          destroy POST   /destroy(.:format)               user#destroy
 #             root GET    /                                home#index
+#     batch_create POST   /batch/create(.:format)          batch#create
+#    batch_destroy POST   /batch/destroy(.:format)         batch#destroy
+#     batch_update POST   /batch/update(.:format)          batch#update
+#             faqs GET    /faqs(.:format)                  faqs#index
+#                  POST   /faqs(.:format)                  faqs#create
+#          new_faq GET    /faqs/new(.:format)              faqs#new
+#         edit_faq GET    /faqs/:id/edit(.:format)         faqs#edit
+#              faq GET    /faqs/:id(.:format)              faqs#show
+#                  PATCH  /faqs/:id(.:format)              faqs#update
+#                  PUT    /faqs/:id(.:format)              faqs#update
+#                  DELETE /faqs/:id(.:format)              faqs#destroy
 #
 
 Rails.application.routes.draw do
@@ -56,6 +85,9 @@ Rails.application.routes.draw do
   post '/application', to: 'applications#create'
   get '/application/edit', to: 'applications#edit'
   put '/application', to: 'applications#update'
+
+  get '/rsvp', to: 'rsvp#new'
+  post '/rsvp', to: 'rsvp#create'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
