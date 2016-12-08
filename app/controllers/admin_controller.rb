@@ -31,19 +31,23 @@ class AdminController < ApplicationController
     # Used to populate Edit Sponsors section.
     @sponsors = []
 
-    # get sponsors
-    url = URI.parse("#{ENV['API_AUTH_TOKEN']}/sponsors")
-    req = Net::HTTP::Get.new(url.to_s)
-    req.add_field("Authorization", "Token token=\"#{ENV['API_AUTH_TOKEN']}\"")
+    begin
+      # get sponsors
+      url = URI.parse("#{ENV['API_AUTH_TOKEN']}/sponsors")
+      req = Net::HTTP::Get.new(url.to_s)
+      req.add_field("Authorization", "Token token=\"#{ENV['API_AUTH_TOKEN']}\"")
 
-    res = Net::HTTP.new(url.host, url.port)
-    res.use_ssl = true if url.scheme == 'https'
-    res = res.start {|http|
-      http.request(req)
-    }
-    companies =  JSON.parse(res.body)
-    companies.each do |c|
-      @sponsors.push([c["id"].to_i, c["name"]])
+      res = Net::HTTP.new(url.host, url.port)
+      res.use_ssl = true if url.scheme == 'https'
+      res = res.start {|http|
+        http.request(req)
+      }
+      companies =  JSON.parse(res.body)
+      companies.each do |c|
+        @sponsors.push([c["id"].to_i, c["name"]])
+      end
+    rescue
+      p "Error getting Sponsors"
     end
   end
 

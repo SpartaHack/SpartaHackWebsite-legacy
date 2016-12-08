@@ -9,17 +9,21 @@ class HomeController < ApplicationController
     @faqs = @faqs.select { |faq| faq.display? }
 
     # get sponsors
-    url = URI.parse("#{ENV['API_AUTH_TOKEN']}/sponsors")
-    req = Net::HTTP::Get.new(url.to_s)
-    req.add_field("Authorization", "Token token=\"#{ENV['API_AUTH_TOKEN']}\"")
+    begin
+      url = URI.parse("#{ENV['API_AUTH_TOKEN']}/sponsors")
+      req = Net::HTTP::Get.new(url.to_s)
+      req.add_field("Authorization", "Token token=\"#{ENV['API_AUTH_TOKEN']}\"")
 
-    res = Net::HTTP.new(url.host, url.port)
-    res.use_ssl = true if url.scheme == 'https'
-    res = res.start {|http|
-      http.request(req)
-    }
+      res = Net::HTTP.new(url.host, url.port)
+      res.use_ssl = true if url.scheme == 'https'
+      res = res.start {|http|
+        http.request(req)
+      }
 
-    unfiltered_sponsors =  JSON.parse(res.body)
+      unfiltered_sponsors =  JSON.parse(res.body)
+    rescue
+      p "Error getting Sponsors"
+    end
 
     @sponsors = { :partner => [], :trainee => [], :warrior => [], :commander => [] }
     unfiltered_sponsors.each do |sponsor|
