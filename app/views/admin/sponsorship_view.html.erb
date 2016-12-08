@@ -63,11 +63,17 @@
           </div>
         </div>
 
-
-        <div class="hvr-underline-from-center full">
-          <%= submit_tag "Submit", id: "addsponsor" %>
+        <div class="column_wrap">
+          <%= submit_tag "Update Sponsor", :id => "sponsorship_view_submit" %>
+        <% end %>
+          <%= form_tag("#{ENV['API_SITE']}/sponsors", :method => :delete, id: "delete_sponsor") do %>
+            <%= hidden_field_tag 'auth' , "Token token=\"#{ENV['API_AUTH_TOKEN']}\""  %>
+            <%= hidden_field_tag 'user' , User.current_user.auth_token  %>
+            <%= hidden_field_tag 'id' , @company["id"]  %>
+            <%= submit_tag "Delete Sponsor", :id => "sponsorship_view_delete" %>
+          <% end %>
         </div>
-      <% end %>
+
     </div>
   </section>
 </div>

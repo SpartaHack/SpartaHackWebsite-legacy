@@ -44,6 +44,28 @@ window.onload = function() {
     return false;
   })
 
+  $('#delete_sponsor').submit(function() {
+    var formData = new FormData($(this)[0]);
+
+    $.ajax({
+      url: $(this).attr('action'),
+      headers: {
+        'Authorization': $(this).find('input[name="auth"]').val(),
+        'X-WWW-USER-TOKEN': $(this).find('input[name="user"]').val()
+      },
+      data: formData,
+      cache: false,
+      contentType: false,
+      processData: false,
+      type: 'POST',
+      complete: function(data) {
+        location.reload();
+      }
+    });
+
+    return false;
+  })
+
   try {
     company;
     $("#level").val(company).trigger("change")
