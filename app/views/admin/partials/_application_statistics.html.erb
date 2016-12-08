@@ -79,7 +79,6 @@
         <h1 class="section-head">Universities</h1>
         <div class="hline"></div>
       </div>
-      <div class="horizontal-bar-graph" id="apps-university-graph"></div>
       <table class="table" cellspacing="0" width="98%" role="grid">
         <thead>
           <tr>
@@ -114,10 +113,49 @@
 
     <article>
       <div class="title-wrap">
-        <h1 class="section-head">Majors</h1>
+        <h1 class="section-head">Travel Origin</h1>
         <div class="hline"></div>
       </div>
-      <div class="horizontal-bar-graph" id="apps-major-graph"></div>
+      <div class="horizontal-bar-graph" id="apps-university-graph"></div>
+      <table class="table" cellspacing="0" width="98%" role="grid">
+        <thead>
+          <tr>
+            <th>University</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @traveling.each_with_index do |(university, count), index| %>
+          <tr>
+            <td>
+              <%= university %>
+            </td>
+            <td>
+              <%= count %> or
+              <%= number_to_percentage(100*(count.to_f / @traveling.inject(0) { |sum, tuple| sum += tuple[1] }), precision: 1) %>
+            </td>
+          </tr>
+          <% index == 19 ? break : nil %>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="tablefooter">
+        *top 20
+      </div>
+      <p>There are <strong><%= @traveling_international %> international students</strong>,
+        which make up <strong>
+      <%= number_to_percentage(100*(@traveling_international.to_f / @applications.count), precision: 1) %></strong> of applicants.</p>
+
+    </article>
+  </div>
+
+  <div class="title-wrap">
+    <h1 class="section-head">Majors</h1>
+    <div class="hline"></div>
+  </div>
+  <div class="column">
+    <article>
       <div class="row">
         <table class="table" cellspacing="0" width="98%" role="grid">
           <thead>
@@ -144,6 +182,10 @@
         </table>
       </div>
 
+    </article>
+
+    <article>
+      <div class="horizontal-bar-graph" id="apps-major-graph"></div>
     </article>
   </div>
 
@@ -322,6 +364,8 @@
 <%= content_tag :div, class: "applications_data_gender_count", data: {temp: @genders} do %>
 <% end %>
 <%= content_tag :div, class: "applications_data_age_count", data: {temp: @ages.to_a} do %>
+<% end %>
+<%= content_tag :div, class: "applications_data_major_count", data: {temp: @majors.to_a} do %>
 <% end %>
 <%= content_tag :div, class: "applications_data_grade_count", data: {temp: @graduation_years.to_a} do %>
 <% end %>

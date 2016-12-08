@@ -230,6 +230,24 @@ window.onload = function() {
 
   var hsGradeGraph = new HorizontalBarGraph('#apps-hs-grade-graph', hsGradeGraphArray);
 
+
+
+  var majorValues = [$('.applications_data_major_count').data('temp')][0];
+  var majorGraphArray = []
+
+  for (i = 0; i < majorValues.length && i < 10; i++) {
+    majorGraphArray.push({
+      label: majorValues[i][0],
+      inner_label: majorValues[i][1],
+      value: majorValues[i][1],
+      color: colorArray[i]
+    });
+  }
+
+  var majorGraph = new HorizontalBarGraph('#apps-major-graph', majorGraphArray);
+
+
+
   var hackathonValues = [$('.applications_data_hackathon_count').data('temp')][0];
   var graphArray = []
 
@@ -251,6 +269,8 @@ window.onload = function() {
   gradeGraph.draw();
 
   hsGradeGraph.draw();
+
+  majorGraph.draw();
 
   hackathonGraph.draw();
 

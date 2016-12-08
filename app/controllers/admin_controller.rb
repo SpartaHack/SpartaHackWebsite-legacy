@@ -76,6 +76,8 @@ class AdminController < ApplicationController
 
     @universities = {:Other => 0}
     @international = 0
+    @traveling = {}
+    @traveling_international = 0
     @majors = {}
     @genders = {}
     @ages = {}
@@ -98,6 +100,14 @@ class AdminController < ApplicationController
 
         @graduation_years[app.graduation_year] ||= 0
         @graduation_years[app.graduation_year] += 1
+      end
+
+      unless app.travel_origin.blank?
+        @traveling[app.travel_origin] ||= 0
+        @traveling[app.travel_origin] += 1
+        if app.travel_origin[0,3] != "USA"
+          @traveling_international += 1
+        end
       end
 
       unless app.statement.blank?
@@ -154,6 +164,7 @@ class AdminController < ApplicationController
     end
 
     @universities = @universities.sort_by {|k,v| v}.reverse.to_h
+    @traveling = @traveling.sort_by {|k,v| v}.reverse.to_h
     @ages = @ages.sort_by {|k,v| k}.to_h
     @genders = @genders.sort_by {|k,v| v}.to_h
     @majors = @majors.sort_by {|k,v| v}.reverse.to_h
