@@ -8,7 +8,7 @@
         <div class="hline"></div>
       </div>
 
-      <%= form_tag("http://localhost:3001/sponsors", method: "post", id: "create_sponsor", multipart: true) do %>
+      <%= form_tag("#{ENV['API_SITE']}/sponsors", method: "post", id: "create_sponsor", multipart: true) do %>
         <%= hidden_field_tag 'auth' , "Token token=\"#{ENV['API_AUTH_TOKEN']}\""  %>
         <%= hidden_field_tag 'user' , User.current_user.auth_token  %>
 
