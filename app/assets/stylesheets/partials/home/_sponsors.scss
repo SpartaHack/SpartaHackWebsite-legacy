@@ -174,16 +174,13 @@
   }
 
   .commander {
-    width: 585px;
-    height: 175px;
+    width: 500px;
     margin: 15px 25px;
 
     .logo-sponsor {
-      max-width: 585px;
-      min-width: 585px;
-      max-height: 175px;
+      max-width: 500px;
+      min-width: 500px;
       height: auto;
-      width: 100%;
       @media (max-width: 550px) {
         min-width: 300px;
         max-width: 325px;
