@@ -9,11 +9,13 @@ class HomeController < ApplicationController
     @faqs = @faqs.select { |faq| faq.display? }
 
     # get sponsors
-    url = URI.parse('http://localhost:3001/sponsors')
+    url = URI.parse("#{ENV['API_AUTH_TOKEN']}/sponsors")
     req = Net::HTTP::Get.new(url.to_s)
     req.add_field("Authorization", "Token token=\"#{ENV['API_AUTH_TOKEN']}\"")
-    res = Net::HTTP.start(url.host, url.port) {|http|
-      http.use_ssl = ENV['API_SSL_ON'] == "true" ? true : false
+
+    res = Net::HTTP.new(url.host, url.port)
+    res.use_ssl = true if url.scheme == 'https'
+    res = res.start {|http|
       http.request(req)
     }
 

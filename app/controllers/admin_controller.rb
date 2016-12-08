@@ -32,7 +32,7 @@ class AdminController < ApplicationController
     @sponsors = []
 
     # get sponsors
-    url = URI.parse('http://localhost:3001/sponsors')
+    url = URI.parse("#{ENV['API_AUTH_TOKEN']}/sponsors")
     req = Net::HTTP::Get.new(url.to_s)
     req.add_field("Authorization", "Token token=\"#{ENV['API_AUTH_TOKEN']}\"")
 
