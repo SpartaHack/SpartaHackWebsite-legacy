@@ -4,19 +4,20 @@
   <section id="sponsorship">
     <div class="row">
       <div class="title-wrap">
-        <h1 class="section-head">Add Sponsor</h1>
+        <h1 class="section-head">Edit Sponsor</h1>
         <div class="hline"></div>
       </div>
 
-      <%= form_tag("http://localhost:3001/sponsors", method: "post", id: "create_sponsor", multipart: true) do %>
+      <%= form_tag("#{ENV['API_SITE']}/sponsors", :method => :put, id: "create_sponsor", multipart: true) do %>
         <%= hidden_field_tag 'auth' , "Token token=\"#{ENV['API_AUTH_TOKEN']}\""  %>
         <%= hidden_field_tag 'user' , User.current_user.auth_token  %>
+        <%= hidden_field_tag 'id' , @company["id"]  %>
 
         <div class="inner-wrap">
           <div id="inner-wrap">
             <div id="outer-wrap">
               <%= label_tag(:name, "Sponsor Name", class: 'no-label') %>
-              <%= text_field_tag 'name', nil , placeholder: 'Company Name' %>
+              <%= text_field_tag 'name', @company["name"] , placeholder: 'Company Name' %>
 
               <select id="level" name="level">
                 <option disabled selected></option>
@@ -27,33 +28,33 @@
               </select>
 
               <%= label_tag(:url, "Website Url", class: 'no-label') %>
-              <%= text_field_tag 'url', nil , placeholder: 'Website URL' %>
+              <%= text_field_tag 'url', @company["url"] , placeholder: 'Website URL' %>
             </div>
 
             <div class="thumb-wrap">
               <div class="thumbnail">
-                <%= image_tag nil, alt: "Logo SVG Light", :class => "img_prev", :border => 0, :id => "logo_svg_light-prev" %>
+                <%= image_tag @company["logo_svg_light"], alt: "Logo SVG Light", :class => "img_prev", :border => 0, :id => "logo_svg_light-prev" %>
                 <div class="form-group-file">
                   <%= file_field_tag 'logo_svg_light', :onchange => 'readURL(this);' %>
                 </div>
               </div>
 
               <div class="thumbnail">
-                <%= image_tag nil, alt: "Logo PNG Light", :class => "img_prev", :id => "logo_png_light-prev" %>
+                <%= image_tag @company["logo_png_light"], alt: "Logo PNG Light", :class => "img_prev", :id => "logo_png_light-prev" %>
                 <div class="form-group-file">
                   <%= file_field_tag 'logo_png_light', :onchange => 'readURL(this);' %>
                 </div>
               </div>
 
               <div class="thumbnail">
-                <%= image_tag nil, alt: "Logo SVG Dark", :class => "img_prev", :id => "logo_svg_dark-prev" %>
+                <%= image_tag @company["logo_svg_dark"], alt: "Logo SVG Dark", :class => "img_prev", :id => "logo_svg_dark-prev" %>
                 <div class="form-group-file">
                   <%= file_field_tag 'logo_svg_dark', :onchange => 'readURL(this);' %>
                 </div>
               </div>
 
               <div class="thumbnail">
-                <%= image_tag nil, alt: "Logo PNG Dark", :class => "img_prev", :id => "logo_png_dark-prev" %>
+                <%= image_tag @company["logo_png_dark"], alt: "Logo PNG Dark", :class => "img_prev", :id => "logo_png_dark-prev" %>
                 <div class="form-group-file">
                   <%= file_field_tag 'logo_png_dark', :onchange => 'readURL(this);' %>
                 </div>
@@ -68,23 +69,11 @@
         </div>
       <% end %>
     </div>
-
-    <div class="row">
-      <div class="title-wrap">
-        <h1 class="section-head">Edit Sponsor</h1>
-        <div class="hline"></div>
-      </div>
-      <div id="sponsor-wrap">
-        <% @sponsors.each do |sponsor|  %>
-          <%= form_tag({action: :sponsorship_view}) do %>
-            <%= hidden_field_tag 'id' , sponsor[0]  %>
-              <%= submit_tag sponsor[1], id: "viewsponsor" %>
-            <% end %>
-        <% end %>
-      </div>
-
-    </div>
   </section>
 </div>
 
+
+<%= javascript_tag do %>
+    var company = "<%= @company['level'] %>"
+<% end %>
 <%= javascript_include_tag "sponsorship" %>

@@ -44,4 +44,9 @@ window.onload = function() {
     return false;
   })
 
+  try {
+    company;
+    $("#level").val(company).trigger("change")
+  } catch (e) {}
+
 };

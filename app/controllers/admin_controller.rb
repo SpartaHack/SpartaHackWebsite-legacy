@@ -33,7 +33,7 @@ class AdminController < ApplicationController
 
     begin
       # get sponsors
-      url = URI.parse("#{ENV['API_AUTH_TOKEN']}/sponsors")
+      url = URI.parse("#{ENV['API_SITE']}/sponsors")
       req = Net::HTTP::Get.new(url.to_s)
       req.add_field("Authorization", "Token token=\"#{ENV['API_AUTH_TOKEN']}\"")
 
@@ -52,6 +52,27 @@ class AdminController < ApplicationController
   end
 
   def sponsorship_view
+    unless sponsorship_params[:id].present?
+      redirect_to "/admin/sponsorship" and return
+    end
+
+    begin
+      # get sponsors
+      url = URI.parse("#{ENV['API_SITE']}/sponsors/#{sponsorship_params[:id]}")
+      req = Net::HTTP::Get.new(url.to_s)
+      req.add_field("Authorization", "Token token=\"#{ENV['API_AUTH_TOKEN']}\"")
+
+      res = Net::HTTP.new(url.host, url.port)
+      res.use_ssl = true if url.scheme == 'https'
+      res = res.start {|http|
+        http.request(req)
+      }
+      @company =  JSON.parse(res.body)
+      pp @company
+    rescue
+      p "Error getting Sponsors"
+      redirect_to "/admin/sponsorship" and return
+    end
   end
 
   def statistics
@@ -190,6 +211,10 @@ class AdminController < ApplicationController
   end
 
   def faq_params
+    params.permit(:id)
+  end
+
+  def sponsorship_params
     params.permit(:id)
   end
 

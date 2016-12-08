@@ -48,7 +48,8 @@ Rails.application.routes.draw do
   get '/admin/faq', to: 'admin#faq'
   get '/admin/faq/view', to: 'admin#faq_view'
   get '/admin/sponsorship', to: 'admin#sponsorship'
-  get '/admin/sponsorship/view', to: 'admin#sponsorship_view'
+  get '/admin/sponsorship/view', to: 'admin#sponsorship'
+  post '/admin/sponsorship/view', to: 'admin#sponsorship_view'
   get '/admin/statistics', to: 'admin#statistics'
   get '/stats', to: 'admin#stats'
 

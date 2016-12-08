@@ -11,7 +11,7 @@ class HomeController < ApplicationController
 
     # get sponsors
     begin
-      url = URI.parse("#{ENV['API_AUTH_TOKEN']}/sponsors")
+      url = URI.parse("#{ENV['API_SITE']}/sponsors")
       req = Net::HTTP::Get.new(url.to_s)
       req.add_field("Authorization", "Token token=\"#{ENV['API_AUTH_TOKEN']}\"")
 
