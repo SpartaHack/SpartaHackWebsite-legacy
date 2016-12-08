@@ -7,6 +7,7 @@ class HomeController < ApplicationController
   def index
     @faqs = Faq.all.to_a.sort_by {|obj| obj.priority}
     @faqs = @faqs.select { |faq| faq.display? }
+    @sponsors = { :partner => [], :trainee => [], :warrior => [], :commander => [] }
 
     # get sponsors
     begin
@@ -21,22 +22,21 @@ class HomeController < ApplicationController
       }
 
       unfiltered_sponsors =  JSON.parse(res.body)
-    rescue
-      p "Error getting Sponsors"
-    end
+      unfiltered_sponsors.each do |sponsor|
+        if sponsor["level"].downcase == "commander"
+          @sponsors[:commander].push sponsor
+        elsif sponsor["level"].downcase == "warrior"
+          @sponsors[:warrior].push sponsor
+        elsif sponsor["level"].downcase == "trainee"
+          @sponsors[:trainee].push sponsor
+        else
+          @sponsors[:partner].push sponsor
+        end
 
-    @sponsors = { :partner => [], :trainee => [], :warrior => [], :commander => [] }
-    unfiltered_sponsors.each do |sponsor|
-      if sponsor["level"].downcase == "commander"
-        @sponsors[:commander].push sponsor
-      elsif sponsor["level"].downcase == "warrior"
-        @sponsors[:warrior].push sponsor
-      elsif sponsor["level"].downcase == "trainee"
-        @sponsors[:trainee].push sponsor
-      else
-        @sponsors[:partner].push sponsor
       end
 
+    rescue
+      p "Error getting Sponsors"
     end
 
   end
