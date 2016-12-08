@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-  padding: 115px 20% 0;
+  padding: 0;
   position: relative;
   @media (max-width: 710px) {
     margin-top: 90px;
@@ -36,3 +36,4 @@ body {
 @import "partials/admin/dashboard";
 @import "partials/admin/faq";
 @import "partials/admin/sponsorship";
+@import "partials/admin/statistics";

@@ -1,0 +1,602 @@
+@import 'partials/colors';
+@import 'partials/fonts';
+
+#stats {
+  margin-top: 4em;
+  padding-bottom: 150px;
+  font-family: "Lato-Light";
+  font-weight: 100;
+  -webkit-appearance: none;
+  -webkit-font-smoothing: antialiased;
+  color: #80ffdb;
+  // Fixes weird x scrolling on mobile
+  overflow-x: hidden;
+
+  p {
+    width: 100%;
+    margin: auto;
+    min-width: 140px;
+    font-size: 110%;
+    margin-top: 0.5em;
+    margin-bottom: 25px;
+    font-family: "Lato-Light";
+    font-weight: 100;
+    -webkit-appearance: none;
+    -webkit-font-smoothing: antialiased;
+    color: $metallic-sunburst;
+  }
+
+  strong {
+    color: $sinopia;
+  }
+
+  .center p {
+    text-align: center;
+  }
+
+  .row {
+    align-items: center;
+  }
+
+  .column,
+  .row {
+    @media (max-width: 550px) {
+      margin-left: 1%;
+    }
+  }
+
+  h1.section-head {
+    margin-top: 0;
+    margin-bottom: 25px;
+  }
+
+  #attending-stats {
+    position: inherit;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.75s linear;
+  }
+
+  #rsvp-stats {
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.75s linear;
+  }
+
+  #app-stats {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.75s linear;
+
+    #apps-age-graph {
+      text-align: left;
+    }
+  }
+  // rsvp has majors on its own line, so make it smaller
+  #rsvp-majors {
+    margin: 0 auto;
+    @media (max-width: 800px) {
+      width: 100%;
+    }
+  }
+
+  .title-wrap {
+    @media (max-width: 650px) {
+      margin-top: 25px;
+      width: 100%;
+    }
+
+    .section-head {
+      margin-top: 0;
+      margin-bottom: 0;
+      color: $metallic-sunburst;
+      font-family: "Lato-Light";
+      text-align: left;
+      font-size: 150%;
+      @media (max-width: 550px) {
+        font-size: 130%;
+      }
+    }
+
+    .hline {
+      border-top: solid 1px $metallic-sunburst;
+      margin-bottom: 15px;
+      background: none;
+      width: 100%;
+    }
+  }
+
+  .box {
+    width: 125px;
+    height: 75px;
+    margin: 20px 7.5px 0;
+    display: flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    border: solid 1px $metallic-sunburst;
+    font-size: 24px;
+  }
+
+  .svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    /* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+  }
+
+  .svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+  }
+
+  h2 {
+    margin-bottom: 0;
+  }
+
+  #applications-graph svg {
+    background-color: white;
+  }
+
+  .wordmap {
+    @media (max-width: 1000px) {
+      display: none;
+    }
+  }
+
+  #applications-graph {
+    @media (max-width: 1000px) {
+      display: none;
+    }
+  }
+
+  #hide-on-mobile {
+    @media (max-width: 1000px) {
+      display: none;
+    }
+  }
+
+  .wrap {
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .tablefooter {
+    text-align: right;
+    font-size: 75%;
+
+    strong {
+      line-height: 1.4;
+    }
+  }
+
+  .minorhighlight {
+    background-color: $hunter-green;
+    color: white;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+
+  svg {
+    background: transparent !important;
+
+    .tick {
+      text {
+        fill: $sinopia;
+      }
+    }
+
+    .tick line {
+      stroke: $metallic-sunburst !important;
+      stroke-width: 1;
+      opacity: 0.3;
+    }
+
+    .x .tick line {
+      y2: -500 !important;
+    }
+
+    rect {
+      fill: silver;
+
+      &:hover {
+        fill: white;
+      }
+    }
+
+    path {
+      stroke: $sinopia !important;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .axis line,
+    .axis path {
+      fill: none;
+      stroke-width: 1;
+      shape-rendering: crispEdges;
+    }
+
+    .x path,
+    .y path {
+      display: inline !important;
+      stroke: $sinopia !important;
+      stroke-width: 1;
+      fill: none;
+    }
+  }
+
+  #apps-submissions-graph.dark {
+    svg {
+      background: transparent !important;
+
+      .tick {
+        text {
+          fill: $metallic-sunburst;
+        }
+      }
+
+      .tick line {
+        stroke: $metallic-sunburst !important;
+        opacity: 0.5;
+      }
+
+      path {
+        stroke: $dust-storm !important;
+        stroke-width: 2;
+        fill: none;
+      }
+
+      .x path,
+      .y path {
+        stroke: $metallic-sunburst !important;
+      }
+    }
+  }
+
+  .horizontal-bar-graph-value-bar {
+    color: $dark-brown;
+  }
+
+  #tooltip {
+    font-family: sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 0.25em;
+    pointer-events: none;
+    position: absolute;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, .4);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, .4);
+
+    & p {
+      margin: 0 1em;
+    }
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .column {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    article {
+      display: flex;
+      flex-direction: column;
+      z-index: 10;
+      width: 48%;
+      font-family: "Lato-Light";
+      font-weight: 100;
+      -webkit-appearance: none;
+      -webkit-font-smoothing: antialiased;
+      @media (min-width: 650px) {
+        margin: 3vh 0;
+      }
+      @media (max-width: 650px) {
+        width: 100%;
+        align-items: center;
+        // Fix silly mobile width issue.
+        width: 97%;
+        margin: 0 1%;
+
+        .a-hline {
+          border-top: solid 1px $light-gold;
+          background: none;
+          width: 30%;
+        }
+      }
+    }
+    // @media (max-width: 800px) {
+    //   width: 87%;
+    // }
+    @media (max-width: 650px) {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+
+  .table {
+    color: $metallic-sunburst;
+
+    tr {
+      background-color: transparent;
+      min-width: 150px;
+    }
+
+    th {
+      text-align: left;
+      min-width: 150px;
+    }
+
+    td {
+      padding-right: 0;
+      border: 1px solid $metallic-sunburst;
+    }
+
+    #number {
+      max-width: 20px;
+    }
+
+    #major,
+    #university {
+      min-width: 400px;
+    }
+
+    #hackathons {
+      min-width: 600px;
+    }
+
+    #whyAttend {
+      min-width: 1000px;
+    }
+
+    #created {
+      min-width: 250px;
+    }
+  }
+
+  .axis line,
+  .axis path {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .x.axis path {
+    display: none;
+  }
+
+  .line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+  }
+  // check box bruh
+  form {
+    background: #fff;
+    width: 100%;
+    margin: auto;
+    padding: 30px;
+    min-width: 320px;
+    max-width: 540px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    border-radius: 3px;
+  }
+
+  .inline-radio {
+    width: 400px;
+    @media (max-width: 800px) {
+      width: 90%;
+      font-size: inherit;
+      margin-bottom: 1em;
+    }
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    display: flex;
+    font-size: large;
+    overflow: hidden;
+    border: 1px solid white;
+
+    div {
+      position: relative;
+      flex: 1;
+    }
+
+    input {
+      width: 100%;
+      height: 50px;
+      opacity: 0;
+    }
+
+    label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: $metallic-sunburst;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      border-right: 1px solid #b6b6b6;
+
+      &.dark {
+        color: $light-gold;
+      }
+    }
+
+    div:last-child label {
+      border-right: 0;
+    }
+
+    input:checked + label {
+      background: $hunter-green;
+      font-weight: 500;
+      color: white;
+    }
+  }
+  // Progress bar
+  .progress {
+    margin: 0 auto;
+    width: 400px;
+  }
+
+  .progress {
+    padding: 3px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+    box-shadow: inset 0 0 2px rgb(0, 237, 171), 0 1px rgba(255, 255, 255, 0.08);
+  }
+
+  .progress-bar {
+    background-color: #00EDAB;
+    height: 16px;
+    border-radius: 4px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+    transition: 0.4s linear;
+    transition-property: width, background-color;
+    -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .label {
+    display: inline-block;
+    margin: 0 5px 20px;
+    padding: 3px 8px;
+    color: #aaa;
+    text-shadow: 0 1px black;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+}
+
+.horizontal-bar-graph {
+  display: table;
+  text-align: left;
+  width: 98%;
+  @media (max-width: 550px) {
+    width: 98%;
+  }
+}
+
+.horizontal-bar-graph-segment {
+  display: table-row;
+}
+
+.horizontal-bar-graph-label {
+  display: table-cell;
+  color: $metallic-sunburst;
+  border-right: 1px solid silver;
+  text-align: right;
+  padding: 4px 10px 4px 0;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.horizontal-bar-graph-value {
+  display: table-cell;
+  padding: 3px 0;
+  vertical-align: bottom;
+  width: 100%;
+}
+
+.horizontal-bar-graph-value-bar {
+  background: silver;
+  // @include box-sizing(padding-box);
+  padding: 4px 4px 3px;
+  height: 1.2em;
+  text-align: right;
+  color: white;
+  overflow: visible;
+  display: inline-block;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.4);
+  font-size: 22px;
+}
+
+.horizontal-bar-graph-segment:first-child {
+  .horizontal-bar-graph-label {
+    padding-top: 12px;
+  }
+
+  .horizontal-bar-graph-value {
+    padding-top: 11px;
+  }
+}
+
+.horizontal-bar-graph-segment:last-child {
+  .horizontal-bar-graph-label {
+    padding-bottom: 12px;
+  }
+
+  .horizontal-bar-graph-value {
+    padding-bottom: 11px;
+  }
+}
+// Word Cloud
+
+#random_statements {
+  p {
+    text-align: left;
+  }
+}
+
+div.jqcloud span.w10 {
+  font-size: 550%;
+}
+
+div.jqcloud span.w9 {
+  font-size: 450%;
+}
+
+div.jqcloud span.w8 {
+  font-size: 300%;
+}
+
+div.jqcloud span.w7 {
+  font-size: 250%;
+}
+
+div.jqcloud span.w6 {
+  font-size: 200%;
+}
+
+div.jqcloud span.w5 {
+  font-size: 175%;
+}
+
+div.jqcloud span.w4 {
+  font-size: 150%;
+}
+
+div.jqcloud span.w3 {
+  font-size: 125%;
+}
+
+div.jqcloud span.w2 {
+  font-size: 100%;
+}
+
+div.jqcloud span.w1 {
+  font-size: 90%;
+}
+
+#apps-wordcloud,
+#rsvps-wordcloud {
+  margin: 0 -25%;
+  color: $metallic-sunburst;
+}

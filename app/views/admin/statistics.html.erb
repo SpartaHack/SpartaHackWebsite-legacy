@@ -1,1 +1,46 @@
-<br></br><br></br><br></br>Haha Lauren.
+<%= render "admin/partials/navigation" %>
+<div class="wrap-main">
+
+  <section id="stats">
+
+    <p class="tablefooter">
+      <strong>
+        <%= @applications.count %> Applications <br>
+        <%= @universities.count-1 %> Schools <br>
+        <!-- <= @rsvp_attending_count %> Accepted RSVPS <br>
+        <= @attending_total %> Checked-in <br> -->
+      </strong>
+    </p>
+
+    <div class="wrap">
+
+      <div class="row">
+        <div class="center">
+          <h1 class="section-head">Statistics</h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <group class="inline-radio">
+          <!-- <div><input type="radio" name="lives" id="attending"  checked><label>Attending</label></div> -->
+          <div><input type="radio" name="lives" id="application" checked><label>Application</label></div>
+          <div><input type="radio" name="lives" id="rsvp"><label>RSVP</label></div>
+        </group>
+      </div>
+
+
+
+      <%= render partial: "admin/partials/application_statistics" %>
+
+      <!-- <= render partial: "statistics/attending_stats" %>
+
+      <= render partial: "statistics/rsvp_stats" %> -->
+
+
+
+      <br><br><br><br>
+    </div>
+  </section>
+
+</div>
+<%= javascript_include_tag "statistics.js" %>
