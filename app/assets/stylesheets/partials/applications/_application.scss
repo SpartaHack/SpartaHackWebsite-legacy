@@ -112,7 +112,8 @@
   }
 }
 
-#app {
+#app,
+#rsvp {
   background-color: transparent;
   margin-bottom: 250px;
   @media (max-width: 550px) {
@@ -372,7 +373,8 @@
 
   #continent-wrap,
   #enrollment-wrap,
-  #other-university-wrap {
+  #other-university-wrap,
+  .gold-box {
     color: $medium-gold;
     display: flex;
     display: -webkit-flex;
@@ -383,12 +385,12 @@
     background: none;
     border-image: linear-gradient(to bottom, $light-gold 0%, $medium-gold 100%);
     border-image-slice: 1;
+    min-height: 54px;
     transition: box-shadow 0.7s ease;
     font-weight: 100;
     font-weight: lighter;
     font-family: Lato-Light;
     -webkit-font-smoothing: antialiased;
-    height: 54px;
 
     &:hover {
       box-shadow: 0 10px 25px rgba(0,0,0,0.08);
@@ -493,7 +495,9 @@
   }
 
   #application_other_university,
-  #application_statement {
+  #application_statement,
+  #rsvp_jobs,
+  #rsvp_other_dietary_restrictions {
     width: 100%;
     @media (min-width: 550px) {
       width: 530px;

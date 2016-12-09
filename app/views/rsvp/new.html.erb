@@ -1,0 +1,66 @@
+<%= render "user/navigation" %>
+<%= render "shared/errors" %>
+
+<div class="wrap-main">
+  <section id="rsvp">
+    <div class="row">
+
+      <div class="title-wrap">
+        <h1 class="section-head">Let's go!</h1>
+        <div class="hline"></div>
+      </div>
+
+      <h4 id="required">All fields are required</h4>
+
+      <%= simple_form_for @rsvp, url: '/rsvp', html: { id: "rsvp-form" }, validate: true do |f| %>
+      <div class="add-margin-top gold-box">
+        <label id="attending">Will you be attending SpartaHack 2017?</label>
+        <div class="radio-wrap">
+          <%= f.collection_radio_buttons :attending, [['Yes', 'Yes'], ['No', 'No']], :first, :last, required: true %>
+        </div>
+      </div>
+      <div class="attending-form" style="display: none;">
+        <div class="add-margin-top">
+          <%= f.input :dietary_restrictions, required: true, collection: ["None", "Gluten Free", "Halal", "Kosher", "Lactose Intolerant", "Nut Allergy", "Vegan", "Vegetarian", "Other"],
+          input_html: { multiple: true }, wrapper_html: { class: "full-width-input" }, label: false %>
+        </div>
+        <div class="add-margin-top" id="other-dietary-restrictions-wrap" style="display: none;">
+          <%= f.input :other_dietary_restrictions, placeholder: "Please Specify", label: false, wrapper_html: { class: "full-width-input" } %>
+        </div>
+        <div class="add-margin-top">
+          <%= f.input :shirt_size, required: true, collection: [
+              'Unisex XS',
+              'Unisex S',
+              'Unisex M',
+              'Unisex L',
+              'Unisex XL',
+              'Unisex XXL',
+              "Women's XS",
+              "Women's S",
+              "Women's M",
+              "Women's L",
+              "Women's XL",
+              "Women's XXL"
+            ],
+            wrapper_html: { class: "full-width-input" }, label: false %>
+        </div>
+        <div class="add-margin-top gold-box">
+          <label id="carpool">SpartaHack can share my information with other attendees who are looking to organize carpools.</label>
+          <div class="radio-wrap">
+            <%= f.collection_radio_buttons :carpool_sharing, [['Yes', 'Yes'], ['No', 'No']], :first, :last, required: true %>
+          </div>
+        </div>
+        <div class="add-margin-top gold-box">
+          <label>Resume Upload</label>
+          <%= f.file_field :resume, required: true %>
+        </div>
+        <div class="add-margin-top">
+          <%= f.input :jobs, required: true, collection: ["Internship Opportunities", "Full-Time Opportunities", "Both", "Neither"], label: false %>
+        </div>
+        <h3>By RSVPing, I consent to share my resume and profile information with SpartaHack sponsors.</h3>
+      </div>
+      <%= f.submit "Submit RSVP", class: "add-margin-top", id: "submit-rsvp" %>
+      <% end %>
+    </div>
+  </section>
+</div>
