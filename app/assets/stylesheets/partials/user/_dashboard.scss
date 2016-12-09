@@ -37,7 +37,7 @@
     }
   }
 
-  #app {
+  .action-button {
     height: 60px;
     width: 100%;
     max-width: 750px;
@@ -64,6 +64,10 @@
     &:hover {
       cursor: pointer;
       box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    & + .action-button {
+      margin-top: 20px;
     }
 
     a {
