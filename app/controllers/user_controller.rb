@@ -17,6 +17,31 @@ class UserController < ApplicationController
       @batch = nil
     end
 
+    user = User.current_user
+    # In the event a user is created but no application exists for them.
+    if !user.application.blank?
+      hash = user.application.instance_variables.each_with_object({}) { |var, hash|
+        hash[var.to_s.delete("@")] = user.application.instance_variable_get(var)
+      }
+      @application = Application.new(hash['attributes'])
+
+      if @application.status.present? and @application.status.downcase == 'accepted'
+        @decision = case @application.status.downcase
+        when 'denied'   then "Not Admitted"
+        when 'accepted'   then "You've been accepted! Congrats :)"
+        when 'waitlisted' then "You've been waitlisted, check back soon."
+        else                   nil
+        end
+      end
+    end
+
+    if !user.rsvp.blank?
+      hash = user.rsvp.instance_variables.each_with_object({}) { |var, hash|
+        hash[var.to_s.delete("@")] = user.rsvp.instance_variable_get(var)
+      }
+      @rsvp = Rsvp.new(hash['attributes'])
+    end
+
 
   end
 

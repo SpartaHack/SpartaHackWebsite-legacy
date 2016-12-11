@@ -40,9 +40,13 @@
         <div class="hline"></div>
       </div>
 
+    <% if @application.status.nil? %>
       <h4 id="required">* fields are required.</h4>
+    <% else %>
+      <h4 id="required">A decision has been made on your application. <br> Click <a href="/dashboard">here</a> to go to your dashboard.</h4>
+    <% end %>
 
-      <%= simple_form_for @application, :url => "/application", html: { id: "application-form"}, method: :put, validate: true do |f| %>
+      <%= simple_form_for @application, :url => "/application", html: { id: "application-form"}, method: :put, validate: true, defaults: { disabled: (false unless @application.status.present?)} do |f| %>
       <div class="inner page1">
         <%= simple_fields_for @user do |ff| %>
         <%= ff.input :first_name, placeholder: "First Name *", required: true, input_html: { class: "half-width-input" }, :label_html => { :class => "no-label" }, validate: { presence: true } %>
@@ -175,9 +179,11 @@
         </div>
       </div>
 
+    <% if @application.status.nil? %>
       <div class="add-margin-top hvr-underline-from-center full" id="save-app">
         <%= submit_tag("Update Application", :id => "application-edit") %>
       </div>
+    <% end %>
 
       <% end %>
 
@@ -189,6 +195,10 @@
 
   <%= javascript_tag do %>
   window.onload = function() {
+    <% if @application.status.present? %>
+      $("#application-form :input").prop("disabled", true);
+    <% end %>
+
     <% if @application %>
       <% if @application.education.downcase == "high school" %>
         $('.university-enrolled').hide();

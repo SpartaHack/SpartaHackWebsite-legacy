@@ -12,7 +12,9 @@
 
       <h4 id="required">All fields are required</h4>
 
-      <%= simple_form_for @rsvp, url: '/rsvp', html: { id: "rsvp-form" }, validate: true do |f| %>
+      <%= simple_form_for @rsvp, url: "#{ENV['API_SITE']}/rsvps", html: { id: "rsvp-form" }, validate: true do |f| %>
+      <%= hidden_field_tag 'user' , User.current_user.auth_token  %>
+      <%= hidden_field_tag '_method' , "POST"  %>
       <div class="add-margin-top gold-box">
         <label id="attending">Will you be attending SpartaHack 2017?</label>
         <div class="radio-wrap">
@@ -52,7 +54,12 @@
         </div>
         <div class="add-margin-top gold-box">
           <label>Resume Upload</label>
-          <%= f.file_field :resume, required: true %>
+          <div class="wrapper">
+            <div class="file-upload">
+              <%= f.file_field :resume, name: "rsvp[resume]", required: true %>
+              <i class="fa fa-arrow-up"></i>
+            </div>
+          </div>
         </div>
         <div class="add-margin-top">
           <%= f.input :jobs, required: true, collection: ["Internship Opportunities", "Full-Time Opportunities", "Both", "Neither"], label: false %>
@@ -63,4 +70,6 @@
       <% end %>
     </div>
   </section>
+
+  <%= javascript_include_tag 'vivus.min'%>
 </div>

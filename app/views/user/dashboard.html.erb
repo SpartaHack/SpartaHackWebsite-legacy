@@ -38,14 +38,23 @@
     </h3>
   <% end %>
 
-  <div id="app" class="action-button">
-    <a href="/application/edit">Application: Submitted | Edit Application</a>
-  </div>
+  <% if @application.status.nil? %>
+    <div id="app" class="action-button">
+      <a href="/application/edit">Application: Submitted | Edit Application</a>
+    </div>
+  <% else %>
+    <p id="decision"><%= @decision %></p>
+  <% end %>
 
+<% if @rsvp.nil? %>
   <div id="rsvp" class="action-button">
     <a href="/rsvp">RSVP</a>
   </div>
+<% else %>
+  <p id="rsvp-text">You've also submitted your RSVP, so you're all set!</p>
+<% end %>
 
+<% if @application.status.nil? %>
   <div id="group-wrapper">
     <% if @batch.blank? %>
       <p id="group-apply-single">We're considering you as a single applicant. Want to be considered with friends?
@@ -75,5 +84,6 @@
       </div>
     <% end %>
   </div>
+<% end %>
 
 </section>

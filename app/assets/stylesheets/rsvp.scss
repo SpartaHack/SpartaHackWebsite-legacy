@@ -12,3 +12,55 @@ body {
 @import "partials/border";
 @import "select2-modified";
 @import "partials/applications/application";
+@import "font-awesome";
+
+#rsvp h3 {
+  color: $dark-gold;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  margin: 10px 0;
+
+  .file-upload {
+    height: 50px;
+    width: 100%;
+    border: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: all 1s;
+    color: #FFFFFF;
+    font-size: 25px;
+
+    i {
+      color: $medium-gold;
+
+      &.dark {
+        color: $dark-gold;
+      }
+    }
+
+    input[type='file'] {
+      height: 50px;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    &:hover {
+      background-position: 0 -100%;
+      color: #2590EB;
+    }
+  }
+}
