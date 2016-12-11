@@ -2,8 +2,12 @@ class RsvpController < ::ApplicationController
 
   def new
     check_login
+    user = User.current_user
+    if !user.application.blank? && user.application.status.present? && user.application.status.downcase != "accepted"
+      redirect_to '/dashboard' and return
+    end
 
-    if !User.current_user.rsvp.blank?
+    if !user.rsvp.blank?
       redirect_to '/dashboard' and return
     end
 
