@@ -35,6 +35,9 @@ class HomeController < ApplicationController
 
       end
 
+      @sponsors.each do |key, value|
+        @sponsors[key] = @sponsors[key].sort_by { |k| k['name'] }
+      end
     rescue
       p "Error getting Sponsors"
     end
