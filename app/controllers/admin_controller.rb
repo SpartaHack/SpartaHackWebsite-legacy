@@ -7,7 +7,8 @@ class AdminController < ApplicationController
 
     user_t = User.all.count
     app_t = Application.all.count
-    @total = [user_t,app_t,0]
+    rsvp_t = Rsvp.all.count
+    @total = [user_t,app_t,rsvp_t]
   end
 
   def statistics

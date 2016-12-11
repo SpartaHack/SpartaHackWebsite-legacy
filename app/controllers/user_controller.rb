@@ -9,7 +9,8 @@ class UserController < ApplicationController
   end
 
   def dashboard
-    check_login
+    check_login ? nil : (redirect_to '/login' and return)
+
     begin
       @batch = Batch.find(:first, :params => {:id => User.current_user.id})
       @batch.hackers.delete("#{User.current_user.first_name.capitalize} #{User.current_user.last_name.capitalize}")
@@ -68,8 +69,6 @@ class UserController < ApplicationController
   end
 
   def check_login
-    if !User.current_user.present?
-      redirect_to '/login'
-    end
+    User.current_user.present?
   end
 end
