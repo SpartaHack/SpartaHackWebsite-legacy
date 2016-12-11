@@ -46,11 +46,11 @@
     <p id="decision"><%= @decision %></p>
   <% end %>
 
-<% if @rsvp.nil? %>
+<% if @rsvp.nil? and @application.status.present? and @application.status.downcase == "accepted"%>
   <div id="rsvp" class="action-button">
     <a href="/rsvp">RSVP</a>
   </div>
-<% else %>
+<% elsif @rsvp.present? %>
   <p id="rsvp-text">You've also submitted your RSVP, so you're all set!</p>
 <% end %>
 

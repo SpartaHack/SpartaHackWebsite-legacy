@@ -127,47 +127,47 @@ function validate() {
 
 $('#rsvp-form').submit(function(event) {
   event.preventDefault();
-  // if (validate()) {
-  $(".popup").html('<div id="loading"></div>')
+  if (validate()) {
+    $(".popup").html('<div id="loading"></div>')
 
-  $(".popup").css("bottom", "170px");
-  $("#popup").css("top", "")
-  $("#popup-wrapper").fadeIn("fast");
+    $(".popup").css("bottom", "170px");
+    $("#popup").css("top", "")
+    $("#popup-wrapper").fadeIn("fast");
 
-  new Vivus('loading', {
-    duration: 100,
-    file: <%= '"' + asset_path('logo/logo.svg') + '"' %>
-  });
+    new Vivus('loading', {
+      duration: 100,
+      file: <%= '"' + asset_path('logo/logo.svg') + '"' %>
+    });
 
-  var formData = new FormData($(this)[0]);
+    var formData = new FormData($(this)[0]);
 
-  $.ajax({
-    url: $(this).attr('action'),
-    headers: {
-      'X-WWW-USER-TOKEN': $(this).find('input[name="user"]').val()
-    },
-    data: formData,
-    cache: false,
-    contentType: false,
-    processData: false,
-    type: $(this).find('input[name=_method]').val(),
-    error: function(data) {
-      $("#popup-wrapper").fadeOut("slow",function(){
-        console.log(data)
-        $.each(data.responseJSON.errors,
-          function(key, value) {
-            $(".popup").html(key.charAt(0).toUpperCase() + key.slice(1) + " " + value);
-            popUpTop();
-          });
-      });
-    },
-    success: function(data) {
-      $("#popup-wrapper").fadeOut("slow",function(){
-        window.location.href = "/dashboard";
-      });
-    }
-  });
-  // }
+    $.ajax({
+      url: $(this).attr('action'),
+      headers: {
+        'X-WWW-USER-TOKEN': $(this).find('input[name="user"]').val()
+      },
+      data: formData,
+      cache: false,
+      contentType: false,
+      processData: false,
+      type: $(this).find('input[name=_method]').val(),
+      error: function(data) {
+        $("#popup-wrapper").fadeOut("slow",function(){
+          console.log(data)
+          $.each(data.responseJSON.errors,
+            function(key, value) {
+              $(".popup").html(key.charAt(0).toUpperCase() + key.slice(1) + " " + value);
+              popUpTop();
+            });
+        });
+      },
+      success: function(data) {
+        $("#popup-wrapper").fadeOut("slow",function(){
+          window.location.href = "/dashboard";
+        });
+      }
+    });
+  }
 
   return false;
 });
