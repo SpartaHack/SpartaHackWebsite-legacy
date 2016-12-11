@@ -25,9 +25,9 @@ class UserController < ApplicationController
       }
       @application = Application.new(hash['attributes'])
 
-      if @application.status.present? and @application.status.downcase == 'accepted'
+      if @application.status.present?
         @decision = case @application.status.downcase
-        when 'denied'   then "Not Admitted"
+        when 'denied'   then "Not admitted, we encourage you to apply again next year."
         when 'accepted'   then "You've been accepted! Congrats :)"
         when 'waitlisted' then "You've been waitlisted, check back soon."
         else                   nil
