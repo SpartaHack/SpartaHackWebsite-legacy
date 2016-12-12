@@ -6,9 +6,23 @@ class AdminController < ApplicationController
     @user = User.current_user
 
     user_t = User.all.count
-    app_t = Application.all.count
+    apps = Application.all
+    accepted = 0
+    denied = 0
+    waitlisted = 0
+    apps.each do |app|
+      if app.status.present?
+        case app.status.downcase
+        when 'accepted' then accepted +=1
+        when 'denied' then denied +=1
+        when 'waitlisted' then waitlisted +=1
+        else nil
+        end
+      end
+    end
+
     rsvp_t = Rsvp.all.count
-    @total = [user_t,app_t,rsvp_t]
+    @total = [user_t, apps.count, accepted, waitlisted, denied, rsvp_t]
   end
 
   def statistics
