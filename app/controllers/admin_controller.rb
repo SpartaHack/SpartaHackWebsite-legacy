@@ -16,13 +16,21 @@ class AdminController < ApplicationController
         when 'accepted' then accepted +=1
         when 'denied' then denied +=1
         when 'waitlisted' then waitlisted +=1
-        else nil
         end
       end
     end
 
-    rsvp_t = Rsvp.all.count
-    @total = [user_t, apps.count, accepted, waitlisted, denied, rsvp_t]
+    rsvps = Rsvp.all
+    rsvp_yes = 0
+    rsvp_no = 0
+    rsvps.each do |rsvp|
+      case rsvp.attending.downcase
+      when 'yes' then rsvp_yes +=1
+      when 'no' then rsvp_no +=1
+      end
+    end
+
+    @total = [user_t, apps.count, accepted, waitlisted, denied, rsvps.count, rsvp_yes, rsvp_no]
   end
 
   def statistics

@@ -428,7 +428,7 @@
     -webkit-justify-content: center;
     flex-direction: row;
     -webkit-flex-direction: row;
-    @media (max-width: 850px) {
+    @media (max-width: 1130px) {
       -webkit-flex-wrap: wrap;
       /* Safari 6.1+ */
       flex-wrap: wrap;
@@ -439,6 +439,12 @@
 
       .stat-text {
         margin-bottom: 0;
+      }
+    }
+    @media (max-width: 545px) {
+      .box {
+        margin-top: 20px;
+        width: 80px;
       }
     }
   }
