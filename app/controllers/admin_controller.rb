@@ -5,32 +5,36 @@ class AdminController < ApplicationController
   def dashboard
     @user = User.current_user
 
-    user_t = User.all.count
-    apps = Application.all
+    users = User.all
+    app_total = 0
     accepted = 0
     denied = 0
     waitlisted = 0
-    apps.each do |app|
-      if app.status.present?
-        case app.status.downcase
-        when 'accepted' then accepted +=1
-        when 'denied' then denied +=1
-        when 'waitlisted' then waitlisted +=1
+    rsvp_total = 0
+    rsvp_yes = 0
+    rsvp_no = 0
+    users.each do |user|
+      if user.application.present?
+        app_total += 1
+        if user.application.status.present?
+          case user.application.status.downcase
+          when 'accepted' then accepted +=1
+          when 'denied' then denied +=1
+          when 'waitlisted' then waitlisted +=1
+          end
+        end
+      end
+
+      if user.rsvp.present?
+        rsvp_total += 1
+        case user.rsvp.attending.downcase
+        when 'yes' then rsvp_yes +=1
+        when 'no' then rsvp_no +=1
         end
       end
     end
 
-    rsvps = Rsvp.all
-    rsvp_yes = 0
-    rsvp_no = 0
-    rsvps.each do |rsvp|
-      case rsvp.attending.downcase
-      when 'yes' then rsvp_yes +=1
-      when 'no' then rsvp_no +=1
-      end
-    end
-
-    @total = [user_t, apps.count, accepted, waitlisted, denied, rsvps.count, rsvp_yes, rsvp_no]
+    @total = [users.count, app_total, accepted, waitlisted, denied, rsvp_total, rsvp_yes, rsvp_no]
   end
 
   def statistics
