@@ -65,6 +65,28 @@ $('input[name="rsvp[attending]"]').change(function() {
   }
 });
 
+$('input[name="rsvp[resume]"]').on('change',function(){
+  $('i.fa').removeClass('fa-arrow-up');
+  $('i.fa').addClass('fa-check-circle-o');
+  $('#resume-added').remove();
+  $('.file-upload').append("<p id='resume-added'>Resume Added</p>")
+
+  swal({
+    title: "Resume Added",
+    type: "success",
+    text: null,
+    showCancelButton: false,
+    timer: 1000,
+    showConfirmButton: false,
+    confirmButtonColor: "#D4B166",
+    confirmButtonText: "Yeah dude",
+    allowEscapeKey: true,
+    allowOutsideClick: true
+  });
+  (darkTheme == true) ?
+  $(".sweet-alert").addClass("dark"): $(".sweet-alert").removeClass("dark");
+});
+
 $('#rsvp_dietary_restrictions').on('change', function() {
   values = $('#rsvp_dietary_restrictions').val();
   console.log(values)
@@ -109,7 +131,7 @@ function validate() {
       $(".popup").html("Please indicate your carpool sharing preference.");
       popUpTop();
     } else if ($('#rsvp_resume').val() === "") {
-      $(".popup").html("Please upload a resume.");
+      $(".popup").html("Please add a resume.");
       popUpTop();
     } else if ($('#rsvp_jobs').val() === "") {
       $(".popup").html("Please choose your job preference.");
@@ -134,10 +156,23 @@ $('#rsvp-form').submit(function(event) {
     $("#popup").css("top", "")
     $("#popup-wrapper").fadeIn("fast");
 
-    new Vivus('loading', {
-      duration: 100,
+    var d = 1;
+    var v = new Vivus('loading', {
+      start: 'manual',
+      speed:500,
       file: <%= '"' + asset_path('logo/logo.svg') + '"' %>
+    },function(c){
+    	  d *= -1;
+        if(d == 1){
+        	setTimeout(function(){
+            v.play(d)
+          },500);
+        }else{
+        v.play(d);
+        }
+
     });
+    v.play(d);
 
     var formData = new FormData($(this)[0]);
 
