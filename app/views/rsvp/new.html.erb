@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="attending-form" style="display: none;">
-        <div class="add-margin-top">
+        <div class="add-margin-top-persistent">
           <%= f.input :dietary_restrictions, required: true, collection: ["None", "Gluten Free", "Halal", "Kosher", "Lactose Intolerant", "Nut Allergy", "Vegan", "Vegetarian", "Other"],
           input_html: { multiple: true }, wrapper_html: { class: "full-width-input" }, label: false %>
         </div>
@@ -46,13 +46,13 @@
             ],
             wrapper_html: { class: "full-width-input" }, label: false %>
         </div>
-        <div class="add-margin-top gold-box">
+        <div class="add-margin-bottom add-margin-top gold-box">
           <label id="carpool">SpartaHack can share my information with other attendees who are looking to organize carpools.</label>
           <div class="radio-wrap">
             <%= f.collection_radio_buttons :carpool_sharing, [['Yes', 'Yes'], ['No', 'No']], :first, :last, required: true %>
           </div>
         </div>
-        <div class="add-margin-top gold-box">
+        <div class="add-margin-bottom gold-box">
           <label>Add Resume (.pdf < 5MB only)</label>
           <div class="wrapper">
             <div class="file-upload">
@@ -66,7 +66,7 @@
         </div>
         <h3>By RSVPing, I consent to share my resume and profile information with SpartaHack sponsors.</h3>
       </div>
-      <%= f.submit "Submit RSVP", class: "add-margin-top", id: "submit-rsvp" %>
+      <%= f.submit "Submit RSVP", class: "add-margin-top-persistent", id: "submit-rsvp" %>
       <% end %>
     </div>
   </section>

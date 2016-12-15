@@ -545,6 +545,13 @@
     }
   }
 
+  .add-margin-top-persistent {
+    margin-top: 15px;
+    @media (min-width: 550px) {
+      margin-top: 26px;
+    }
+  }
+
   .add-margin-bottom {
     margin-bottom: 15px;
     @media (min-width: 550px) {
