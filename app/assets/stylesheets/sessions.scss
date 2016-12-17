@@ -45,6 +45,10 @@
         background: none;
       }
     }
+
+    #request-password {
+      font-size: 2em;
+    }
   }
 
   .login-title-animation {
@@ -134,14 +138,17 @@
     @media (min-width: 557px) {
       width: 16em;
 
+      &.request-password-email {
+        width: calc(33em);
+      }
+
       &.btn {
         width: calc(33em);
       }
     }
   }
 
-  #create {
-    margin-top: 50px;
+  .login-links {
     color: $dark-gold;
     font-weight: 100;
     font-family: "Lato-Light";
@@ -150,6 +157,14 @@
     animation: fade-in 1s linear alternate;
     animation-delay: 1.7s;
     animation-fill-mode: forwards;
+  }
+
+  #create {
+    margin-top: 15px;
+  }
+
+  #forgot {
+    margin-top: 50px;
   }
 
   #error {
