@@ -1,4 +1,6 @@
 class UserMailer < ApplicationMailer
+  before_filter :mailer_set_url_options
+
   default from: "\"#{ENV['MAIL_FROM_EMAIL_NAME']}\" <#{ENV['MAIL_FROM_EMAIL']}>"
 
   def welcome_email(name, email)
@@ -12,6 +14,10 @@ class UserMailer < ApplicationMailer
     @name = name
     @token = token
     mail :to => email, :subject => "SpartaHack 2017 Reset Password Link"
+  end
+
+  def mailer_set_url_options
+    ActionMailer::Base.default_url_options[:host] = request.protocol + request.host
   end
 
 end
