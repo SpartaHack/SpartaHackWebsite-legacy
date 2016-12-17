@@ -46,6 +46,41 @@ class UserController < ApplicationController
 
   end
 
+  def reset_password
+    unless !check_login and params["t"].present?
+      redirect_to '/login' and return
+    end
+  end
+
+  def reset_password_post
+    begin
+      url = URI.parse("#{ENV['API_SITE']}/users/reset_password")
+      req = Net::HTTP::Post.new(url.to_s)
+      req.form_data = {'password' => password_params[:password], 'password_confirmation' => password_params[:password_confirmation] }
+      req.add_field("X-WWW-RESET-PASSWORD-TOKEN", password_params[:token])
+
+      res = Net::HTTP.new(url.host, url.port)
+      res.use_ssl = true if url.scheme == 'https'
+      res = res.start {|http|
+        http.request(req)
+      }
+
+      user =  JSON.parse(res.body)
+      p user
+      unless user['errors'].blank?
+        key, value = user['errors'].first
+        flash[:error] = "#{key.capitalize} #{value[0]}. Please request a new link."
+        redirect_to '/login' and return
+      end
+
+    rescue => e
+      p e
+    end
+
+    flash[:error] = "Password Successfully Reset"
+    redirect_to '/login' and return
+  end
+
   def edit
   end
 
@@ -66,6 +101,10 @@ class UserController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, roles: [])
+  end
+
+  def password_params
+    params.permit(:token, :password, :password_confirmation)
   end
 
   def check_login

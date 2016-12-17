@@ -10,3 +10,10 @@ $('#group-update').keyup(function() {
     $("#update-token").trigger('submit.rails');
   }
 })
+
+if ($('#reset-password').length > 0) {
+  $(".reset-pass-title-animation").animate({
+    opacity: 1
+  }, 200);
+  checkAnimation(document.getElementsByClassName('reset-pass-title-animation')[0]);
+}
