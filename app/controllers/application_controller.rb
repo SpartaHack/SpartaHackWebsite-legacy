@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :null_session, if: ->{request.format.json?}
 
-
   def set_current_user
     unless session[:current_session].blank?
       User.current_user = User.find(session[:current_session])
@@ -17,6 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def mailer_set_url_options
-    ActionMailer::Base.default_url_options[:host] = request.protocol + request.host
+    ActionMailer::Base.default_url_options[:host] = request.host
+    ActionMailer::Base.default_url_options[:protocol] = "#{request.ssl? ? 'https://' : 'httpx://'}"
   end
 end
