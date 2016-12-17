@@ -17,6 +17,6 @@ class ApplicationController < ActionController::Base
 
   def mailer_set_url_options
     ActionMailer::Base.default_url_options[:host] = request.host
-    ActionMailer::Base.default_url_options[:protocol] = "#{request.ssl? ? 'https://' : 'httpx://'}"
+    ActionMailer::Base.default_url_options[:protocol] = "#{request.ssl? ? 'https://' : 'http://'}"
   end
 end
