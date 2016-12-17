@@ -7,4 +7,11 @@ class UserMailer < ApplicationMailer
     mail :to => email, :subject => "SpartaHack 2017 Application Received"
   end
 
+  def reset_password_email(name, email, token)
+    attachments.inline['banner.png'] = File.read("#{Rails.root}/app/assets/images/logo/banner.png")
+    @name = name
+    @token = token
+    mail :to => email, :subject => "SpartaHack 2017 Reset Password Link"
+  end
+
 end
