@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   around_filter :set_current_user
+  before_filter :mailer_set_url_options
   include ApplicationHelper
 
   protect_from_forgery with: :null_session, if: ->{request.format.json?}
@@ -13,5 +14,9 @@ class ApplicationController < ActionController::Base
     ensure
     # to address the thread variable leak issues in Puma/Thin webserver
     User.current_user = nil
+  end
+
+  def mailer_set_url_options
+    ActionMailer::Base.default_url_options[:host] = request.protocol + request.host
   end
 end
