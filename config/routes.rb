@@ -97,9 +97,9 @@ Rails.application.routes.draw do
   get '/forgot', to: 'sessions#forgot_password'
   post '/forgot', to: 'sessions#send_password_email'
   get '/logout', to: 'sessions#destroy'
-  # post '/destroy', to: 'user#destroy'
   get '/users/password/reset', to: 'user#reset_password'
   post '/users/password/reset', to: 'user#reset_password_post'
+  post '/users/account/destroy', to: 'user#destroy'
   root "home#index"
 
   post '/batch/create', to: 'batch#create'
