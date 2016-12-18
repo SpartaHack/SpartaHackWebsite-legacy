@@ -46,6 +46,46 @@ class UserController < ApplicationController
 
   end
 
+  def change_password
+    check_login ? nil : (redirect_to '/login' and return)
+
+  end
+
+  def change_password_post
+    begin
+      url = URI.parse("#{ENV['API_SITE']}/users/change_password")
+      req = Net::HTTP::Post.new(url.to_s)
+      req.form_data = {
+        'current_password' => password_params[:current_password],
+        'password' => password_params[:password],
+        'password_confirmation' => password_params[:password_confirmation]
+      }
+      req.add_field("X-WWW-User-Token", User.current_user.auth_token)
+
+      res = Net::HTTP.new(url.host, url.port)
+      res.use_ssl = true if url.scheme == 'https'
+      res = res.start {|http|
+        http.request(req)
+      }
+
+      user =  JSON.parse(res.body)
+      p user
+      unless user['errors'].blank?
+        key, value = user['errors'].first
+        key = key_string(key)
+        flash[:error] = "#{key}#{value[0]}."
+        render :change_password and return
+      end
+
+    rescue
+    end
+
+    User.current_user = nil
+    session.delete(:current_session)
+    flash[:error] = "Password Successfully Changed"
+    redirect_to '/login' and return
+  end
+
   def reset_password
     unless !check_login and params["t"].present?
       redirect_to '/login' and return
@@ -68,7 +108,8 @@ class UserController < ApplicationController
       user =  JSON.parse(res.body)
       unless user['errors'].blank?
         key, value = user['errors'].first
-        flash[:error] = "#{key.capitalize} #{value[0]}. Please request a new link."
+        key = key_string(key)
+        flash[:error] = "#{key}#{value[0]}. Please request a new link."
         redirect_to '/login' and return
       end
 
@@ -102,10 +143,20 @@ class UserController < ApplicationController
   end
 
   def password_params
-    params.permit(:token, :password, :password_confirmation)
+    params.permit(:token, :current_password, :password, :password_confirmation)
   end
 
   def check_login
     User.current_user.present?
+  end
+
+  def key_string(key)
+    key_array = key.split('_')
+    key = ""
+    key_array.each do |k|
+      key += k.capitalize + " "
+    end
+
+    key
   end
 end
