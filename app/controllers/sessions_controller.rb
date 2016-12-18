@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
     begin
       url = URI.parse("#{ENV['API_SITE']}/users/request_password_token")
       req = Net::HTTP::Post.new(url.to_s)
-      req.set_form_data({'email' => session_params[:email]}, ';')
+      req.set_form_data({'email' => session_params[:email].downcase}, ';')
       req.add_field("Authorization", "Token token=\"#{ENV['API_AUTH_TOKEN']}\"")
 
       res = Net::HTTP.new(url.host, url.port)
