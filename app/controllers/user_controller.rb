@@ -66,15 +66,13 @@ class UserController < ApplicationController
       }
 
       user =  JSON.parse(res.body)
-      p user
       unless user['errors'].blank?
         key, value = user['errors'].first
         flash[:error] = "#{key.capitalize} #{value[0]}. Please request a new link."
         redirect_to '/login' and return
       end
 
-    rescue => e
-      p e
+    rescue
     end
 
     flash[:error] = "Password Successfully Reset"
