@@ -98,6 +98,8 @@ Rails.application.routes.draw do
   post '/forgot', to: 'sessions#send_password_email'
   get '/logout', to: 'sessions#destroy'
   get '/users/password/reset', to: 'user#reset_password'
+  get '/users/password/change', to: 'user#change_password'
+  post '/users/password/change', to: 'user#change_password_post'
   post '/users/password/reset', to: 'user#reset_password_post'
   post '/users/account/destroy', to: 'user#destroy'
   root "home#index"
