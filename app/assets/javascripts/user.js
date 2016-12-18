@@ -13,7 +13,7 @@ if ($('#dashboard').length > 0) {
         showCancelButton: true,
         showConfirmButton: true,
         confirmButtonColor: "#D4B166",
-        confirmButtonText: "Yes Delete",
+        confirmButtonText: "Yes delete it",
         cancelButtonText: "Nevermind",
         allowEscapeKey: true,
         allowOutsideClick: true
@@ -35,7 +35,7 @@ $('#group-update').keyup(function() {
   }
 })
 
-if ($('#reset-password').length > 0) {
+if ($('#reset-password, #change-password').length > 0) {
   $(".reset-pass-title-animation").animate({
     opacity: 1
   }, 200);
