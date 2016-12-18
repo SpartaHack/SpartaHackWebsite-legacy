@@ -179,6 +179,23 @@
     }
   }
 
+  #account-wrap {
+    position: absolute;
+    bottom: 160px;
+    right: 96px;
+    text-align: right;
+    @media (max-width: 709px) {
+      right: 5%;
+    }
+
+    a {
+      font-weight: 100;
+      font-family: "Lato-Light";
+      -webkit-font-smoothing: antialiased;
+      margin: 5px 0;
+    }
+  }
+
   #notice {
     color: $medium-gold;
     font-weight: 100;
