@@ -7,35 +7,35 @@
   <section id="user-stat">
     <div class="row">
       <div class="inner-wrap">
-        <div class="box" ><%= @total[0] %></div>
+        <div class="box" id="user-stats"><i class="fa fa-cog fa-spin fa-fw"></i></div>
         <div class="stat-text">Users</div>
       </div>
       <div class="inner-wrap">
-        <div class="box" ><%= @total[1] %></div>
+        <div class="box" id="app-stats"><i class="fa fa-cog fa-spin fa-fw"></i></div>
         <div class="stat-text">Applications</div>
       </div>
       <div class="inner-wrap">
-        <div class="box" ><%= @total[2] %></div>
+        <div class="box" id="accepted-stats"><i class="fa fa-cog fa-spin fa-fw"></i></div>
         <div class="stat-text">Acceptances</div>
       </div>
       <div class="inner-wrap">
-        <div class="box" ><%= @total[3] %></div>
+        <div class="box" id="waitlisted-stats"><i class="fa fa-cog fa-spin fa-fw"></i></div>
         <div class="stat-text">Waitlists</div>
       </div>
       <div class="inner-wrap">
-        <div class="box" ><%= @total[4] %></div>
+        <div class="box" id="denied-stats"><i class="fa fa-cog fa-spin fa-fw"></i></div>
         <div class="stat-text">Denials</div>
       </div>
       <div class="inner-wrap">
-        <div class="box" ><%= @total[5] %></div>
+        <div class="box" id="rsvp-stats"><i class="fa fa-cog fa-spin fa-fw"></i></div>
         <div class="stat-text">RSVPs</div>
       </div>
       <div class="inner-wrap">
-        <div class="box" ><%= @total[6] %></div>
+        <div class="box" id="rsvp-yes-stats"><i class="fa fa-cog fa-spin fa-fw"></i></div>
         <div class="stat-text">RSVP Yes</div>
       </div>
       <div class="inner-wrap">
-        <div class="box" ><%= @total[7] %></div>
+        <div class="box" id="rsvp-no-stats"><i class="fa fa-cog fa-spin fa-fw"></i></div>
         <div class="stat-text">RSVP No</div>
       </div>
     </div>
@@ -94,68 +94,10 @@
 </div>
 
 <%= javascript_tag do %>
-
-    <!-- $('#users').click(function(e){
-        e.preventDefault();
-
-        $('#popup-wrapper').html(
-            "<= j(render partial: 'admin/admin_users')  %>"
-        );
-
-        $('#generate_code').click(function(e){
-            e.preventDefault();
-
-                    $.ajax({
-                            url: "/admin/users/generate",
-                            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-                            type: "post",
-                            context: document.body
-                    });
-        });
-
-        $("#popup-wrapper").css("display", "flex");
-    }) -->
-
-
-
-    <!-- $('#announcements').click(function(e){
-        e.preventDefault();
-
-        $('#popup-wrapper').html(
-            "<= j(render partial: 'admin/admin_notifications')  %>"
-        );
-
-        $('#role').select2({
-          placeholder: "Role",
-          allowClear: true,
-          minimumResultsForSearch: -1,
-        });
-
-        $('#announce').submit(function(e){
-            e.preventDefault();
-            $.ajax({
-                url: "/admin/notifications",
-                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-                type: "post",
-                context: document.body,
-                data: $(this).serialize()
-            });
-            $(this).closest('form').find("input[type=text], textarea").val("");
-            $("#pinned").removeAttr('checked');
-        });
-
-        $('#announce-internal').submit(function(e){
-            e.preventDefault();
-            $.ajax({
-                url: "/admin/internal-notifications",
-                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-                type: "post",
-                context: document.body,
-                data: $(this).serialize()
-            });
-            $(this).closest('form').find("input[type=text], textarea").val("");
-        });
-
-        $("#popup-wrapper").css("display", "flex");
-    }) -->
+  window.onload = function(e) {
+    $.ajax({
+      url: '/admin/dashboard/stats',
+      type: 'post',
+    });
+  }
 <% end %>

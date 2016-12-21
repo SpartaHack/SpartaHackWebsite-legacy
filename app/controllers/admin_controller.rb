@@ -4,7 +4,9 @@ class AdminController < ApplicationController
 
   def dashboard
     @user = User.current_user
+  end
 
+  def dashboard_stats
     users = User.all
     app_total = 0
     accepted = 0

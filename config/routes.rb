@@ -73,13 +73,21 @@ Rails.application.routes.draw do
 
   resources :user
   get '/dashboard', to: 'user#dashboard'
+
   get '/admin', to: 'admin#dashboard'
+  get '/admin/dashboard', to: 'admin#dashboard'
+  post '/admin/dashboard/stats', to: 'admin#dashboard_stats'
+
   get '/admin/faq', to: 'admin#faq'
   get '/admin/faq/view', to: 'admin#faq_view'
+
   get '/admin/sponsorship', to: 'admin#sponsorship'
   get '/admin/sponsorship/view', to: 'admin#sponsorship'
   post '/admin/sponsorship/view', to: 'admin#sponsorship_view'
+
   get '/admin/statistics', to: 'admin#statistics'
+  get '/admin/stats', to: 'admin#statistics'
+  get '/statistics', to: 'admin#stats'
   get '/stats', to: 'admin#stats'
 
   resources :applications

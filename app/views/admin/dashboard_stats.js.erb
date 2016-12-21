@@ -1,0 +1,44 @@
+$("#user-stats i").fadeOut(300, function (){
+  $("#user-stats").html("<div class='dash-stats' style='display:none'><%= @total[0] %></div>")
+  $("#app-stats i").fadeOut(300, app_stats);
+  $(".dash-stats").fadeIn('slow')
+});
+
+function app_stats() {
+  $("#app-stats").html("<div class='dash-stats' style='display:none'><%= @total[1] %></div>")
+  $("#accepted-stats i").fadeOut(300, accepted_stats);
+  $(".dash-stats").fadeIn('slow')
+}
+
+function accepted_stats() {
+  $("#accepted-stats").html("<div class='dash-stats' style='display:none'><%= @total[2] %></div>")
+  $("#waitlisted-stats i").fadeOut(300, waitlisted_stats);
+  $(".dash-stats").fadeIn('slow')
+}
+
+function waitlisted_stats() {
+  $("#waitlisted-stats").html("<div class='dash-stats' style='display:none'><%= @total[3] %></div>")
+  $("#denied-stats i").fadeOut(300, denied_stats);
+  $(".dash-stats").fadeIn('slow')
+}
+
+function denied_stats() {
+  $("#denied-stats").html("<div class='dash-stats' style='display:none'><%= @total[4] %></div>")
+  $("#rsvp-stats i").fadeOut(300, rsvp_stats);
+  $(".dash-stats").fadeIn('slow')
+}
+
+function rsvp_stats() {
+  $("#rsvp-stats").html("<div class='dash-stats' style='display:none'><%= @total[5] %></div>")
+  $("#rsvp-yes-stats i").fadeOut(300, rsvp_yes);
+  $(".dash-stats").fadeIn('slow')
+}
+
+function rsvp_yes() {
+  $("#rsvp-yes-stats").html("<div class='dash-stats' style='display:none'><%= @total[6] %></div>")
+  $("#rsvp-no-stats i").fadeOut(300, function() {
+    $("#rsvp-no-stats").html("<div class='dash-stats' style='display:none'><%= @total[7] %></div>")
+    $(".dash-stats").fadeIn('slow')
+  });
+  $(".dash-stats").fadeIn('slow')
+}
