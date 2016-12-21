@@ -56,7 +56,7 @@ class AdminController < ApplicationController
 
   def sponsorship
     # Used to populate Edit Sponsors section.
-    @sponsors = []
+    @sponsors = { :partner => [], :trainee => [], :warrior => [], :commander => [] }
 
     begin
       # get sponsors
@@ -69,9 +69,23 @@ class AdminController < ApplicationController
       res = res.start {|http|
         http.request(req)
       }
+
       companies =  JSON.parse(res.body)
       companies.each do |c|
-        @sponsors.push([c["id"].to_i, c["name"]])
+        sponsor = [c["id"].to_i, c["name"]]
+        if c["level"].downcase == "commander"
+          @sponsors[:commander].push sponsor
+        elsif c["level"].downcase == "warrior"
+          @sponsors[:warrior].push sponsor
+        elsif c["level"].downcase == "trainee"
+          @sponsors[:trainee].push sponsor
+        else
+          @sponsors[:partner].push sponsor
+        end
+      end
+
+      @sponsors.each do |key, value|
+        @sponsors[key] = @sponsors[key].sort_by { |k| k['name'] }
       end
     rescue
       p "Error getting Sponsors"

@@ -312,6 +312,15 @@
     opacity: 0 !important;
     cursor: pointer;
   }
+
+  .sponsor-separator {
+    width: 100%;
+    text-align: left;
+  }
+
+  .sponsor-separator:not(:first-child) {
+    margin-top: 10px;
+  }
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {

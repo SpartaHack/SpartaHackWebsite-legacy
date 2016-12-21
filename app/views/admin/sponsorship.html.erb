@@ -75,7 +75,33 @@
         <div class="hline"></div>
       </div>
       <div id="sponsor-wrap">
-        <% @sponsors.each do |sponsor|  %>
+        <div class="sponsor-separator">Commander</div>
+        <% @sponsors[:commander].each do |sponsor|  %>
+          <%= form_tag({action: :sponsorship_view}) do %>
+            <%= hidden_field_tag 'id' , sponsor[0]  %>
+              <%= submit_tag sponsor[1], id: "viewsponsor" %>
+            <% end %>
+        <% end %>
+
+        <div class="hline"></div>
+        <div class="sponsor-separator">Warrior</div>
+        <% @sponsors[:warrior].each do |sponsor|  %>
+          <%= form_tag({action: :sponsorship_view}) do %>
+            <%= hidden_field_tag 'id' , sponsor[0]  %>
+              <%= submit_tag sponsor[1], id: "viewsponsor" %>
+            <% end %>
+        <% end %>
+
+        <div class="sponsor-separator">Trainee</div>
+        <% @sponsors[:trainee].each do |sponsor|  %>
+          <%= form_tag({action: :sponsorship_view}) do %>
+            <%= hidden_field_tag 'id' , sponsor[0]  %>
+              <%= submit_tag sponsor[1], id: "viewsponsor" %>
+            <% end %>
+        <% end %>
+
+        <div class="sponsor-separator">Partner</div>
+        <% @sponsors[:partner].each do |sponsor|  %>
           <%= form_tag({action: :sponsorship_view}) do %>
             <%= hidden_field_tag 'id' , sponsor[0]  %>
               <%= submit_tag sponsor[1], id: "viewsponsor" %>
