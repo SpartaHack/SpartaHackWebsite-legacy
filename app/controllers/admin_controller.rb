@@ -85,7 +85,7 @@ class AdminController < ApplicationController
       end
 
       @sponsors.each do |key, value|
-        @sponsors[key] = @sponsors[key].sort_by { |k| k['name'] }
+        @sponsors[key] = @sponsors[key].sort_by { |k| k[1] }
       end
     rescue
       p "Error getting Sponsors"
