@@ -9,7 +9,7 @@
       </div>
 
       <%= form_tag("#{ENV['API_SITE']}/sponsors", :method => :put, id: "create_sponsor", multipart: true) do %>
-        <%= hidden_field_tag 'auth' , "Token token=\"#{ENV['API_AUTH_TOKEN']}\""  %>
+        <%= hidden_field_tag 'auth' , "#{ENV['API_AUTH_TOKEN']}"  %>
         <%= hidden_field_tag 'user' , User.current_user.auth_token  %>
         <%= hidden_field_tag 'id' , @company["id"]  %>
 
@@ -67,7 +67,7 @@
           <%= submit_tag "Update Sponsor", :id => "sponsorship_view_submit" %>
         <% end %>
           <%= form_tag("#{ENV['API_SITE']}/sponsors", :method => :delete, id: "delete_sponsor") do %>
-            <%= hidden_field_tag 'auth' , "Token token=\"#{ENV['API_AUTH_TOKEN']}\""  %>
+            <%= hidden_field_tag 'auth' , "#{ENV['API_AUTH_TOKEN']}"  %>
             <%= hidden_field_tag 'user' , User.current_user.auth_token  %>
             <%= hidden_field_tag 'id' , @company["id"]  %>
             <%= submit_tag "Delete Sponsor", :id => "sponsorship_view_delete" %>

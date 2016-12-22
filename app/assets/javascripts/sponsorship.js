@@ -28,7 +28,7 @@ window.onload = function() {
     $.ajax({
       url: $(this).attr('action'),
       headers: {
-        'Authorization': $(this).find('input[name="auth"]').val(),
+        'Authorization': 'Token token=\"' + $(this).find('input[name="auth"]').val() + '\"',
         'X-WWW-USER-TOKEN': $(this).find('input[name="user"]').val()
       },
       data: formData,
@@ -50,7 +50,7 @@ window.onload = function() {
     $.ajax({
       url: $(this).attr('action'),
       headers: {
-        'Authorization': $(this).find('input[name="auth"]').val(),
+        'Authorization': 'Token token=\"' + $(this).find('input[name="auth"]').val() + '\"',
         'X-WWW-USER-TOKEN': $(this).find('input[name="user"]').val()
       },
       data: formData,
