@@ -190,6 +190,44 @@
   </div>
 
   <div class="title-wrap">
+    <h1 class="section-head">Race/Ethnicity</h1>
+    <div class="hline"></div>
+  </div>
+  <div class="column">
+    <article>
+      <div class="row">
+        <table class="table" cellspacing="0" width="98%" role="grid">
+          <thead>
+            <tr>
+              <th>Race/Ethnicity</th>
+              <th>Count</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @races.each do |race, count| %>
+              <tr>
+                <td>
+                  <%= race %>
+                </td>
+                <td>
+                  <%= count %> or
+                    <%= number_to_percentage(100*count.to_f / @applications.count, precision:1) %>
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+
+        </table>
+      </div>
+    </article>
+
+    <article>
+      <div class="horizontal-bar-graph" id="apps-race-graph"></div>
+    </article>
+  </div>
+
+  <div class="title-wrap">
     <h1 class="section-head">Graduation Year (University Students)</h1>
     <div class="hline"></div>
   </div>
@@ -366,6 +404,8 @@
 <%= content_tag :div, class: "applications_data_age_count", data: {temp: @ages.to_a} do %>
 <% end %>
 <%= content_tag :div, class: "applications_data_major_count", data: {temp: @majors.to_a} do %>
+<% end %>
+<%= content_tag :div, class: "applications_data_race_count", data: {temp: @races.to_a} do %>
 <% end %>
 <%= content_tag :div, class: "applications_data_grade_count", data: {temp: @graduation_years.to_a} do %>
 <% end %>
