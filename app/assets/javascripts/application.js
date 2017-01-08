@@ -94,7 +94,7 @@ $('.diamond, #logo-center').click(function() {
 
     swal({
       title: "Hey again",
-      text: "Want us to forget your theme preference?",
+      text: "Want to change the theme?",
       showCancelButton: true,
       cancelButtonText: "Nah",
       confirmButtonColor: "#D4B166",
