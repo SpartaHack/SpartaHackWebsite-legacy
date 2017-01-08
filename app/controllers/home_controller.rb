@@ -38,6 +38,14 @@ class HomeController < ApplicationController
       @sponsors.each do |key, value|
         @sponsors[key] = @sponsors[key].sort_by { |k| k['name'] }
       end
+
+      if cookies.signed[:theme] && cookies.signed[:theme] == 'dark'
+        @theme = "logo_svg_dark"
+        @theme_alt = "logo_svg_light"
+      else
+        @theme = "logo_svg_light"
+        @theme_alt = "logo_svg_dark"
+      end
     rescue
       p "Error getting Sponsors"
     end
