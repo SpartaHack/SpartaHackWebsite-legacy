@@ -70,6 +70,7 @@ Rails.application.routes.draw do
   resources :home
   post "/subscribe", to: 'home#subscribe'
   post "/rememberTheme", to: 'home#rememberTheme'
+  post "/changeSponsors", to: 'home#change_sponsors'
 
   resources :user
   get '/dashboard', to: 'user#dashboard'
