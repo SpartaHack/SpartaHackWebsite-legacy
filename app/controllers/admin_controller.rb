@@ -143,6 +143,7 @@ class AdminController < ApplicationController
     @traveling = {}
     @traveling_international = 0
     @majors = {}
+    @races = {}
     @genders = {}
     @ages = {}
     @minors = 0
@@ -188,6 +189,18 @@ class AdminController < ApplicationController
         (1..app.major.count-1).each do |index|
           @majors[app.major[index]] ||= 0
           @majors[app.major[index]] += 1
+        end
+      end
+
+      unless app.race.blank?
+        if app.race.length > 2
+          @races["Multiracial"] ||= 0
+          @races["Multiracial"] += 1
+        else
+          (1..app.race.count-1).each do |index|
+            @races[app.race[index]] ||= 0
+            @races[app.race[index]] += 1
+          end
         end
       end
 

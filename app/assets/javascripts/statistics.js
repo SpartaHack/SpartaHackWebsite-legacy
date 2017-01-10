@@ -247,6 +247,19 @@ window.onload = function() {
   var majorGraph = new HorizontalBarGraph('#apps-major-graph', majorGraphArray);
 
 
+  var raceValues = [$('.applications_data_race_count').data('temp')][0];
+  var raceGraphArray = []
+
+  for (i = 0; i < raceValues.length && i < 10; i++) {
+    raceGraphArray.push({
+      label: raceValues[i][0],
+      inner_label: raceValues[i][1],
+      value: raceValues[i][1],
+      color: colorArray[i]
+    });
+  }
+
+  var raceGraph = new HorizontalBarGraph('#apps-race-graph', raceGraphArray);
 
   var hackathonValues = [$('.applications_data_hackathon_count').data('temp')][0];
   var graphArray = []
@@ -271,6 +284,8 @@ window.onload = function() {
   hsGradeGraph.draw();
 
   majorGraph.draw();
+
+  raceGraph.draw();
 
   hackathonGraph.draw();
 
