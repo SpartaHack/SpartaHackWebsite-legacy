@@ -18,7 +18,7 @@
       <% @sponsors[:commander].each do |sponsor|  %>
         <div class="commander flex align-center center">
           <a href="<%= sponsor['url'] %>">
-            <%= image_tag sponsor['logo_svg_light'], :alt => sponsor['name'], :class => "logo-sponsor" %>
+            <%= image_tag (sponsor[@theme].present? ? sponsor[@theme] : sponsor[@theme_alt]), :alt => sponsor['name'], :class => "logo-sponsor" %>
           </a>
         </div>
       <% end %>
@@ -30,7 +30,7 @@
       <% @sponsors[:warrior].each do |sponsor|  %>
         <div class="warrior flex align-center center">
           <a href="<%= sponsor['url'] %>">
-            <%= image_tag sponsor['logo_svg_light'], :alt => sponsor['name'], :class => "logo-sponsor" %>
+            <%= image_tag (sponsor[@theme].present? ? sponsor[@theme] : sponsor[@theme_alt]), :alt => sponsor['name'], :class => "logo-sponsor" %>
           </a>
         </div>
       <% end %>
@@ -42,7 +42,7 @@
       <% @sponsors[:trainee].each do |sponsor|  %>
         <div class="trainee flex align-center center">
           <a href="<%= sponsor['url'] %>">
-            <%= image_tag sponsor['logo_svg_light'], :alt => sponsor['name'], :class => "logo-sponsor" %>
+            <%= image_tag (sponsor[@theme].present? ? sponsor[@theme] : sponsor[@theme_alt]), :alt => sponsor['name'], :class => "logo-sponsor" %>
           </a>
         </div>
       <% end %>
@@ -54,7 +54,7 @@
       <% @sponsors[:partner].each do |sponsor|  %>
         <div class="partner flex align-center center">
           <a href="<%= sponsor['url'] %>">
-            <%= image_tag sponsor['logo_svg_light'], :alt => sponsor['name'], :class => "logo-sponsor" %>
+            <%= image_tag (sponsor[@theme].present? ? sponsor[@theme] : sponsor[@theme_alt]), :alt => sponsor['name'], :class => "logo-sponsor" %>
           </a>
         </div>
       <% end %>

@@ -58,6 +58,11 @@ $('.diamond, #logo-center').click(function() {
           data: {
             "theme": "light"
           }
+        }).done(function() {
+          $.ajax({
+            url: '/changeSponsors',
+            type: 'post'
+          });
         });
 
         $(themeElements).removeClass("dark");
@@ -69,6 +74,11 @@ $('.diamond, #logo-center').click(function() {
           data: {
             "theme": "dark"
           }
+        }).done(function() {
+          $.ajax({
+            url: '/changeSponsors',
+            type: 'post'
+          });
         });
         (darkTheme != true) ?
         $(themeElements).toggleClass("dark"): null;
@@ -84,7 +94,7 @@ $('.diamond, #logo-center').click(function() {
 
     swal({
       title: "Hey again",
-      text: "Want us to forget your theme preference?",
+      text: "Want to change the theme?",
       showCancelButton: true,
       cancelButtonText: "Nah",
       confirmButtonColor: "#D4B166",
@@ -96,6 +106,11 @@ $('.diamond, #logo-center').click(function() {
         $.ajax({
           url: '/rememberTheme',
           type: 'post'
+        }).done(function() {
+          $.ajax({
+            url: '/changeSponsors',
+            type: 'post'
+          });
         });
         $(themeElements).toggleClass("dark");
         $(".sweet-alert").removeClass("dark");

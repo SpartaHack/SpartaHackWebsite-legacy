@@ -1,0 +1,58 @@
+content_string = ""
+
+<% if @sponsors[:commander].any? %>
+  content_string += '<div class="media-grid">'
+    <% @sponsors[:commander].each do |sponsor|  %>
+      content_string += '\
+      <div class="commander flex align-center center">\
+        <a href="<%= sponsor['url'] %>">\
+          <%= image_tag (sponsor[@theme].present? ? sponsor[@theme] : sponsor[@theme_alt]), :alt => sponsor['name'], :class => "logo-sponsor" %>\
+        </a>\
+      </div>'
+    <% end %>
+  content_string += '</div>'
+<% end %>
+
+<% if @sponsors[:warrior].any? %>
+  content_string += '<div class="media-grid">'
+    <% @sponsors[:warrior].each do |sponsor|  %>
+      content_string += '\
+      <div class="warrior flex align-center center">\
+        <a href="<%= sponsor['url'] %>">\
+          <%= image_tag (sponsor[@theme].present? ? sponsor[@theme] : sponsor[@theme_alt]), :alt => sponsor['name'], :class => "logo-sponsor" %>\
+        </a>\
+      </div>'
+    <% end %>
+  content_string += '</div>'
+<% end %>
+
+<% if @sponsors[:trainee].any? %>
+  content_string += '<div class="media-grid">'
+    <% @sponsors[:trainee].each do |sponsor|  %>
+      content_string += '\
+      <div class="trainee flex align-center center">\
+        <a href="<%= sponsor['url'] %>">\
+          <%= image_tag (sponsor[@theme].present? ? sponsor[@theme] : sponsor[@theme_alt]), :alt => sponsor['name'], :class => "logo-sponsor" %>\
+        </a>\
+      </div>'
+    <% end %>
+  content_string += '</div>'
+<% end %>
+
+<% if @sponsors[:partner].any? %>
+  content_string += '<div class="media-grid">'
+    <% @sponsors[:partner].each do |sponsor|  %>
+      content_string += '\
+      <div class="partner flex align-center center">\
+        <a href="<%= sponsor['url'] %>">\
+          <%= image_tag (sponsor[@theme].present? ? sponsor[@theme] : sponsor[@theme_alt]), :alt => sponsor['name'], :class => "logo-sponsor" %>\
+        </a>\
+      </div>'
+    <% end %>
+  content_string += '</div>'
+<% end %>
+
+$('#current-sponsors').fadeOut('fast', function() {
+  $('#current-sponsors').html(content_string);
+  $('#current-sponsors').fadeIn("fast");
+})
