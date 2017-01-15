@@ -1,0 +1,32 @@
+<%= render "user/navigation" %>
+<%= render "shared/errors" %>
+
+<div class="wrap-main">
+  <section id="onsite">
+    <div class="row">
+      <div class="title-wrap">
+        <h1 class="section-head">Onsite Registration</h1>
+        <div class="hline"></div>
+      </div>
+
+      <form id="onsite-form">
+        <% unless @has_application %>
+          <div class="full-width-input">
+            <input id="onsite_email" name="email_check" type="email" placeholder="Email" />
+          </div>
+
+          <div class="add-margin-top hvr-underline-from-center full">
+            <%= submit_tag("Check Email") %>
+          </div>
+        <% end %>
+        <% if @has_application && (!@has_rsvp || @user.rsvp.attending == "No") %>
+          <input id="email" name="email" type="hidden" value="<%= @user.email %>"/>
+          <%= render "rsvp/form" %>
+        <% end %>
+      </form>
+    </div>
+  </section>
+</div>
+
+<%= javascript_include_tag "onsite.js" %>
+<%= javascript_include_tag 'vivus.min'%>

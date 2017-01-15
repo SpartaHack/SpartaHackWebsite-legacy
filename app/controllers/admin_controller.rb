@@ -56,6 +56,44 @@ class AdminController < ApplicationController
     end
   end
 
+  def onsite_registration
+    unless params["email_check"].blank?
+      @user = find_user(params["email_check"])
+      if @user.present?
+        @has_rsvp = @user.rsvp.present?
+        @has_application = @user.application.present?
+        if @has_rsvp && @has_application
+          @user.checked_in = true
+          if @user.save
+            flash[:notice] = "#{@user.first_name.capitalize} has been checked in successfully!"
+            redirect_to(:back) && return
+          end
+        elsif @has_application && (!@has_rsvp || @user.rsvp.attending == "No")
+          @user.application.status = "didn't rsvp"
+          @rsvp = Rsvp.new(user: @user, attending: "Yes")
+        end
+      else
+        #create an application
+      end
+    end
+    if params["rsvp"].present?
+      @user = find_user(params["email"])
+      set_temp_user(@user.id)
+      @rsvp = Rsvp.new(params[:rsvp])
+      @rsvp.onsite = true
+      @rsvp.user_id = @user.id
+      @rsvp.carpool_sharing = 'No'
+      if @rsvp.save
+        @user.checked_in = true
+        if @user.save
+          flash[:notice] = "#{@user.first_name.capitalize} has been checked in successfully!"
+          set_temp_user("")
+          redirect_to redirect_to(:back) && return
+        end
+      end
+    end
+  end
+
   def sponsorship
     # Used to populate Edit Sponsors section.
     @sponsors = { :partner => [], :trainee => [], :warrior => [], :commander => [] }
@@ -312,7 +350,6 @@ class AdminController < ApplicationController
     params.permit(:id)
   end
 
-
   def determine_age(dob, diq)
     diq = diq.to_date
     diq.year - dob.year - ((diq.month > dob.month || (diq.month == dob.month && diq.day >= dob.day)) ? 0 : 1)
@@ -332,6 +369,11 @@ class AdminController < ApplicationController
     .sort_by(&:last)
     .reverse
     .to_h
+  end
+
+  def find_user(email)
+    @users = User.all.elements
+    @user = @users.find {|i| i.email == email }
   end
 
 

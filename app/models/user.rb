@@ -7,6 +7,7 @@ class User < ActiveResource::Base
 
   schema do
     string :first_name, :last_name, :email, :password, :password_confirmation
+    boolean :checked_in
   end
 
   def self.headers
@@ -25,5 +26,13 @@ class User < ActiveResource::Base
 
   def self.current_user=(usr)
     Thread.current[:current_user] = usr
+  end
+
+  def self.temp_user
+    Thread.current[:temp_user]
+  end
+
+  def self.temp_user=(usr)
+    Thread.current[:temp_user] = usr
   end
 end

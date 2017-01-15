@@ -1,4 +1,4 @@
-<% if !flash[:popup].blank? || !flash[:popup_errors].blank? %>
+<% if !flash[:popup].blank? || !flash[:popup_errors].blank? || !flash[:notice].blank? %>
   <div id="popup-error-wrapper">
     <div class="popup">
     <% if !flash[:popup].blank? %>
@@ -17,6 +17,9 @@
           <li><%= error %></li>
         <% end %>
       </ul>
+    <% end %>
+    <% if !flash[:notice].blank? %>
+      <p><%= flash[:notice] %></p>
     <% end %>
     </div>
   </div>

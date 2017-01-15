@@ -17,5 +17,5 @@ end
 
 # Precompile select2
 Rails.application.config.assets.precompile += %w( select2.min.js select2.css )
-Rails.application.config.assets.precompile += %w( sponsorship.js statistics.js )
+Rails.application.config.assets.precompile += %w( sponsorship.js statistics.js onsite.js )
 Rails.application.config.assets.precompile += %w( d3.min.js jqcloud.min.js vivus.min.js)

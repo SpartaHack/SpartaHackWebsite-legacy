@@ -15,6 +15,13 @@ class ApplicationController < ActionController::Base
     User.current_user = nil
   end
 
+  def set_temp_user(user_id)
+    User.temp_user = nil
+    unless user_id.blank?
+      User.temp_user = User.find(user_id)
+    end
+  end
+
   def mailer_set_url_options
     ActionMailer::Base.default_url_options[:host] = request.host
     ActionMailer::Base.default_url_options[:protocol] = "#{request.ssl? ? 'https://' : 'http://'}"

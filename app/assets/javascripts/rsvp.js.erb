@@ -51,8 +51,8 @@ $(window).scroll(function() {
 ////////////////////////////////////////////////////
 // Conditionality
 ///////////////////////////////////////////////////
-$('input[name="rsvp[attending]"]').change(function() {
-  if (this.value === "Yes") {
+function attendingCheck() {
+  if ($('input[name="rsvp[attending]"]:checked').val() === "Yes") {
     $('.attending-form').stop().slideDown({
       duration: 'slow',
       start: createSelects
@@ -63,7 +63,11 @@ $('input[name="rsvp[attending]"]').change(function() {
       start: createSelects
     });
   }
-});
+}
+
+$('input[name="rsvp[attending]"]').change(attendingCheck);
+
+attendingCheck();
 
 $('input[name="rsvp[resume]"]').on('change',function(){
   $('i.fa').removeClass('fa-arrow-up');

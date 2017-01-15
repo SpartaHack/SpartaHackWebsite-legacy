@@ -1,1 +1,2 @@
 //= require jqcloud
+//= require rsvp
