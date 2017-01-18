@@ -21,9 +21,10 @@
 ///////////////////////////////////////////////////
 var mobileToggled = false
 var headerBoxShadow = "0px 0px 22px 0px rgba(0,0,0,0.04)";
-var themeElements = ".active-q, .sweet-alert, input, #popup-wrapper, \
+var themeElements = "p, button, .active-q, .sweet-alert, input, #popup-wrapper, \
 #popup-error-wrapper, .popup, #statement_count, #dashboard #app, #mlh-trust-badge, \
-#apps-submissions-graph, .action-button, i";
+#apps-submissions-graph, .action-button, i, .section-title-live, \
+#live-index .description, #live-index .title-wrap";
 
 ////////////////////////////////////////////////////
 // Dark Theme
@@ -219,3 +220,4 @@ function checkAnimation(elem) {
     addClass($elem, 'start');
   }
 }
+//= require serviceworker-companion
