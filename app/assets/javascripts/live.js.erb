@@ -198,14 +198,19 @@ $(document).ready(function() {
           throw new Error();
         }
 
+        dark = ""
+        if (darkTheme) {
+          dark = " dark"
+        }
+
         if (data.description !== $("#wrap-announce > :first-child > .inner-wrap > .description").html() ) {
           announcement = '<div class="announcement">\
                 <div class="inner-wrap">\
-                  <div class="title-wrap">\
+                  <div class="title-wrap'+dark+'">\
                     <div class="title">' + data.title + '</div>\
                     <div class="time">' + data.time + '</div>\
                   </div>\
-                  <div class="description">' + data.description + '</div>\
+                  <div class="description'+dark+'">' + data.description + '</div>\
                 </div>\
               </div>'
           $('#wrap-announce').prepend(announcement)
