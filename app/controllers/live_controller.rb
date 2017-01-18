@@ -9,6 +9,10 @@ class LiveController < ApplicationController
       file << open('https://d.api.spartahack.com/map').read
     end
 
+    open('app/assets/pdfs/SpartaHack-Map-Dark.pdf', 'wb') do |file|
+      file << open('https://d.api.spartahack.com/map/dark').read
+    end
+
     begin
       get_announcements()
     rescue => e

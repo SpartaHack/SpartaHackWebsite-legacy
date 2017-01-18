@@ -21,7 +21,7 @@
 ///////////////////////////////////////////////////
 var mobileToggled = false
 var headerBoxShadow = "0px 0px 22px 0px rgba(0,0,0,0.04)";
-var themeElements = "p, a, button, .active-q, .sweet-alert, input, #popup-wrapper, \
+var themeElements = "p, a, button, h1, div, .active-q, .sweet-alert, input, #popup-wrapper, \
 #popup-error-wrapper, .popup, #statement_count, #dashboard #app, #mlh-trust-badge, \
 #apps-submissions-graph, .action-button, i, .section-title-live, \
 #live-index .description, #live-index .title-wrap";
@@ -68,6 +68,13 @@ $('.diamond, #logo-center').click(function() {
 
         $(themeElements).removeClass("dark");
         darkTheme = false;
+        if (document.querySelector('#map-light') && darkTheme == true) {
+          document.querySelector('#map-light').hidden = true;
+          document.querySelector('#map-dark').hidden = false;
+        } else if (document.querySelector('#map-light') && darkTheme == false) {
+          document.querySelector('#map-light').hidden = false;
+          document.querySelector('#map-dark').hidden = true;
+        }
       } else {
         $.ajax({
           url: '/rememberTheme',
@@ -81,10 +88,16 @@ $('.diamond, #logo-center').click(function() {
             type: 'post'
           });
         });
-        (darkTheme != true) ?
-        $(themeElements).toggleClass("dark"): null;
-        (darkTheme != true) ?
-        darkTheme = true: null;
+        (darkTheme != true) ? $(themeElements).toggleClass("dark"): null;
+        (darkTheme != true) ? darkTheme = true: null;
+
+        if (document.querySelector('#map-light') && darkTheme == true) {
+          document.querySelector('#map-light').hidden = true;
+          document.querySelector('#map-dark').hidden = false;
+        } else if (document.querySelector('#map-light') && darkTheme == false) {
+          document.querySelector('#map-light').hidden = false;
+          document.querySelector('#map-dark').hidden = true;
+        }
       }
     });
     (darkTheme == true) ?
@@ -117,6 +130,13 @@ $('.diamond, #logo-center').click(function() {
         $(".sweet-alert").removeClass("dark");
         themeTrigger = false;
         darkTheme = !darkTheme;
+        if (document.querySelector('#map-light') && darkTheme == true) {
+          document.querySelector('#map-light').hidden = true;
+          document.querySelector('#map-dark').hidden = false;
+        } else if (document.querySelector('#map-light') && darkTheme == false) {
+          document.querySelector('#map-light').hidden = false;
+          document.querySelector('#map-dark').hidden = true;
+        }
       }
     });
     (darkTheme == true) ?
