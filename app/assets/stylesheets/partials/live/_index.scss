@@ -636,9 +636,11 @@
       }
 
       #questions-wrap {
-        height: 100%;
         @media (max-width: 959px) {
           width: 100%;
+        }
+        @media (min-width: 1000px) {
+          height: 100%;
         }
 
         #questions {
