@@ -128,12 +128,12 @@
           <div class="section-title-live">Map</div>
           <div id="map-wrap-wrap">
             <div class="map-wrap">
-              <iframe src="<%= asset_url("SpartaHack-Map.pdf")%>" id="map-light" <%= cookies.signed[:theme] && cookies.signed[:theme] == 'dark' ? "hidden": "" %> type="application/pdf" width="100%" height="100%" name="Map">
+              <object id="map-light" <%= cookies.signed[:theme] && cookies.signed[:theme] == 'dark' ? "hidden": "" %> data="<%= asset_url("SpartaHack-Map.pdf")%>" type="application/pdf" width="100%" height="100%" name="Map">
                   alt : <a href="https://live.spartahack.com/map">SpartaHack Map</a>
-              </iframe>
-              <iframe src="<%= asset_url("SpartaHack-Map-Dark.pdf")%>"  id="map-dark" <%= cookies.signed[:theme] && cookies.signed[:theme] == 'dark' ? "": "hidden" %> type="application/pdf" width="100%" height="100%" name="Map-Dark">
+              </object>
+              <object id="map-dark" <%= cookies.signed[:theme] && cookies.signed[:theme] == 'dark' ? "": "hidden" %> data="<%= asset_url("SpartaHack-Map-Dark.pdf")%>" type="application/pdf" width="100%" height="100%" name="Map">
                   alt : <a href="https://live.spartahack.com/map/dark">SpartaHack Map</a>
-              </iframe>
+              </object>
             </div>
         	</div>
         </div>
