@@ -51,9 +51,12 @@
       margin-top: 25px;
       height: 650px;
     }
-    @media (max-width: 1001px) {
+    @media (max-width: 1000px) {
       margin-top: 25px;
       height: 1325px;
+    }
+    @media (max-width: 600px) {
+      width: 85vw;
     }
   }
 
@@ -774,13 +777,22 @@
       }
     }
   }
+  @media screen and (min-width: 1500px) {
+    .prizes {
+      margin-top: 24px;
+    }
+  }
+  @media screen and (max-width: 1000px) {
+    .prizes {
+      margin-top: 24px;
+    }
+  }
 
   #prize-wrap {
     display: flex;
     flex-direction: column;
     flex-flow: column;
-    width: 480px;
-    height: 312.5px;
+    height: 292px;
     border: 1px solid $light-gold;
     border-radius: 2px;
     background: none;
@@ -789,8 +801,8 @@
     @media (max-width: 1500px) {
       height: 650px;
     }
-    @media (max-width: 1000px) {
-      margin-top: 25px;
+    @media (max-width: 600px) {
+      width: 85vw;
     }
 
     .prizes-wrap {
@@ -825,21 +837,39 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        align-items: flex-end;
+        align-items: flex-start;
         color: $light-gold;
         font-family: 'Lato-Light';
         font-weight: 100;
-        -webkit-appearance: none;
-        -webkit-font-smoothing: antialiased;
         padding-top: 10px;
 
         .title {
           margin-left: 20px;
+          color: $dark-gold;
+
+          &.dark {
+            color: $light-gold;
+          }
         }
 
         .sponsor {
           margin-right: 20px;
           font-size: 75%;
+          color: $dark-gold;
+
+          &.dark {
+            color: $light-gold;
+          }
+
+          a img {
+            max-width: 130px;
+            width: 30vw;
+            max-height: 22px;
+          }
+
+          a {
+            color: $dark-gold;
+          }
         }
       }
 
@@ -851,6 +881,7 @@
         -webkit-font-smoothing: antialiased;
         font-size: 90%;
         padding: 10px 20px;
+        text-align: left;
       }
 
       a {
@@ -991,7 +1022,7 @@
     flex-direction: column;
     flex-flow: column;
     width: 480px;
-    height: 312.5px;
+    height: 292px;
     border: 1px solid $light-gold;
     border-radius: 2px;
     background: none;
