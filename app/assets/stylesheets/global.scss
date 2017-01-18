@@ -247,6 +247,14 @@ a {
     color: $dark-gold;
   }
 
+  &.dark {
+    color: $light-gold !important;
+
+    &:visited {
+      color: $light-gold;
+    }
+  }
+
   &:hover {
     opacity: 0.7;
   }
