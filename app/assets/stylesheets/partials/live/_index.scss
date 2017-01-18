@@ -459,10 +459,6 @@
 
     .schedule-item {
       border-bottom: 1px solid $light-gold;
-      border-radius: 2px;
-      background: none;
-      border-image: linear-gradient(to bottom, $light-gold 0%, $medium-gold 100%);
-      border-image-slice: 1;
       padding: 15px 0;
       display: flex;
       flex-direction: row;
@@ -493,10 +489,6 @@
         text-align: left;
         display: block;
         height: 100%;
-        border-radius: 2px;
-        background: none;
-        border-image: linear-gradient(to bottom, $light-gold 0%, $medium-gold 100%);
-        border-image-slice: 1;
         border-left: 1px solid $medium-gold;
 
         &.dark {
@@ -653,16 +645,12 @@
           height: calc( 100% - 100px );
           cursor: pointer;
           overflow-y: auto;
-          border-right: 1px solid $dark-gold;
-          border-top: 1px solid $dark-gold;
-          border-radius: 2px;
-          background: none;
-          border-image: linear-gradient(to bottom, $light-gold 0%, $medium-gold 100%);
-          border-image-slice: 1;
+          border-right: 1px solid $light-gold;
+          border-top: 1px solid $light-gold;
           @media (max-width: 1000px) {
             height: 180px;
             border-right: none;
-            border-bottom: 1px solid $dark-gold;
+            border-bottom: 1px solid $light-gold;
             margin-right: 0;
           }
 
@@ -695,10 +683,6 @@
           .active-q {
             border-top: 1px solid $light-gold;
             border-bottom: 1px solid $light-gold;
-            border-radius: 2px;
-            background: none;
-            border-image: linear-gradient(to bottom, $light-gold 0%, $medium-gold 100%);
-            border-image-slice: 1;
             opacity: 1;
           }
 
@@ -720,7 +704,7 @@
           }
 
           &.arrow-bot {
-            border-right: 1px solid rgba(213, 179, 104, 1) !important;
+            border-right: 1px solid $light-gold;
           }
           @media (max-width: 1000px) {
             text-align: center;
@@ -810,7 +794,7 @@
     }
 
     .prize {
-      border-bottom: 1px solid $dark-gold;
+      border-bottom: 1px solid $light-gold;
 
       a {
         font-family: 'Lato-Light';
@@ -1034,6 +1018,9 @@
     }
     @media (max-width: 1001px) {
       margin-right: 0;
+    }
+    @media (max-width: 600px) {
+      width: 85vw;
     }
 
     .resources-wrap {
