@@ -3,10 +3,13 @@ class HomeController < ApplicationController
 
   require 'json'
   require 'net/http'
+  require 'pp'
 
   def index
     @faqs = Faq.all.to_a.sort_by {|obj| obj.priority}
     @faqs = @faqs.select { |faq| faq.display? }
+    pp @faqs
+    @faqs = @faqs.select { |faq| faq.placement == 'home' || faq.placement.downcase == 'both' }
     @sponsors = { :partner => [], :trainee => [], :warrior => [], :commander => [] }
 
     # get sponsors
