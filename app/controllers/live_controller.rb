@@ -5,12 +5,16 @@ class LiveController < ApplicationController
   require 'pp'
 
   def index
-    open('app/assets/pdfs/SpartaHack-Map.pdf', 'wb') do |file|
-      file << open('https://d.api.spartahack.com/map').read
+    unless File.exist?("app/assets/pdfs/SpartaHack-Map.pdf")
+      open('app/assets/pdfs/SpartaHack-Map.pdf', 'wb') do |file|
+        file << open('https://d.api.spartahack.com/map').read
+      end
     end
 
-    open('app/assets/pdfs/SpartaHack-Map-Dark.pdf', 'wb') do |file|
-      file << open('https://d.api.spartahack.com/map/dark').read
+    unless File.exist?("app/assets/pdfs/SpartaHack-Map-Dark.pdf")
+      open('app/assets/pdfs/SpartaHack-Map-Dark.pdf', 'wb') do |file|
+        file << open('https://d.api.spartahack.com/map/dark').read
+      end
     end
 
     begin
