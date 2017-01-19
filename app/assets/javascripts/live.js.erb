@@ -109,7 +109,7 @@ $(document).ready(function() {
   $(".hardware-inner > .inner-wrap").each(function(i) {
     $(this).find(".name-wrap >.lender").height($(this).parent().height() - 20);
   });
-  
+
   $(".section-title-live").height("40px")
 
 
@@ -203,7 +203,7 @@ $(document).ready(function() {
       url: "/push",
       type: "GET",
       success: function(data) {
-        if (data.error || !data.description) {
+        if (data.error || (!data.description && !data.title) ) {
           console.error('The API returned an error.', data.error);
           // throw new Error();
         }
