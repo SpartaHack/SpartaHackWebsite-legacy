@@ -10,7 +10,7 @@
       </div>
 
       <form id="onsite-form">
-        <% unless @has_application %>
+        <% unless @has_application || @create_user %>
           <div class="full-width-input">
             <input id="onsite_email" name="email_check" type="email" placeholder="Email" />
           </div>
@@ -23,6 +23,9 @@
           <input id="email" name="email" type="hidden" value="<%= @user.email %>"/>
           <%= render "rsvp/form" %>
         <% end %>
+        <% if @create_user %>
+          <%= render "applications/partials/form" %>
+        <% end %>
       </form>
     </div>
   </section>
@@ -30,3 +33,10 @@
 
 <%= javascript_include_tag "onsite.js" %>
 <%= javascript_include_tag 'vivus.min'%>
+<% if @create_user %>
+  <%= render "applications/partials/new_javascript" %>
+  <%= javascript_tag do %>
+    var create_user = <%= @create_user %>
+  <% end%>
+
+<% end %>

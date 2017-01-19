@@ -74,6 +74,11 @@ class AdminController < ApplicationController
         end
       else
         #create an application
+        @user = User.new(email: params["email_check"])
+        @application = Application.new
+        @create_user = true
+        @has_rsvp = false
+        @has_application = false
       end
     end
     if params["rsvp"].present?
@@ -84,12 +89,29 @@ class AdminController < ApplicationController
       @rsvp.user_id = @user.id
       @rsvp.carpool_sharing = 'No'
       if @rsvp.save
-        @user.checked_in = true
-        if @user.save
+        if @user.save({checked_in: true})
           flash[:notice] = "#{@user.first_name.capitalize} has been checked in successfully!"
           set_temp_user("")
           redirect_to redirect_to(:back) && return
+        else
+          #user did not check in correctly
+          debugger
         end
+      end
+    elsif params["application"].present?
+      @user = User.new(params[:user])
+      if @user.save
+        set_temp_user(@user.id)
+        @application = Application.new(params[:application])
+        if @application.save
+          flash[:notice] = "#{@user.first_name.capitalize} now has an account! Click anywhere to continue filling out the registration."
+          set_temp_user("")
+          redirect_to redirect_to(:back) && return
+        else
+          #application was not created
+        end
+      else
+        # user was not created
       end
     end
   end
