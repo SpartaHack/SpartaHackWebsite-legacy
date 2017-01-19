@@ -26,6 +26,15 @@
         <% if @create_user %>
           <%= render "applications/partials/form" %>
         <% end %>
+        <% if @minor %>
+          <input id="email" name="email_check" type="hidden" value="<%= @user.email %>"/>
+          <div class="add-margin-top hvr-underline-from-center full">
+            <%= submit_tag("Has Forms") %>
+          </div>
+          <div class="add-margin-top hvr-underline-from-center full">
+            <%= submit_tag("Does Not Have Forms") %>
+          </div>
+        <% end %>
       </form>
     </div>
   </section>

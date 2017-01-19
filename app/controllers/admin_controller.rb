@@ -57,16 +57,37 @@ class AdminController < ApplicationController
   end
 
   def onsite_registration
-    unless params["email_check"].blank?
+    unless params["email_check"].blank? || session[:has_forms]
       @user = find_user(params["email_check"])
       if @user.present?
         @has_rsvp = @user.rsvp.present?
         @has_application = @user.application.present?
         if @has_rsvp && @has_application
-          @user.checked_in = true
-          if @user.save
+          check_in_res = check_in_user(@user.id)
+          if !@user.checked_in && check_in_res["errors"].blank?
             flash[:notice] = "#{@user.first_name.capitalize} has been checked in successfully!"
             redirect_to(:back) && return
+          else
+            if check_in_res["errors"] == {"user" => ["is a minor"]} && params[:commit] == "Check Email"
+              flash[:notice] = "#{@user.first_name.capitalize} is a minor"
+              @minor = true
+            elsif params[:commit] == "Has Forms"
+              if check_in_user(@user.id, true)
+                debugger
+                flash[:notice] = "#{@user.first_name.capitalize} has been checked in successfully!"
+                session[:has_forms] = true
+                redirect_to(:back) && return
+              else
+                debugger
+              end
+            elsif params[:commit] == "Does Not Have Forms"
+              flash[:notice] = "#{@user.first_name.capitalize} cannot be checked in without forms"
+              session[:has_forms] = true
+              redirect_to(:back) && return
+            else
+              flash[:notice] = "#{@user.first_name.capitalize} has already been checked in"
+              @has_application = false
+            end
           end
         elsif @has_application && (!@has_rsvp || @user.rsvp.attending == "No")
           @user.application.status = "didn't rsvp"
@@ -81,6 +102,9 @@ class AdminController < ApplicationController
         @has_application = false
       end
     end
+    if session[:has_forms]
+      session[:has_forms] = nil
+    end
     if params["rsvp"].present?
       @user = find_user(params["email"])
       set_temp_user(@user.id)
@@ -89,13 +113,11 @@ class AdminController < ApplicationController
       @rsvp.user_id = @user.id
       @rsvp.carpool_sharing = 'No'
       if @rsvp.save
-        if @user.save({checked_in: true})
+        if check_in_user(@user.id)
           flash[:notice] = "#{@user.first_name.capitalize} has been checked in successfully!"
-          set_temp_user("")
           redirect_to redirect_to(:back) && return
         else
           #user did not check in correctly
-          debugger
         end
       end
     elsif params["application"].present?
@@ -396,6 +418,21 @@ class AdminController < ApplicationController
   def find_user(email)
     @users = User.all.elements
     @user = @users.find {|i| i.email == email }
+  end
+
+  def check_in_user(id, is_minor = false)
+    uri = URI.parse("#{ENV['API_SITE']}/checkin")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+
+    request = Net::HTTP::Post.new(uri.request_uri)
+    is_minor ? request.set_form_data({"id" => id, "forms" => 1}) : request.set_form_data({"id" => id})
+    request["X-WWW-USER-TOKEN"] = "#{current_user.auth_token}"
+
+    http = http.start {|h|
+      h.request(request)
+    }
+    JSON.parse(http.body)
   end
 
 

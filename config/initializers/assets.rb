@@ -11,11 +11,12 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( cssreset.css )
 
-%w( home user sessions applications admin rsvp ).each do |controller|
+%w( home user sessions applications admin rsvp live).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
 end
 
 # Precompile select2
 Rails.application.config.assets.precompile += %w( select2.min.js select2.css )
 Rails.application.config.assets.precompile += %w( sponsorship.js statistics.js onsite.js )
-Rails.application.config.assets.precompile += %w( d3.min.js jqcloud.min.js vivus.min.js)
+Rails.application.config.assets.precompile += %w( d3.min.js jqcloud.min.js vivus.min.js confetti.min.js)
+Rails.configuration.assets.precompile += %w[serviceworker.js manifest.json]
