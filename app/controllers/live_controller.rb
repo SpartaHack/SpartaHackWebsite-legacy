@@ -46,6 +46,7 @@ class LiveController < ApplicationController
     begin
       @faq_array = []
       faqs = Faq.all.to_a.sort_by {|obj| obj.priority}
+      faqs = faqs.select { |faq| faq.placement == 'live' || faq.placement.downcase == 'both' }
       faqs.each do |f|
         @faq_array.push([f.question, f.answer])
       end
@@ -104,7 +105,6 @@ class LiveController < ApplicationController
         @resources_array.push([resource['name'], resource["url"], resource["sponsor"].blank? ? "SpartaHack" : resource["sponsor"]])
       end
 
-      pp resources
     rescue => e
       pp e
     end
