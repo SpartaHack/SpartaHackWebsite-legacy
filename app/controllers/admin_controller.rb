@@ -179,7 +179,7 @@ class AdminController < ApplicationController
   end
 
   def statistics
-    @event_date = Date.new(2016, 1, 20)
+    @event_date = Date.new(2017, 1, 20)
     @most_common_words = ["the", "be", "to", "of", "and", "a", "in", "that",
       "have", "i", "it", "for", "not", "on", "with", "he", "as", "you", "do",
       "at", "this", "but", "his", "by", "from", "they", "we", "say", "her",
