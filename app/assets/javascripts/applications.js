@@ -84,10 +84,10 @@ function validateFormOne(edit) {
   } else if ((document.getElementById('application_education_undergraduate').checked || document.getElementById('application_education_graduate').checked) && ((!$('#other_university_enrolled_confirm')[0].checked && $("#application_university").val().length == 0) || ($('#other_university_enrolled_confirm')[0].checked && $('#application_other_university').val().length == 0))) {
     $(".popup").html("Please indicate your university.");
     popUpTop();
-  } else if (!$('#application_outside_north_america_no')[0].checked && !$('#application_outside_north_america_yes')[0].checked) {
+  } else if (typeof(create_user) == "undefined" && !$('#application_outside_north_america_no')[0].checked && !$('#application_outside_north_america_yes')[0].checked) {
     $(".popup").html("Please indicate if you are traveling from outside North America.");
     popUpTop();
-  } else if ($('#application_outside_north_america_no')[0].checked && $("#application_travel_origin").val().length == 0) {
+  } else if (typeof(create_user) == "undefined" && $('#application_outside_north_america_no')[0].checked && $("#application_travel_origin").val().length == 0) {
     $(".popup").html("Please indicate the university you are traveling from.");
     popUpTop();
   } else if ($("#application_graduation_season").val().length == 0 || $("#application_graduation_year").val().length == 0) {
@@ -108,7 +108,11 @@ function validateFormOne(edit) {
       $('.page2').removeClass('hide-page');
       window.scrollTo(0, 0);
     } else {
-      $('#application-form')[0].submit();
+      if (typeof(create_user) == "undefined") {
+        $('#application-form')[0].submit();
+      } else {
+        $('#onsite-form')[0].submit();
+      }
     }
   }
 }
@@ -141,7 +145,11 @@ function validateFormTwo() {
     $(".popup").html("Your password is too short.");
     popUpTop();
   } else {
-    $('#application-form')[0].submit();
+    if (typeof(create_user) == "undefined") {
+      $('#application-form')[0].submit();
+    } else {
+      $('#onsite-form')[0].submit();
+    }
   }
 }
 

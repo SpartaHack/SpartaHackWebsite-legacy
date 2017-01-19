@@ -1,0 +1,12 @@
+body {
+  padding: 115px 20%;
+  @media (max-width: 710px) {
+    margin-top: 90px;
+    padding: 20px 5%;
+  }
+}
+
+#onsite_email {
+  width: 100%;
+}
+@import 'partials/applications/application';

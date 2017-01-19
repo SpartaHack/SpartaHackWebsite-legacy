@@ -1,0 +1,27 @@
+<%= javascript_tag do %>
+  window.onload = function() {
+    <% if @application %>
+      <% if !@application.education.blank? %>
+        <% if @application.education.downcase == "high school" %>
+          $('.university-enrolled').hide();
+          $("#application_education_high_school").prop("checked", true);
+        <% elsif @application.education.downcase == "undergraduate" %>
+          $('.university-enrolled').show();
+          $("#application_education_undergraduate").prop("checked", true);
+        <% else %>
+          $('.university-enrolled').show();
+          $("#application_education_graduate").prop("checked", true);
+        <% end %>
+      <% end %>
+      <% if !@application.outside_north_america.blank? %>
+        <% if @application.outside_north_america.downcase == 'yes' %>
+          $('.university-traveling').hide();
+          $("#application_outside_north_america_yes").prop("checked", true);
+        <% else %>
+          $('.university-traveling').show();
+          $("#application_outside_north_america_no").prop("checked", true);
+        <% end %>
+      <% end %>
+    <% end %>
+  };
+  <% end %>

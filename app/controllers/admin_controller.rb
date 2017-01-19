@@ -56,6 +56,88 @@ class AdminController < ApplicationController
     end
   end
 
+  def onsite_registration
+    unless params["email_check"].blank? || session[:has_forms]
+      @user = find_user(params["email_check"])
+      if @user.present?
+        @has_rsvp = @user.rsvp.present?
+        @has_application = @user.application.present?
+        if @has_rsvp && @has_application
+          check_in_res = check_in_user(@user.id)
+          if !@user.checked_in && check_in_res["errors"].blank?
+            flash[:notice] = "#{@user.first_name.capitalize} has been checked in successfully!"
+            redirect_to(:back) && return
+          else
+            if check_in_res["errors"] == {"user" => ["is a minor"]} && params[:commit] == "Check Email"
+              flash[:notice] = "#{@user.first_name.capitalize} is a minor"
+              @minor = true
+            elsif params[:commit] == "Has Forms"
+              if check_in_user(@user.id, true)
+                debugger
+                flash[:notice] = "#{@user.first_name.capitalize} has been checked in successfully!"
+                session[:has_forms] = true
+                redirect_to(:back) && return
+              else
+                debugger
+              end
+            elsif params[:commit] == "Does Not Have Forms"
+              flash[:notice] = "#{@user.first_name.capitalize} cannot be checked in without forms"
+              session[:has_forms] = true
+              redirect_to(:back) && return
+            else
+              flash[:notice] = "#{@user.first_name.capitalize} has already been checked in"
+              @has_application = false
+            end
+          end
+        elsif @has_application && (!@has_rsvp || @user.rsvp.attending == "No")
+          @user.application.status = "didn't rsvp"
+          @rsvp = Rsvp.new(user: @user, attending: "Yes")
+        end
+      else
+        #create an application
+        @user = User.new(email: params["email_check"])
+        @application = Application.new
+        @create_user = true
+        @has_rsvp = false
+        @has_application = false
+      end
+    end
+    if session[:has_forms]
+      session[:has_forms] = nil
+    end
+    if params["rsvp"].present?
+      @user = find_user(params["email"])
+      set_temp_user(@user.id)
+      @rsvp = Rsvp.new(params[:rsvp])
+      @rsvp.onsite = true
+      @rsvp.user_id = @user.id
+      @rsvp.carpool_sharing = 'No'
+      if @rsvp.save
+        if check_in_user(@user.id)
+          flash[:notice] = "#{@user.first_name.capitalize} has been checked in successfully!"
+          redirect_to redirect_to(:back) && return
+        else
+          #user did not check in correctly
+        end
+      end
+    elsif params["application"].present?
+      @user = User.new(params[:user])
+      if @user.save
+        set_temp_user(@user.id)
+        @application = Application.new(params[:application])
+        if @application.save
+          flash[:notice] = "#{@user.first_name.capitalize} now has an account! Click anywhere to continue filling out the registration."
+          set_temp_user("")
+          redirect_to redirect_to(:back) && return
+        else
+          #application was not created
+        end
+      else
+        # user was not created
+      end
+    end
+  end
+
   def sponsorship
     # Used to populate Edit Sponsors section.
     @sponsors = { :partner => [], :trainee => [], :warrior => [], :commander => [] }
@@ -138,6 +220,7 @@ class AdminController < ApplicationController
       DateTime.parse(a.created_at) <=> DateTime.parse(b.created_at)
     end
 
+    @apps_accepted_total = 0
     @universities = {:Other => 0}
     @international = 0
     @traveling = {}
@@ -156,6 +239,12 @@ class AdminController < ApplicationController
 
 
     @applications.each do |app|
+      unless app.status.blank?
+        if app.status == "accepted"
+          @apps_accepted_total += 1
+        end
+      end
+
       unless app.university.blank?
         @universities[app.university] ||= 0
         @universities[app.university] += 1
@@ -256,6 +345,37 @@ class AdminController < ApplicationController
 
 
     @common_words = @common_words.sort_by {|_key, value| value}.reverse
+
+    @rsvps = Rsvp.all
+
+    @rsvpd_applications = []
+    @rsvp_attending_count = 0
+    @rsvps_total = 0
+    @dietary_restrictions = {}
+    @rsvp_genders = {}
+
+    @rsvps.each do |rsvp|
+      @rsvps_total += 1
+      if rsvp.attending == "Yes"
+        @rsvp_attending_count += 1
+        rsvp.user = User.find(rsvp.user)
+        @rsvpd_applications.append(rsvp.user.application)
+      end
+
+      rsvp.dietary_restrictions = JSON.parse(rsvp.dietary_restrictions)
+      unless rsvp.dietary_restrictions.blank? && rsvp.dietary_restrictions.count > 1
+        (1..rsvp.dietary_restrictions.count-1).each do |index|
+          @dietary_restrictions[rsvp.dietary_restrictions[index]] ||= 0
+          @dietary_restrictions[rsvp.dietary_restrictions[index]] += 1
+        end
+      end
+
+      unless rsvp.user.application.gender.blank?
+        @rsvp_genders[rsvp.user.application.gender] ||= 0
+        @rsvp_genders[rsvp.user.application.gender] += 1
+      end
+
+    end
   end
 
   private
@@ -273,7 +393,6 @@ class AdminController < ApplicationController
   def sponsorship_params
     params.permit(:id)
   end
-
 
   def determine_age(dob, diq)
     diq = diq.to_date
@@ -294,6 +413,26 @@ class AdminController < ApplicationController
     .sort_by(&:last)
     .reverse
     .to_h
+  end
+
+  def find_user(email)
+    @users = User.all.elements
+    @user = @users.find {|i| i.email == email }
+  end
+
+  def check_in_user(id, is_minor = false)
+    uri = URI.parse("#{ENV['API_SITE']}/checkin")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+
+    request = Net::HTTP::Post.new(uri.request_uri)
+    is_minor ? request.set_form_data({"id" => id, "forms" => 1}) : request.set_form_data({"id" => id})
+    request["X-WWW-USER-TOKEN"] = "#{current_user.auth_token}"
+
+    http = http.start {|h|
+      h.request(request)
+    }
+    JSON.parse(http.body)
   end
 
 
