@@ -1,0 +1,250 @@
+<%= render "user/navigation" %>
+<canvas id="canvas"></canvas>
+<div class="wrap-main">
+  <section id="live-index">
+    <div class="push" hidden>
+      <div class="section-title-live">Push notifications</div>
+      <div id="push-notification-wrap">
+        <div class="push-inner-wrap" id="push-nested-outer">
+          <p>Hey good to see you! We've added push messages for Chrome 😎&nbsp;&nbsp;If you want to receive
+            notifications for food, workshops, and other events as they happen, turn them on!
+          </p>
+          <div class="push-inner-wrap">
+            <button class="js-push-button" id="enable-push">
+              Enable Push Messages
+            </button>
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="clockdiv" class="">
+  <% if (Time.new(2017,01,22,12,00,00).to_i - Time.now.to_i) > 0 %>
+    <% if (Time.new(2017,01,20,00,00,00).to_i - Time.now.to_i) > 0 %>
+      <p>Hacking begins in</p>
+    <% else %>
+      <p>Hacking ends in</p>
+    <% end %>
+      <div>
+        <span class="days"></span>
+        <div class="smalltext">Days</div>
+      </div>
+      <div>
+        <span class="hours"></span>
+        <div class="smalltext">Hours</div>
+      </div>
+      <div>
+        <span class="minutes"></span>
+        <div class="smalltext">Minutes</div>
+      </div>
+      <div>
+        <span class="seconds"></span>
+        <div class="smalltext">Seconds</div>
+      </div>
+  <% else %>
+    <p>Hacking has ended!</p>
+  <% end %>
+    </div>
+
+    <div id="col-index-wrap" class="">
+      <div class="section-title-live" id="announce">Announcements</div>
+      <div id="announcement-wrap">
+        <div id="announcement-arrow-wrap">
+          <div class="arrow-wrap-horizontal" id="chevron-wrap-left" style="width:0px">
+            <i class="fa fa-chevron-left fa-1" style="display:none;"></i>
+          </div>
+          <div id="wrap-announce">
+          <% @announcements_array.each do |announcement| %>
+            <div class="announcement">
+              <div class="inner-wrap">
+                <div class="title-wrap">
+                  <div class="title"><%= announcement[0] %></div>
+                  <div class="time"><%= announcement[2] %></div>
+                </div>
+                <div class="description"><%= announcement[1].html_safe %></div>
+              </div>
+            </div>
+          <% end %>
+          </div>
+          <div class="arrow-wrap-horizontal" id="chevron-wrap-right">
+            <i class="fa fa-chevron-right fa-1"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-index-wrap ">
+        <div class="row-third schedule">
+          <div class="section-title-live" style="height: 190px">Schedule</div>
+          <div id="schedule-wrap">
+
+            <div id="day-schedule-wrap">
+          <% @schedule.each_with_index do |day, index| %>
+              <div class="day-wrap">
+                <%= index == 0 ? "<h1 class='day friday' id='#{day[0].downcase}'>#{day[0]}</h1>".html_safe : "<h1 class='day' id='#{day[0].downcase}'>#{day[0]}</h1>".html_safe %>
+              </div>
+
+            <% day[1].each_with_index do |schedule, i| %>
+              <%= i == 0 ? "<div class='schedule-item lead'>".html_safe : "<div class='schedule-item'>".html_safe %>
+                  <div class="left-wrap">
+                    <div class="inner-schedule-wrap">
+                      <%= !schedule[0].blank? ? "<div class='item-time'>#{schedule[0]}</div>".html_safe : nil %>
+                      <%= !schedule[3].blank? ? "<div class='item-location'>#{schedule[3]}</div>".html_safe : nil %>
+                    </div>
+                  </div>
+                  <div class="right-wrap">
+                    <div class="inner-schedule-wrap">
+                      <%= !schedule[1].blank? ? "<div class='item-title'>#{schedule[1]}</div>".html_safe : nil %>
+                      <%= !schedule[2].blank? ? "<div class='item-description'>#{schedule[2]}</div>".html_safe : nil %>
+                    </div>
+                  </div>
+              </div>
+            <% end %>
+          <% end %>
+            </div>
+        	</div>
+        </div>
+
+        <div class="row-third hardware">
+          <div class="section-title-live" style="height: 98px;">Hardware</div>
+          <div id="hardware-wrap">
+            <div class="hardware-inner">
+              <div class="inner-wrap">
+                <div class="name-wrap">
+                  <div class="name first">Item</div>
+                  <div class="lender first">Lender</div>
+                  <div class="quantity first">Quantity</div>
+                </div>
+              </div>
+            </div>
+            <div class="hardware-wrap">
+              <% @hardware_array.each do |hardware| %>
+                <div class="hardware-inner">
+                  <div class="inner-wrap">
+                    <div class="name-wrap">
+                      <div class="name"><%= hardware[0] %></div>
+                      <div class="lender"><%= hardware[2] %></div>
+                      <div class="quantity"><%= hardware[1] %></div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+        	</div>
+      	</div>
+
+        <div class="row-third-last">
+          <div class="section-title-live">Map</div>
+          <div id="map-wrap-wrap">
+            <div class="map-wrap">
+              <object id="map-light" <%= cookies.signed[:theme] && cookies.signed[:theme] == 'dark' ? "hidden": "" %> data="<%= asset_url("SpartaHack-Map.pdf")%>" type="application/pdf" width="100%" height="100%" name="Map">
+                  alt : <a href="https://live.spartahack.com/map">SpartaHack Map</a>
+              </object>
+              <object id="map-dark" <%= cookies.signed[:theme] && cookies.signed[:theme] == 'dark' ? "": "hidden" %> data="<%= asset_url("SpartaHack-Map-Dark.pdf")%>" type="application/pdf" width="100%" height="100%" name="Map">
+                  alt : <a href="https://live.spartahack.com/map/dark">SpartaHack Map</a>
+              </object>
+            </div>
+        	</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row-index-wrap bottom ">
+      <div class="col-two-thirds">
+        <div class="section-title-live">FAQ</div>
+        <div id="faq-wrap">
+          <div id="faq-box">
+            <div id="questions-wrap">
+              <div class="arrow-wrap arrow-top">
+                <i class="fa fa-angle-up"></i>
+              </div>
+              <div id="questions">
+
+              <% @faq_array.each_with_index do |qa, index|%>
+                  <%= index == 0 ? "<article class='active-q'>".html_safe : "<article>".html_safe %>
+                  <h3 id="<%= index + 1 %>">
+                    <span><%= qa[0] %></span>
+                  </h3>
+                </article>
+
+                <% if index != @faq_array.length-1 %>
+                  <div class="a-hline <%= index == 0 ? 'hide' : nil %>"></div>
+                <% end %>
+              <% end %>
+
+              </div>
+              <div class="arrow-wrap arrow-bot">
+                <i class="fa fa-angle-down"></i>
+              </div>
+            </div>
+            <div id="answers">
+
+            <% @faq_array.each_with_index do |qa, index|%>
+              <%= index == 0 ? "<p>".html_safe : "<p style='display:none'>".html_safe %>
+                <%= qa[1].html_safe %>
+              </p>
+            <% end %>
+
+            </div>
+          </div>
+      	</div>
+      </div>
+
+      <div class="piece-wrap row-third-last">
+        <div class="resources">
+          <div class="section-title-live" style="height: 250px">APIs/ Resources</div>
+          <div id="resource-wrap">
+            <div class="resources-wrap">
+            <% @resources_array.each do |resource| %>
+              <div class="resource">
+                <div class="inner-wrap">
+                  <div class="title-wrap">
+                    <div class="title"><%= resource[0] %></div>
+                    <div class="sponsor">
+                      <% if resource[2] != "SpartaHack" %>
+                        <%= image_tag (resource[2][@theme].present? ? resource[2][@theme] : resource[2][@theme_alt]), :alt => resource[2]['name'], :class => "logo-sponsor" %>
+                      <% else %>
+                        SpartaHack
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="description"><%= "<a href='#{resource[1]}'>#{resource[1]}</a>".html_safe %></div>
+                </div>
+              </div>
+            <% end %>
+            </div>
+        	</div>
+        </div>
+
+        <div class="prizes">
+          <div class="section-title-live" style="height: 250px">Prizes</div>
+          <div id="prize-wrap">
+            <div class="prizes-wrap">
+            <% @prizes_array.each do |prize| %>
+              <div class="prize">
+                <div class="inner-wrap">
+                  <div class="title-wrap">
+                    <div class="title"><%= prize[0] %></div>
+                    <div class="sponsor">
+                      <a href="<%= prize[2]['url'].blank? ? 'https://www.spartahack.com' : prize[2]['url'] %>" target="_blank">
+                      <% if prize[2] != "SpartaHack" %>
+                        <%= image_tag (prize[2][@theme].present? ? prize[2][@theme] : prize[2][@theme_alt]), :alt => prize[2]['name'], :class => "logo-sponsor" %>
+                      <% else %>
+                        SpartaHack
+                      <% end %>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="description"><%= prize[1].gsub("\n", '<br/>').html_safe %></div>
+                </div>
+              </div>
+            <% end %>
+            </div>
+        	</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>

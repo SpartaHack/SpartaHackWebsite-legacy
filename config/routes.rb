@@ -117,6 +117,11 @@ Rails.application.routes.draw do
   post '/batch/destroy', to: 'batch#destroy'
   post '/batch/update', to: 'batch#update'
 
+  get '/live', to: 'live#index'
+  get '/push', to: 'live#push'
+  post '/push/subscribe', to: 'live#subscribe'
+  post '/push/unsubscribe', to: 'live#unsubscribe'
+
   resources :faqs
 
 

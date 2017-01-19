@@ -15,7 +15,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <%= favicon_link_tag "favicons/apple-touch-icon.png", rel: 'apple-touch-icon', type: 'image/png', sizes: "180x180" %>
-    <link rel="manifest" href="<%= asset_path 'favicons/manifest.json' %>">
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes"></head>
     <link rel="mask-icon" href="<%= asset_path 'favicons/safari-pinned-tab.svg' %>">
     <% %w(16 32).each do |size| %>
       <%= favicon_link_tag "favicons/favicon-#{size}x#{size}.png", rel: 'icon', type: 'image/png', sizes: "#{size}x#{size}" %>
@@ -25,7 +26,6 @@
     <%= stylesheet_link_tag    'cssreset', :media => "none", :onload =>"if(media!='all')media='all'" %>
     <noscript><%= stylesheet_link_tag    'cssreset' %></noscript>
     <%= stylesheet_link_tag "application", "#{params[:controller]}", media: 'all', "data-turbolinks-track" => "reload" %>
-  </head>
 
   <% if cookies.signed[:theme] && cookies.signed[:theme] == 'dark' %>
     <body class="dark">

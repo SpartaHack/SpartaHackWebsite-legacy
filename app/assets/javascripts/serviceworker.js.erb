@@ -1,0 +1,110 @@
+var CACHE_VERSION = 'v1'
+var CACHE_NAME = 'sw-cache-' + CACHE_VERSION;
+
+function onInstall(event) {
+  console.log('[Serviceworker]', "Installing!", event);
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(function prefill(cache) {
+      return cache.addAll([
+
+        // make sure serviceworker.js is not required by application.js
+        // if you want to reference application.js from here
+        '<%#= asset_path "application.js" %>',
+
+        '<%= asset_path "application.css" %>',
+
+        '/offline.html',
+
+      ]);
+    })
+  );
+}
+
+function onActivate(event) {
+  console.log('[Serviceworker]', "Activating!", event);
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.filter(function(cacheName) {
+          // Return true if you want to remove this cache,
+          // but remember that caches are shared across
+          // the whole origin
+          return cacheName.indexOf(CACHE_VERSION) !== 0;
+        }).map(function(cacheName) {
+          return caches.delete(cacheName);
+        })
+      );
+    })
+  );
+}
+
+// Borrowed from https://github.com/TalAter/UpUp
+function onFetch(event) {
+  event.respondWith(
+    // try to return untouched request from network first
+    fetch(event.request).catch(function() {
+      // if it fails, try to return request from the cache
+      return caches.match(event.request).then(function(response) {
+        if (response) {
+          return response;
+        }
+        // if not found in cache, return default offline content for navigate requests
+        if (event.request.mode === 'navigate' ||
+          (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html'))) {
+          console.log('[Serviceworker]', "Fetching offline content", event);
+          return caches.match('/offline.html');
+        }
+      })
+    })
+  );
+}
+
+function onPush(event) {
+  event.waitUntil(
+     fetch("https://17.spartahack.com/push").then(function(response) {
+       if (response.status !== 200) {
+         // Either show a message to the user explaining the error
+         // or enter a generic message and handle the
+         // onnotificationclick event to direct the user to a web page
+         console.log('Looks like there was a problem. Status Code: ' + response.status);
+         throw new Error();
+       }
+
+       // Examine the text in the response
+       return response.json().then(function(data) {
+         if (data.error || !data.description) {
+           console.error('The API returned an error.', data.error);
+           throw new Error();
+         }
+
+         var title = data.title;
+         var message = data.description;
+         var icon = '<%= image_path "favicons/push-192x192.png"%>';
+         var notificationTag = 'simple-push-notification';
+
+         return self.registration.showNotification(title, {
+           body: message,
+           icon: icon,
+           tag: notificationTag
+         });
+       });
+     }).catch(function(err) {
+       console.error('Unable to retrieve data', err);
+
+       var title = 'An error occurred';
+       var message = 'We were unable to get the information for this push message';
+       var icon = '<%= image_path "favicons/push-192x192.png"%>';
+       var notificationTag = 'notification-error';
+       return self.registration.showNotification(title, {
+           body: message,
+           icon: icon,
+           tag: notificationTag
+         });
+     })
+   );
+}
+
+self.addEventListener('install', onInstall);
+self.addEventListener('activate', onActivate);
+self.addEventListener('fetch', onFetch);
+self.addEventListener('push', onPush);
