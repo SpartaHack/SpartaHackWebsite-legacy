@@ -106,20 +106,29 @@
         </div>
 
         <div class="row-third hardware">
-          <div class="section-title-live" style="height: 98px;">Hardware <span>(Name/ Lender/ Quantity)</span></div>
+          <div class="section-title-live" style="height: 98px;">Hardware</div>
           <div id="hardware-wrap">
-            <div class="hardware-wrap">
-            <!-- < @hardware_array.each do |hardware| %>
-              <div class="hardware">
-                <div class="inner-wrap">
-                  <div class="name-wrap">
-                    <div class="name"><= hardware[0] %></div>
-                    <div class="lender"><= hardware[2] %></div>
-                    <div class="quantity"><= hardware[1] %></div>
-                  </div>
+            <div class="hardware-inner">
+              <div class="inner-wrap">
+                <div class="name-wrap">
+                  <div class="name first">Item</div>
+                  <div class="lender first">Lender</div>
+                  <div class="quantity first">Quantity</div>
                 </div>
               </div>
-            < end %> -->
+            </div>
+            <div class="hardware-wrap">
+              <% @hardware_array.each do |hardware| %>
+                <div class="hardware-inner">
+                  <div class="inner-wrap">
+                    <div class="name-wrap">
+                      <div class="name"><%= hardware[0] %></div>
+                      <div class="lender"><%= hardware[2] %></div>
+                      <div class="quantity"><%= hardware[1] %></div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
             </div>
         	</div>
       	</div>
@@ -187,21 +196,23 @@
           <div class="section-title-live" style="height: 250px">APIs/ Resources</div>
           <div id="resource-wrap">
             <div class="resources-wrap">
-            < @resources_array.each do |resource| %>
+            <% @resources_array.each do |resource| %>
               <div class="resource">
                 <div class="inner-wrap">
                   <div class="title-wrap">
-                    <div class="title"><= resource[0] %></div>
+                    <div class="title"><%= resource[0] %></div>
                     <div class="sponsor">
-                      <a href="<= resource[2]["url"] %>" target="_blank">
-                        <!-- <= image_tag resource[2]["img"].url.sub('http://', 'https://s3.amazonaws.com/'), alt: resource[2]["name"], :class => "logo-sponsor" %> -->
-                      </a>
+                      <% if resource[2] != "SpartaHack" %>
+                        <%= image_tag (resource[2][@theme].present? ? resource[2][@theme] : resource[2][@theme_alt]), :alt => resource[2]['name'], :class => "logo-sponsor" %>
+                      <% else %>
+                        SpartaHack
+                      <% end %>
                     </div>
                   </div>
-                  <div class="description"><= "<a href='#{resource[1]}'>#{resource[1]}</a>".html_safe %></div>
+                  <div class="description"><%= "<a href='#{resource[1]}'>#{resource[1]}</a>".html_safe %></div>
                 </div>
               </div>
-            < end %>
+            <% end %>
             </div>
         	</div>
         </div>

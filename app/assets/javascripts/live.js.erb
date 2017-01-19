@@ -104,8 +104,12 @@ $(document).ready(function() {
         $(this).find(".left-wrap").height(right);
       }
     }
-  })
+  });
 
+  $(".hardware-inner > .inner-wrap").each(function(i) {
+    $(this).find(".name-wrap >.lender").height($(this).parent().height() - 20);
+  });
+  
   $(".section-title-live").height("40px")
 
 

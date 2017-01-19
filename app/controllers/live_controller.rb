@@ -81,29 +81,34 @@ class LiveController < ApplicationController
     rescue => e
       pp e
     end
-    #
-    #   @hardware_array = []
-    #   hardware = Parse::Query.new("Hardware").tap do |q|
-    #     q.order_by = "name"
-    #     q.order = :ascending
-    #   end.get
-    #
-    #   hardware.each do |hardware|
-    #     @hardware_array.push([hardware['name'], !hardware["inventory"].blank? ? hardware["inventory"] : "Many", !hardware["lender"].blank? ? hardware["lender"] : "SpartaHack"])
-    #   end
-    #
-    #   @resources_array = []
-    #   resources = Parse::Query.new("Resources").tap do |q|
-    #     q.order_by = "name"
-    #     q.order = :ascending
-    #     q.include = "sponsor"
-    #   end.get
-    #
-    #   resources.each do |resource|
-    #     @resources_array.push([resource['name'], resource["url"], resource["sponsor"]])
-    #   end
-    #
-    # render layout: false
+
+    begin
+      @hardware_array = []
+      hardware = JSON.parse(query_api('hardware').body)
+
+      hardware.each do |item|
+        @hardware_array.push([item['item'],
+          item['quantity'].blank? ? "See desk" : item['quantity'],
+        item['lender'].blank? || item['lender'] == "SpartaHack" ? "SpartaHack" : item['lender']])
+      end
+
+    rescue => e
+      pp e
+    end
+
+    begin
+      @resources_array = []
+      resources = JSON.parse(query_api('resources').body)
+
+      resources.each do |resource|
+        @resources_array.push([resource['name'], resource["url"], resource["sponsor"].blank? ? "SpartaHack" : resource["sponsor"]])
+      end
+
+      pp resources_array
+    rescue => e
+      pp e
+    end
+
   end
 
   def push

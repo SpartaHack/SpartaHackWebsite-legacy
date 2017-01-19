@@ -967,77 +967,85 @@
       min-width: 1px;
     }
 
-    .title-name-wrap {
-      border-bottom: 1px solid $dark-gold;
-      padding-top: 30px;
-      display: flex;
-      flex-direction: row;
-      color: $medium-gold;
-      font-family: 'Lato-Light';
-      font-weight: 100;
-      -webkit-appearance: none;
-      -webkit-font-smoothing: antialiased;
-
-      .name {
-        margin-left: 20px;
-        padding-bottom: 5px;
-        width: 254px;
-      }
-
-      .lender {
-        border-left: 1px solid $dark-gold;
-        border-right: 1px solid $dark-gold;
-        width: 124px;
-        padding-left: 10px;
-        padding-bottom: 5px;
-      }
-
-      .quantity {
-        width: 70px;
-        margin-right: 20px;
-        text-align: left;
-        height: 100%;
-        padding-left: 10px;
-        padding-bottom: 5px;
-      }
-    }
-
     .name-wrap {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      align-items: flex-end;
-      color: $light-gold;
+      text-align: left;
+      align-items: stretch;
+      align-content: stretch;
+      min-height: 37px;
+      color: $medium-gold;
       font-family: 'Lato-Light';
       font-weight: 100;
-      -webkit-appearance: none;
-      -webkit-font-smoothing: antialiased;
       font-size: 85%;
 
       .name {
+        flex-grow: 2;
+        align-self: center;
         margin-left: 20px;
-        width: 260px;
+        width: 40%;
+        max-width: 300px;
+        min-width: 100px;
         padding-top: 10px;
         padding-bottom: 10px;
+
+        &.first {
+          color: $dark-gold;
+
+          &.dark {
+            color: $light-gold;
+          }
+        }
       }
 
       .lender {
-        border-left: 1px solid $dark-gold;
-        border-right: 1px solid $dark-gold;
+        height: 100%;
+        flex-grow: 1;
+        align-self: center;
+        border-left: 1px solid $light-gold;
+        border-right: 1px solid $light-gold;
         padding-top: 10px;
         padding-bottom: 10px;
         padding-left: 10px;
-        width: 130px;
+        width: 25%;
+        max-width: 120px;
+        min-width: 100px;
+        @media (max-width: 450px) {
+          border-right: none;
+        }
+
+        &.first {
+          color: $dark-gold;
+
+          &.dark {
+            color: $light-gold;
+          }
+        }
       }
 
       .quantity {
         width: 80px;
-        margin-right: 20px;
+        align-self: center;
+        flex-grow: 1;
+        max-width: 80px;
+        min-width: 80px;
         text-align: left;
         height: 100%;
         padding-top: 10px;
         padding-bottom: 10px;
         padding-left: 10px;
+        @media (max-width: 450px) {
+          display: none;
+        }
+
+        &.first {
+          color: $dark-gold;
+
+          &.dark {
+            color: $light-gold;
+          }
+        }
       }
     }
 
@@ -1045,8 +1053,8 @@
       overflow-y: auto;
     }
 
-    .hardware {
-      border-bottom: 1px solid $dark-gold;
+    .hardware-inner {
+      border-bottom: 1px solid $light-gold;
 
       a {
         font-family: 'Lato-Light';
@@ -1098,7 +1106,7 @@
     }
 
     .resource {
-      border-bottom: 1px solid $dark-gold;
+      border-bottom: 1px solid $light-gold;
 
       a {
         font-family: 'Lato-Light';
@@ -1126,12 +1134,14 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        color: $light-gold;
+        color: $dark-gold;
         font-family: 'Lato-Light';
         font-weight: 100;
-        -webkit-appearance: none;
-        -webkit-font-smoothing: antialiased;
         padding-top: 10px;
+
+        &.dark {
+          color: $light-gold;
+        }
 
         .title {
           margin-left: 20px;
@@ -1139,7 +1149,28 @@
 
         .sponsor {
           margin-right: 20px;
+          text-align: right;
+          -webkit-appearance: none;
+          -webkit-font-smoothing: antialiased;
           font-size: 75%;
+          color: $dark-gold;
+          max-width: 130px;
+          width: 30vw;
+          max-height: 22px;
+
+          &.dark {
+            color: $light-gold;
+          }
+
+          a img {
+            max-width: 130px;
+            width: 30vw;
+            max-height: 22px;
+          }
+
+          a {
+            color: $dark-gold;
+          }
         }
       }
 
@@ -1149,6 +1180,7 @@
         font-weight: 100;
         -webkit-appearance: none;
         -webkit-font-smoothing: antialiased;
+        text-align: left;
         font-size: 90%;
         padding: 10px 20px;
       }
@@ -1160,6 +1192,11 @@
           width: auto;
           height: 30px;
           max-height: 30px;
+          max-width: 130px;
+        }
+
+        &.dark {
+          color: $medium-gold !important;
         }
       }
     }
