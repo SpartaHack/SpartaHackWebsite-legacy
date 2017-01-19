@@ -2,6 +2,7 @@ class ApplicationsController < ::ApplicationController
   wrap_parameters :user, include: [:password, :password_confirmation]
 
   def new
+    redirect_to '/application/edit' and return
     if flash[:app_params]
       # In the event of an error repopulate form.
       @application = Application.new(flash[:app_params])
@@ -49,6 +50,10 @@ class ApplicationsController < ::ApplicationController
 
   # Allows the editing of a User's Application.
   def edit
+    if !User.current_user.present?
+      redirect_to '/login' and return
+    end
+
     if flash[:app_params]
       # In the event of an error repopulate form.
       @application = Application.new(flash[:app_params])
