@@ -15,7 +15,7 @@ class Faq < ActiveResource::Base
   end
 
   schema do
-    string :question, :answer
+    string :question, :answer, :placement
     integer :priority
     boolean :display
   end
