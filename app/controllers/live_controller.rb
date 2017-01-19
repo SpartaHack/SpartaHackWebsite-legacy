@@ -104,7 +104,7 @@ class LiveController < ApplicationController
         @resources_array.push([resource['name'], resource["url"], resource["sponsor"].blank? ? "SpartaHack" : resource["sponsor"]])
       end
 
-      pp resources_array
+      pp resources
     rescue => e
       pp e
     end
