@@ -202,11 +202,13 @@
                   <div class="title-wrap">
                     <div class="title"><%= resource[0] %></div>
                     <div class="sponsor">
+                      <a href="<%= resource[2]['url'].blank? ? 'https://www.spartahack.com' : resource[2]['url'] %>" target="_blank">
                       <% if resource[2] != "SpartaHack" %>
                         <%= image_tag (resource[2][@theme].present? ? resource[2][@theme] : resource[2][@theme_alt]), :alt => resource[2]['name'], :class => "logo-sponsor" %>
                       <% else %>
                         SpartaHack
                       <% end %>
+                      </a>
                     </div>
                   </div>
                   <div class="description"><%= "<a href='#{resource[1]}'>#{resource[1]}</a>".html_safe %></div>
