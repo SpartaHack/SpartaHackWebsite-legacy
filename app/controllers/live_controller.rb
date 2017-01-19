@@ -7,13 +7,13 @@ class LiveController < ApplicationController
   def index
     unless File.exist?("app/assets/pdfs/SpartaHack-Map.pdf")
       open('app/assets/pdfs/SpartaHack-Map.pdf', 'wb') do |file|
-        file << open('https://d.api.spartahack.com/map').read
+        file << open('https://api.spartahack.com/map').read
       end
     end
 
     unless File.exist?("app/assets/pdfs/SpartaHack-Map-Dark.pdf")
       open('app/assets/pdfs/SpartaHack-Map-Dark.pdf', 'wb') do |file|
-        file << open('https://d.api.spartahack.com/map/dark').read
+        file << open('https://api.spartahack.com/map/dark').read
       end
     end
 
