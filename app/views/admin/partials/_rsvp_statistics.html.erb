@@ -27,7 +27,7 @@
                     </thead>
 
                     <tbody>
-                        <% @genders.each_with_index do |gender_count, index|  %>
+                        <% @rsvp_genders.each_with_index do |gender_count, index|  %>
                         <tr>
                             <td><%= gender_count[0] %></td>
                             <td><%= gender_count[1] %> or <%= number_to_percentage(100*(gender_count[1].to_f / @rsvp_attending_count),precision: 1) %></td>
@@ -55,7 +55,7 @@
                     </thead>
 
                     <tbody>
-                        <% @ages.each_with_index do |age_count, index|  %>
+                        <% @rsvp_ages.each_with_index do |age_count, index|  %>
                             <% if age_count[0] < 18 %>
                                 <tr>
                                     <td class="minorhighlight"><%= age_count[0].to_i %>
@@ -77,8 +77,8 @@
 
                 </table>
                 <p class="">
-                    There are <strong><%= @minors %> minors</strong>, which make up <strong><%= number_to_percentage(100*@minors.to_f / @ages.inject(0){|sum,e| sum += e[1] }, precision: 1) %></strong> of attendees.
-                    <br>There are <strong><%= @adults %> adults</strong>, which make up <strong><%= number_to_percentage(100*@adults.to_f / @ages.inject(0){|sum,e| sum += e[1] }, precision: 1) %></strong> of attendees.
+                    There are <strong><%= @rsvp_minors %> minors</strong>, which make up <strong><%= number_to_percentage(100*@rsvp_minors.to_f / @rsvp_ages.inject(0){|sum,e| sum += e[1] }, precision: 1) %></strong> of attendees.
+                    <br>There are <strong><%= @rsvp_adults %> adults</strong>, which make up <strong><%= number_to_percentage(100*@rsvp_adults.to_f / @rsvp_ages.inject(0){|sum,e| sum += e[1] }, precision: 1) %></strong> of attendees.
                 </p>
             </div>
         </article>
@@ -101,10 +101,10 @@
                 </thead>
 
                 <tbody>
-                    <% Hash[@universities.sort_by { |k,v| -v }[0..20]].each_with_index do |uni_applicants, index|  %>
+                    <% Hash[@rsvp_universities.sort_by { |k,v| -v }[0..20]].each_with_index do |uni_applicants, index|  %>
                     <tr>
                         <td><%= uni_applicants[0] %></td>
-                        <td><%= uni_applicants[1] %> or <%= number_to_percentage(100*(uni_applicants[1].to_f / @universities.inject(0){|sum,e| sum += e[1]}), precision: 1) %></td>
+                        <td><%= uni_applicants[1] %> or <%= number_to_percentage(100*(uni_applicants[1].to_f / @rsvp_universities.inject(0){|sum,e| sum += e[1]}), precision: 1) %></td>
                     </tr>
                     <% end %>
                 </tbody>
@@ -112,7 +112,7 @@
             <div class="tablefooter">
                 *top 20
             </div>
-            <p>There are <strong><%= @international %> international students</strong>, which make up <strong><%= number_to_percentage(100*(@international.to_f / @universities.inject(0){|sum,e| sum += e[1]}), precision: 1) %></strong> of RSVPs.</p>
+            <p>There are <strong><%= @rsvp_international %> international students</strong>, which make up <strong><%= number_to_percentage(100*(@rsvp_international.to_f / @rsvp_universities.inject(0){|sum,e| sum += e[1]}), precision: 1) %></strong> of RSVPs.</p>
 
         </article>
         <article>
@@ -131,7 +131,7 @@
                     </thead>
 
                     <tbody>
-                        <% @majors.each_with_index do |major_count, index|  %>
+                        <% @rsvp_majors.each_with_index do |major_count, index|  %>
                         <tr>
                             <td><%= major_count[0] %></td>
                             <td><%= major_count[1] %> or <%= number_to_percentage(100*major_count[1].to_f / @rsvp_attending_count, precision: 1) %></td>
@@ -247,5 +247,5 @@
 <!-- Let's load ruby variables into js because Noah likes to live dangerously -->
 <%= content_tag :div, class: "rsvps_data_gender_count", data: {temp: @rsvp_genders} do %>
 <% end %>
-<%= content_tag :div, class: "rsvps_data_age_count", data: {temp: @ages} do %>
+<%= content_tag :div, class: "rsvps_data_age_count", data: {temp: @rsvp_ages} do %>
 <% end %>

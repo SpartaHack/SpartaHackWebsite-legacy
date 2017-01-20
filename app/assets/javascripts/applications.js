@@ -255,47 +255,51 @@ $(window).scroll(function() {
   $("#popup-wrapper, #popup-error-wrapper").fadeOut('fast');
 });
 
-var characterCount = $("#application_statement").val().length
-$('#current').text(characterCount);
-$('#application_statement').keyup(function() {
+if ($('#application_statement').length) {
+  var characterCount = $("#application_statement").val().length
+  $('#current').text(characterCount);
+  $('#application_statement').keyup(function() {
 
-  characterCount = $(this).val().length,
-    current = $('#current'),
-    maximum = $('#maximum'),
-    theCount = $('#the-count');
+    characterCount = $(this).val().length,
+      current = $('#current'),
+      maximum = $('#maximum'),
+      theCount = $('#the-count');
 
-  current.text(characterCount);
-
-
-  /*This isn't entirely necessary, just playin around*/
-  if (characterCount < 1000) {
-    current.css('color', '#D4B166');
-    current.css('font-weight', 'normal');
-  }
-  if (characterCount > 999 && characterCount < 2000) {
-    current.css('color', '#D4B166');
-    current.css('font-weight', 'bold');
-  }
-  if (characterCount > 1999 && characterCount < 2500) {
-    current.css('color', '#B58A2D');
-    current.css('font-weight', 'normal');
-  }
-  if (characterCount > 2499 && characterCount < 3000) {
-    current.css('color', '#B58A2D');
-    current.css('font-weight', '900');
-  }
-
-  if (characterCount == 3000) {
-    maximum.css('color', '#B58A2D');
-    current.css('color', '#B58A2D');
-    theCount.css('font-weight', '900');
-  } else {
-    maximum.css('color', '#D4B166');
-    theCount.css('font-weight', 'normal');
-  }
+    current.text(characterCount);
 
 
-});
+    /*This isn't entirely necessary, just playin around*/
+    if (characterCount < 1000) {
+      current.css('color', '#D4B166');
+      current.css('font-weight', 'normal');
+    }
+    if (characterCount > 999 && characterCount < 2000) {
+      current.css('color', '#D4B166');
+      current.css('font-weight', 'bold');
+    }
+    if (characterCount > 1999 && characterCount < 2500) {
+      current.css('color', '#B58A2D');
+      current.css('font-weight', 'normal');
+    }
+    if (characterCount > 2499 && characterCount < 3000) {
+      current.css('color', '#B58A2D');
+      current.css('font-weight', '900');
+    }
+
+    if (characterCount == 3000) {
+      maximum.css('color', '#B58A2D');
+      current.css('color', '#B58A2D');
+      theCount.css('font-weight', '900');
+    } else {
+      maximum.css('color', '#D4B166');
+      theCount.css('font-weight', 'normal');
+    }
+
+
+  });
+
+}
+
 
 createSelects();
 // hide old selection arrow;
