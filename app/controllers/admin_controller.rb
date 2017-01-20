@@ -59,7 +59,6 @@ class AdminController < ApplicationController
   def onsite_registration
     unless params["email_check"].blank? || session[:has_forms]
       @user = find_user(params["email_check"])
-      pp @user
       if @user.present?
         @has_rsvp = @user.rsvp.present?
         @has_application = @user.application.present?
@@ -74,12 +73,13 @@ class AdminController < ApplicationController
               @minor = true
             elsif params[:commit] == "Has Forms"
               if check_in_user(@user.id, true)
-                debugger
                 flash[:notice] = "#{@user.first_name.capitalize} has been checked in successfully!"
                 session[:has_forms] = true
                 redirect_to(:back) && return
               else
-                debugger
+                flash[:notice] = "#{@user.first_name.capitalize} has been not been checked in, an error occurred."
+                session[:has_forms] = true
+                redirect_to(:back) && return
               end
             elsif params[:commit] == "Does Not Have Forms"
               flash[:notice] = "#{@user.first_name.capitalize} cannot be checked in without forms"
@@ -194,7 +194,6 @@ class AdminController < ApplicationController
         http.request(req)
       }
       @company =  JSON.parse(res.body)
-      pp @company
     rescue
       p "Error getting Sponsors"
       redirect_to "/admin/sponsorship" and return
