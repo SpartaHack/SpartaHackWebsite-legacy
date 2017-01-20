@@ -59,6 +59,7 @@ class AdminController < ApplicationController
   def onsite_registration
     unless params["email_check"].blank? || session[:has_forms]
       @user = find_user(params["email_check"])
+      pp @user
       if @user.present?
         @has_rsvp = @user.rsvp.present?
         @has_application = @user.application.present?
@@ -416,14 +417,17 @@ class AdminController < ApplicationController
   end
 
   def find_user(email)
-    @users = User.all.elements
-    @user = @users.find {|i| i.email == email }
+    begin
+      User.find(:first, :params => {:email => email})
+    rescue
+      nil
+    end
   end
 
   def check_in_user(id, is_minor = false)
     uri = URI.parse("#{ENV['API_SITE']}/checkin")
     http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
+    http.use_ssl = true if uri.scheme == 'https'
 
     request = Net::HTTP::Post.new(uri.request_uri)
     is_minor ? request.set_form_data({"id" => id, "forms" => 1}) : request.set_form_data({"id" => id})
