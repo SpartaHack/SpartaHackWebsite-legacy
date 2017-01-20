@@ -347,18 +347,26 @@ class AdminController < ApplicationController
     @common_words = @common_words.sort_by {|_key, value| value}.reverse
 
     @rsvps = Rsvp.all
+    @users = User.all.elements
 
     @rsvpd_applications = []
     @rsvp_attending_count = 0
     @rsvps_total = 0
+    @rsvp_minors = 0
+    @rsvp_adults = 0
+    @rsvp_international = 0
     @dietary_restrictions = {}
     @rsvp_genders = {}
+    @rsvp_ages = {}
+    @rsvp_universities = {}
+    @rsvp_graduation_years = {}
+    @rsvp_majors = {}
 
     @rsvps.each do |rsvp|
       @rsvps_total += 1
       if rsvp.attending == "Yes"
         @rsvp_attending_count += 1
-        rsvp.user = User.find(rsvp.user)
+        rsvp.user = @users.find {|i| i.id == rsvp.user}
         @rsvpd_applications.append(rsvp.user.application)
       end
 
@@ -373,6 +381,33 @@ class AdminController < ApplicationController
       unless rsvp.user.application.gender.blank?
         @rsvp_genders[rsvp.user.application.gender] ||= 0
         @rsvp_genders[rsvp.user.application.gender] += 1
+      end
+
+      app = rsvp.user.application
+
+      current_birthday = Time.zone.local(app.birth_year.to_i, app.birth_month.to_i, app.birth_day.to_i, 0, 0)
+      applicant_age = determine_age(current_birthday, @event_date)
+      applicant_age < 18 ? @rsvp_minors += 1 : @rsvp_adults +=1
+
+      @rsvp_ages[applicant_age] ||= 0
+      @rsvp_ages[applicant_age] += 1
+
+      unless app.university.blank?
+        @rsvp_universities[app.university] ||= 0
+        @rsvp_universities[app.university] += 1
+        if app.university[0,3] != "USA"
+          @rsvp_international += 1
+        end
+
+        @rsvp_graduation_years[app.graduation_year] ||= 0
+        @rsvp_graduation_years[app.graduation_year] += 1
+      end
+
+      unless app.major.blank?
+        (1..app.major.count-1).each do |index|
+          @rsvp_majors[app.major[index]] ||= 0
+          @rsvp_majors[app.major[index]] += 1
+        end
       end
 
     end
