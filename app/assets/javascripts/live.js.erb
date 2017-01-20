@@ -200,7 +200,7 @@ $(document).ready(function() {
 
   function refreshAnnouncements() {
     $.ajax({
-      url: "/push",
+      url: "https://17.spartahack.com/push",
       type: "GET",
       success: function(data) {
         if (data.error || (!data.description && !data.title) ) {
@@ -423,7 +423,7 @@ $(document).ready(function() {
 
           var subscriptionId = pushSubscription.subscriptionId;
           $.ajax({
-            url: "/push/unsubscribe",
+            url: "https://17.spartahack.com/push/unsubscribe",
             data: {token: subscriptionId},
             type: "POST",
             success: function(data) {
@@ -453,7 +453,7 @@ $(document).ready(function() {
 
   function sendSubscriptionToServer(id) {
     $.ajax({
-      url: "/push/subscribe",
+      url: "https://17.spartahack.com/push/subscribe",
       data: {token: id.endpoint},
       type: "POST",
       success: function(data) {
