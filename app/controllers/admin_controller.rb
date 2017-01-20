@@ -220,6 +220,12 @@ class AdminController < ApplicationController
       DateTime.parse(a.created_at) <=> DateTime.parse(b.created_at)
     end
 
+    @users = User.all
+    @users = @users.sort do |a,b|
+      DateTime.parse(a.created_at) <=> DateTime.parse(b.created_at)
+    end
+    @applications = []
+
     @apps_accepted_total = 0
     @universities = {:Other => 0}
     @international = 0
@@ -237,86 +243,28 @@ class AdminController < ApplicationController
     @created_dates = {}
     @statement_string = ""
 
+    @rsvpd_applications = []
+    @rsvp_attending_count = 0
+    @rsvps_total = 0
+    @rsvp_minors = 0
+    @rsvp_adults = 0
+    @rsvp_international = 0
+    @dietary_restrictions = {}
+    @rsvp_genders = {}
+    @rsvp_ages = {}
+    @rsvp_universities = {}
+    @rsvp_graduation_years = {}
+    @rsvp_majors = {}
 
-    @applications.each do |app|
-      unless app.status.blank?
-        if app.status == "accepted"
-          @apps_accepted_total += 1
-        end
+    @users.each do |user|
+      unless user.application.blank?
+        @applications.push(user.application)
+        application_stats(user.application)
       end
 
-      unless app.university.blank?
-        @universities[app.university] ||= 0
-        @universities[app.university] += 1
-        if app.university[0,3] != "USA"
-          @international += 1
-        end
-
-        @graduation_years[app.graduation_year] ||= 0
-        @graduation_years[app.graduation_year] += 1
+      unless user.rsvp.blank?
+        rsvp_stats(user.rsvp, user.application)
       end
-
-      unless app.travel_origin.blank?
-        @traveling[app.travel_origin] ||= 0
-        @traveling[app.travel_origin] += 1
-        if app.travel_origin[0,3] != "USA"
-          @traveling_international += 1
-        end
-      end
-
-      unless app.statement.blank?
-        @statement_string += " " + app.statement
-      end
-
-      unless app.other_university.blank?
-        @universities[:Other] += 1
-        @graduation_years[app.graduation_year] ||= 0
-        @graduation_years[app.graduation_year] += 1
-      end
-
-      unless app.major.blank?
-        (1..app.major.count-1).each do |index|
-          @majors[app.major[index]] ||= 0
-          @majors[app.major[index]] += 1
-        end
-      end
-
-      unless app.race.blank?
-        if app.race.length > 2
-          @races["Multiracial"] ||= 0
-          @races["Multiracial"] += 1
-        else
-          (1..app.race.count-1).each do |index|
-            @races[app.race[index]] ||= 0
-            @races[app.race[index]] += 1
-          end
-        end
-      end
-
-      unless app.gender.blank?
-        @genders[app.gender] ||= 0
-        @genders[app.gender] += 1
-      end
-
-      if app.other_university.blank? && app.university.blank?
-        @graduation_hs_years[app.graduation_year] ||= 0
-        @graduation_hs_years[app.graduation_year] += 1
-      end
-
-      current_birthday = Time.zone.local(app.birth_year.to_i, app.birth_month.to_i, app.birth_day.to_i, 0, 0)
-      applicant_age = determine_age(current_birthday, @event_date)
-      applicant_age < 18 ? @minors += 1 : @adults +=1
-
-      @ages[applicant_age] ||= 0
-      @ages[applicant_age] += 1
-
-      current_day = ( Time.parse(app.created_at) - 9*3600).strftime("%d-%b-%y")
-      @created_dates[current_day] ||= 0
-      @created_dates[current_day] += 1
-
-      @hackathons[app.hackathons] ||= 0
-      @hackathons[app.hackathons] += 1
-
     end
 
     random_count = 0
@@ -343,74 +291,8 @@ class AdminController < ApplicationController
       @common_words.delete(word)
     end
 
-
     @common_words = @common_words.sort_by {|_key, value| value}.reverse
 
-    @rsvps = Rsvp.all
-    @users = User.all.elements
-
-    @rsvpd_applications = []
-    @rsvp_attending_count = 0
-    @rsvps_total = 0
-    @rsvp_minors = 0
-    @rsvp_adults = 0
-    @rsvp_international = 0
-    @dietary_restrictions = {}
-    @rsvp_genders = {}
-    @rsvp_ages = {}
-    @rsvp_universities = {}
-    @rsvp_graduation_years = {}
-    @rsvp_majors = {}
-
-    @rsvps.each do |rsvp|
-      @rsvps_total += 1
-      if rsvp.attending == "Yes"
-        @rsvp_attending_count += 1
-        rsvp.user = @users.find {|i| i.id == rsvp.user}
-        @rsvpd_applications.append(rsvp.user.application)
-      end
-
-      rsvp.dietary_restrictions = JSON.parse(rsvp.dietary_restrictions)
-      unless rsvp.dietary_restrictions.blank? && rsvp.dietary_restrictions.count > 1
-        (1..rsvp.dietary_restrictions.count-1).each do |index|
-          @dietary_restrictions[rsvp.dietary_restrictions[index]] ||= 0
-          @dietary_restrictions[rsvp.dietary_restrictions[index]] += 1
-        end
-      end
-
-      unless rsvp.user.application.gender.blank?
-        @rsvp_genders[rsvp.user.application.gender] ||= 0
-        @rsvp_genders[rsvp.user.application.gender] += 1
-      end
-
-      app = rsvp.user.application
-
-      current_birthday = Time.zone.local(app.birth_year.to_i, app.birth_month.to_i, app.birth_day.to_i, 0, 0)
-      applicant_age = determine_age(current_birthday, @event_date)
-      applicant_age < 18 ? @rsvp_minors += 1 : @rsvp_adults +=1
-
-      @rsvp_ages[applicant_age] ||= 0
-      @rsvp_ages[applicant_age] += 1
-
-      unless app.university.blank?
-        @rsvp_universities[app.university] ||= 0
-        @rsvp_universities[app.university] += 1
-        if app.university[0,3] != "USA"
-          @rsvp_international += 1
-        end
-
-        @rsvp_graduation_years[app.graduation_year] ||= 0
-        @rsvp_graduation_years[app.graduation_year] += 1
-      end
-
-      unless app.major.blank?
-        (1..app.major.count-1).each do |index|
-          @rsvp_majors[app.major[index]] ||= 0
-          @rsvp_majors[app.major[index]] += 1
-        end
-      end
-
-    end
   end
 
   private
@@ -455,6 +337,134 @@ class AdminController < ApplicationController
       User.find(:first, :params => {:email => email})
     rescue
       nil
+    end
+  end
+
+  def application_stats(app)
+    unless app.status.blank?
+      if app.status == "accepted"
+        @apps_accepted_total += 1
+      end
+    end
+
+    unless app.university.blank?
+      @universities[app.university] ||= 0
+      @universities[app.university] += 1
+      if app.university[0,3] != "USA"
+        @international += 1
+      end
+
+      @graduation_years[app.graduation_year] ||= 0
+      @graduation_years[app.graduation_year] += 1
+    end
+
+    unless app.travel_origin.blank?
+      @traveling[app.travel_origin] ||= 0
+      @traveling[app.travel_origin] += 1
+      if app.travel_origin[0,3] != "USA"
+        @traveling_international += 1
+      end
+    end
+
+    unless app.statement.blank?
+      @statement_string += " " + app.statement
+    end
+
+    unless app.other_university.blank?
+      @universities[:Other] += 1
+      @graduation_years[app.graduation_year] ||= 0
+      @graduation_years[app.graduation_year] += 1
+    end
+
+    unless app.major.blank?
+      (1..app.major.count-1).each do |index|
+        @majors[app.major[index]] ||= 0
+        @majors[app.major[index]] += 1
+      end
+    end
+
+    unless app.race.blank?
+      if app.race.length > 2
+        @races["Multiracial"] ||= 0
+        @races["Multiracial"] += 1
+      else
+        (1..app.race.count-1).each do |index|
+          @races[app.race[index]] ||= 0
+          @races[app.race[index]] += 1
+        end
+      end
+    end
+
+    unless app.gender.blank?
+      @genders[app.gender] ||= 0
+      @genders[app.gender] += 1
+    end
+
+    if app.other_university.blank? && app.university.blank?
+      @graduation_hs_years[app.graduation_year] ||= 0
+      @graduation_hs_years[app.graduation_year] += 1
+    end
+
+    current_birthday = Time.zone.local(app.birth_year.to_i, app.birth_month.to_i, app.birth_day.to_i, 0, 0)
+    applicant_age = determine_age(current_birthday, @event_date)
+    applicant_age < 18 ? @minors += 1 : @adults +=1
+
+    @ages[applicant_age] ||= 0
+    @ages[applicant_age] += 1
+
+    current_day = ( Time.parse(app.created_at) - 9*3600).strftime("%d-%b-%y")
+    @created_dates[current_day] ||= 0
+    @created_dates[current_day] += 1
+
+    @hackathons[app.hackathons] ||= 0
+    @hackathons[app.hackathons] += 1
+  end
+
+  def rsvp_stats(rsvp, app)
+    @rsvps_total += 1
+    if rsvp.attending == "Yes"
+      @rsvp_attending_count += 1
+      rsvp.user = @users.find {|i| i.id == rsvp.user}
+      @rsvpd_applications.append(rsvp.user.application)
+    end
+
+    rsvp.dietary_restrictions = JSON.parse(rsvp.dietary_restrictions)
+    unless rsvp.dietary_restrictions.blank? && rsvp.dietary_restrictions.count > 1
+      (1..rsvp.dietary_restrictions.count-1).each do |index|
+        @dietary_restrictions[rsvp.dietary_restrictions[index]] ||= 0
+        @dietary_restrictions[rsvp.dietary_restrictions[index]] += 1
+      end
+    end
+
+    pp app
+    unless app.gender.blank?
+      @rsvp_genders[app.gender] ||= 0
+      @rsvp_genders[app.gender] += 1
+    end
+
+    current_birthday = Time.zone.local(app.birth_year.to_i, app.birth_month.to_i, app.birth_day.to_i, 0, 0)
+    applicant_age = determine_age(current_birthday, @event_date)
+    applicant_age < 18 ? @rsvp_minors += 1 : @rsvp_adults +=1
+
+    @rsvp_ages[applicant_age] ||= 0
+    @rsvp_ages[applicant_age] += 1
+
+    unless app.university.blank?
+      @rsvp_universities[app.university] ||= 0
+      @rsvp_universities[app.university] += 1
+      if app.university[0,3] != "USA"
+        @rsvp_international += 1
+      end
+
+      @rsvp_graduation_years[app.graduation_year] ||= 0
+      @rsvp_graduation_years[app.graduation_year] += 1
+    end
+
+    unless app.major.blank?
+      (1..app.major.count-1).each do |index|
+        @rsvp_majors[app.major[index]] ||= 0
+        @rsvp_majors[app.major[index]] += 1
+      end
     end
   end
 
