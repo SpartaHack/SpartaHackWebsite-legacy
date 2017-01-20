@@ -41,6 +41,11 @@ gem "jqcloud-rails"
 
 gem 'serviceworker-rails'
 
+gem 'rqrcode'
+
+# For Cross Origin Resource Sharing, in order to make cross-origin AJAX requests possible.
+gem 'rack-cors'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

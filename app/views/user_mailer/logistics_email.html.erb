@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<style>
+	     html, body {
+	       height: 100%;
+	     }
+
+	     html {
+	       display: table;
+	       margin: auto;
+	       font-family: "open sans";
+	     }
+
+	     body {
+	       display: table-cell;
+         -webkit-font-smoothing: antialiased;
+	       padding: 0;
+	       margin: 0;
+         padding-top: 100px;
+	       box-sizing: border-box;
+	       position: relative;
+	       overflow-x: hidden;
+         background-color: #362F26;
+         background: #362F26;
+	     }
+
+	     #banner {
+	       max-width: 600px;
+         width: 95%
+	     }
+
+       #footer {
+         width: 20%;
+         display:block;
+         margin:auto;
+         padding: 50px;
+       }
+
+	     .notice {
+	       max-width: 600px;
+         width: 95%;
+	       padding: 0 15px;
+	       -webkit-font-smoothing: antialiased;
+	       color: #FAE2A4;
+         opacity: .8;
+	     }
+
+	     #hey {
+	       color: #D4B166;
+	       -webkit-font-smoothing: antialiased;
+	       margin-top: 50px;
+	       padding: 0 15px;
+	     }
+
+	     #image-wrap {
+	       max-width: 600px;
+         width: 95%;
+         margin:0 auto;
+	     }
+
+       img {
+         padding-left: 15px;
+       }
+
+	     #from {
+	       color: #D4B166;
+	       padding-bottom: 15px;
+	       padding-top: 0;
+         margin:0;
+	     }
+
+       #note {
+         color: #D4B166;
+         padding-top: 15px;
+         padding-bottom: 5px;
+         margin: 0;
+       }
+
+       h5 {
+         margin-left: 25px;
+       }
+
+	     .indent {
+	       padding-left: 10px;
+	     }
+
+	     .general {
+         margin-top: 45px;
+	       padding: 0 15px;
+         color: #D4B166;
+	     }
+
+       strong {
+         color: #D4B166;
+         opacity: 1 !important;
+       }
+
+	     li {
+	       /*text-indent: -1em;*/
+	       /*margin-left: 1em;*/
+         color: #FAE2A4;
+         opacity: .8;
+	       list-style-image: url("https://17.spartahack.com/assets/diamond-w-shadow-4c3fbce6475192408710dec21d88dad2da7004e7a4a9a00e673d608dab81ce07.svg");
+	     }
+
+       .a-wrap {
+         margin-bottom: 10px;
+       }
+
+       a {
+         color: #FAE2A4;
+         position: relative;
+         text-decoration: none;
+         padding-bottom: 7px;
+         transition: all 0.3s ease-in-out;
+       }
+
+       a:after {
+         content: "";
+         position: absolute;
+         bottom: 2px;
+         left: 0;
+         height: 1px;
+         width: 95%;
+         background: #B58A2D,;
+         background: linear-gradient(to left, #FAE2A4 0%, #B58A2D 100%);
+       }
+
+       a:visited {
+         color: #FAE2A4;
+       }
+
+       a:hover {
+         opacity: 0.7;
+       }
+
+	     .main-li {
+	       padding-bottom: 5px;
+	     }
+
+       #checkin-qr-head {
+         color: #FAE2A4;
+         text-align: center;
+         margin-top: 100px;
+         margin-bottom: 25px;
+       }
+
+       #qr-wrap {
+         margin: 100px auto;
+         margin-top: 0px;
+         background: white;
+         width: 277px;
+         padding-top: 10px;
+         padding-bottom: 10px;
+       }
+
+	     pre {
+	         font-family: "Courier 10 Pitch", Courier, monospace;
+	         font-size: 100%;
+           padding-top: 15px;
+           padding-left: 10px;
+           background: #696969;
+           border: 1px solid #696969;
+           border-radius: 5px;
+	     }
+
+       #second {
+         margin-top: 60px;
+       }
+
+	</style>
+	<title></title>
+</head>
+<body>
+	<div id="image-wrap" style="max-width: 600px; width: 95%;">
+    <%= image_tag attachments['banner.png'].url, :id => 'banner' %>
+
+		<div>
+			<h2 id="hey">Hey <%= @name.capitalize %>,</h2>
+			<p class="notice" id="first">SpartaHack is almost here! Here are some things you'll need to know:</p>
+			<h3 class="general">General Info</h3>
+			<ul>
+				<li class="main-li">Location: Wells Hall, 619 Red Cedar Road, East Lansing, MI 49924</li>
+				<li class="main-li">Parking: Free after 4:00pm in Ramp 5 - but <strong>don't</strong> park on the first floor, and avoid pay-by-plate spaces and 24-hour reserved spots</li>
+				<li style="display: inline">
+					<pre>WiFi SSID:    SpartaHack
+Password:     SpartansWill
+      </pre>
+				</li>
+				<li>Your new favorite site: <a href="https://live.spartahack.com">live.spartahack.com</a>
+				</li>
+				<li style="display: inline">
+					<ul class="indent">
+						<li>Detailed schedule</li>
+						<li>Parking details</li>
+						<li>Venue Map</li>
+						<li>Prizes</li>
+						<li>Hardware</li>
+						<li>Announcements</li>
+						<li>FAQ</li>
+						<li>Resources</li>
+					</ul>
+				</li>
+			</ul>
+			<h3 class="general">Check In</h3>
+			<ul>
+				<li class="main-li">6:00pm - 8:30pm on Friday, 1/20</li>
+				<li class="main-li">If you arrive after that, you can check in at the Help Desk.</li>
+				<li class="main-li">You must have a <strong>completed RSVP</strong> to check in.</li>
+				<li class="main-li">Hate long lines? Have your QR code loaded on your phone for one-step check-in.</li>
+				<li class="main-li">You can also download our iOS, Android, or Windows mobile app to access your QR code and receive push notifications throughout the event.</li>
+				<li class="main-li"><strong>Minors: if you are under 18 years of age, we cannot check you in without signed copies of these three documents:</strong></li>
+				<li style="list-style: none; display: inline">
+					<ul class="indent">
+						<li class="a-wrap">
+							<a href="https://drive.google.com/open?id=0B57ET4MXSSx3c2pmOW5paWRoUzQ" target="_blank">Medical Release Form</a>
+						</li>
+						<li class="a-wrap">
+							<a href="https://drive.google.com/open?id=0B57ET4MXSSx3cXVWTjVYM2dkNTA" target="_blank">Media Release Form</a>
+						</li>
+						<li class="a-wrap">
+							<a href="https://drive.google.com/open?id=0B57ET4MXSSx3bnYtOWZxZVp3ZVE" target="_blank">Parental Permission Form</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+
+      <p id="checkin-qr-head">Here is your check-in QR code:</p>
+      <div id="qr-wrap">
+        <%= image_tag attachments['qr.png'].url %>
+      </div>
+
+      <h3 class="general">What to bring</h3>
+      <ul>
+        <li>A valid form of ID (passport if international)</li>
+        <li>Laptop and charger</li>
+        <li>Toiletries and a change of clothes</li>
+        <li>Optional: pillow and blanket</li>
+      </ul>
+
+      <h5>
+        <strong>
+          DON'T BRING: Weapons, alcohol, or other illicit substances.
+        </strong>
+      </h5>
+
+      <h3 class="general">Travel Reimbursement</h3>
+      <li>You are eligible for the amount of travel reimbursement indicated in our travel policy if and only if:</li>
+      <ul>
+        <li>You and anyone with whom you are carpooling have RSVPed.</li>
+        <li>You follow all of the steps in our travel policy.</li>
+      </ul>
+      <p class="notice" id="second">If you have any questions, please check out the FAQ section of <a href="https://live.spartahack.com">live.spartahack.com</a> or email <a href="mailto:hello@spartahack.com">hello@spartahack.com</a>.</p>
+      <p id="note">See you soon! 😊</p>
+      <p id="from">- The SpartaHack Team</p>
+		</div>
+    <%= image_tag attachments['footer.png'].url, :id => 'footer' %>
+	</div>
+</body>
+</html>
