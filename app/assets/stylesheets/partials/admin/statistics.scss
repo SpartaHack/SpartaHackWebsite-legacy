@@ -8,7 +8,7 @@
   font-weight: 100;
   -webkit-appearance: none;
   -webkit-font-smoothing: antialiased;
-  color: #80ffdb;
+  color: $dark-brown;
   // Fixes weird x scrolling on mobile
   overflow-x: hidden;
 
@@ -411,6 +411,7 @@
     div {
       position: relative;
       flex: 1;
+      height: 50px;
     }
 
     input {
