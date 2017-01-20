@@ -138,6 +138,7 @@ class AdminController < ApplicationController
       DateTime.parse(a.created_at) <=> DateTime.parse(b.created_at)
     end
 
+    @apps_accepted_total = 0
     @universities = {:Other => 0}
     @international = 0
     @traveling = {}
@@ -156,6 +157,12 @@ class AdminController < ApplicationController
 
 
     @applications.each do |app|
+      unless app.status.blank?
+        if app.status == "accepted"
+          @apps_accepted_total += 1
+        end
+      end
+
       unless app.university.blank?
         @universities[app.university] ||= 0
         @universities[app.university] += 1
@@ -256,6 +263,37 @@ class AdminController < ApplicationController
 
 
     @common_words = @common_words.sort_by {|_key, value| value}.reverse
+
+    @rsvps = Rsvp.all
+
+    @rsvpd_applications = []
+    @rsvp_attending_count = 0
+    @rsvps_total = 0
+    @dietary_restrictions = {}
+    @rsvp_genders = {}
+
+    @rsvps.each do |rsvp|
+      @rsvps_total += 1
+      if rsvp.attending == "Yes"
+        @rsvp_attending_count += 1
+        rsvp.user = User.find(rsvp.user)
+        @rsvpd_applications.append(rsvp.user.application)
+      end
+
+      rsvp.dietary_restrictions = JSON.parse(rsvp.dietary_restrictions)
+      unless rsvp.dietary_restrictions.blank? && rsvp.dietary_restrictions.count > 1
+        (1..rsvp.dietary_restrictions.count-1).each do |index|
+          @dietary_restrictions[rsvp.dietary_restrictions[index]] ||= 0
+          @dietary_restrictions[rsvp.dietary_restrictions[index]] += 1
+        end
+      end
+
+      unless rsvp.user.application.gender.blank?
+        @rsvp_genders[rsvp.user.application.gender] ||= 0
+        @rsvp_genders[rsvp.user.application.gender] += 1
+      end
+
+    end
   end
 
   private
