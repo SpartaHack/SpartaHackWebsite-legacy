@@ -138,10 +138,10 @@
           <div id="map-wrap-wrap">
             <div class="map-wrap">
               <object id="map-light" <%= cookies.signed[:theme] && cookies.signed[:theme] != 'dark' ? "" : "hidden" %> data="<%= asset_url("SpartaHack-Map.pdf")%>" type="application/pdf" width="100%" height="100%" name="Map">
-                  alt : <a href="https://live.spartahack.com/map">SpartaHack Map</a>
+                  alt : <a href="https://api.spartahack.com/map">SpartaHack Map</a>
               </object>
               <object id="map-dark" <%= cookies.signed[:theme] && cookies.signed[:theme] != 'dark' ? "hidden" : "" %> data="<%= asset_url("SpartaHack-Map-Dark.pdf")%>" type="application/pdf" width="100%" height="100%" name="Map">
-                  alt : <a href="https://live.spartahack.com/map/dark">SpartaHack Map</a>
+                  alt : <a href="https://api.spartahack.com/map/dark">SpartaHack Map</a>
               </object>
             </div>
         	</div>

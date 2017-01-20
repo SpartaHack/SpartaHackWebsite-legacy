@@ -95,6 +95,7 @@ Rails.application.routes.draw do
 
   get '/admin/statistics', to: 'admin#statistics'
   get '/admin/stats', to: 'admin#statistics'
+  post '/admin/notifications', to: 'admin#notifications'
   get '/statistics', to: 'admin#stats'
   get '/stats', to: 'admin#stats'
 

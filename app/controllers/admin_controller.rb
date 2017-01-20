@@ -39,7 +39,11 @@ class AdminController < ApplicationController
     @total = [users.count, app_total, accepted, waitlisted, denied, rsvp_total, rsvp_yes, rsvp_no]
   end
 
-  def statistics
+  def notifications
+    if !notification_params[:description].blank? && !notification_params[:title].blank?
+      pp "-------------------"
+      pp JSON.parse(announce.body)
+    end
   end
 
   def faq
@@ -307,6 +311,10 @@ class AdminController < ApplicationController
     params.permit(:id)
   end
 
+  def notification_params
+    params.require(:announcement).permit(:title, :description, :pinned)
+  end
+
   def sponsorship_params
     params.permit(:id)
   end
@@ -481,6 +489,23 @@ class AdminController < ApplicationController
       h.request(request)
     }
     JSON.parse(http.body)
+  end
+
+  def announce
+    url = URI.parse("#{ENV['API_SITE']}/announcements")
+    req = Net::HTTP::Post.new(url.to_s)
+    req.set_form_data({"announcement[pinned]" => notification_params[:pinned].blank? ? "false" : notification_params[:pinned],
+      "announcement[description]" => notification_params[:description],
+    "announcement[title]" => notification_params[:title] })
+    req.add_field("Authorization", "Token token=\"#{ENV['API_AUTH_TOKEN']}\"")
+    req.add_field("X-WWW-USER-TOKEN", "#{User.current_user.auth_token}")
+
+    res = Net::HTTP.new(url.host, url.port)
+    res.use_ssl = true if url.scheme == 'https'
+    res = res.start {|http|
+      http.request(req)
+    }
+
   end
 
 

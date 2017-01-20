@@ -61,9 +61,9 @@
       </div> -->
     <% end %>
     <% if @user.roles.include? "director" %>
-      <!-- <div class="hvr-underline-from-left full" id="announcements">
+      <div class="hvr-underline-from-left full" id="announcements">
         <a href=""><div class="topic" >Announcements</div></a>
-      </div> -->
+      </div>
     <% end %>
       <div class="hvr-underline-from-left full">
         <a href="/admin/statistics"><div class="topic" >Statistics</div></a>
@@ -98,9 +98,45 @@
 
 <%= javascript_tag do %>
   window.onload = function(e) {
+    $('#popup-wrapper').click(function(e){
+  		  if (e.target !== this)
+  		    return;
+
+  		  $('#popup-wrapper').fadeOut('fast');
+  	});
+
     $.ajax({
       url: '/admin/dashboard/stats',
       type: 'post',
     });
+
+    $('#announcements').click(function(e) {
+      e.preventDefault();
+
+      $('#popup-wrapper').html(
+        "<%= j(render partial: 'admin/partials/notifications')  %>"
+      );
+
+      $('#announce').submit(function(e) {
+        console.log($(this).serialize());
+        pinned = $("#pinned").is(':checked');
+        console.log( $(this).serialize() + "&announcement%5Bpinned%5D=" + pinned);
+        e.preventDefault();
+        $.ajax({
+          url: "/admin/notifications",
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+          },
+          type: "post",
+          context: document.body,
+          data: $(this).serialize()
+        });
+        $(this).closest('form').find("input[type=text], textarea").val("");
+        $("#pinned").removeAttr('checked');
+      });
+
+       $("#popup-wrapper").css("display", "flex");
+    });
+
   }
 <% end %>
