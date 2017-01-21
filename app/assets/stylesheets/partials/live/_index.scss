@@ -255,6 +255,15 @@
     background-color: transparent;
     margin-top: 25px;
     width: 1495px;
+    @media (min-width: 1001px) and (max-width: 1500px) {
+      width: 985px;
+    }
+    @media (min-width: 601px) and (max-width: 1000px) {
+      width: 480px;
+    }
+    @media (max-width: 600px) {
+      width: 85vw;
+    }
   }
 
   #push-notification-wrap {
