@@ -202,6 +202,7 @@ $(document).ready(function() {
     $.ajax({
       url: "/push",
       type: "GET",
+      dataType: 'jsonp',
       success: function(data) {
         if (data.error || (!data.description && !data.title) ) {
           console.error('The API returned an error.', data.error);
