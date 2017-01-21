@@ -200,7 +200,7 @@ $(document).ready(function() {
 
   function refreshAnnouncements() {
     $.ajax({
-      url: "https://17.spartahack.com/push",
+      url: "/push",
       type: "GET",
       success: function(data) {
         if (data.error || (!data.description && !data.title) ) {
@@ -213,7 +213,7 @@ $(document).ready(function() {
           dark = " dark"
         }
 
-        if (data.description !== $("#wrap-announce > :first-child > .inner-wrap > .description").html() ) {
+        if ( $.trim(data.description) !== $.trim($("#wrap-announce > :first-child > .inner-wrap > .description").html()) ) {
           announcement = '<div class="announcement">\
                 <div class="inner-wrap">\
                   <div class="title-wrap'+dark+'">\
@@ -423,7 +423,7 @@ $(document).ready(function() {
 
           var subscriptionId = pushSubscription.subscriptionId;
           $.ajax({
-            url: "https://17.spartahack.com/push/unsubscribe",
+            url: "/push/unsubscribe",
             data: {token: subscriptionId},
             type: "POST",
             success: function(data) {
@@ -453,7 +453,7 @@ $(document).ready(function() {
 
   function sendSubscriptionToServer(id) {
     $.ajax({
-      url: "https://17.spartahack.com/push/subscribe",
+      url: "/push/subscribe",
       data: {token: id.endpoint},
       type: "POST",
       success: function(data) {
